@@ -36,6 +36,6 @@ jobs:
           if git diff --staged --quiet; then
             echo "No changes to commit"
           else
-            git commit -m "chore: update crawled data [skip ci]"
+            git commit -m "chore: update crawled data"
             git push
           fi
