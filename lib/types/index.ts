@@ -32,15 +32,27 @@ export interface ICrawler {
   crawl(): Promise<Post[]>;
 }
 
-// API 응답 타입
-export interface ApiResponse<T> {
-  success: boolean;
-  data?: T;
-  error?: string;
-  pagination?: {
-    page: number;
-    limit: number;
-    total: number;
-    hasMore: boolean;
-  };
+// 정적 JSON용 게시글 타입 (DB 없이 사용)
+export interface StaticPost {
+  id: string;
+  title: string;
+  author: string;
+  url: string;
+  site: string;
+  siteDisplayName: string;
+  thumbnail?: string;
+  viewCount?: number;
+  commentCount?: number;
+  likeCount?: number;
+  createdAt: string; // ISO string
+  fetchedAt: string; // ISO string
+  category?: string;
+}
+
+// 정적 JSON용 사이트 타입
+export interface StaticSite {
+  name: string;
+  displayName: string;
+  url: string;
+  lastCrawledAt: string | null; // ISO string
 }
