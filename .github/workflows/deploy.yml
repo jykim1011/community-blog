@@ -1,0 +1,25 @@
+name: Trigger Deployment
+
+on:
+  schedule:
+    # 2시간마다 배포 (12회/일 * 30일 = 360 빌드/월)
+    - cron: '0 */2 * * *'
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+jobs:
+  trigger-deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Trigger deployment
+        run: |
+          git config user.name "github-actions[bot]"
+          git config user.email "github-actions[bot]@users.noreply.github.com"
+
+          # 빈 커밋으로 Cloudflare Pages 배포 트리거
+          git commit --allow-empty -m "chore: trigger deployment"
+          git push
