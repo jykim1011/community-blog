@@ -5,13 +5,13 @@
 
 ## 📊 진행 상황 (2026-02-19 업데이트)
 
-**전체 진행률: 44% (4/9 섹션 완료)**
+**전체 진행률: 56% (5/9 섹션 완료)**
 
 - ✅ 1단계: 정적 데이터 구조 설계 (100%)
 - ✅ 2단계: 크롤링 스크립트 분리 (100%)
 - ✅ 3단계: GitHub Actions 워크플로우 (95% - 알림 제외)
 - ✅ 4단계: Next.js SSG 전환 (100%)
-- ⏳ 5단계: Cloudflare Pages 배포 (0%)
+- ✅ 5단계: Cloudflare Pages 배포 (100%)
 - ⏳ 6단계: Android 앱 (0%)
 - ⏳ 7단계: 광고 연동 (0%)
 - ⏳ 8단계: Google Play 출시 (0%)
@@ -21,8 +21,9 @@
 - 22개 커뮤니티 크롤러 구현 완료
 - 500건 게시글 크롤링 중 (15분마다 자동 업데이트)
 - GitHub Actions 자동화 완료
-- 정적 빌드 준비 완료 (2.9MB)
-- **다음 단계: Cloudflare Pages 배포**
+- 정적 빌드 완료 (2.9MB)
+- **Cloudflare Pages 배포 완료** (https://82adac88.community-blog-eoc.pages.dev/)
+- **다음 단계: Android 앱 개발**
 
 ---
 
@@ -99,14 +100,18 @@ Cloudflare Pages (정적 호스팅, 대역폭 무제한)
 - [x] `next.config.ts`에 `output: 'export'` 설정 (정적 빌드)
   - 빌드 결과물: 2.9MB (out/ 디렉토리)
 
-## 5. Cloudflare Pages 배포
-- [ ] Cloudflare 계정 생성
-- [ ] GitHub 연동 → 자동 빌드/배포 설정
-- [ ] 빌드 명령: `npm run build`
-- [ ] 출력 디렉토리: `out/`
+## 5. Cloudflare Pages 배포 ✅
+- [x] Cloudflare 계정 생성
+- [x] GitHub 연동 → 자동 빌드/배포 설정
+- [x] 빌드 명령: `npm run build`
+- [x] 출력 디렉토리: `out/`
+- [x] `wrangler.toml` 설정 파일 추가
+- [x] 배포 테스트 및 성능 확인
+  - 배포 URL: https://82adac88.community-blog-eoc.pages.dev/
+  - 빌드 시간: ~40초 (23개 정적 페이지 생성)
+  - 자동 배포: GitHub push 시 자동 트리거
 - [ ] 커스텀 도메인 연결 (선택, Cloudflare DNS 무료)
-- [ ] 캐시 정책 설정 (HTML: 15분, JSON: 15분, 정적자산: 1년)
-- [ ] 배포 테스트 및 성능 확인
+- [ ] 캐시 정책 최적화 (선택, HTML: 15분, JSON: 15분, 정적자산: 1년)
 
 ## 6. Android 앱 (Capacitor)
 - [ ] Capacitor 설치 (`@capacitor/core`, `@capacitor/cli`)
