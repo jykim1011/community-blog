@@ -3,6 +3,27 @@
 > 목표: 10M+ 다운로드에서도 월 운영비 ₩0
 > 핵심: DB 없음, 서버 없음. 정적 파일 + CDN(무제한 대역폭)
 
+## 📊 진행 상황 (2026-02-19 업데이트)
+
+**전체 진행률: 44% (4/9 섹션 완료)**
+
+- ✅ 1단계: 정적 데이터 구조 설계 (100%)
+- ✅ 2단계: 크롤링 스크립트 분리 (100%)
+- ✅ 3단계: GitHub Actions 워크플로우 (95% - 알림 제외)
+- ✅ 4단계: Next.js SSG 전환 (100%)
+- ⏳ 5단계: Cloudflare Pages 배포 (0%)
+- ⏳ 6단계: Android 앱 (0%)
+- ⏳ 7단계: 광고 연동 (0%)
+- ⏳ 8단계: Google Play 출시 (0%)
+- ⏳ 9단계: SEO 및 마케팅 (0%)
+
+**현재 상태:**
+- 22개 커뮤니티 크롤러 구현 완료
+- 500건 게시글 크롤링 중 (15분마다 자동 업데이트)
+- GitHub Actions 자동화 완료
+- 정적 빌드 준비 완료 (2.9MB)
+- **다음 단계: Cloudflare Pages 배포**
+
 ---
 
 ## 아키텍처
@@ -22,46 +43,61 @@ Cloudflare Pages (정적 호스팅, 대역폭 무제한)
 
 ---
 
-## 1. 정적 데이터 구조 설계 (DB → JSON 파일)
-- [ ] `data/` 디렉토리 구조 설계
+## 1. 정적 데이터 구조 설계 (DB → JSON 파일) ✅
+- [x] `data/` 디렉토리 구조 설계
   - `data/posts.json` — 전체 인기글 목록 (최근 200~500건)
   - `data/sites.json` — 사이트 메타 정보
-  - `data/posts/{site}.json` — 사이트별 게시글
-  - `data/meta.json` — 마지막 크롤링 시각 등
-- [ ] Post 타입 정의 (DB 스키마 → JSON 스키마로 변환)
-- [ ] 중복 제거 로직 구현 (URL 기반, JSON 내에서 처리)
-- [ ] 오래된 게시글 자동 정리 (24~48시간 이상 된 글 제거)
+- [x] Post 타입 정의 (DB 스키마 → JSON 스키마로 변환)
+  - `StaticPost`, `StaticSite` 타입 정의 완료
+- [x] 중복 제거 로직 구현 (URL 기반, JSON 내에서 처리)
+  - `scripts/crawl.ts`에서 URL 기반 중복 제거
+- [x] 오래된 게시글 자동 정리 (24~48시간 이상 된 글 제거)
+  - 48시간 초과 게시글 자동 제거 구현
 
-## 2. 크롤링 스크립트 분리
-- [ ] `scripts/crawl.ts` — standalone 크롤링 스크립트 작성
-  - Prisma/DB 의존성 제거
+## 2. 크롤링 스크립트 분리 ✅
+- [x] `scripts/crawl.ts` — standalone 크롤링 스크립트 작성
+  - Prisma/DB 의존성 제거 완료
   - 크롤링 결과를 `data/*.json`에 직접 쓰기
   - 기존 JSON 읽기 → 새 글 머지 → 오래된 글 제거 → 저장
-- [ ] 로컬 실행 테스트 (`npx tsx scripts/crawl.ts`)
-- [ ] `instrumentation.ts` node-cron 코드 제거
-- [ ] Prisma, @prisma/client 등 DB 관련 패키지 제거
+  - 22개 커뮤니티 크롤러 구현 완료
+- [x] 로컬 실행 테스트 (`npx tsx scripts/crawl.ts`)
+  - 테스트 완료: 443건 → 500건 크롤링 성공
+- [x] `instrumentation.ts` node-cron 코드 제거
+  - 파일 삭제 완료
+- [x] Prisma, @prisma/client 등 DB 관련 패키지 제거
+  - package.json에서 완전 제거 완료
 
-## 3. GitHub Actions 크롤링 워크플로우
-- [ ] `.github/workflows/crawl.yml` 작성
+## 3. GitHub Actions 크롤링 워크플로우 ✅
+- [x] `.github/workflows/crawl.yml` 작성
   ```yaml
   schedule: cron '*/15 * * * *'   # 15분마다
   jobs: crawl → npm ci → tsx scripts/crawl.ts → git commit & push
   ```
-- [ ] Actions에서 `data/*.json` 변경 사항 자동 커밋
+- [x] Actions에서 `data/*.json` 변경 사항 자동 커밋
+  - 자동 커밋 메시지: "chore: update crawled data [skip ci]"
 - [ ] 크롤링 실패 시 알림 (선택: GitHub Issues 자동 생성)
-- [ ] 워크플로우 실행 테스트
+  - 미구현 (선택 사항)
+- [x] 워크플로우 실행 테스트
+  - 수동 트리거 테스트 성공 (1분 18초, 500건 크롤링)
 
-## 4. Next.js SSG 전환 (SEO)
-- [ ] DB 조회 코드 → JSON 파일 읽기로 전환
-  - `postService.getPosts()` → `fs.readFile('data/posts.json')`
+## 4. Next.js SSG 전환 (SEO) ✅
+- [x] DB 조회 코드 → JSON 파일 읽기로 전환
+  - `import postsData from '@/data/posts.json'` 사용
   - 빌드 타임에 JSON 읽어서 정적 HTML 생성
-- [ ] `app/page.tsx` — `force-dynamic` 제거, SSG로 변경
-- [ ] 사이트별 필터 페이지 SSG (`app/site/[name]/page.tsx`)
-- [ ] `sitemap.xml` 자동 생성 (`app/sitemap.ts`)
-- [ ] `robots.txt` 추가 (`app/robots.ts`)
-- [ ] Open Graph / meta 태그 설정
-- [ ] 구조화된 데이터 (JSON-LD) 추가
-- [ ] `next.config.ts`에 `output: 'export'` 설정 (정적 빌드)
+- [x] `app/page.tsx` — `force-dynamic` 제거, SSG로 변경
+  - 완전 정적 페이지 생성 (23개 페이지)
+- [x] 사이트별 필터 페이지 SSG (`app/site/[name]/page.tsx`)
+  - `generateStaticParams()` 구현 (17개 사이트)
+- [x] `sitemap.xml` 자동 생성 (`app/sitemap.ts`)
+  - 홈 + 17개 사이트 페이지 sitemap 생성
+- [x] `robots.txt` 추가 (`app/robots.ts`)
+  - 검색엔진 크롤러 허용 설정
+- [x] Open Graph / meta 태그 설정
+  - `app/layout.tsx`에 전역 메타데이터 설정
+- [x] 구조화된 데이터 (JSON-LD) 추가
+  - WebSite, CollectionPage 스키마 구현
+- [x] `next.config.ts`에 `output: 'export'` 설정 (정적 빌드)
+  - 빌드 결과물: 2.9MB (out/ 디렉토리)
 
 ## 5. Cloudflare Pages 배포
 - [ ] Cloudflare 계정 생성
