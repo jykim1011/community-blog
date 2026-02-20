@@ -66,9 +66,13 @@ export default function SitePage({
       />
 
       {/* 헤더 */}
-      <header className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center justify-between">
+      <header className="bg-gray-50 dark:bg-gray-900 sm:bg-white sm:dark:bg-gray-800 sm:border-b sm:border-gray-200 sm:dark:border-gray-700">
+        {/* 모바일: 안전 영역만 */}
+        <div className="h-3 sm:hidden" />
+
+        {/* 데스크톱: 뒤로가기 + 타이틀 */}
+        <div className="hidden sm:block">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
             <div className="flex items-center gap-3">
               <Link
                 href="/"

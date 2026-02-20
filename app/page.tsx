@@ -29,9 +29,19 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* 헤더 - 안전 영역만 (모바일/데스크톱 공통) */}
+      {/* 헤더 */}
       <header className="bg-gray-50 dark:bg-gray-900">
-        <div className="h-3 sm:h-4" />
+        {/* 모바일: 안전 영역만 */}
+        <div className="h-3 sm:hidden" />
+
+        {/* 데스크톱: 타이틀 표시 */}
+        <div className="hidden sm:block">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+            <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
+              {SITE_NAME}
+            </h1>
+          </div>
+        </div>
       </header>
 
       {/* 메인 컨텐츠 */}
