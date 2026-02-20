@@ -10,6 +10,9 @@
     "crawl": "npx tsx scripts/crawl.ts"
   },
   "dependencies": {
+    "@capacitor/android": "^8.1.0",
+    "@capacitor/cli": "^8.1.0",
+    "@capacitor/core": "^8.1.0",
     "axios": "^1.13.4",
     "cheerio": "^1.2.0",
     "clsx": "^2.1.1",

@@ -46,3 +46,9 @@ prisma/*.db-journal
 
 # claude code
 .claude/
+
+# capacitor
+/android
+/ios
+*.apk
+*.aab
