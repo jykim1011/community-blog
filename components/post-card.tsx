@@ -31,33 +31,49 @@ export function PostCard({
       href={url}
       target="_blank"
       rel="noopener noreferrer"
-      className="block px-3 py-2 sm:px-4 sm:py-2.5 border border-gray-200 rounded-lg hover:bg-gray-50 hover:border-gray-300 transition-all dark:border-gray-700 dark:hover:bg-gray-800"
+      className="block px-3 py-2.5 sm:px-4 sm:py-3.5 border border-gray-200 rounded-lg hover:bg-gray-50 hover:border-gray-300 transition-all dark:border-gray-700 dark:hover:bg-gray-800"
     >
-      <div className="flex items-start justify-between gap-4">
-        <div className="flex-1 min-w-0">
-          <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-gray-100 line-clamp-2 mb-1">
-            {title}
-          </h3>
+      <div className="w-full">
+        {/* 제목 - 모바일 1줄, 데스크톱 2줄 */}
+        <h3 className="text-sm sm:text-lg font-semibold text-gray-900 dark:text-gray-100 line-clamp-1 sm:line-clamp-2 mb-1.5 sm:mb-2 leading-tight sm:leading-snug">
+          {title}
+        </h3>
 
-          <div className="flex flex-wrap items-center gap-3 text-sm text-gray-600 dark:text-gray-400">
+        {/* 메타 정보 - 모바일에서 2줄로 배치 */}
+        <div className="space-y-0.5 sm:space-y-0">
+          <div className="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-sm text-gray-600 dark:text-gray-400">
             <span className="font-medium text-blue-600 dark:text-blue-400">
               {site.displayName}
             </span>
-            <span>{author}</span>
-            <span>{formatRelativeTime(new Date(createdAt))}</span>
+            <span className="text-gray-400 dark:text-gray-600">·</span>
+            <span className="truncate max-w-[100px] sm:max-w-none">{author}</span>
+            <span className="text-gray-400 dark:text-gray-600">·</span>
+            <span className="whitespace-nowrap">{formatRelativeTime(new Date(createdAt))}</span>
           </div>
 
-          <div className="flex items-center gap-3 mt-1 text-sm text-gray-500 dark:text-gray-500">
+          {/* 통계 정보 */}
+          <div className="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-sm text-gray-500 dark:text-gray-500">
             {viewCount !== null && viewCount !== undefined && (
               <span>조회 {formatNumber(viewCount)}</span>
             )}
             {commentCount !== null && commentCount !== undefined && commentCount > 0 && (
-              <span className="text-orange-600 dark:text-orange-400 font-medium">
-                댓글 {formatNumber(commentCount)}
-              </span>
+              <>
+                {viewCount !== null && viewCount !== undefined && (
+                  <span className="text-gray-400 dark:text-gray-600">·</span>
+                )}
+                <span className="text-orange-600 dark:text-orange-400 font-medium">
+                  댓글 {formatNumber(commentCount)}
+                </span>
+              </>
             )}
             {likeCount !== null && likeCount !== undefined && likeCount > 0 && (
-              <span>추천 {formatNumber(likeCount)}</span>
+              <>
+                {(viewCount !== null && viewCount !== undefined) ||
+                 (commentCount !== null && commentCount !== undefined && commentCount > 0) ? (
+                  <span className="text-gray-400 dark:text-gray-600">·</span>
+                ) : null}
+                <span>추천 {formatNumber(likeCount)}</span>
+              </>
             )}
           </div>
         </div>

@@ -1,6 +1,6 @@
 export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://community-blog.pages.dev';
 
-export const SITE_NAME = '커뮤니티 통합 블로그';
+export const SITE_NAME = '통합 커뮤니티';
 export const SITE_DESCRIPTION = '클리앙, 더쿠, 루리웹 등 한국 인기 커뮤니티 게시글을 한곳에서 모아보세요.';
 
 export const siteConfigs: Record<string, { displayName: string; url: string }> = {

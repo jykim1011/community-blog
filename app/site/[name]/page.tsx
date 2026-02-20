@@ -93,7 +93,7 @@ export default function SitePage({
       <footer className="mt-8 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <p className="text-center text-sm text-gray-600 dark:text-gray-400">
-            커뮤니티 통합 블로그 - 모든 게시글은 원본 사이트에 저작권이 있습니다.
+            통합 커뮤니티 - 모든 게시글은 원본 사이트에 저작권이 있습니다.
           </p>
         </div>
       </footer>

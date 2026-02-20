@@ -3,16 +3,16 @@
 > 목표: 10M+ 다운로드에서도 월 운영비 ₩0
 > 핵심: DB 없음, 서버 없음. 정적 파일 + CDN(무제한 대역폭)
 
-## 📊 진행 상황 (2026-02-20 업데이트)
+## 📊 진행 상황 (2026-02-21 업데이트)
 
-**전체 진행률: 67% (6/9 섹션 완료)**
+**전체 진행률: 72% (6/9 섹션 완료)**
 
 - ✅ 1단계: 정적 데이터 구조 설계 (100%)
 - ✅ 2단계: 크롤링 스크립트 분리 (100%)
 - ✅ 3단계: GitHub Actions 워크플로우 (95% - 알림 제외)
 - ✅ 4단계: Next.js SSG 전환 (100%)
 - ✅ 5단계: Cloudflare Pages 배포 (100%)
-- ✅ 6단계: Android 앱 (70%)
+- ✅ 6단계: Android 앱 (95%)
 - ⏳ 7단계: 광고 연동 (0%)
 - ⏳ 8단계: Google Play 출시 (0%)
 - ⏳ 9단계: SEO 및 마케팅 (0%)
@@ -21,8 +21,8 @@
 - 17개 커뮤니티 크롤러 정상 작동 (데이터 균형 유지)
 - 500건 게시글 크롤링 중 (15분마다 자동 업데이트)
 - GitHub Actions + Cloudflare Pages 자동 배포 (2시간마다)
-- **Android 앱 70% 완료** (Capacitor 설정, 아이콘 생성)
-- **다음 단계: APK 빌드 및 테스트**
+- **Android 앱 95% 완료** (모바일 UI 최적화, 이토랜드 URL 수정 완료)
+- **다음 단계: 광고 연동 (AdMob) 또는 Play Store 출시 준비**
 
 ---
 
@@ -112,16 +112,17 @@ Cloudflare Pages (정적 호스팅, 대역폭 무제한)
 - [ ] 커스텀 도메인 연결 (선택, Cloudflare DNS 무료)
 - [ ] 캐시 정책 최적화 (선택, HTML: 15분, JSON: 15분, 정적자산: 1년)
 
-## 6. Android 앱 (Capacitor) ✅ (70%)
+## 6. Android 앱 (Capacitor) ✅ (90%)
 - [x] Capacitor 설치 (`@capacitor/core`, `@capacitor/cli`, `@capacitor/android`)
-- [x] `npx cap init` — 앱 이름: "커뮤니티 통합 블로그", 패키지명: com.communityblog.app
+- [x] `npx cap init` — 앱 이름: "통합 커뮤니티", 패키지명: com.communityblog.app
 - [x] `capacitor.config.ts`에 서버 URL 설정 (Cloudflare Pages URL)
 - [x] Android 플랫폼 추가 (`npx cap add android`)
 - [x] 앱 아이콘 및 스플래시 스크린 제작
   - AI 생성 아이콘 (말풍선 + 그라데이션)
   - @capacitor/assets로 74개 리소스 파일 자동 생성
-- [ ] Android Studio에서 빌드 및 에뮬레이터 테스트
-- [ ] 실기기 테스트 (APK 설치)
+- [x] Android Studio에서 빌드 (debug APK)
+- [x] 실기기 테스트 (Galaxy S24 Ultra에서 정상 작동 확인)
+- [ ] Release AAB 빌드 (Play Store 배포용)
 - [ ] 딥링크 설정 (웹 ↔ 앱 연동) - 선택사항
 
 ## 7. 광고 연동

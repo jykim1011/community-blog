@@ -29,17 +29,9 @@ export default function Home() {
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
 
-      {/* 헤더 */}
-      <header className="bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4">
-          <div className="flex items-center justify-between">
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-white">
-              커뮤니티 통합 블로그
-            </h1>
-            <div className="text-sm text-gray-600 dark:text-gray-400">
-            </div>
-          </div>
-        </div>
+      {/* 헤더 - 안전 영역만 (모바일/데스크톱 공통) */}
+      <header className="bg-gray-50 dark:bg-gray-900">
+        <div className="h-3 sm:h-4" />
       </header>
 
       {/* 메인 컨텐츠 */}
@@ -51,7 +43,7 @@ export default function Home() {
       <footer className="mt-8 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
           <p className="text-center text-sm text-gray-600 dark:text-gray-400">
-            커뮤니티 통합 블로그 - 모든 게시글은 원본 사이트에 저작권이 있습니다.
+            {SITE_NAME} - 모든 게시글은 원본 사이트에 저작권이 있습니다.
           </p>
         </div>
       </footer>
