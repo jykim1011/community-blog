@@ -110,8 +110,8 @@ async function main() {
     return fetchedDate > cutoff;
   });
 
-  // 최신순 정렬 → 최대 500건
-  filtered.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+  // 최신순 정렬 (fetchedAt 기준) → 최대 500건
+  filtered.sort((a, b) => new Date(b.fetchedAt).getTime() - new Date(a.fetchedAt).getTime());
   const final = filtered.slice(0, MAX_POSTS);
 
   // 저장
