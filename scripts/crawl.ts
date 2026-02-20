@@ -103,9 +103,12 @@ async function main() {
     }
   }
 
-  // 48시간 초과 삭제
+  // 48시간 초과 삭제 (fetchedAt 기준 - 크롤링된 지 48시간 이내 유지)
   const cutoff = new Date(now.getTime() - MAX_AGE_HOURS * 60 * 60 * 1000);
-  const filtered = merged.filter((post) => new Date(post.createdAt) > cutoff);
+  const filtered = merged.filter((post) => {
+    const fetchedDate = new Date(post.fetchedAt);
+    return fetchedDate > cutoff;
+  });
 
   // 최신순 정렬 → 최대 500건
   filtered.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
