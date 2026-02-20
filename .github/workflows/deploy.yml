@@ -13,15 +13,9 @@ jobs:
   trigger-deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-
-      - name: Trigger deployment
+      - name: Trigger Cloudflare Pages deployment
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "github-actions[bot]@users.noreply.github.com"
-
-          # 타임스탬프 파일 업데이트로 실제 변경 발생
-          echo "Last build: $(date -u +%Y-%m-%dT%H:%M:%SZ)" > .build-timestamp
-          git add .build-timestamp
-          git commit -m "chore: trigger deployment [build]"
-          git push
+          curl -X POST "${{ secrets.CLOUDFLARE_DEPLOY_HOOK }}" \
+            -H "Content-Type: application/json" \
+            -d '{}'
+          echo "✅ Cloudflare Pages 배포 트리거 완료"
