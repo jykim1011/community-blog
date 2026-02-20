@@ -11,6 +11,11 @@ export function formatRelativeTime(date: Date): string {
   const now = new Date();
   const diffInSeconds = Math.floor((now.getTime() - date.getTime()) / 1000);
 
+  // 미래 날짜 처리 (크롤링 오류 방지)
+  if (diffInSeconds < 0) {
+    return '방금 전';
+  }
+
   if (diffInSeconds < 60) {
     return '방금 전';
   }

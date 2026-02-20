@@ -86,7 +86,14 @@ export class InvenCrawler extends BaseCrawler {
     // MM-DD format
     if (timeText.match(/^\d{2}-\d{2}$/)) {
       const [month, day] = timeText.split('-').map(Number);
-      return new Date(now.getFullYear(), month - 1, day);
+      let date = new Date(now.getFullYear(), month - 1, day);
+
+      // 미래 날짜면 작년으로 간주
+      if (date > now) {
+        date = new Date(now.getFullYear() - 1, month - 1, day);
+      }
+
+      return date;
     }
 
     if (timeText.match(/^\d{4}\.\d{2}\.\d{2}$/)) {
