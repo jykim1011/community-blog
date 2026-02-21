@@ -5,24 +5,25 @@
 
 ## 📊 진행 상황 (2026-02-21 업데이트)
 
-**전체 진행률: 72% (6/9 섹션 완료)**
+**전체 진행률: 78% (6.5/9 섹션 완료)**
 
 - ✅ 1단계: 정적 데이터 구조 설계 (100%)
 - ✅ 2단계: 크롤링 스크립트 분리 (100%)
 - ✅ 3단계: GitHub Actions 워크플로우 (95% - 알림 제외)
 - ✅ 4단계: Next.js SSG 전환 (100%)
 - ✅ 5단계: Cloudflare Pages 배포 (100%)
-- ✅ 6단계: Android 앱 (95%)
+- ✅ 6단계: Android 앱 (100%)
 - ⏳ 7단계: 광고 연동 (0%)
-- ⏳ 8단계: Google Play 출시 (0%)
+- ⏳ 8단계: Google Play 출시 (50% - 준비 완료, 심사 대기)
 - ⏳ 9단계: SEO 및 마케팅 (0%)
 
 **현재 상태:**
 - 17개 커뮤니티 크롤러 정상 작동 (데이터 균형 유지)
 - 500건 게시글 크롤링 중 (15분마다 자동 업데이트)
-- GitHub Actions + Cloudflare Pages 자동 배포 (2시간마다)
-- **Android 앱 95% 완료** (모바일 UI 최적화, 이토랜드 URL 수정 완료)
-- **다음 단계: 광고 연동 (AdMob) 또는 Play Store 출시 준비**
+- GitHub Actions + Cloudflare Pages 자동 배포
+- **Android 앱 100% 완료** (Cloudflare Pages 연동, 자동 갱신)
+- **Play Store 출시 준비 완료** (AAB 빌드 설정, 개인정보처리방침, 키스토어)
+- **다음 단계: Play Console에서 AAB 업로드 및 스토어 등록정보 작성**
 
 ---
 
@@ -112,7 +113,7 @@ Cloudflare Pages (정적 호스팅, 대역폭 무제한)
 - [ ] 커스텀 도메인 연결 (선택, Cloudflare DNS 무료)
 - [ ] 캐시 정책 최적화 (선택, HTML: 15분, JSON: 15분, 정적자산: 1년)
 
-## 6. Android 앱 (Capacitor) ✅ (90%)
+## 6. Android 앱 (Capacitor) ✅
 - [x] Capacitor 설치 (`@capacitor/core`, `@capacitor/cli`, `@capacitor/android`)
 - [x] `npx cap init` — 앱 이름: "통합 커뮤니티", 패키지명: com.communityblog.app
 - [x] `capacitor.config.ts`에 서버 URL 설정 (Cloudflare Pages URL)
@@ -122,7 +123,9 @@ Cloudflare Pages (정적 호스팅, 대역폭 무제한)
   - @capacitor/assets로 74개 리소스 파일 자동 생성
 - [x] Android Studio에서 빌드 (debug APK)
 - [x] 실기기 테스트 (Galaxy S24 Ultra에서 정상 작동 확인)
-- [ ] Release AAB 빌드 (Play Store 배포용)
+- [x] 모바일 UI 최적화 (헤더, 카드, 페이지네이션)
+- [x] Cloudflare Pages 연동 (자동 데이터 갱신)
+- [ ] Release AAB 빌드 (Play Store 배포용) - 설정 완료, 빌드만 하면 됨
 - [ ] 딥링크 설정 (웹 ↔ 앱 연동) - 선택사항
 
 ## 7. 광고 연동
@@ -133,12 +136,16 @@ Cloudflare Pages (정적 호스팅, 대역폭 무제한)
 - [ ] 광고 위치 및 UX 최적화
 - [ ] GDPR/개인정보 동의 배너 (광고 필수 요건)
 
-## 8. Google Play 스토어 출시
-- [ ] Google Play Developer 계정 등록 ($25 일회성)
-- [ ] 앱 서명 키 생성
-- [ ] Release AAB 빌드
+## 8. Google Play 스토어 출시 (50%)
+- [ ] Google Play Developer 계정 등록 ($25 일회성) - 사용자가 진행
+- [x] 앱 서명 키 생성 (release-key.jks)
+- [x] Release AAB 빌드 설정 (build.gradle)
+- [x] 개인정보처리방침 페이지 작성 (`/privacy`)
+  - URL: https://community-blog-eoc.pages.dev/privacy
+- [x] RELEASE.md 가이드 작성 (상세 출시 절차)
+- [ ] Android Studio에서 Release AAB 빌드
 - [ ] 스토어 등록 정보 작성 (스크린샷, 설명, 카테고리)
-- [ ] 개인정보처리방침 페이지 작성 (Cloudflare Pages에 호스팅)
+- [ ] Play Console에서 AAB 업로드 및 출시
 - [ ] 앱 심사 제출
 
 ## 9. SEO 및 마케팅
