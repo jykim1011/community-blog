@@ -8,8 +8,8 @@ const DATA_DIR = path.join(__dirname, '..', 'data');
 const POSTS_FILE = path.join(DATA_DIR, 'posts.json');
 const SITES_FILE = path.join(DATA_DIR, 'sites.json');
 
-const MAX_POSTS = 500;
-const MAX_AGE_HOURS = 48;
+const MAX_POSTS = 1000;
+const MAX_AGE_HOURS = 72;
 
 function readExistingPosts(): StaticPost[] {
   try {

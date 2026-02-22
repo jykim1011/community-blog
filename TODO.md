@@ -19,7 +19,7 @@
 
 **현재 상태:**
 - 17개 커뮤니티 크롤러 정상 작동 (데이터 균형 유지)
-- 500건 게시글 크롤링 중 (15분마다 자동 업데이트)
+- 1000건 게시글 크롤링 중 (30분마다 자동 업데이트, 72시간 보관)
 - GitHub Actions + Cloudflare Pages 자동 배포
 - **Android 앱 100% 완료** (Cloudflare Pages 연동, 자동 갱신)
 - **AdMob 연동 100% 완료** (배너 광고 구현, 실제 ID 적용)
@@ -72,7 +72,7 @@ Cloudflare Pages (정적 호스팅, 대역폭 무제한)
 ## 3. GitHub Actions 크롤링 워크플로우 ✅
 - [x] `.github/workflows/crawl.yml` 작성
   ```yaml
-  schedule: cron '*/15 * * * *'   # 15분마다
+  schedule: cron '*/30 * * * *'   # 30분마다 (리소스 최적화)
   jobs: crawl → npm ci → tsx scripts/crawl.ts → git commit & push
   ```
 - [x] Actions에서 `data/*.json` 변경 사항 자동 커밋
@@ -186,7 +186,7 @@ Cloudflare Pages (정적 호스팅, 대역폭 무제한)
 | 항목 | 무료 한도 | 10M 유저 시 |
 |------|-----------|-------------|
 | Cloudflare Pages | 대역폭 무제한, 빌드 500회/월 | ✅ 무료 |
-| GitHub Actions | 2,000분/월 (public repo) | ✅ 무료 (크롤링 ~100분/월) |
+| GitHub Actions | 2,000분/월 (public repo) | ✅ 무료 (크롤링 ~60분/월) |
 | Cloudflare DNS | 무제한 | ✅ 무료 |
 | Google Play 등록 | — | $25 일회성 |
 | 도메인 (선택) | — | ~₩15,000/년 |
