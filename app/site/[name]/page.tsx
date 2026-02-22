@@ -94,8 +94,8 @@ export default function SitePage({
       </main>
 
       {/* 푸터 */}
-      <footer className="mt-8 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
+      <footer className="mt-8 mb-6 sm:mb-0 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 sm:py-6">
           <p className="text-center text-sm text-gray-600 dark:text-gray-400">
             통합 커뮤니티 - 모든 게시글은 원본 사이트에 저작권이 있습니다.
           </p>
