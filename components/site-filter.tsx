@@ -21,7 +21,7 @@ export function SiteFilter({ sites, currentSite, onSiteChange }: SiteFilterProps
   return (
     <div className="mb-2 sm:mb-3">
       {/* 모바일: Select Box */}
-      <div className="sm:hidden mt-2">
+      <div className="sm:hidden mt-4">
         <select
           value={currentSite || ''}
           onChange={handleSelectChange}
