@@ -1,16 +1,15 @@
 import { AdMob, BannerAdSize, BannerAdPosition, BannerAdPluginEvents, AdMobBannerSize } from '@capacitor-community/admob';
 
-// AdMob 앱 ID (나중에 실제 ID로 교체)
-// 테스트 ID: ca-app-pub-3940256099942544~3347511713
-const ADMOB_APP_ID = 'ca-app-pub-3940256099942544~3347511713'; // TODO: 실제 AdMob 앱 ID로 교체
+// AdMob 앱 ID (실제 ID)
+const ADMOB_APP_ID = 'ca-app-pub-4710152968528474~2341859043';
 
 // 광고 단위 ID
 export const AD_UNITS = {
-  // 테스트 배너 ID
-  BANNER_TOP: 'ca-app-pub-3940256099942544/6300978111', // TODO: 실제 배너 ID로 교체
-  BANNER_BOTTOM: 'ca-app-pub-3940256099942544/6300978111', // TODO: 실제 배너 ID로 교체
+  // 배너 광고 (SDK 통합 ID)
+  BANNER_TOP: 'ca-app-pub-4710152968528474/5725881924',
+  BANNER_BOTTOM: 'ca-app-pub-4710152968528474/5725881924',
 
-  // 인터스티셜 광고 (선택)
+  // 인터스티셜 광고 (나중에 생성 시 추가)
   INTERSTITIAL: 'ca-app-pub-3940256099942544/1033173712', // TODO: 실제 인터스티셜 ID로 교체
 };
 
@@ -20,8 +19,8 @@ export const AD_UNITS = {
 export async function initializeAdMob() {
   try {
     await AdMob.initialize({
-      testingDevices: ['YOUR_DEVICE_ID'], // 테스트 기기 ID
-      initializeForTesting: true, // 테스트 모드 (프로덕션에서는 false)
+      testingDevices: [], // 프로덕션: 빈 배열
+      initializeForTesting: false, // 프로덕션: 실제 광고
     });
     console.log('AdMob initialized successfully');
   } catch (error) {
