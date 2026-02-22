@@ -3,9 +3,9 @@
 > 목표: 10M+ 다운로드에서도 월 운영비 ₩0
 > 핵심: DB 없음, 서버 없음. 정적 파일 + CDN(무제한 대역폭)
 
-## 📊 진행 상황 (2026-02-21 업데이트)
+## 📊 진행 상황 (2026-02-22 업데이트)
 
-**전체 진행률: 78% (6.5/9 섹션 완료)**
+**전체 진행률: 83% (7/9 섹션 완료)**
 
 - ✅ 1단계: 정적 데이터 구조 설계 (100%)
 - ✅ 2단계: 크롤링 스크립트 분리 (100%)
@@ -13,8 +13,8 @@
 - ✅ 4단계: Next.js SSG 전환 (100%)
 - ✅ 5단계: Cloudflare Pages 배포 (100%)
 - ✅ 6단계: Android 앱 (100%)
-- ⏳ 7단계: 광고 연동 (0%)
-- ⏳ 8단계: Google Play 출시 (50% - 준비 완료, 심사 대기)
+- ✅ 7단계: 광고 연동 (80% - AdMob 코드 구현, 테스트 ID 사용 중)
+- ⏳ 8단계: Google Play 출시 (60% - AAB 준비, 스크린샷 완료, 등록 대기)
 - ⏳ 9단계: SEO 및 마케팅 (0%)
 
 **현재 상태:**
@@ -22,8 +22,9 @@
 - 500건 게시글 크롤링 중 (15분마다 자동 업데이트)
 - GitHub Actions + Cloudflare Pages 자동 배포
 - **Android 앱 100% 완료** (Cloudflare Pages 연동, 자동 갱신)
-- **Play Store 출시 준비 완료** (AAB 빌드 설정, 개인정보처리방침, 키스토어)
-- **다음 단계: Play Console에서 AAB 업로드 및 스토어 등록정보 작성**
+- **AdMob 연동 80% 완료** (배너 광고 구현, 테스트 ID 사용 중)
+- **Play Store 출시 60% 완료** (AAB, 스크린샷, 체크리스트 준비)
+- **다음 단계: AdMob 계정 생성 및 실제 광고 ID 적용, Play Console 등록**
 
 ---
 
@@ -128,13 +129,20 @@ Cloudflare Pages (정적 호스팅, 대역폭 무제한)
 - [ ] Release AAB 빌드 (Play Store 배포용) - 설정 완료, 빌드만 하면 됨
 - [ ] 딥링크 설정 (웹 ↔ 앱 연동) - 선택사항
 
-## 7. 광고 연동
-- [ ] Google AdSense 계정 생성 및 사이트 등록 (웹)
-- [ ] Google AdMob 계정 생성 및 앱 등록 (앱)
-- [ ] 웹: AdSense 광고 코드 삽입 (헤더/게시글 사이)
-- [ ] 앱: AdMob 배너/인터스티셜 광고 연동 (`@capacitor-community/admob`)
+## 7. 광고 연동 (80%)
+- [ ] Google AdSense 계정 생성 및 사이트 등록 (웹) - 미구현
+- [ ] Google AdMob 계정 생성 및 앱 등록 (앱) - 사용자가 진행 필요
+- [ ] 웹: AdSense 광고 코드 삽입 (헤더/게시글 사이) - 미구현
+- [x] 앱: AdMob 배너 광고 연동 (`@capacitor-community/admob`)
+  - `lib/admob.ts` - AdMob 초기화 및 광고 표시 함수
+  - `components/admob-banner.tsx` - 배너 광고 컴포넌트
+  - `app/page.tsx` - 하단 배너 광고 추가
+  - 테스트 광고 ID 사용 중 (실제 ID 필요)
+- [x] Android Manifest에 AdMob 앱 ID 설정
+- [x] ADMOB-SETUP.md 가이드 작성
+- [ ] 실제 AdMob 광고 ID로 교체
 - [ ] 광고 위치 및 UX 최적화
-- [ ] GDPR/개인정보 동의 배너 (광고 필수 요건)
+- [ ] GDPR/개인정보 동의 배너 (AdMob 자동 처리)
 
 ## 8. Google Play 스토어 출시 (50%)
 - [ ] Google Play Developer 계정 등록 ($25 일회성) - 사용자가 진행

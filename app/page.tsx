@@ -1,4 +1,5 @@
 import { PostList } from '@/components/post-list';
+import { AdMobBanner } from '@/components/admob-banner';
 import { SITE_URL, SITE_NAME, SITE_DESCRIPTION } from '@/lib/constants';
 import postsData from '@/data/posts.json';
 import sitesData from '@/data/sites.json';
@@ -48,6 +49,9 @@ export default function Home() {
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
         <PostList posts={posts} sites={sites} />
       </main>
+
+      {/* 하단 광고 */}
+      <AdMobBanner position="bottom" />
 
       {/* 푸터 */}
       <footer className="mt-8 mb-12 sm:mb-0 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700">
