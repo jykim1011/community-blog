@@ -63,25 +63,27 @@ export class EtolandCrawler extends BaseCrawler {
         }
       });
 
-      // 2단계: 각 bn_id의 실제 URL을 병렬로 추출 (최대 20개)
+      // 2단계: 각 bn_id의 실제 URL과 제목을 병렬로 추출 (최대 20개)
       const postsToResolve = rawPosts.slice(0, 20);
-      const resolvedUrls = await Promise.allSettled(
-        postsToResolve.map(p => this.resolveRealUrl(p.bnId))
+      const resolvedData = await Promise.allSettled(
+        postsToResolve.map(p => this.resolveRealUrlAndTitle(p.bnId))
       );
 
       const posts: Post[] = [];
       for (let i = 0; i < postsToResolve.length; i++) {
-        const result = resolvedUrls[i];
-        const realUrl = result.status === 'fulfilled' ? result.value : null;
-        if (!realUrl) continue;
+        const result = resolvedData[i];
+        if (result.status !== 'fulfilled' || !result.value) continue;
+
+        const { url, title } = result.value;
+        if (!url) continue;
 
         const p = postsToResolve[i];
         posts.push({
           id: '',
-          title: p.title,
+          title: title || p.title, // 실제 페이지 제목 우선, 없으면 hit.php 제목 사용
           author: p.author,
           site: this.siteName,
-          url: realUrl,
+          url,
           viewCount: p.viewCount,
           commentCount: p.commentCount,
           likeCount: p.likeCount,
@@ -99,12 +101,14 @@ export class EtolandCrawler extends BaseCrawler {
   }
 
   /**
-   * hit.php?bn_id= 페이지에서 JS 리다이렉트 URL을 추출
-   * 페이지에 location.href = './board.php?bo_table=XXX&wr_id=YYY' 가 포함됨
+   * hit.php?bn_id= 페이지에서 JS 리다이렉트 URL과 실제 제목을 추출
+   * 1. location.href에서 실제 URL 추출
+   * 2. 해당 URL로 다시 요청하여 실제 제목 가져오기
    */
-  private async resolveRealUrl(bnId: string): Promise<string | null> {
+  private async resolveRealUrlAndTitle(bnId: string): Promise<{ url: string; title: string } | null> {
     try {
-      const res = await axios.get(`${this.baseUrl}/bbs/hit.php?bn_id=${bnId}`, {
+      // 1단계: hit.php에서 실제 URL 추출
+      const hitRes = await axios.get(`${this.baseUrl}/bbs/hit.php?bn_id=${bnId}`, {
         headers: {
           'User-Agent':
             'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
@@ -112,17 +116,46 @@ export class EtolandCrawler extends BaseCrawler {
         responseType: 'arraybuffer',
         timeout: 5000,
       });
-      const html = iconv.decode(Buffer.from(res.data), 'EUC-KR');
+      const hitHtml = iconv.decode(Buffer.from(hitRes.data), 'EUC-KR');
 
-      const match = html.match(/location\.href\s*=\s*['"]([^'"]+)['"]/);
-      if (match) {
-        const relUrl = match[1];
-        if (relUrl.startsWith('http')) return relUrl;
-        if (relUrl.startsWith('./')) return `${this.baseUrl}/bbs/${relUrl.slice(2)}`;
-        if (relUrl.startsWith('/')) return `${this.baseUrl}${relUrl}`;
-        return `${this.baseUrl}/bbs/${relUrl}`;
+      const match = hitHtml.match(/location\.href\s*=\s*['"]([^'"]+)['"]/);
+      if (!match) return null;
+
+      let realUrl = match[1];
+      if (realUrl.startsWith('http')) {
+        // 이미 완전한 URL
+      } else if (realUrl.startsWith('./')) {
+        realUrl = `${this.baseUrl}/bbs/${realUrl.slice(2)}`;
+      } else if (realUrl.startsWith('/')) {
+        realUrl = `${this.baseUrl}${realUrl}`;
+      } else {
+        realUrl = `${this.baseUrl}/bbs/${realUrl}`;
       }
-      return null;
+
+      // 2단계: 실제 페이지에서 제목 추출
+      try {
+        const pageRes = await axios.get(realUrl, {
+          headers: {
+            'User-Agent':
+              'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+          },
+          responseType: 'arraybuffer',
+          timeout: 5000,
+        });
+        const pageHtml = iconv.decode(Buffer.from(pageRes.data), 'EUC-KR');
+        const $page = cheerio.load(pageHtml);
+
+        // 제목 추출 (여러 선택자 시도)
+        let title = $page('#bo_v_title').text().trim();
+        if (!title) title = $page('.view_title').text().trim();
+        if (!title) title = $page('h1').first().text().trim();
+        if (!title) title = $page('title').text().split('-')[0].trim();
+
+        return { url: realUrl, title };
+      } catch {
+        // 제목 추출 실패 시 URL만 반환
+        return { url: realUrl, title: '' };
+      }
     } catch {
       return null;
     }
