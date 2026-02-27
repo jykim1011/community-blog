@@ -130,15 +130,19 @@ Galaxy S24 Ultra에서 앱 실행 후:
 
 ### 버전 업데이트
 
+**현재 버전:** versionCode 2, versionName "1.0.1"
+
 1. `android/app/build.gradle`에서 버전 수정:
    ```gradle
-   versionCode 2
-   versionName "1.1"
+   versionCode 2  // 이전: 1
+   versionName "1.0.1"  // 이전: "1.0"
    ```
 
 2. 변경사항 커밋 후 새 AAB 빌드
 
 3. Play Console에서 새 버전 업로드
+
+**⚠️ 중요:** `/android` 디렉토리는 `.gitignore`에 포함되어 있어 git에서 추적되지 않습니다. 버전 변경 시 별도로 기록을 남겨야 합니다.
 
 ### 키 관리 (매우 중요!)
 
@@ -160,3 +164,31 @@ Galaxy S24 Ultra에서 앱 실행 후:
 2. 충돌 보고서 확인
 3. 광고 연동 (AdMob)
 4. ASO (앱 스토어 최적화) - 키워드, 스크린샷 개선
+
+## 트러블슈팅
+
+### "기존 사용자가 새롭게 추가된 App Bundle로 업그레이드하지 못하므로 이 버전은 출시할 수 없습니다"
+
+**원인:** versionCode가 이전 출시 버전과 같거나 낮음
+
+**해결 방법:**
+1. `android/app/build.gradle`에서 versionCode를 증가
+   ```gradle
+   versionCode 2  // 매 출시마다 1씩 증가
+   versionName "1.0.1"  // 사용자에게 표시되는 버전
+   ```
+
+2. 새로운 AAB 파일 빌드:
+   ```bash
+   npm run build
+   npx cap sync android
+   cd android
+   ./gradlew bundleRelease
+   ```
+
+3. 생성된 AAB 파일(`android/app/build/outputs/bundle/release/app-release.aab`)을 Play Console에 업로드
+
+**참고:**
+- versionCode는 내부 버전 번호로 매 출시마다 반드시 증가해야 함
+- versionName은 사용자에게 표시되는 버전 (예: 1.0, 1.0.1, 1.1.0)
+- 서명 키(`release-key.jks`)가 이전과 동일해야 업그레이드 가능
