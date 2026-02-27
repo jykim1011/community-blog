@@ -9,6 +9,11 @@ const config: CapacitorConfig = {
   server: {
     url: 'https://community-blog-eoc.pages.dev',
     cleartext: true
+  },
+  plugins: {
+    Browser: {
+      presentationStyle: 'popover'
+    }
   }
 };
 

@@ -36,3 +36,6 @@ npx tsx scripts/crawl.ts [사이트명]  # 특정 사이트만 크롤링
 ## 스타일링
 
 Tailwind CSS 3.4 사용. 커스텀 테마 확장 없음 (기본 테마). 다크모드는 `prefers-color-scheme` 미디어 쿼리 기반. 클래스 병합 유틸: `cn()` (`lib/utils/index.ts`).
+
+## 중요사항
+작업후에는 항상 기본적으로 작업 내용을 요약해서 md파일에 갱신하세요.

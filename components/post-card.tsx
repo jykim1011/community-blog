@@ -1,4 +1,3 @@
-import Link from 'next/link';
 import { formatRelativeTime, formatNumber } from '@/lib/utils';
 
 interface PostCardProps {
@@ -27,7 +26,7 @@ export function PostCard({
   createdAt,
 }: PostCardProps) {
   return (
-    <Link
+    <a
       href={url}
       target="_blank"
       rel="noopener noreferrer"
@@ -78,6 +77,6 @@ export function PostCard({
           </div>
         </div>
       </div>
-    </Link>
+    </a>
   );
 }

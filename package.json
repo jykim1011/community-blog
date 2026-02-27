@@ -12,6 +12,7 @@
   "dependencies": {
     "@capacitor-community/admob": "^8.0.0",
     "@capacitor/android": "^8.1.0",
+    "@capacitor/browser": "^8.0.1",
     "@capacitor/cli": "^8.1.0",
     "@capacitor/core": "^8.1.0",
     "axios": "^1.13.4",
@@ -33,6 +34,7 @@
     "eslint": "^9",
     "eslint-config-next": "16.1.6",
     "postcss": "^8.4.35",
+    "sharp": "^0.34.5",
     "tailwindcss": "^3.4.1",
     "tsx": "^4.19.0",
     "typescript": "^5"
