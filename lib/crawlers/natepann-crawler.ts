@@ -89,12 +89,12 @@ export class NatepannCrawler extends BaseCrawler {
           ? relativeUrl
           : `${this.baseUrl}${relativeUrl}`;
 
-        const viewText = $el.find('.count, .hit').text().trim().replace(/,/g, '');
+        const viewText = $el.find('.count').text().trim().replace(/조회\s*/g, '').replace(/,/g, '');
         const viewCount = parseInt(viewText) || 0;
-        const commentText = $el.find('.comment, .reply').text().trim();
+        const commentText = $el.find('.reple-num').text().trim();
         const commentCount = parseInt(commentText.replace(/[\[\]()]/g, '')) || 0;
-        const likeText = $el.find('.like, .good').text().trim();
-        const likeCount = parseInt(likeText.replace(/,/g, '')) || 0;
+        const likeText = $el.find('.rcm').text().trim().replace(/추천\s*/g, '').replace(/,/g, '');
+        const likeCount = parseInt(likeText) || 0;
         const timeText = $el.find('.date, .time').text().trim();
         const createdAt = this.parseDate(timeText);
 
