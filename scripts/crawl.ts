@@ -14,14 +14,14 @@ const DATA_DIR = path.join(__dirname, '..', 'data');
 const POSTS_FILE = path.join(DATA_DIR, 'posts.json');
 const SITES_FILE = path.join(DATA_DIR, 'sites.json');
 
-const MAX_POSTS = 1000;
-const MAX_AGE_HOURS = 72;
+const MAX_POSTS = 3000;
+const MAX_AGE_HOURS = 120;
 
 // 인기 게시글 필터 기준 (OR 조건: 하나라도 만족하면 유지)
 const POPULARITY_FILTER: PopularityFilterConfig = {
-  minViewCount: 100,
-  minCommentCount: 5,
-  minLikeCount: 10,
+  minViewCount: 50,
+  minCommentCount: 3,
+  minLikeCount: 5,
 };
 
 // 환경 변수로 오버라이드 가능

@@ -10,94 +10,141 @@ export class EtolandCrawler extends BaseCrawler {
   private readonly boardUrl = 'https://www.etoland.co.kr/bbs/hit.php';
 
   async crawl(): Promise<Post[]> {
+    const allPosts: Post[] = [];
+    const PAGES_TO_CRAWL = 5;
+
     try {
       console.log(`[${this.siteName}] Starting crawl...`);
 
-      const response = await axios.get(this.boardUrl, {
-        headers: {
-          'User-Agent':
-            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-          Referer: this.baseUrl,
-        },
-        responseType: 'arraybuffer',
-        timeout: 10000,
-      });
-
-      const html = iconv.decode(Buffer.from(response.data), 'EUC-KR');
-      const $ = cheerio.load(html);
-
-      // 1단계: hit.php에서 게시글 목록 + bn_id 수집
-      const rawPosts: { title: string; author: string; viewCount: number; likeCount: number; commentCount: number; createdAt: Date; bnId: string }[] = [];
-
-      $('li.hit_item').each((_, element) => {
+      for (let page = 1; page <= PAGES_TO_CRAWL; page++) {
         try {
-          const $el = $(element);
-          if ($el.hasClass('ad_list')) return;
+          const pageUrl = this.getPageUrl(page);
+          const posts = await this.crawlPage(pageUrl);
 
-          const contentLink = $el.find('a.content_link').first();
-          const title = $el.find('p.subject').text().trim();
-          const relativeUrl = contentLink.attr('href');
+          if (posts.length === 0) {
+            console.log(`[${this.siteName}] No more posts at page ${page}, stopping`);
+            break;
+          }
 
-          if (!title || !relativeUrl) return;
+          allPosts.push(...posts);
 
-          // hit.php?bn_id= 형태에서 bn_id 추출
-          const bnMatch = relativeUrl.match(/bn_id=(\d+)/);
-          if (!bnMatch) return;
-
-          const author = $el.find('span.nick').text().trim() || '익명';
-          const hitText = $el.find('span.hit').text().trim();
-          const viewCount = parseInt(hitText.replace(/[^0-9]/g, '')) || 0;
-          const goodText = $el.find('span.good').text().trim();
-          const likeCount = parseInt(goodText.replace(/[^0-9]/g, '')) || 0;
-          const commentText = $el.find('span.comment_cnt').text().trim();
-          const commentCount = parseInt(commentText.replace(/[()]/g, '')) || 0;
-          const timeText = $el.find('span.datetime').text().trim();
-          const createdAt = this.parseDate(timeText);
-
-          rawPosts.push({
-            title, author, viewCount, likeCount, commentCount, createdAt,
-            bnId: bnMatch[1],
-          });
+          if (page < PAGES_TO_CRAWL) {
+            await this.delay(1000);
+          }
         } catch (error) {
-          this.handleError(error, 'parsing post');
+          if ((error as any).response?.status === 429) {
+            console.warn(`[${this.siteName}] Rate limited at page ${page}, waiting 10 seconds...`);
+            await this.delay(10000);
+            page--;
+            continue;
+          }
+
+          if ((error as any).response?.status === 404) {
+            console.log(`[${this.siteName}] Page ${page} not found, stopping`);
+            break;
+          }
+
+          console.error(`[${this.siteName}] Error at page ${page}:`, (error as Error).message);
+          break;
         }
-      });
-
-      // 2단계: 각 bn_id의 실제 URL과 제목을 병렬로 추출 (최대 20개)
-      const postsToResolve = rawPosts.slice(0, 20);
-      const resolvedData = await Promise.allSettled(
-        postsToResolve.map(p => this.resolveRealUrlAndTitle(p.bnId))
-      );
-
-      const posts: Post[] = [];
-      for (let i = 0; i < postsToResolve.length; i++) {
-        const result = resolvedData[i];
-        if (result.status !== 'fulfilled' || !result.value) continue;
-
-        const { url, title } = result.value;
-        if (!url) continue;
-
-        const p = postsToResolve[i];
-        posts.push({
-          id: '',
-          title: title || p.title, // 실제 페이지 제목 우선, 없으면 hit.php 제목 사용
-          author: p.author,
-          site: this.siteName,
-          url,
-          viewCount: p.viewCount,
-          commentCount: p.commentCount,
-          likeCount: p.likeCount,
-          createdAt: p.createdAt,
-          fetchedAt: new Date(),
-        });
       }
 
-      console.log(`[${this.siteName}] Crawled ${posts.length} posts (resolved from ${rawPosts.length})`);
-      return posts;
+      console.log(`[${this.siteName}] Crawled ${allPosts.length} posts`);
+      return allPosts;
     } catch (error) {
       this.handleError(error, 'crawl');
-      return [];
+      return allPosts;
     }
+  }
+
+  private getPageUrl(page: number): string {
+    if (page === 1) {
+      return this.boardUrl;
+    }
+    return `${this.boardUrl}?page=${page}`;
+  }
+
+  private async crawlPage(url: string): Promise<Post[]> {
+    const response = await axios.get(url, {
+      headers: {
+        'User-Agent':
+          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        Referer: this.baseUrl,
+      },
+      responseType: 'arraybuffer',
+      timeout: 10000,
+    });
+
+    const html = iconv.decode(Buffer.from(response.data), 'EUC-KR');
+    const $ = cheerio.load(html);
+
+    // 1단계: hit.php에서 게시글 목록 + bn_id 수집
+    const rawPosts: { title: string; author: string; viewCount: number; likeCount: number; commentCount: number; createdAt: Date; bnId: string }[] = [];
+
+    $('li.hit_item').each((_, element) => {
+      try {
+        const $el = $(element);
+        if ($el.hasClass('ad_list')) return;
+
+        const contentLink = $el.find('a.content_link').first();
+        const title = $el.find('p.subject').text().trim();
+        const relativeUrl = contentLink.attr('href');
+
+        if (!title || !relativeUrl) return;
+
+        // hit.php?bn_id= 형태에서 bn_id 추출
+        const bnMatch = relativeUrl.match(/bn_id=(\d+)/);
+        if (!bnMatch) return;
+
+        const author = $el.find('span.nick').text().trim() || '익명';
+        const hitText = $el.find('span.hit').text().trim();
+        const viewCount = parseInt(hitText.replace(/[^0-9]/g, '')) || 0;
+        const goodText = $el.find('span.good').text().trim();
+        const likeCount = parseInt(goodText.replace(/[^0-9]/g, '')) || 0;
+        const commentText = $el.find('span.comment_cnt').text().trim();
+        const commentCount = parseInt(commentText.replace(/[()]/g, '')) || 0;
+        const timeText = $el.find('span.datetime').text().trim();
+        const createdAt = this.parseDate(timeText);
+
+        rawPosts.push({
+          title, author, viewCount, likeCount, commentCount, createdAt,
+          bnId: bnMatch[1],
+        });
+      } catch (error) {
+        this.handleError(error, 'parsing post');
+      }
+    });
+
+    // 2단계: 각 bn_id의 실제 URL과 제목을 병렬로 추출 (최대 20개)
+    const postsToResolve = rawPosts.slice(0, 20);
+    const resolvedData = await Promise.allSettled(
+      postsToResolve.map(p => this.resolveRealUrlAndTitle(p.bnId))
+    );
+
+    const posts: Post[] = [];
+    for (let i = 0; i < postsToResolve.length; i++) {
+      const result = resolvedData[i];
+      if (result.status !== 'fulfilled' || !result.value) continue;
+
+      const { url, title } = result.value;
+      if (!url) continue;
+
+      const p = postsToResolve[i];
+      posts.push({
+        id: '',
+        title: title || p.title, // 실제 페이지 제목 우선, 없으면 hit.php 제목 사용
+        author: p.author,
+        site: this.siteName,
+        url,
+        viewCount: p.viewCount,
+        commentCount: p.commentCount,
+        likeCount: p.likeCount,
+        createdAt: p.createdAt,
+        fetchedAt: new Date(),
+      });
+    }
+
+    return posts;
   }
 
   /**

@@ -9,67 +9,114 @@ export class MlbparkCrawler extends BaseCrawler {
   private readonly boardUrl = 'https://mlbpark.donga.com/mp/b.php?b=bullpen';
 
   async crawl(): Promise<Post[]> {
+    const allPosts: Post[] = [];
+    const PAGES_TO_CRAWL = 5;
+
     try {
       console.log(`[${this.siteName}] Starting crawl...`);
 
-      const response = await axios.get(this.boardUrl, {
-        headers: {
-          'User-Agent':
-            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-        },
-        timeout: 10000,
-      });
-
-      const $ = cheerio.load(response.data);
-      const posts: Post[] = [];
-
-      $('table.tbl_type01 tbody tr').each((_, element) => {
+      for (let page = 1; page <= PAGES_TO_CRAWL; page++) {
         try {
-          const $el = $(element);
+          const pageUrl = this.getPageUrl(page);
+          const posts = await this.crawlPage(pageUrl);
 
-          if ($el.hasClass('notice')) return;
+          if (posts.length === 0) {
+            console.log(`[${this.siteName}] No more posts at page ${page}, stopping`);
+            break;
+          }
 
-          const titleLink = $el.find('td.t_left a.txt').first();
-          const title = titleLink.text().trim();
-          const relativeUrl = titleLink.attr('href');
+          allPosts.push(...posts);
 
-          if (!title || !relativeUrl) return;
-
-          const url = relativeUrl.startsWith('http')
-            ? relativeUrl
-            : `${this.baseUrl}${relativeUrl}`;
-
-          const author = $el.find('td.t_left span.nick').text().trim() || '익명';
-          const viewCount = parseInt($el.find('td:nth-child(5)').text().trim().replace(/,/g, '')) || 0;
-          const likeCount = parseInt($el.find('td:nth-child(6)').text().trim()) || 0;
-          const commentText = $el.find('.reply_count').text().trim();
-          const commentCount = parseInt(commentText.replace(/[\[\]]/g, '')) || 0;
-          const timeText = $el.find('td:nth-child(4)').text().trim();
-          const createdAt = this.parseDate(timeText);
-
-          posts.push({
-            id: '',
-            title,
-            author,
-            site: this.siteName,
-            url,
-            viewCount,
-            commentCount,
-            likeCount,
-            createdAt,
-            fetchedAt: new Date(),
-          });
+          if (page < PAGES_TO_CRAWL) {
+            await this.delay(1000);
+          }
         } catch (error) {
-          this.handleError(error, 'parsing post');
-        }
-      });
+          if ((error as any).response?.status === 429) {
+            console.warn(`[${this.siteName}] Rate limited at page ${page}, waiting 10 seconds...`);
+            await this.delay(10000);
+            page--;
+            continue;
+          }
 
-      console.log(`[${this.siteName}] Crawled ${posts.length} posts`);
-      return posts;
+          if ((error as any).response?.status === 404) {
+            console.log(`[${this.siteName}] Page ${page} not found, stopping`);
+            break;
+          }
+
+          console.error(`[${this.siteName}] Error at page ${page}:`, (error as Error).message);
+          break;
+        }
+      }
+
+      console.log(`[${this.siteName}] Crawled ${allPosts.length} posts`);
+      return allPosts;
     } catch (error) {
       this.handleError(error, 'crawl');
-      return [];
+      return allPosts;
     }
+  }
+
+  private getPageUrl(page: number): string {
+    if (page === 1) {
+      return this.boardUrl;
+    }
+    return `${this.boardUrl}&p=${page}`;
+  }
+
+  private async crawlPage(url: string): Promise<Post[]> {
+    const response = await axios.get(url, {
+      headers: {
+        'User-Agent':
+          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+      },
+      timeout: 10000,
+    });
+
+    const $ = cheerio.load(response.data);
+    const posts: Post[] = [];
+
+    $('table.tbl_type01 tbody tr').each((_, element) => {
+      try {
+        const $el = $(element);
+
+        if ($el.hasClass('notice')) return;
+
+        const titleLink = $el.find('td.t_left a.txt').first();
+        const title = titleLink.text().trim();
+        const relativeUrl = titleLink.attr('href');
+
+        if (!title || !relativeUrl) return;
+
+        const url = relativeUrl.startsWith('http')
+          ? relativeUrl
+          : `${this.baseUrl}${relativeUrl}`;
+
+        const author = $el.find('td.t_left span.nick').text().trim() || '익명';
+        const viewCount = parseInt($el.find('td:nth-child(5)').text().trim().replace(/,/g, '')) || 0;
+        const likeCount = parseInt($el.find('td:nth-child(6)').text().trim()) || 0;
+        const commentText = $el.find('.reply_count').text().trim();
+        const commentCount = parseInt(commentText.replace(/[\[\]]/g, '')) || 0;
+        const timeText = $el.find('td:nth-child(4)').text().trim();
+        const createdAt = this.parseDate(timeText);
+
+        posts.push({
+          id: '',
+          title,
+          author,
+          site: this.siteName,
+          url,
+          viewCount,
+          commentCount,
+          likeCount,
+          createdAt,
+          fetchedAt: new Date(),
+        });
+      } catch (error) {
+        this.handleError(error, 'parsing post');
+      }
+    });
+
+    return posts;
   }
 
   private parseDate(timeText: string): Date {
