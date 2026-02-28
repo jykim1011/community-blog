@@ -34,13 +34,13 @@ export function PostCard({
     >
       <div className="w-full">
         {/* 제목 - 모바일 1줄, 데스크톱 2줄 */}
-        <h3 className="text-sm sm:text-lg font-semibold text-gray-900 dark:text-gray-100 line-clamp-1 sm:line-clamp-2 mb-1.5 sm:mb-2 leading-tight sm:leading-snug">
+        <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-gray-100 line-clamp-1 sm:line-clamp-2 mb-2.5 sm:mb-3 leading-relaxed">
           {title}
         </h3>
 
         {/* 메타 정보 - 모바일에서 2줄로 배치 */}
         <div className="space-y-0.5 sm:space-y-0">
-          <div className="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-sm text-gray-600 dark:text-gray-400">
+          <div className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm leading-normal text-gray-700 dark:text-gray-300">
             <span className="font-medium text-blue-600 dark:text-blue-400">
               {site.displayName}
             </span>
@@ -51,7 +51,7 @@ export function PostCard({
           </div>
 
           {/* 통계 정보 */}
-          <div className="flex items-center gap-1.5 sm:gap-2 text-[11px] sm:text-sm text-gray-500 dark:text-gray-500">
+          <div className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm leading-normal text-gray-600 dark:text-gray-400">
             {viewCount !== null && viewCount !== undefined && (
               <span>조회 {formatNumber(viewCount)}</span>
             )}

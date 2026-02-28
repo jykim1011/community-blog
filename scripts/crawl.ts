@@ -4,12 +4,30 @@ import { crawlers } from '../lib/crawlers';
 import { siteConfigs } from '../lib/constants';
 import type { StaticPost, StaticSite } from '../lib/types';
 
+interface PopularityFilterConfig {
+  minViewCount: number;
+  minCommentCount: number;
+  minLikeCount: number;
+}
+
 const DATA_DIR = path.join(__dirname, '..', 'data');
 const POSTS_FILE = path.join(DATA_DIR, 'posts.json');
 const SITES_FILE = path.join(DATA_DIR, 'sites.json');
 
 const MAX_POSTS = 1000;
 const MAX_AGE_HOURS = 72;
+
+// 인기 게시글 필터 기준 (OR 조건: 하나라도 만족하면 유지)
+const POPULARITY_FILTER: PopularityFilterConfig = {
+  minViewCount: 100,
+  minCommentCount: 5,
+  minLikeCount: 10,
+};
+
+// 환경 변수로 오버라이드 가능
+const MIN_VIEW_COUNT = parseInt(process.env.MIN_VIEW_COUNT || String(POPULARITY_FILTER.minViewCount));
+const MIN_COMMENT_COUNT = parseInt(process.env.MIN_COMMENT_COUNT || String(POPULARITY_FILTER.minCommentCount));
+const MIN_LIKE_COUNT = parseInt(process.env.MIN_LIKE_COUNT || String(POPULARITY_FILTER.minLikeCount));
 
 function readExistingPosts(): StaticPost[] {
   try {
@@ -31,6 +49,35 @@ function readExistingSites(): StaticSite[] {
     console.warn('기존 sites.json 읽기 실패, 빈 배열로 시작');
   }
   return [];
+}
+
+/**
+ * 인기 게시글 필터링 함수
+ * 조건: viewCount >= min OR commentCount >= min OR likeCount >= min
+ * 메트릭이 null/undefined인 경우 0으로 간주
+ */
+function filterPopularPosts(posts: StaticPost[]): StaticPost[] {
+  const filtered = posts.filter((post) => {
+    const viewCount = post.viewCount ?? 0;
+    const commentCount = post.commentCount ?? 0;
+    const likeCount = post.likeCount ?? 0;
+
+    // OR 조건: 하나라도 기준 이상이면 유지
+    return (
+      viewCount >= MIN_VIEW_COUNT ||
+      commentCount >= MIN_COMMENT_COUNT ||
+      likeCount >= MIN_LIKE_COUNT
+    );
+  });
+
+  // 안전장치: 필터링 후 게시글이 0건이면 조회수 상위 100건 반환
+  if (filtered.length === 0 && posts.length > 0) {
+    console.warn('⚠️  모든 게시글이 필터링됨. 조회수 상위 100건을 반환합니다.');
+    const sorted = [...posts].sort((a, b) => (b.viewCount ?? 0) - (a.viewCount ?? 0));
+    return sorted.slice(0, 100);
+  }
+
+  return filtered;
 }
 
 async function main() {
@@ -105,18 +152,32 @@ async function main() {
 
   // 48시간 초과 삭제 (fetchedAt 기준 - 크롤링된 지 48시간 이내 유지)
   const cutoff = new Date(now.getTime() - MAX_AGE_HOURS * 60 * 60 * 1000);
-  const filtered = merged.filter((post) => {
+  const ageFiltered = merged.filter((post) => {
     const fetchedDate = new Date(post.fetchedAt);
     return fetchedDate > cutoff;
   });
 
-  // 최신순 정렬 (fetchedAt 기준) → 최대 500건
-  filtered.sort((a, b) => new Date(b.fetchedAt).getTime() - new Date(a.fetchedAt).getTime());
-  const final = filtered.slice(0, MAX_POSTS);
+  // 인기 게시글 필터링 적용
+  const popularFiltered = filterPopularPosts(ageFiltered);
+
+  // 최신순 정렬 (fetchedAt 기준) → 최대 1000건
+  popularFiltered.sort((a, b) => new Date(b.fetchedAt).getTime() - new Date(a.fetchedAt).getTime());
+  const final = popularFiltered.slice(0, MAX_POSTS);
 
   // 저장
   fs.writeFileSync(POSTS_FILE, JSON.stringify(final, null, 2), 'utf-8');
-  console.log(`\n저장 완료: ${final.length}건 (신규 ${newPosts.length}건, 제거 ${merged.length - final.length}건)`);
+
+  // 통계 로그
+  const removedByAge = merged.length - ageFiltered.length;
+  const removedByPopularity = ageFiltered.length - popularFiltered.length;
+  const removedByLimit = popularFiltered.length - final.length;
+
+  console.log(`\n저장 완료: ${final.length}건`);
+  console.log(`  - 신규 크롤링: ${newPosts.length}건`);
+  console.log(`  - 제거 (기간 만료): ${removedByAge}건`);
+  console.log(`  - 제거 (인기 부족): ${removedByPopularity}건`);
+  console.log(`  - 제거 (개수 제한): ${removedByLimit}건`);
+  console.log(`  - 필터 기준: 조회수>=${MIN_VIEW_COUNT} OR 댓글>=${MIN_COMMENT_COUNT} OR 좋아요>=${MIN_LIKE_COUNT}`);
 
   // sites.json 업데이트
   const siteMap = new Map<string, StaticSite>();
