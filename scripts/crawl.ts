@@ -160,9 +160,32 @@ async function main() {
   // 인기 게시글 필터링 적용
   const popularFiltered = filterPopularPosts(ageFiltered);
 
-  // 최신순 정렬 (fetchedAt 기준) → 최대 1000건
-  popularFiltered.sort((a, b) => new Date(b.fetchedAt).getTime() - new Date(a.fetchedAt).getTime());
-  const final = popularFiltered.slice(0, MAX_POSTS);
+  // 사이트별로 그룹화하고 각 그룹 내에서 createdAt 정렬
+  const groupedBySite = popularFiltered.reduce((acc, post) => {
+    if (!acc[post.site]) acc[post.site] = [];
+    acc[post.site].push(post);
+    return acc;
+  }, {} as Record<string, StaticPost[]>);
+
+  // 각 사이트 내에서 createdAt 기준으로 최신순 정렬
+  Object.values(groupedBySite).forEach(group => {
+    group.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+  });
+
+  // 라운드로빈 방식으로 사이트별로 하나씩 인터리빙 (완벽한 사이트 믹싱)
+  const interleaved: StaticPost[] = [];
+  const siteNames = Object.keys(groupedBySite);
+  const maxLength = Math.max(...Object.values(groupedBySite).map(g => g.length));
+
+  for (let i = 0; i < maxLength; i++) {
+    for (const site of siteNames) {
+      if (groupedBySite[site][i]) {
+        interleaved.push(groupedBySite[site][i]);
+      }
+    }
+  }
+
+  const final = interleaved.slice(0, MAX_POSTS);
 
   // 저장
   fs.writeFileSync(POSTS_FILE, JSON.stringify(final, null, 2), 'utf-8');
