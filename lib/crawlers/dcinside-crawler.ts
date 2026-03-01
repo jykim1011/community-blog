@@ -96,12 +96,22 @@ export class DcinsideCrawler extends BaseCrawler {
         const timeText = $el.find('td.gall_date').attr('title') || $el.find('td.gall_date').text().trim();
         const createdAt = this.parseDate(timeText);
 
+        // 썸네일 이미지
+        const thumbnailElement = $el.find('img').first();
+        const thumbnailSrc = thumbnailElement.attr('data-src') || thumbnailElement.attr('src');
+        const thumbnail = thumbnailSrc && thumbnailSrc.startsWith('http')
+          ? thumbnailSrc
+          : thumbnailSrc
+          ? `${this.baseUrl}${thumbnailSrc}`
+          : undefined;
+
         posts.push({
           id: '',
           title,
           author,
           site: this.siteName,
           url,
+          thumbnail,
           viewCount,
           commentCount,
           likeCount,

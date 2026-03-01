@@ -101,6 +101,15 @@ export class HumorunivCrawler extends BaseCrawler {
         const okText = $el.find('span.ok').text().trim();
         const likeCount = parseInt(okText) || 0;
 
+        // 썸네일 이미지
+        const thumbnailElement = $el.find('img').first();
+        const thumbnailSrc = thumbnailElement.attr('data-src') || thumbnailElement.attr('src');
+        const thumbnail = thumbnailSrc && thumbnailSrc.startsWith('http')
+          ? thumbnailSrc
+          : thumbnailSrc
+          ? `${this.baseUrl}${thumbnailSrc}`
+          : undefined;
+
         posts.push({
           id: '',
           title: cleanTitle,
@@ -112,6 +121,7 @@ export class HumorunivCrawler extends BaseCrawler {
           likeCount,
           createdAt: new Date(),
           fetchedAt: new Date(),
+          thumbnail,
         });
       } catch (error) {
         this.handleError(error, 'parsing post');

@@ -108,12 +108,22 @@ export class TheQooCrawler extends BaseCrawler {
         const timeText = $el.find('td.time').text().trim();
         const createdAt = this.parseDate(timeText);
 
+        // 썸네일 이미지
+        const thumbnailElement = $el.find('img').first();
+        const thumbnailSrc = thumbnailElement.attr('data-src') || thumbnailElement.attr('src');
+        const thumbnail = thumbnailSrc && thumbnailSrc.startsWith('http')
+          ? thumbnailSrc
+          : thumbnailSrc
+          ? `${this.baseUrl}${thumbnailSrc}`
+          : undefined;
+
         posts.push({
           id: '',
           title,
           author: '익명',
           site: this.siteName,
           url,
+          thumbnail,
           viewCount,
           commentCount,
           likeCount: 0,

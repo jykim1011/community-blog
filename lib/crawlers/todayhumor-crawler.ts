@@ -103,6 +103,15 @@ export class TodayhumorCrawler extends BaseCrawler {
         const timeText = $el.find('td.date').text().trim();
         const createdAt = this.parseDate(timeText);
 
+        // 썸네일 이미지
+        const thumbnailElement = $el.find('img').first();
+        const thumbnailSrc = thumbnailElement.attr('data-src') || thumbnailElement.attr('src');
+        const thumbnail = thumbnailSrc && thumbnailSrc.startsWith('http')
+          ? thumbnailSrc
+          : thumbnailSrc
+          ? `${this.baseUrl}${thumbnailSrc}`
+          : undefined;
+
         posts.push({
           id: '',
           title,
@@ -114,6 +123,7 @@ export class TodayhumorCrawler extends BaseCrawler {
           likeCount,
           createdAt,
           fetchedAt: new Date(),
+          thumbnail,
         });
       } catch (error) {
         this.handleError(error, 'parsing post');

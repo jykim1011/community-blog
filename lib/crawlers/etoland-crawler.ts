@@ -130,6 +130,17 @@ export class EtolandCrawler extends BaseCrawler {
       if (!url) continue;
 
       const p = postsToResolve[i];
+
+      // 썸네일 이미지 추출 시도 (hit.php에서)
+      const $hitEl = $('li.hit_item').eq(i);
+      const thumbnailElement = $hitEl.find('img').first();
+      const thumbnailSrc = thumbnailElement.attr('data-src') || thumbnailElement.attr('src');
+      const thumbnail = thumbnailSrc && thumbnailSrc.startsWith('http')
+        ? thumbnailSrc
+        : thumbnailSrc
+        ? `${this.baseUrl}${thumbnailSrc}`
+        : undefined;
+
       posts.push({
         id: '',
         title: title || p.title, // 실제 페이지 제목 우선, 없으면 hit.php 제목 사용
@@ -141,6 +152,7 @@ export class EtolandCrawler extends BaseCrawler {
         likeCount: p.likeCount,
         createdAt: p.createdAt,
         fetchedAt: new Date(),
+        thumbnail,
       });
     }
 

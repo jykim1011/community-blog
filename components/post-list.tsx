@@ -131,6 +131,7 @@ export function PostList({ posts, sites }: PostListProps) {
                 commentCount={post.commentCount}
                 likeCount={post.likeCount}
                 createdAt={new Date(post.createdAt)}
+                thumbnail={post.thumbnail}
               />
             ))}
           </div>

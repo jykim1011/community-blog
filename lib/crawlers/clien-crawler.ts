@@ -107,12 +107,22 @@ export class ClienCrawler extends BaseCrawler {
         const timeText = $el.find('.list_time').text().trim();
         const createdAt = this.parseDate(timeText);
 
+        // 썸네일 이미지
+        const thumbnailElement = $el.find('img').first();
+        const thumbnailSrc = thumbnailElement.attr('data-src') || thumbnailElement.attr('src');
+        const thumbnail = thumbnailSrc && thumbnailSrc.startsWith('http')
+          ? thumbnailSrc
+          : thumbnailSrc
+          ? `${this.baseUrl}${thumbnailSrc}`
+          : undefined;
+
         posts.push({
           id: '', // 데이터베이스에서 생성됨
           title,
           author,
           site: this.siteName,
           url,
+          thumbnail,
           viewCount: isNaN(viewCount) ? 0 : viewCount,
           commentCount: isNaN(commentCount) ? 0 : commentCount,
           likeCount: isNaN(likeCount) ? 0 : likeCount,

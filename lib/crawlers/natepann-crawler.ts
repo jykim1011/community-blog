@@ -98,6 +98,15 @@ export class NatepannCrawler extends BaseCrawler {
         const timeText = $el.find('.date, .time').text().trim();
         const createdAt = this.parseDate(timeText);
 
+        // 썸네일 이미지
+        const thumbnailElement = $el.find('img').first();
+        const thumbnailSrc = thumbnailElement.attr('data-src') || thumbnailElement.attr('src');
+        const thumbnail = thumbnailSrc && thumbnailSrc.startsWith('http')
+          ? thumbnailSrc
+          : thumbnailSrc
+          ? `${this.baseUrl}${thumbnailSrc}`
+          : undefined;
+
         posts.push({
           id: '',
           title,
@@ -109,6 +118,7 @@ export class NatepannCrawler extends BaseCrawler {
           likeCount,
           createdAt,
           fetchedAt: new Date(),
+          thumbnail,
         });
       } catch (error) {
         this.handleError(error, 'parsing post');

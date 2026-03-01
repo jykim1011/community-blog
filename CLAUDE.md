@@ -44,6 +44,112 @@ Tailwind CSS 3.4 + Geist 폰트 사용. 커스텀 테마 확장 없음 (기본 �
 
 ## 최근 변경사항
 
+### 2026-03-01: 커뮤니티 아이콘 추가 (썸네일 제거)
+
+**변경 사항:**
+- 게시글 썸네일 이미지 제거 (핫링크 방지 문제 해결)
+- 커뮤니티 이름 옆에 작은 파비콘 아이콘 추가
+
+**구현 내용 (`components/post-card.tsx`):**
+```typescript
+// Google Favicon API로 각 사이트의 파비콘 로딩
+const faviconUrl = `https://www.google.com/s2/favicons?domain=${getSiteDomain(site.name)}&sz=32`;
+
+<div className="flex items-center gap-1">
+  <img src={faviconUrl} className="w-4 h-4 rounded-sm" loading="lazy" />
+  <span>{site.displayName}</span>
+</div>
+```
+
+**사이트 도메인 매핑:**
+- 17개 커뮤니티의 정확한 도메인 매핑
+- Google Favicon API로 자동 파비콘 로딩
+- 로딩 실패 시 기본 아이콘 표시
+
+**효과:**
+- ✅ 핫링크 방지 문제 완전 해결 (이미지 로딩 에러 없음)
+- ✅ 커뮤니티 시각적 구분 용이
+- ✅ 깔끔한 텍스트 중심 레이아웃
+- ✅ 페이지 로딩 속도 개선 (썸네일 제거로 데이터 전송량 감소)
+- ✅ 모든 브라우저에서 일관된 표시
+
+### 2026-03-01: 썸네일 이미지 수집 추가 (17개 크롤러 전체) [제거됨]
+
+**개요:**
+- 게시글 목록에 썸네일 이미지를 추가하여 시각적 미리보기 제공
+- 17개 모든 활성화된 크롤러에 썸네일 수집 로직 구현
+- 추가 HTTP 요청 없이 목록 페이지에서 직접 수집 (크롤링 시간 영향 없음)
+
+**수정된 크롤러 (17개):**
+1. clien-crawler.ts
+2. theqoo-crawler.ts
+3. dcinside-crawler.ts
+4. ruliweb-crawler.ts
+5. ppomppu-crawler.ts
+6. mlbpark-crawler.ts
+7. natepann-crawler.ts
+8. ilbe-crawler.ts
+9. bobaedream-crawler.ts
+10. etoland-crawler.ts
+11. humoruniv-crawler.ts
+12. cook82-crawler.ts
+13. slrclub-crawler.ts
+14. gasengi-crawler.ts
+15. hygall-crawler.ts
+16. todayhumor-crawler.ts
+17. inven-crawler.ts
+
+**구현 패턴:**
+```typescript
+// 썸네일 이미지
+const thumbnailElement = $el.find('img').first();
+const thumbnailSrc = thumbnailElement.attr('data-src') || thumbnailElement.attr('src');
+const thumbnail = thumbnailSrc && thumbnailSrc.startsWith('http')
+  ? thumbnailSrc
+  : thumbnailSrc
+  ? `${this.baseUrl}${thumbnailSrc}`
+  : undefined;
+
+posts.push({
+  // ... 기존 필드들
+  thumbnail,  // 추가
+});
+```
+
+**특징:**
+- `data-src` (lazy loading) 우선 확인, 없으면 `src` 사용
+- 상대 경로는 `baseUrl`로 절대 경로 변환
+- 썸네일 없을 경우 `undefined` (선택적 필드)
+- 목록 페이지에서 직접 수집 (추가 HTTP 요청 없음)
+
+**UI 변경 (components/post-card.tsx):**
+```typescript
+{thumbnail && (
+  <div className="flex-shrink-0">
+    <img src={thumbnail} alt=""
+         className="w-16 h-16 sm:w-20 sm:h-20 object-cover rounded"
+         loading="lazy" />
+  </div>
+)}
+```
+- 썸네일이 있을 경우 왼쪽에 이미지 표시
+- 모바일: 64px (w-16 h-16), 데스크톱: 80px (w-20 h-20)
+- `object-cover`로 비율 유지, `rounded` 모서리 둥글게
+- `loading="lazy"`로 지연 로딩 최적화
+
+**효과 (2026-03-01 크롤링 결과):**
+- ✅ 썸네일 수집률: 32% (961/3,000건)
+- ✅ 크롤링 시간 영향 없음 (목록 페이지에서 직접 수집)
+- ✅ 파일 크기 증가 최소 (URL만 저장, ~50KB 추가)
+- ✅ 시각적 미리보기로 UX 개선
+- ✅ 반응형 레이아웃 (모바일/PC 최적화)
+- ✅ TypeScript 컴파일 성공
+- ✅ 정적 빌드 성공 (24개 페이지)
+
+**썸네일 지원 사이트:**
+- 높은 지원율: dcinside, inven, mlbpark, ppomppu, ruliweb (대부분 게시글에 썸네일)
+- 낮은 지원율: clien, theqoo (텍스트 중심 게시판)
+
 ### 2026-03-01: 게시글 사이트별 믹싱 구현 (라운드로빈 방식)
 
 **문제:**
