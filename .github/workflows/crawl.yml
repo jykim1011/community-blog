@@ -29,13 +29,24 @@ jobs:
         run: npx tsx scripts/crawl.ts
 
       - name: Commit and push
+        id: commit
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
           git add data/
           if git diff --staged --quiet; then
             echo "No changes to commit"
+            echo "changed=false" >> $GITHUB_OUTPUT
           else
             git commit -m "chore: update crawled data [skip ci]"
             git push
+            echo "changed=true" >> $GITHUB_OUTPUT
           fi
+
+      - name: Trigger deployment
+        if: steps.commit.outputs.changed == 'true'
+        run: |
+          curl -X POST "${{ secrets.CLOUDFLARE_DEPLOY_HOOK }}" \
+            -H "Content-Type: application/json" \
+            -d '{}'
+          echo "✅ 데이터 변경 감지 - Cloudflare Pages 배포 트리거 완료"

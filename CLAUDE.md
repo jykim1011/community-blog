@@ -20,7 +20,7 @@ npx tsx scripts/crawl.ts [사이트명]  # 특정 사이트만 크롤링
 
 - **정적 빌드**: `next.config.ts`에 `output: 'export'`. DB 없이 `data/posts.json`, `data/sites.json`을 import하여 빌드 시 정적 HTML 생성.
 - **클라이언트 사이드 필터/무한 스크롤**: `components/post-list.tsx`에서 useState로 사이트 필터, Intersection Observer로 무한 스크롤 처리.
-- **크롤링 스크립트**: `scripts/crawl.ts`가 크롤러를 직접 호출 → `data/*.json`에 저장. GitHub Actions로 15분마다 자동 실행.
+- **크롤링 스크립트**: `scripts/crawl.ts`가 크롤러를 직접 호출 → `data/*.json`에 저장. GitHub Actions로 30분마다 자동 실행.
 - **크롤러 패턴**: `BaseCrawler` 추상 클래스를 상속. `lib/crawlers/index.ts`의 레지스트리에 등록. Cheerio로 HTML 파싱.
 
 ## 새 크롤러 추가 절차
@@ -43,6 +43,76 @@ Tailwind CSS 3.4 + Geist 폰트 사용. 커스텀 테마 확장 없음 (기본 �
 - 색상 대비: WCAG AA 기준 (4.5:1) 충족
 
 ## 최근 변경사항
+
+### 2026-03-01: 크롤링-배포 자동화 개선 + gasengi 크롤러 수정
+
+**문제 1: 크롤링-배포 주기 불일치**
+- 크롤링: 30분마다 실행 (crawl.yml)
+- 배포: 2시간마다 실행 (deploy.yml)
+- 데이터는 30분마다 업데이트되지만 웹사이트는 2시간마다만 배포됨
+- 사용자는 최대 2시간 전 데이터를 보게 됨
+
+**문제 2: gasengi 크롤러 구 게시판 크롤링**
+- gasengi 크롤러가 commu07 (2019년 아카이브 게시판) 크롤링
+- 모든 게시글이 2019-04-05로 파싱됨 (84개월 전)
+- 실제 활성 게시판: commu08 (잡담)
+
+**해결 방법:**
+
+1. **crawl.yml 개선** (크롤링 후 즉시 배포 트리거)
+```yaml
+- name: Commit and push
+  id: commit
+  run: |
+    echo "changed=true" >> $GITHUB_OUTPUT  # 변경 플래그 출력
+
+- name: Trigger deployment
+  if: steps.commit.outputs.changed == 'true'
+  run: |
+    curl -X POST "${{ secrets.CLOUDFLARE_DEPLOY_HOOK }}"  # 즉시 배포
+```
+
+2. **deploy.yml 개선** (정기 배포 주기 완화)
+```yaml
+schedule:
+  # 2시간 → 6시간 (백업용)
+  - cron: '0 */6 * * *'
+```
+
+3. **gasengi-crawler.ts 수정**
+```typescript
+// Line 9: 게시판 URL 변경
+private readonly boardUrl = 'https://www.gasengi.com/main/board.php?bo_table=commu08';
+
+// Line 123-148: 날짜 파싱 로직 개선
+private parseDate(timeText: string): Date {
+  // "02-19" 형태 (MM-DD) 처리 시 미래 날짜 검증
+  if (timeText.match(/^\d{2}-\d{2}$/)) {
+    const date = new Date(now.getFullYear(), month - 1, day);
+    if (date > now) {
+      date.setFullYear(now.getFullYear() - 1);  // 미래면 작년으로
+    }
+    return date;
+  }
+}
+```
+
+4. **CLAUDE.md 수정**
+- 크롤링 주기 15분 → 30분 (실제 스케줄 반영)
+
+**효과:**
+- ✅ 크롤링 후 즉시 배포 (30분 주기)
+- ✅ 사용자는 항상 최신 데이터 확인 가능
+- ✅ gasengi 데이터 정상화 (2019년 → 실시간)
+- ✅ 정기 배포는 백업용으로 유지 (크롤링 실패 시 대비)
+- ✅ Cloudflare Pages 빌드 횟수 감소 (비용 절감)
+
+**배포 로직:**
+- 크롤링 성공 + 데이터 변경 → 즉시 배포 (30분 주기)
+- 크롤링 성공 + 데이터 미변경 → 배포 안 함 (리소스 절약)
+- 크롤링 실패 → 정기 배포가 6시간마다 보장 (하루 4회)
+
+
 
 ### 2026-02-28 (저녁): natepann 크롤러 메트릭 파싱 오류 수정
 

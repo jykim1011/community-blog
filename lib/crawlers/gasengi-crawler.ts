@@ -6,7 +6,7 @@ import { type Post } from '../types';
 export class GasengiCrawler extends BaseCrawler {
   siteName = 'gasengi';
   private readonly baseUrl = 'https://www.gasengi.com';
-  private readonly boardUrl = 'https://www.gasengi.com/main/board.php?bo_table=commu07';
+  private readonly boardUrl = 'https://www.gasengi.com/main/board.php?bo_table=commu08';
 
   async crawl(): Promise<Post[]> {
     const allPosts: Post[] = [];
@@ -123,6 +123,7 @@ export class GasengiCrawler extends BaseCrawler {
   private parseDate(timeText: string): Date {
     const now = new Date();
 
+    // "10:21" 형태 (오늘)
     if (timeText.match(/^\d{2}:\d{2}$/)) {
       const [hours, minutes] = timeText.split(':').map(Number);
       const date = new Date(now);
@@ -130,13 +131,22 @@ export class GasengiCrawler extends BaseCrawler {
       return date;
     }
 
+    // "2019-04-05" 형태 (YYYY-MM-DD)
     if (timeText.match(/^\d{4}-\d{2}-\d{2}$/)) {
       return new Date(timeText);
     }
 
+    // "02-19" 형태 (MM-DD, 올해)
     if (timeText.match(/^\d{2}-\d{2}$/)) {
       const [month, day] = timeText.split('-').map(Number);
-      return new Date(now.getFullYear(), month - 1, day);
+      const date = new Date(now.getFullYear(), month - 1, day);
+
+      // 만약 미래 날짜면 작년으로 설정
+      if (date > now) {
+        date.setFullYear(now.getFullYear() - 1);
+      }
+
+      return date;
     }
 
     return now;

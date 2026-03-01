@@ -2,8 +2,8 @@ name: Trigger Deployment
 
 on:
   schedule:
-    # 2시간마다 배포 (12회/일 * 30일 = 360 빌드/월)
-    - cron: '0 */2 * * *'
+    # 6시간마다 정기 배포 (백업용, 크롤링이 실패해도 하루 4회 배포 보장)
+    - cron: '0 */6 * * *'
   workflow_dispatch:
 
 permissions:
