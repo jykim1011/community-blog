@@ -3,6 +3,7 @@
 import { useState, useMemo, useRef, useEffect } from 'react';
 import { PostCard } from '@/components/post-card';
 import { SiteFilter } from '@/components/site-filter';
+import { PullToRefresh } from '@/components/pull-to-refresh';
 import { useMediaQuery } from '@/lib/hooks/use-media-query';
 import type { StaticPost, StaticSite } from '@/lib/types';
 
@@ -87,6 +88,13 @@ export function PostList({ posts, sites }: PostListProps) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  // Pull-to-Refresh 핸들러
+  const handleRefresh = async () => {
+    // 약간의 딜레이 후 페이지 새로고침 (최신 데이터 가져오기)
+    await new Promise(resolve => setTimeout(resolve, 500));
+    window.location.reload();
+  };
+
   // 사이트 필터용 데이터
   const siteFilterData = sites.map((s) => ({
     id: s.name,
@@ -95,7 +103,7 @@ export function PostList({ posts, sites }: PostListProps) {
   }));
 
   return (
-    <>
+    <PullToRefresh onRefresh={handleRefresh}>
       {siteFilterData.length > 0 && (
         <SiteFilter
           sites={siteFilterData}
@@ -222,6 +230,6 @@ export function PostList({ posts, sites }: PostListProps) {
           )}
         </>
       )}
-    </>
+    </PullToRefresh>
   );
 }
