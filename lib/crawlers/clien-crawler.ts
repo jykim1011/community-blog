@@ -141,6 +141,13 @@ export class ClienCrawler extends BaseCrawler {
   private parseDate(timeText: string): Date {
     const now = new Date();
 
+    // 전체 타임스탬프 형식 ("13:12\n\t\t\t\t\t\t2026-03-02 13:12:12")
+    // YYYY-MM-DD HH:MM:SS 부분 추출
+    const fullTimestampMatch = timeText.match(/(\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}:\d{2})/);
+    if (fullTimestampMatch) {
+      return new Date(fullTimestampMatch[1]);
+    }
+
     // "방금 전", "1분 전" 등의 형식
     if (timeText.includes('방금') || timeText.includes('초 전')) {
       return now;

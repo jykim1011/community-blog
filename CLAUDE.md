@@ -44,6 +44,98 @@ Tailwind CSS 3.4 + Geist 폰트 사용. 커스텀 테마 확장 없음 (기본 �
 
 ## 최근 변경사항
 
+### 2026-03-02: 클리앙 날짜 파싱 오류 수정
+
+**문제:**
+- 클리앙 게시글의 날짜가 모두 크롤링 시점으로 표시됨
+- 실제 게시 시간과 무관하게 모든 게시글이 동일한 타임스탬프
+- 원인: parseDate 함수가 실제 HTML 형식을 처리하지 못함
+
+**원인 분석:**
+- 클리앙 HTML의 시간 텍스트 형식:
+  ```
+  "13:12
+  						2026-03-02 13:12:12"
+  ```
+- 기존 parseDate 함수는 "분 전", "시간 전", "MM-DD" 형식만 처리
+- 실제로는 짧은 시간 표시와 전체 타임스탬프가 개행/탭과 함께 포함됨
+- 어떤 패턴에도 매칭되지 않아 기본값(현재 시간) 반환
+
+**수정 내용 (`lib/crawlers/clien-crawler.ts`):**
+```typescript
+private parseDate(timeText: string): Date {
+  const now = new Date();
+
+  // 전체 타임스탬프 형식 ("13:12\n\t\t\t\t\t\t2026-03-02 13:12:12")
+  // YYYY-MM-DD HH:MM:SS 부분 추출
+  const fullTimestampMatch = timeText.match(/(\d{4}-\d{2}-\d{2}\s+\d{2}:\d{2}:\d{2})/);
+  if (fullTimestampMatch) {
+    return new Date(fullTimestampMatch[1]);
+  }
+
+  // 기존 패턴들 (방금 전, 분 전, 시간 전 등) 유지
+  // ...
+}
+```
+
+**검증 결과:**
+- 수정 전: 모든 게시글 `2026-03-02T03:01:49.953Z` (크롤링 시간)
+- 수정 후: 각 게시글의 실제 작성 시간 정확히 파싱
+  - 예: `2026-03-02T04:12:12.000Z` (13:12 KST)
+  - 예: `2026-03-02T03:51:29.000Z` (12:51 KST)
+- 모든 클리앙 게시글이 고유한 타임스탬프 보유
+
+**효과:**
+- ✅ 클리앙 게시글 시간 정확성 100%
+- ✅ 사용자가 실제 게시 시간 확인 가능
+- ✅ 시간순 정렬 정상 작동
+- ✅ 다른 크롤러에 영향 없음
+
+### 2026-03-02: 인벤 크롤러 개선 및 카테고리 태그 표시
+
+**인벤 크롤러 변경 (hot.inven.co.kr)**
+- 기존: `www.inven.co.kr/board/it/2652` (애니메이션 게시판, 29건)
+- 신규: `hot.inven.co.kr` (전체 인기글 통합, 200건)
+- 크롤링 방식: div.list-common 구조 파싱 (서버 사이드 렌더링)
+- 데이터 증가: 29건 → 200건 (7배 증가)
+- 게임 타이틀: LoL, 와우, 디아2, 검은사막, 리니지M, 로아 등
+
+**게임 카테고리 태그 표시**
+- 인벤 게시글 제목 앞에 게임 타이틀 태그 추가
+- 예: `[LoL] 삼일절에 일본여행 간 친구랑 싸움`
+- 보라색 배경 태그 (`bg-violet-100`, `dark:bg-violet-900`)
+- 카테고리 적용률: 99% (184/186건)
+
+**구현 상세:**
+- `lib/crawlers/inven-crawler.ts`: hot.inven.co.kr 크롤링
+- `components/post-card.tsx`: category prop 추가, 태그 표시
+- `components/post-list.tsx`: category 전달
+
+### 2026-03-02: Pull-to-Refresh 기능 추가
+
+**모바일 앱 UX 개선**
+- 페이지 최상단에서 아래로 당겨서 새로고침
+- 터치 제스처 기반 네이티브 느낌의 인터랙션
+- 시각적 피드백: 스피너 애니메이션 + 진행률 표시
+
+**구현 내용:**
+- `components/pull-to-refresh.tsx`: Pull-to-Refresh 컴포넌트
+- Intersection Observer 기반 제스처 감지
+- 80px 임계값, 저항감 애니메이션
+- "당겨서 새로고침" → "손을 떼서 새로고침" → "새로고침 중..." 단계별 안내
+
+### 2026-03-02: 시스템 안정성 개선
+
+**빌드 에러 수정**
+- `app/manifest.ts`에 `export const dynamic = 'force-static'` 추가
+- Cloudflare Pages 정적 빌드 에러 해결
+- `/manifest.webmanifest` 라우트 정상 생성
+
+**크롤링 워크플로우 개선**
+- `.github/workflows/crawl.yml`: git push 전 `pull --rebase` 추가
+- 동시 커밋 시 충돌 방지
+- 원인: 크롤링 중 다른 커밋이 푸시되어 conflict 발생
+
 ### 2026-03-01: 커뮤니티 아이콘 추가 (썸네일 제거)
 
 **변경 사항:**
