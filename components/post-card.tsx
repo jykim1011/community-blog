@@ -14,6 +14,7 @@ interface PostCardProps {
   likeCount?: number | null;
   createdAt: Date;
   thumbnail?: string;
+  category?: string;
 }
 
 export function PostCard({
@@ -25,6 +26,7 @@ export function PostCard({
   commentCount,
   likeCount,
   createdAt,
+  category,
 }: PostCardProps) {
   // 각 사이트의 도메인 매핑
   const getSiteDomain = (siteName: string): string => {
@@ -62,6 +64,11 @@ export function PostCard({
       <div className="w-full">
           {/* 제목 - 모바일 1줄, 데스크톱 2줄 */}
           <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-gray-100 line-clamp-1 sm:line-clamp-2 mb-2.5 sm:mb-3 leading-relaxed">
+            {category && (
+              <span className="inline-block px-2 py-0.5 mr-1.5 text-xs font-medium bg-violet-100 text-violet-700 dark:bg-violet-900 dark:text-violet-300 rounded">
+                {category}
+              </span>
+            )}
             {title}
           </h3>
 
