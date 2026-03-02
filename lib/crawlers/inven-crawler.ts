@@ -5,134 +5,93 @@ import { type Post } from '../types';
 
 export class InvenCrawler extends BaseCrawler {
   siteName = 'inven';
-  private readonly baseUrl = 'https://www.inven.co.kr';
-  private readonly boardUrl = 'https://www.inven.co.kr/board/it/2652';
+  private readonly baseUrl = 'https://hot.inven.co.kr';
+  private readonly boardUrl = 'https://hot.inven.co.kr/';
 
   async crawl(): Promise<Post[]> {
-    const allPosts: Post[] = [];
-    const PAGES_TO_CRAWL = 5;
-
     try {
       console.log(`[${this.siteName}] Starting crawl...`);
 
-      for (let page = 1; page <= PAGES_TO_CRAWL; page++) {
+      const response = await axios.get(this.boardUrl, {
+        headers: {
+          'User-Agent':
+            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
+        },
+        timeout: 10000,
+      });
+
+      const $ = cheerio.load(response.data);
+      const posts: Post[] = [];
+
+      $('.list-common').each((_, element) => {
         try {
-          const pageUrl = this.getPageUrl(page);
-          const posts = await this.crawlPage(pageUrl);
+          const $el = $(element);
 
-          if (posts.length === 0) {
-            console.log(`[${this.siteName}] No more posts at page ${page}, stopping`);
-            break;
-          }
+          // 제목 및 URL
+          const titleLink = $el.find('.title a').first();
+          const url = titleLink.attr('href');
 
-          allPosts.push(...posts);
+          if (!url) return;
 
-          if (page < PAGES_TO_CRAWL) {
-            await this.delay(1000);
-          }
+          // 카테고리 (게임명)
+          const category = $el.find('.cate').text().trim();
+
+          // 제목 (name div에서 num, cate 제외한 텍스트)
+          const nameDiv = $el.find('.name');
+          const title = nameDiv.clone().children().remove().end().text().trim();
+
+          if (!title) return;
+
+          // 댓글수
+          const commentText = $el.find('.comment').text().trim();
+          const commentCount = parseInt(commentText.replace(/[\[\]]/g, '')) || 0;
+
+          // 작성자 (레벨 정보 다음 텍스트)
+          const userDiv = $el.find('.user');
+          const author = userDiv.text().trim() || '익명';
+
+          // 날짜
+          const timeText = $el.find('.date').text().trim();
+          const createdAt = this.parseDate(timeText);
+
+          // 조회수
+          const viewText = $el.find('.hits').text().trim();
+          const viewCount = parseInt(viewText.replace(/,/g, '')) || 0;
+
+          // 추천수
+          const likeText = $el.find('.reco').text().trim();
+          const likeCount = parseInt(likeText.replace(/,/g, '')) || 0;
+
+          posts.push({
+            id: '',
+            title,
+            author,
+            site: this.siteName,
+            url,
+            viewCount,
+            commentCount,
+            likeCount,
+            createdAt,
+            fetchedAt: new Date(),
+            category,
+          });
         } catch (error) {
-          if ((error as any).response?.status === 429) {
-            console.warn(`[${this.siteName}] Rate limited at page ${page}, waiting 10 seconds...`);
-            await this.delay(10000);
-            page--;
-            continue;
-          }
-
-          if ((error as any).response?.status === 404) {
-            console.log(`[${this.siteName}] Page ${page} not found, stopping`);
-            break;
-          }
-
-          console.error(`[${this.siteName}] Error at page ${page}:`, (error as Error).message);
-          break;
+          this.handleError(error, 'parsing post');
         }
-      }
+      });
 
-      console.log(`[${this.siteName}] Crawled ${allPosts.length} posts`);
-      return allPosts;
+      console.log(`[${this.siteName}] Crawled ${posts.length} posts`);
+      return posts;
     } catch (error) {
       this.handleError(error, 'crawl');
-      return allPosts;
+      return [];
     }
-  }
-
-  private getPageUrl(page: number): string {
-    if (page === 1) {
-      return this.boardUrl;
-    }
-    return `${this.boardUrl}?p=${page}`;
-  }
-
-  private async crawlPage(url: string): Promise<Post[]> {
-    const response = await axios.get(url, {
-      headers: {
-        'User-Agent':
-          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-      },
-      timeout: 10000,
-    });
-
-    const $ = cheerio.load(response.data);
-    const posts: Post[] = [];
-
-    $('.board-list table tbody tr').each((_, element) => {
-      try {
-        const $el = $(element);
-
-        // 공지 스킵
-        if ($el.hasClass('notice') || $el.hasClass('lgtm')) return;
-
-        const titleLink = $el.find('td.tit a.subject-link').first();
-        const title = titleLink.text().trim();
-        const relativeUrl = titleLink.attr('href');
-
-        if (!title || !relativeUrl) return;
-
-        const url = relativeUrl.startsWith('http')
-          ? relativeUrl
-          : `${this.baseUrl}${relativeUrl}`;
-
-        const author = $el.find('td.user .layerNickName').text().trim() || '익명';
-        const viewCount = parseInt($el.find('td.view').text().trim().replace(/,/g, '')) || 0;
-        const likeCount = parseInt($el.find('td.reco').text().trim()) || 0;
-        const commentText = $el.find('.con-comment').text().trim();
-        const commentCount = parseInt(commentText.replace(/[\[\]&ensp;]/g, '')) || 0;
-        const timeText = $el.find('td.date').text().trim();
-        const createdAt = this.parseDate(timeText);
-
-        // 썸네일 이미지
-        const thumbnailElement = $el.find('img').first();
-        const thumbnailSrc = thumbnailElement.attr('data-src') || thumbnailElement.attr('src');
-        const thumbnail = thumbnailSrc && thumbnailSrc.startsWith('http')
-          ? thumbnailSrc
-          : thumbnailSrc
-          ? `${this.baseUrl}${thumbnailSrc}`
-          : undefined;
-
-        posts.push({
-          id: '',
-          title,
-          author,
-          site: this.siteName,
-          url,
-          viewCount,
-          commentCount,
-          likeCount,
-          createdAt,
-          fetchedAt: new Date(),
-          thumbnail,
-        });
-      } catch (error) {
-        this.handleError(error, 'parsing post');
-      }
-    });
-
-    return posts;
   }
 
   private parseDate(timeText: string): Date {
     const now = new Date();
 
+    // HH:MM format (오늘)
     if (timeText.match(/^\d{2}:\d{2}$/)) {
       const [hours, minutes] = timeText.split(':').map(Number);
       const date = new Date(now);
@@ -153,6 +112,7 @@ export class InvenCrawler extends BaseCrawler {
       return date;
     }
 
+    // YYYY.MM.DD format
     if (timeText.match(/^\d{4}\.\d{2}\.\d{2}$/)) {
       const [year, month, day] = timeText.split('.').map(Number);
       return new Date(year, month - 1, day);
