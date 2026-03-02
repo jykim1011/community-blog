@@ -38,9 +38,11 @@ export default function Home() {
         {/* 데스크톱: 타이틀 표시 */}
         <div className="hidden sm:block">
           <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6">
-            <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100">
-              {SITE_NAME}
-            </h1>
+            <a href="/">
+              <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 cursor-pointer hover:text-blue-600 dark:hover:text-blue-400 transition-colors">
+                {SITE_NAME}
+              </h1>
+            </a>
           </div>
         </div>
       </header>
