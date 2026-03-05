@@ -1,3 +1,6 @@
+'use client';
+
+import { useState, useEffect } from 'react';
 import { formatRelativeTime, formatNumber } from '@/lib/utils';
 
 interface PostCardProps {
@@ -28,6 +31,20 @@ export function PostCard({
   createdAt,
   category,
 }: PostCardProps) {
+  // 클라이언트에서만 상대 시간 렌더링 (hydration 오류 방지)
+  const [relativeTime, setRelativeTime] = useState<string>('');
+
+  useEffect(() => {
+    setRelativeTime(formatRelativeTime(new Date(createdAt)));
+
+    // 1분마다 업데이트
+    const interval = setInterval(() => {
+      setRelativeTime(formatRelativeTime(new Date(createdAt)));
+    }, 60000);
+
+    return () => clearInterval(interval);
+  }, [createdAt]);
+
   // 각 사이트의 도메인 매핑
   const getSiteDomain = (siteName: string): string => {
     const domainMap: Record<string, string> = {
@@ -90,7 +107,7 @@ export function PostCard({
             <span className="text-gray-400 dark:text-gray-600">·</span>
             <span className="truncate max-w-[100px] sm:max-w-none">{author}</span>
             <span className="text-gray-400 dark:text-gray-600">·</span>
-            <span className="whitespace-nowrap">{formatRelativeTime(new Date(createdAt))}</span>
+            <span className="whitespace-nowrap">{relativeTime || '방금 전'}</span>
           </div>
 
           {/* 통계 정보 */}
