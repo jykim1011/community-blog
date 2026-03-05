@@ -34,13 +34,24 @@ export function PullToRefresh({ onRefresh, children }: PullToRefreshProps) {
     };
 
     const handleTouchMove = (e: TouchEvent) => {
-      if (isRefreshing || scrollTop !== 0) return;
+      if (isRefreshing) return;
+
+      // 실시간으로 스크롤 위치 체크 (중간에서 제스처 방지)
+      const currentScrollTop = window.scrollY || document.documentElement.scrollTop;
+      if (currentScrollTop !== 0) {
+        // 스크롤이 최상단이 아니면 상태 초기화
+        if (isPulling) {
+          setIsPulling(false);
+          setPullDistance(0);
+        }
+        return;
+      }
 
       const currentY = e.touches[0].clientY;
       const distance = currentY - touchStartY;
 
-      // 아래로 당길 때만 작동
-      if (distance > 0 && scrollTop === 0) {
+      // 아래로 당길 때만 작동 (최상단에서만)
+      if (distance > 0 && currentScrollTop === 0) {
         setIsPulling(true);
         // 저항감 추가 (거리가 멀수록 덜 당겨짐)
         const resistance = Math.min(distance / 2.5, MAX_PULL);
@@ -86,7 +97,7 @@ export function PullToRefresh({ onRefresh, children }: PullToRefreshProps) {
   const shouldRelease = pullDistance >= PULL_THRESHOLD;
 
   return (
-    <div ref={containerRef} className="relative">
+    <div ref={containerRef} className="relative" style={{ overscrollBehavior: 'contain' }}>
       {/* Pull-to-Refresh 인디케이터 */}
       <div
         className="fixed top-0 left-0 right-0 z-50 flex items-center justify-center overflow-hidden transition-all duration-200"
