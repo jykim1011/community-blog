@@ -36,31 +36,35 @@ export function SiteFilter({ sites, currentSite, onSiteChange }: SiteFilterProps
         </select>
       </div>
 
-      {/* 데스크탑: 탭 버튼 */}
-      <div className="hidden sm:flex flex-wrap gap-2">
-        <button
-          onClick={() => onSiteChange(null)}
-          className={
-            !currentSite
-              ? 'px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium'
-              : 'px-4 py-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded-lg text-sm font-medium hover:bg-gray-50 dark:hover:bg-gray-700'
-          }
-        >
-          전체
-        </button>
-        {sites.map((site) => (
-          <button
-            key={site.id}
-            onClick={() => onSiteChange(site.name)}
-            className={
-              currentSite === site.name
-                ? 'px-4 py-2 bg-blue-600 text-white rounded-lg text-sm font-medium'
-                : 'px-4 py-2 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 border border-gray-300 dark:border-gray-600 rounded-lg text-sm font-medium hover:bg-gray-50 dark:hover:bg-gray-700'
-            }
-          >
-            {site.displayName}
-          </button>
-        ))}
+      {/* 데스크탑: 탭 버튼 (가로 스크롤) */}
+      <div className="hidden sm:block">
+        <div className="overflow-x-auto scrollbar-hide pb-2">
+          <div className="flex gap-1.5 w-max">
+            <button
+              onClick={() => onSiteChange(null)}
+              className={
+                !currentSite
+                  ? 'px-4 py-2 bg-blue-600 text-white rounded-full text-sm font-medium shadow-sm transition-all'
+                  : 'px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-700 transition-all'
+              }
+            >
+              전체
+            </button>
+            {sites.map((site) => (
+              <button
+                key={site.id}
+                onClick={() => onSiteChange(site.name)}
+                className={
+                  currentSite === site.name
+                    ? 'px-4 py-2 bg-blue-600 text-white rounded-full text-sm font-medium shadow-sm transition-all'
+                    : 'px-4 py-2 bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 rounded-full text-sm font-medium hover:bg-gray-200 dark:hover:bg-gray-700 transition-all'
+                }
+              >
+                {site.displayName}
+              </button>
+            ))}
+          </div>
+        </div>
       </div>
     </div>
   );

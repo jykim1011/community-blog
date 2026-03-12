@@ -3,6 +3,7 @@
 import { useState, useMemo, useRef, useEffect } from 'react';
 import { PostCard } from '@/components/post-card';
 import { SiteFilter } from '@/components/site-filter';
+import { SortSelector, SortOption } from '@/components/sort-selector';
 import { PullToRefresh } from '@/components/pull-to-refresh';
 import { useMediaQuery } from '@/lib/hooks/use-media-query';
 import type { StaticPost, StaticSite } from '@/lib/types';
@@ -16,6 +17,7 @@ interface PostListProps {
 
 export function PostList({ posts, sites }: PostListProps) {
   const [currentSite, setCurrentSite] = useState<string | null>(null);
+  const [currentSort, setCurrentSort] = useState<SortOption>('popular');
   const [currentPage, setCurrentPage] = useState(1);
   const [displayedCount, setDisplayedCount] = useState(20);
   const [isLoading, setIsLoading] = useState(false);
@@ -24,9 +26,34 @@ export function PostList({ posts, sites }: PostListProps) {
   const isDesktop = useMediaQuery('(min-width: 768px)');
 
   const filteredPosts = useMemo(() => {
-    if (!currentSite) return posts;
-    return posts.filter((post) => post.site === currentSite);
-  }, [posts, currentSite]);
+    let filtered = currentSite
+      ? posts.filter((post) => post.site === currentSite)
+      : posts;
+
+    // 정렬 적용
+    const sorted = [...filtered].sort((a, b) => {
+      switch (currentSort) {
+        case 'popular': {
+          // 인기도순: (조회수 * 0.1) + (댓글 * 5) + (좋아요 * 2)
+          const scoreA = (a.viewCount || 0) * 0.1 + (a.commentCount || 0) * 5 + (a.likeCount || 0) * 2;
+          const scoreB = (b.viewCount || 0) * 0.1 + (b.commentCount || 0) * 5 + (b.likeCount || 0) * 2;
+          return scoreB - scoreA;
+        }
+        case 'comments': {
+          // 댓글순
+          return (b.commentCount || 0) - (a.commentCount || 0);
+        }
+        case 'recent': {
+          // 최신순
+          return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
+        }
+        default:
+          return 0;
+      }
+    });
+
+    return sorted;
+  }, [posts, currentSite, currentSort]);
 
   const displayedPosts = useMemo(() => {
     if (isDesktop) {
@@ -83,6 +110,13 @@ export function PostList({ posts, sites }: PostListProps) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const handleSortChange = (sort: SortOption) => {
+    setCurrentSort(sort);
+    setCurrentPage(1);
+    setDisplayedCount(20);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
     window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -104,6 +138,7 @@ export function PostList({ posts, sites }: PostListProps) {
 
   return (
     <PullToRefresh onRefresh={handleRefresh}>
+      {/* 사이트 필터 */}
       {siteFilterData.length > 0 && (
         <SiteFilter
           sites={siteFilterData}
@@ -111,6 +146,14 @@ export function PostList({ posts, sites }: PostListProps) {
           onSiteChange={handleSiteChange}
         />
       )}
+
+      {/* 정렬 선택기 */}
+      <div className="mb-3 sm:mb-4">
+        <SortSelector
+          currentSort={currentSort}
+          onSortChange={handleSortChange}
+        />
+      </div>
 
       {displayedPosts.length === 0 ? (
         <div className="text-center py-12">

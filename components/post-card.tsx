@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { formatRelativeTime, formatNumber } from '@/lib/utils';
+import { getSiteColor } from '@/lib/utils/site-colors';
 
 interface PostCardProps {
   id: string;
@@ -70,6 +71,7 @@ export function PostCard({
   };
 
   const faviconUrl = `https://www.google.com/s2/favicons?domain=${getSiteDomain(site.name)}&sz=32`;
+  const siteColorTheme = getSiteColor(site.name);
 
   return (
     <a
@@ -79,60 +81,62 @@ export function PostCard({
       className="block px-3 py-2.5 sm:px-4 sm:py-3.5 border border-gray-200 rounded-lg hover:bg-gray-50 hover:border-gray-300 transition-all dark:border-gray-700 dark:hover:bg-gray-800"
     >
       <div className="w-full">
-          {/* 제목 - 모바일 1줄, 데스크톱 2줄 */}
-          <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-gray-100 line-clamp-1 sm:line-clamp-2 mb-2.5 sm:mb-3 leading-relaxed">
-            {category && (
-              <span className="inline-block px-2 py-0.5 mr-1.5 text-xs font-medium bg-violet-100 text-violet-700 dark:bg-violet-900 dark:text-violet-300 rounded">
-                {category}
-              </span>
-            )}
-            {title}
-          </h3>
+        {/* 제목 & 카테고리 */}
+        <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-gray-100 line-clamp-1 sm:line-clamp-2 mb-2.5 sm:mb-3 leading-relaxed">
+          {category && (
+            <span className="inline-block px-2 py-0.5 mr-1.5 text-xs font-medium bg-violet-100 text-violet-700 dark:bg-violet-900 dark:text-violet-300 rounded">
+              {category}
+            </span>
+          )}
+          {title}
+        </h3>
 
-        {/* 메타 정보 - 모바일에서 2줄로 배치 */}
-        <div className="space-y-0.5 sm:space-y-0">
-          <div className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm leading-normal text-gray-700 dark:text-gray-300">
-            {/* 커뮤니티 아이콘 + 이름 */}
-            <div className="flex items-center gap-1">
+        {/* 메타 정보 */}
+        <div className="space-y-1.5">
+          {/* 커뮤니티 배지 & 작성자 & 시간 */}
+          <div className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm leading-normal">
+            {/* 커뮤니티 색상 배지 */}
+            <div className={`flex items-center gap-1.5 px-2 py-0.5 rounded-md ${siteColorTheme.bg} ${siteColorTheme.text} ${siteColorTheme.darkBg} ${siteColorTheme.darkText}`}>
               <img
                 src={faviconUrl}
                 alt=""
-                className="w-4 h-4 rounded-sm"
+                className="w-3.5 h-3.5 rounded-sm"
                 loading="lazy"
               />
-              <span className="font-medium text-blue-600 dark:text-blue-400">
+              <span className="font-medium text-xs">
                 {site.displayName}
               </span>
             </div>
+
             <span className="text-gray-400 dark:text-gray-600">·</span>
-            <span className="truncate max-w-[100px] sm:max-w-none">{author}</span>
+            <span className="truncate max-w-[100px] sm:max-w-none text-gray-700 dark:text-gray-300">{author}</span>
             <span className="text-gray-400 dark:text-gray-600">·</span>
-            <span className="whitespace-nowrap">{relativeTime || '방금 전'}</span>
+            <span className="whitespace-nowrap text-gray-600 dark:text-gray-400">{relativeTime || '방금 전'}</span>
           </div>
 
-          {/* 통계 정보 */}
-          <div className="flex items-center gap-1.5 sm:gap-2 text-xs sm:text-sm leading-normal text-gray-600 dark:text-gray-400">
+          {/* 통계 정보 (아이콘 포함) */}
+          <div className="flex items-center gap-3 text-xs sm:text-sm leading-normal text-gray-600 dark:text-gray-400">
             {viewCount !== null && viewCount !== undefined && (
-              <span>조회 {formatNumber(viewCount)}</span>
+              <div className="flex items-center gap-1">
+                <span className="text-gray-500 dark:text-gray-500">👁️</span>
+                <span className="font-medium">{formatNumber(viewCount)}</span>
+              </div>
             )}
             {commentCount !== null && commentCount !== undefined && commentCount > 0 && (
-              <>
-                {viewCount !== null && viewCount !== undefined && (
-                  <span className="text-gray-400 dark:text-gray-600">·</span>
-                )}
-                <span className="text-orange-600 dark:text-orange-400 font-medium">
-                  댓글 {formatNumber(commentCount)}
+              <div className="flex items-center gap-1">
+                <span className="text-orange-500 dark:text-orange-400">💬</span>
+                <span className="font-medium text-orange-600 dark:text-orange-400">
+                  {formatNumber(commentCount)}
                 </span>
-              </>
+              </div>
             )}
             {likeCount !== null && likeCount !== undefined && likeCount > 0 && (
-              <>
-                {(viewCount !== null && viewCount !== undefined) ||
-                 (commentCount !== null && commentCount !== undefined && commentCount > 0) ? (
-                  <span className="text-gray-400 dark:text-gray-600">·</span>
-                ) : null}
-                <span>추천 {formatNumber(likeCount)}</span>
-              </>
+              <div className="flex items-center gap-1">
+                <span className="text-red-500 dark:text-red-400">❤️</span>
+                <span className="font-medium text-red-600 dark:text-red-400">
+                  {formatNumber(likeCount)}
+                </span>
+              </div>
             )}
           </div>
         </div>
