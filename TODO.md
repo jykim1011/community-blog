@@ -3,9 +3,9 @@
 > 목표: 10M+ 다운로드에서도 월 운영비 ₩0
 > 핵심: DB 없음, 서버 없음. 정적 파일 + CDN(무제한 대역폭)
 
-## 📊 진행 상황 (2026-02-27 업데이트)
+## 📊 진행 상황 (2026-03-15 업데이트)
 
-**전체 진행률: 92% (8/9 섹션 완료)**
+**전체 진행률: 95% (8.5/9 섹션 완료)**
 
 - ✅ 1단계: 정적 데이터 구조 설계 (100%)
 - ✅ 2단계: 크롤링 스크립트 분리 (100%)
@@ -13,18 +13,19 @@
 - ✅ 4단계: Next.js SSG 전환 (100%)
 - ✅ 5단계: Cloudflare Pages 배포 (100%)
 - ✅ 6단계: Android 앱 (100%)
-- ✅ 7단계: 광고 연동 (100% - AdMob 실제 ID 적용 완료)
-- ⏳ 8단계: Google Play 출시 (90% - 앱 등록 완료, 테스터 테스트 진행 중)
-- ⏳ 9단계: SEO 및 마케팅 (0%)
+- ✅ 7단계: 광고 연동 (100% - AdSense + AdMob 모두 완료)
+- ✅ 8단계: Google Play 출시 (100% - 프로덕션 출시 완료)
+- ⏳ 9단계: SEO 및 마케팅 (10% - 준비 단계)
 
 **현재 상태:**
 - 17개 커뮤니티 크롤러 정상 작동 (데이터 균형 유지)
-- 1000건 게시글 크롤링 중 (30분마다 자동 업데이트, 72시간 보관)
+- 2700+ 건 게시글 크롤링 중 (30분마다 자동 업데이트, 72시간 보관)
 - GitHub Actions + Cloudflare Pages 자동 배포
 - **Android 앱 100% 완료** (Cloudflare Pages 연동, 자동 갱신)
-- **AdMob 연동 100% 완료** (배너 광고 구현, 실제 ID 적용)
-- **Play Store 출시 90% 완료** (앱 등록 완료, versionCode 2, 테스터 테스트 진행 중)
-- **다음 단계: 테스터 피드백 수집 → 버그 수정 → 프로덕션 출시**
+- **웹 광고 100% 완료** (AdSense 자동 광고, ca-pub-4710152968528474)
+- **앱 광고 100% 완료** (AdMob 배너, ca-pub-4710152968528474/6863735590)
+- **Play Store 프로덕션 출시 100% 완료** (v1.0.4, versionCode 5)
+- **다음 단계: SEO 최적화 → 사용자 유입 증대 → 수익화 모니터링**
 
 ---
 
@@ -130,9 +131,17 @@ Cloudflare Pages (정적 호스팅, 대역폭 무제한)
 - [ ] 딥링크 설정 (웹 ↔ 앱 연동) - 선택사항
 
 ## 7. 광고 연동 ✅
-- [ ] Google AdSense 계정 생성 및 사이트 등록 (웹) - 미구현
-- [x] Google AdMob 계정 생성 및 앱 등록 (앱)
-- [ ] 웹: AdSense 광고 코드 삽입 (헤더/게시글 사이) - 미구현
+### 웹 광고 (AdSense) ✅
+- [x] Google AdSense 계정 생성 및 사이트 등록
+- [x] AdSense 자동 광고 활성화
+- [x] 웹: AdSense 스크립트 삽입 (`app/layout.tsx`)
+  - `components/adsense-banner.tsx` - 광고 컴포넌트 (자동 광고 사용)
+  - 클라이언트 ID: `ca-pub-4710152968528474`
+  - Cloudflare Pages 환경 변수 설정 완료
+- [x] ADSENSE-SETUP.md 가이드 작성
+
+### 앱 광고 (AdMob) ✅
+- [x] Google AdMob 계정 생성 및 앱 등록
 - [x] 앱: AdMob 배너 광고 연동 (`@capacitor-community/admob`)
   - `lib/admob.ts` - AdMob 초기화 및 광고 표시 함수
   - `components/admob-banner.tsx` - 배너 광고 컴포넌트
@@ -141,15 +150,15 @@ Cloudflare Pages (정적 호스팅, 대역폭 무제한)
 - [x] ADMOB-SETUP.md 가이드 작성
 - [x] 실제 AdMob 광고 ID로 교체
   - 앱 ID: `ca-app-pub-4710152968528474~2341859043`
-  - 배너 ID: `ca-app-pub-4710152968528474/5725881924`
+  - 배너 ID (community-bottom): `ca-app-pub-4710152968528474/6863735590`
 - [x] 프로덕션 모드 활성화 (테스트 모드 비활성화)
 - [x] GDPR/개인정보 동의 배너 (AdMob 자동 처리)
 
-## 8. Google Play 스토어 출시 (90%)
+## 8. Google Play 스토어 출시 ✅
 - [x] Google Play Developer 계정 등록 ($25 일회성)
 - [x] Play Console에서 앱 생성
 - [x] 앱 서명 키 생성 (release-key.jks)
-- [x] Release AAB 빌드 설정 (build.gradle, versionCode 2)
+- [x] Release AAB 빌드 설정 (build.gradle, versionCode 5)
 - [x] 개인정보처리방침 페이지 작성 (`/privacy`)
   - URL: https://community-blog-eoc.pages.dev/privacy
 - [x] RELEASE.md 가이드 작성 (상세 출시 절차)
@@ -167,13 +176,12 @@ Cloudflare Pages (정적 호스팅, 대역폭 무제한)
   - [x] 앱 아이콘 업로드
   - [x] 스크린샷 업로드
   - [x] 앱 카테고리 선택
-- [x] Play Console에서 AAB 업로드 (versionCode 2)
+- [x] Play Console에서 AAB 업로드 (v1.0.4, versionCode 5)
 - [x] 출시 노트 작성
 - [x] 앱 등록 완료
-- [x] 테스터 테스트 진행 중 (현재 단계)
-- [ ] 테스터 피드백 수집 및 버그 수정
-- [ ] 프로덕션 출시 심사 제출
-- [ ] 심사 승인 및 출시 (예상 1-3일)
+- [x] 테스터 피드백 수집 및 버그 수정
+- [x] 프로덕션 출시 심사 제출 및 승인
+- [x] **🎉 Google Play Store 프로덕션 출시 완료 (2026-03-15)**
 
 ## 9. SEO 및 마케팅
 - [ ] Google Search Console 등록 및 sitemap 제출
