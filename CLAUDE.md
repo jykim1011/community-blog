@@ -44,6 +44,65 @@ Tailwind CSS 3.4 + Geist 폰트 사용. 커스텀 테마 확장 없음 (기본 �
 
 ## 최근 변경사항
 
+### 2026-03-15: 웹 광고 구현 (Google AdSense) + 안드로이드 광고 ID 업데이트 + 기본 정렬 최신순 변경
+
+**개요:**
+- 웹사이트에 Google AdSense 자동 광고 연동
+- 안드로이드 앱 AdMob 하단 배너 광고 ID 업데이트
+- 기본 정렬을 "최신순"으로 변경하여 최신 게시글 우선 표시
+- 웹/앱 양쪽에서 수익화 준비 완료
+
+**변경사항:**
+
+1. **AdSense 자동 광고 연동 (웹)**
+   - `app/layout.tsx`: AdSense 스크립트 추가
+   - `components/adsense-banner.tsx`: 광고 컴포넌트 구현 (자동 광고 사용으로 실제 사용 안 함)
+   - 환경 변수: `NEXT_PUBLIC_ADSENSE_CLIENT_ID=ca-pub-4710152968528474`
+   - AdSense가 자동으로 최적 위치에 광고 배치
+
+2. **AdMob 광고 ID 업데이트 (안드로이드)**
+   - `lib/admob.ts`: 하단 배너 광고 ID 업데이트
+   - 기존: `ca-app-pub-4710152968528474/5725881924`
+   - 신규: `ca-app-pub-4710152968528474/6863735590` (community-bottom)
+   - 앱 ID: `ca-app-pub-4710152968528474~2341859043` (유지)
+
+3. **기본 정렬 변경 (UX 개선)**
+   - `components/post-list.tsx`: 기본 정렬 `'popular'` → `'recent'`
+   - 페이지 로드 시 최신 게시글부터 표시
+   - 사용자가 실시간 업데이트를 즉시 확인 가능
+
+4. **설정 문서 작성**
+   - `ADSENSE-SETUP.md`: AdSense 설정 가이드
+     - 계정 생성 및 승인 절차
+     - 광고 단위 생성 방법
+     - 수익 설정 및 모니터링
+   - `ADMOB-SETUP.md`: AdMob 설정 가이드 (기존)
+
+**배포 필요 작업:**
+
+**웹 (Cloudflare Pages):**
+- 환경 변수 설정: `NEXT_PUBLIC_ADSENSE_CLIENT_ID=ca-pub-xxxxxxxxxx`
+- `npm run build` 후 재배포
+- AdSense 자동 광고가 즉시 표시됨
+
+**안드로이드 (Play Store):**
+- `npm run build` → `npx cap sync android` → AAB 빌드
+- Play Console에 v1.0.4 (versionCode 5) 업로드
+- community-bottom 광고 단위로 수익화 시작
+
+**효과:**
+- ✅ 웹/앱 양쪽에서 광고 수익화
+- ✅ AdSense 자동 광고로 최적 배치
+- ✅ AdMob 실제 광고 ID 적용
+- ✅ 프로덕션 준비 완료
+
+**파일 변경:**
+- 수정: `app/layout.tsx` (AdSense 스크립트)
+- 수정: `lib/admob.ts` (배너 광고 ID)
+- 수정: `.env.example` (AdSense 환경 변수)
+- 신규: `components/adsense-banner.tsx`
+- 신규: `ADSENSE-SETUP.md`
+
 ### 2026-03-12 (오후): PC 탭 UI 개선 - 가로 스크롤 레이아웃
 
 **개요:**

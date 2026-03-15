@@ -5,9 +5,9 @@ const ADMOB_APP_ID = 'ca-app-pub-4710152968528474~2341859043';
 
 // 광고 단위 ID
 export const AD_UNITS = {
-  // 배너 광고 (SDK 통합 ID)
+  // 배너 광고 (AdMob 실제 ID)
   BANNER_TOP: 'ca-app-pub-4710152968528474/5725881924',
-  BANNER_BOTTOM: 'ca-app-pub-4710152968528474/5725881924',
+  BANNER_BOTTOM: 'ca-app-pub-4710152968528474/6863735590', // community-bottom
 
   // 인터스티셜 광고 (나중에 생성 시 추가)
   INTERSTITIAL: 'ca-app-pub-3940256099942544/1033173712', // TODO: 실제 인터스티셜 ID로 교체

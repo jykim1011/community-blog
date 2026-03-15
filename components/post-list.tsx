@@ -17,7 +17,7 @@ interface PostListProps {
 
 export function PostList({ posts, sites }: PostListProps) {
   const [currentSite, setCurrentSite] = useState<string | null>(null);
-  const [currentSort, setCurrentSort] = useState<SortOption>('popular');
+  const [currentSort, setCurrentSort] = useState<SortOption>('recent');
   const [currentPage, setCurrentPage] = useState(1);
   const [displayedCount, setDisplayedCount] = useState(20);
   const [isLoading, setIsLoading] = useState(false);
