@@ -62,15 +62,9 @@ export function AdSenseBanner({
     }
   }, []);
 
-  // AdSense 승인 전에는 플레이스홀더 표시
+  // AdSense 클라이언트 ID가 없으면 아무것도 표시하지 않음
   if (!process.env.NEXT_PUBLIC_ADSENSE_CLIENT_ID) {
-    return (
-      <div className={`bg-gray-100 dark:bg-gray-800 rounded-lg p-4 text-center ${className}`}>
-        <p className="text-sm text-gray-500 dark:text-gray-400">
-          광고 영역 (AdSense 승인 후 표시됨)
-        </p>
-      </div>
-    );
+    return null;
   }
 
   return (

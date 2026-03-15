@@ -8,9 +8,9 @@ interface SortSelectorProps {
 }
 
 const sortOptions: { value: SortOption; label: string; icon: string }[] = [
+  { value: 'recent', label: '최신순', icon: '⏰' },
   { value: 'popular', label: '인기순', icon: '🔥' },
   { value: 'comments', label: '댓글순', icon: '💬' },
-  { value: 'recent', label: '최신순', icon: '⏰' },
 ];
 
 export function SortSelector({ currentSort, onSortChange }: SortSelectorProps) {

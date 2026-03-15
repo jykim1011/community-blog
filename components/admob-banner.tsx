@@ -54,18 +54,7 @@ export function AdMobBanner({ position = 'bottom' }: AdMobBannerProps) {
     };
   }, [position]);
 
-  // 네이티브 플랫폼에서는 AdMob 네이티브 배너가 표시되므로
-  // 웹에서만 플레이스홀더 표시
-  if (Capacitor.isNativePlatform()) {
-    return null;
-  }
-
-  // 웹에서는 AdSense 또는 플레이스홀더 표시
-  return (
-    <div className={`bg-gray-100 dark:bg-gray-800 py-2 ${position === 'top' ? 'border-b' : 'border-t'} border-gray-200 dark:border-gray-700`}>
-      <div className="text-center text-xs text-gray-400 dark:text-gray-600">
-        광고 영역 (웹 버전)
-      </div>
-    </div>
-  );
+  // 웹에서는 AdSense 자동 광고 사용, 네이티브에서는 AdMob 네이티브 배너 사용
+  // 둘 다 자동으로 처리되므로 별도 UI 불필요
+  return null;
 }
