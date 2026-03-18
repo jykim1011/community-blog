@@ -44,6 +44,44 @@ Tailwind CSS 3.4 + Geist 폰트 사용. 커스텀 테마 확장 없음 (기본 �
 
 ## 최근 변경사항
 
+### 2026-03-19: AdSense ads.txt 파일 추가
+
+**개요:**
+- Google AdSense 인증을 위한 `ads.txt` 파일 추가
+- AdSense 계정 활성화 완료 (Publisher ID 검증)
+- 웹사이트 루트에 정적 파일로 제공
+
+**변경사항:**
+
+1. **ads.txt 파일 생성 (`public/ads.txt`)**
+   - Google AdSense Publisher ID 인증 파일
+   - 내용: `google.com, pub-4710152968528474, DIRECT, f08c47fec0942fa0`
+   - 정적 빌드 시 `out/ads.txt`로 복사됨
+   - 루트 경로에서 접근 가능: `https://example.com/ads.txt`
+
+2. **기존 파일 유지**
+   - `public/app-ads.txt`: AdMob(앱) 인증 파일 (기존 유지)
+   - `public/ads.txt`: AdSense(웹) 인증 파일 (신규 추가)
+
+**효과:**
+- ✅ AdSense 계정 활성화 가능
+- ✅ 광고 수익화 시작 가능
+- ✅ 웹/앱 양쪽 인증 파일 완비
+- ✅ 정적 빌드에 자동 포함 (Next.js public 폴더)
+
+**검증 완료:**
+- ✅ 정적 빌드 성공 (26개 페이지)
+- ✅ `out/ads.txt` 파일 정상 생성
+- ✅ 파일 내용 검증 완료
+
+**배포 후 확인:**
+- AdSense 계정에서 ads.txt 상태 확인
+- 보통 24~48시간 내 인증 완료
+- 사이트 URL: `https://yourdomain.com/ads.txt`
+
+**파일 변경:**
+- 신규: `public/ads.txt` (AdSense 인증)
+
 ### 2026-03-15: 웹 광고 구현 (Google AdSense) + 안드로이드 광고 ID 업데이트 + 기본 정렬 최신순 변경
 
 **개요:**
