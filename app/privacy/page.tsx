@@ -1,13 +1,18 @@
+import type { Metadata } from 'next';
+import { SiteHeader } from '@/components/site-header';
+import { SiteFooter } from '@/components/site-footer';
 import { SITE_NAME } from '@/lib/constants';
 
-export const metadata = {
-  title: `개인정보처리방침 | ${SITE_NAME}`,
+export const metadata: Metadata = {
+  title: '개인정보처리방침',
   description: `${SITE_NAME} 개인정보처리방침`,
 };
 
 export default function PrivacyPage() {
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
+      <SiteHeader />
+
       <main className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
         <h1 className="text-3xl font-bold text-gray-900 dark:text-gray-100 mb-8">
           개인정보처리방침
@@ -92,7 +97,7 @@ export default function PrivacyPage() {
             </h2>
             <p>
               본 서비스는 개인정보를 수집하지 않으나, 서비스 관련 문의사항은
-              GitHub Issues를 통해 문의하실 수 있습니다.
+              GitHub Issues 또는 이메일을 통해 문의하실 수 있습니다.
             </p>
           </section>
 
@@ -108,11 +113,13 @@ export default function PrivacyPage() {
 
           <section className="pt-4 border-t border-gray-200 dark:border-gray-700">
             <p className="text-sm text-gray-600 dark:text-gray-400">
-              <strong>최종 수정일:</strong> 2026년 2월 21일
+              <strong>최종 수정일:</strong> 2026년 3월 24일
             </p>
           </section>
         </div>
       </main>
+
+      <SiteFooter />
     </div>
   );
 }

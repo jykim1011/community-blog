@@ -44,6 +44,60 @@ Tailwind CSS 3.4 + Geist 폰트 사용. 커스텀 테마 확장 없음 (기본 �
 
 ## 최근 변경사항
 
+### 2026-03-24: AdSense 승인을 위한 사이트 구조 개선
+
+**개요:**
+- Google AdSense 거절 사유 "게시자 콘텐츠가 없는 화면" 해결
+- 독자적 콘텐츠 페이지 추가 (소개, 이용약관, 문의)
+- 공통 네비게이션(헤더/푸터) 추가로 사이트 구조 강화
+- 홈페이지에 서비스 설명 섹션 추가
+
+**변경사항:**
+
+1. **서비스 소개 페이지 (`app/about/page.tsx`)**
+   - 서비스 목적과 기능 상세 설명
+   - 주요 기능 4가지 카드 UI
+   - 수집 대상 커뮤니티를 카테고리별 분류 (IT, 유머, 생활, 게임, 종합)
+   - 운영 원칙 (저작권 존중, 품질 관리, 개인정보 보호)
+   - 사용 방법 가이드
+
+2. **이용약관 페이지 (`app/terms/page.tsx`)**
+   - 8개 조항: 목적, 서비스 내용, 저작권, 이용자 의무, 면책사항, 광고, 서비스 변경, 약관 변경
+
+3. **문의 페이지 (`app/contact/page.tsx`)**
+   - GitHub Issues + 이메일 2채널 문의 안내
+   - 자주 묻는 질문 (FAQ) 4개 항목
+
+4. **공통 헤더 (`components/site-header.tsx`)**
+   - 반응형 네비게이션 바 (홈, 소개, 문의, 앱 다운로드)
+   - 모바일 햄버거 메뉴
+
+5. **공통 푸터 (`components/site-footer.tsx`)**
+   - 3컬럼 구성: 사이트 정보, 바로가기, 법적 고지
+   - 개인정보처리방침, 이용약관 링크
+
+6. **홈페이지 개선 (`app/page.tsx`)**
+   - 서비스 소개 섹션 추가 (SEO용 독자 콘텐츠)
+   - 기존 단독 헤더/푸터 → 공통 컴포넌트로 교체
+
+7. **기존 페이지 업데이트**
+   - `app/privacy/page.tsx`: 공통 헤더/푸터 적용
+   - `app/site/[name]/page.tsx`: 공통 헤더/푸터 적용, 설명 텍스트 추가
+   - `app/sitemap.ts`: about, contact, privacy, terms 페이지 추가
+
+**효과:**
+- ✅ 독자적 콘텐츠 5페이지 확보 (about, terms, contact, privacy + 홈 소개 섹션)
+- ✅ 사이트 전체에 통일된 네비게이션 구조
+- ✅ 법적 고지 페이지 완비 (개인정보처리방침 + 이용약관)
+- ✅ 사이트맵에 모든 페이지 등록
+- ✅ 빌드 성공 (29개 페이지)
+- ✅ AdSense "웹마스터 품질 가이드라인" 준수
+
+**파일 변경:**
+- 신규: `app/about/page.tsx`, `app/terms/page.tsx`, `app/contact/page.tsx`
+- 신규: `components/site-header.tsx`, `components/site-footer.tsx`
+- 수정: `app/page.tsx`, `app/privacy/page.tsx`, `app/site/[name]/page.tsx`, `app/sitemap.ts`
+
 ### 2026-03-19: AdSense ads.txt 파일 추가
 
 **개요:**
