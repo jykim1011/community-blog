@@ -27,6 +27,10 @@ export function generateMetadata({
   return {
     title: `${displayName} 인기글`,
     description: `${displayName} 커뮤니티의 인기 게시글을 모아서 보여줍니다.`,
+    robots: {
+      index: false,
+      follow: true,
+    },
     openGraph: {
       title: `${displayName} 인기글 | ${SITE_NAME}`,
       description: `${displayName} 커뮤니티의 인기 게시글을 모아서 보여줍니다.`,

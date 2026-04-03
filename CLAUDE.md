@@ -44,6 +44,60 @@ Tailwind CSS 3.4 + Geist 폰트 사용. 커스텀 테마 확장 없음 (기본 �
 
 ## 최근 변경사항
 
+### 2026-04-03: AdSense 정책 위반 해결 - 독자적 콘텐츠 강화
+
+**개요:**
+- Google AdSense "정책 위반 - 게시자 콘텐츠가 없는 화면" 사유 해결
+- 홈페이지에 눈에 보이는 히어로 섹션 + 트렌드 분석 추가 (sr-only 제거)
+- /site/[name] 페이지 noindex 처리 + sitemap/robots.txt에서 제거
+- 커뮤니티 가이드 원본 콘텐츠 페이지 추가
+
+**변경사항:**
+
+1. **홈페이지 히어로 섹션 (`app/page.tsx`)**
+   - `sr-only`로 숨겨진 콘텐츠 → 눈에 보이는 히어로 섹션으로 교체
+   - 서비스 소개 텍스트 + 통계 카드 3개 (게시글 수, 커뮤니티 수, 업데이트 주기)
+   - "above the fold" 위치에 독자적 콘텐츠 배치
+
+2. **트렌드 분석 컴포넌트 (`components/trend-summary.tsx`)**
+   - 인기 키워드 TOP 5 (게시글 제목 빈도 분석, 불용어 필터링)
+   - 활발한 커뮤니티 TOP 3 (게시글 수 기준)
+   - 지금 가장 뜨거운 글 TOP 3 (종합 점수 기준)
+   - 크로스 커뮤니티 트렌드 분석 = 독자적 편집 가치
+
+3. **`/site/[name]` noindex 처리 (`app/site/[name]/page.tsx`)**
+   - metadata에 `robots: { index: false, follow: true }` 추가
+   - Google이 빈약한 중복 페이지를 색인하지 않도록 함
+
+4. **sitemap에서 site 페이지 제거 (`app/sitemap.ts`)**
+   - /site/[name] 17개 페이지 제거
+   - 원본 콘텐츠 페이지만 남김 (/, /about, /guide, /contact, /privacy, /terms)
+
+5. **robots.txt에 /site/ Disallow (`app/robots.ts`)**
+   - `/site/` 경로를 Disallow 추가 (이중 보호)
+
+6. **커뮤니티 가이드 페이지 (`app/guide/page.tsx`)**
+   - 10개 주요 커뮤니티별 특징, 문화, 이용자층 상세 소개
+   - 커뮤니티 이용 팁 4가지
+   - 800+ 단어 독자적 원본 콘텐츠
+   - 헤더 네비게이션에 "가이드" 링크 추가
+
+**효과:**
+- ✅ 홈페이지 above-the-fold에 독자적 콘텐츠 (히어로 + 트렌드)
+- ✅ 크로스 커뮤니티 트렌드 분석으로 편집 가치 제공
+- ✅ 빈약한 /site/ 페이지 Google 색인에서 제거
+- ✅ 독자적 콘텐츠 페이지 6개 (/, /about, /guide, /contact, /privacy, /terms)
+- ✅ 빌드 성공 (30개 페이지)
+
+**파일 변경:**
+- 수정: `app/page.tsx` (히어로 섹션 + 트렌드 분석)
+- 수정: `app/site/[name]/page.tsx` (noindex 추가)
+- 수정: `app/sitemap.ts` (site 페이지 제거, guide 추가)
+- 수정: `app/robots.ts` (/site/ Disallow)
+- 수정: `components/site-header.tsx` (가이드 링크 추가)
+- 신규: `components/trend-summary.tsx` (트렌드 분석)
+- 신규: `app/guide/page.tsx` (커뮤니티 가이드)
+
 ### 2026-03-24: AdSense 승인을 위한 사이트 구조 개선
 
 **개요:**

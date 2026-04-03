@@ -34,6 +34,12 @@ export function SiteHeader() {
                 소개
               </Link>
               <Link
+                href="/guide"
+                className="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
+              >
+                가이드
+              </Link>
+              <Link
                 href="/contact"
                 className="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
               >
