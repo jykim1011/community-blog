@@ -3,6 +3,7 @@
 import { useState, useEffect } from 'react';
 import { formatRelativeTime, formatNumber } from '@/lib/utils';
 import { getSiteColor } from '@/lib/utils/site-colors';
+import { ShareButton } from '@/components/share-button';
 
 interface PostCardProps {
   id: string;
@@ -114,30 +115,35 @@ export function PostCard({
             <span className="whitespace-nowrap text-gray-600 dark:text-gray-400">{relativeTime || '방금 전'}</span>
           </div>
 
-          {/* 통계 정보 (아이콘 포함) */}
-          <div className="flex items-center gap-3 text-xs sm:text-sm leading-normal text-gray-600 dark:text-gray-400">
-            {viewCount !== null && viewCount !== undefined && (
-              <div className="flex items-center gap-1">
-                <span className="text-gray-500 dark:text-gray-500">👁️</span>
-                <span className="font-medium">{formatNumber(viewCount)}</span>
-              </div>
-            )}
-            {commentCount !== null && commentCount !== undefined && commentCount > 0 && (
-              <div className="flex items-center gap-1">
-                <span className="text-orange-500 dark:text-orange-400">💬</span>
-                <span className="font-medium text-orange-600 dark:text-orange-400">
-                  {formatNumber(commentCount)}
-                </span>
-              </div>
-            )}
-            {likeCount !== null && likeCount !== undefined && likeCount > 0 && (
-              <div className="flex items-center gap-1">
-                <span className="text-red-500 dark:text-red-400">❤️</span>
-                <span className="font-medium text-red-600 dark:text-red-400">
-                  {formatNumber(likeCount)}
-                </span>
-              </div>
-            )}
+          {/* 통계 정보 (아이콘 포함) + 공유 버튼 */}
+          <div className="flex items-center justify-between gap-3">
+            <div className="flex items-center gap-3 text-xs sm:text-sm leading-normal text-gray-600 dark:text-gray-400">
+              {viewCount !== null && viewCount !== undefined && (
+                <div className="flex items-center gap-1">
+                  <span className="text-gray-500 dark:text-gray-500">👁️</span>
+                  <span className="font-medium">{formatNumber(viewCount)}</span>
+                </div>
+              )}
+              {commentCount !== null && commentCount !== undefined && commentCount > 0 && (
+                <div className="flex items-center gap-1">
+                  <span className="text-orange-500 dark:text-orange-400">💬</span>
+                  <span className="font-medium text-orange-600 dark:text-orange-400">
+                    {formatNumber(commentCount)}
+                  </span>
+                </div>
+              )}
+              {likeCount !== null && likeCount !== undefined && likeCount > 0 && (
+                <div className="flex items-center gap-1">
+                  <span className="text-red-500 dark:text-red-400">❤️</span>
+                  <span className="font-medium text-red-600 dark:text-red-400">
+                    {formatNumber(likeCount)}
+                  </span>
+                </div>
+              )}
+            </div>
+
+            {/* 공유 버튼 */}
+            <ShareButton title={title} url={url} />
           </div>
         </div>
       </div>

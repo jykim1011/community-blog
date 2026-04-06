@@ -80,19 +80,19 @@ export function TrendSummary({ posts, sites }: TrendSummaryProps) {
 
   return (
     <section className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-xl p-4 sm:p-6 mb-4">
-      <h2 className="text-lg font-bold text-gray-900 dark:text-white mb-4">
+      <h2 className="text-base sm:text-lg font-bold text-gray-900 dark:text-white mb-3 sm:mb-4">
         오늘의 커뮤니티 트렌드
       </h2>
 
       <div className="grid grid-cols-1 md:grid-cols-3 gap-4 sm:gap-6">
         {/* 인기 키워드 */}
         <div>
-          <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 flex items-center gap-1.5">
-            <span className="text-base">🔑</span> 인기 키워드
+          <h3 className="text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 flex items-center gap-1.5">
+            <span className="text-sm sm:text-base">🔑</span> 인기 키워드
           </h3>
           {keywords.length > 0 ? (
             <div className="flex flex-wrap gap-1.5">
-              {keywords.map((kw, i) => (
+              {keywords.slice(0, 5).map((kw, i) => (
                 <span
                   key={kw.word}
                   className={`inline-flex items-center gap-1 px-2.5 py-1 rounded-full text-xs font-medium ${
@@ -115,8 +115,8 @@ export function TrendSummary({ posts, sites }: TrendSummaryProps) {
 
         {/* 활발한 커뮤니티 */}
         <div>
-          <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 flex items-center gap-1.5">
-            <span className="text-base">📊</span> 활발한 커뮤니티
+          <h3 className="text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 flex items-center gap-1.5">
+            <span className="text-sm sm:text-base">📊</span> 활발한 커뮤니티
           </h3>
           <div className="space-y-1.5">
             {topCommunities.map((community, i) => (
@@ -135,8 +135,8 @@ export function TrendSummary({ posts, sites }: TrendSummaryProps) {
 
         {/* 에디터 픽 */}
         <div>
-          <h3 className="text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 flex items-center gap-1.5">
-            <span className="text-base">🔥</span> 지금 가장 뜨거운 글
+          <h3 className="text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 flex items-center gap-1.5">
+            <span className="text-sm sm:text-base">🔥</span> 지금 가장 뜨거운 글
           </h3>
           <div className="space-y-1.5">
             {hottestPosts.map((post, i) => (

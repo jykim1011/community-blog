@@ -3,6 +3,9 @@ import * as path from 'path';
 import { crawlers } from '../lib/crawlers';
 import { siteConfigs } from '../lib/constants';
 import type { StaticPost, StaticSite } from '../lib/types';
+import { analyzeKeywords } from '../lib/analysis/keywords';
+import { analyzeDailyTrends, analyzeHourlyTrends, analyzeSiteTrends, calculateOverallStats } from '../lib/analysis/trends';
+import { analyzeCommunityProfiles, groupCommunitiesByCategory } from '../lib/analysis/communities';
 
 interface PopularityFilterConfig {
   minViewCount: number;
@@ -13,6 +16,7 @@ interface PopularityFilterConfig {
 const DATA_DIR = path.join(__dirname, '..', 'data');
 const POSTS_FILE = path.join(DATA_DIR, 'posts.json');
 const SITES_FILE = path.join(DATA_DIR, 'sites.json');
+const ANALYSIS_FILE = path.join(DATA_DIR, 'analysis.json');
 
 const MAX_POSTS = 3000;
 const MAX_AGE_HOURS = 120;
@@ -237,6 +241,29 @@ async function main() {
   const sites = Array.from(siteMap.values()).sort((a, b) => a.name.localeCompare(b.name));
   fs.writeFileSync(SITES_FILE, JSON.stringify(sites, null, 2), 'utf-8');
   console.log(`사이트 정보 업데이트: ${sites.length}개 사이트`);
+
+  // 분석 데이터 생성
+  console.log('\n분석 데이터 생성 중...');
+  const analysisStartTime = Date.now();
+
+  const analysis = {
+    generatedAt: now.toISOString(),
+    keywords: analyzeKeywords(final, 30),
+    dailyTrends: analyzeDailyTrends(final, 7),
+    hourlyTrends: analyzeHourlyTrends(final),
+    siteTrends: analyzeSiteTrends(final, sites),
+    communityProfiles: analyzeCommunityProfiles(final, sites),
+    categoryGroups: groupCommunitiesByCategory(analyzeCommunityProfiles(final, sites)),
+    overallStats: calculateOverallStats(final),
+  };
+
+  fs.writeFileSync(ANALYSIS_FILE, JSON.stringify(analysis, null, 2), 'utf-8');
+
+  const analysisTime = ((Date.now() - analysisStartTime) / 1000).toFixed(2);
+  console.log(`분석 완료: ${analysisTime}초`);
+  console.log(`  - 키워드 ${analysis.keywords.length}개`);
+  console.log(`  - 일별 트렌드 ${analysis.dailyTrends.length}일`);
+  console.log(`  - 커뮤니티 프로필 ${analysis.communityProfiles.length}개`);
 }
 
 main().catch((error) => {

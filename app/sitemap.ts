@@ -1,9 +1,17 @@
 import type { MetadataRoute } from 'next';
 import { SITE_URL } from '@/lib/constants';
+import { crawlers } from '@/lib/crawlers';
 
 export const dynamic = 'force-static';
 
 export default function sitemap(): MetadataRoute.Sitemap {
+  // 커뮤니티 상세 페이지 (색인 허용으로 변경)
+  const sitePages = Object.keys(crawlers).map((siteName) => ({
+    url: `${SITE_URL}/site/${siteName}`,
+    changeFrequency: 'always' as const,
+    priority: 0.7,
+  }));
+
   return [
     {
       url: SITE_URL,
@@ -21,6 +29,31 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.8,
     },
     {
+      url: `${SITE_URL}/search`,
+      changeFrequency: 'daily',
+      priority: 0.7,
+    },
+    {
+      url: `${SITE_URL}/trends`,
+      changeFrequency: 'always',
+      priority: 0.9,
+    },
+    {
+      url: `${SITE_URL}/statistics`,
+      changeFrequency: 'always',
+      priority: 0.8,
+    },
+    {
+      url: `${SITE_URL}/keywords`,
+      changeFrequency: 'always',
+      priority: 0.8,
+    },
+    {
+      url: `${SITE_URL}/communities`,
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    {
       url: `${SITE_URL}/contact`,
       changeFrequency: 'monthly',
       priority: 0.6,
@@ -35,5 +68,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
       changeFrequency: 'monthly',
       priority: 0.5,
     },
+    ...sitePages,
   ];
 }
