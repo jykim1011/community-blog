@@ -2,10 +2,21 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
+import { useEffect, useState } from 'react';
 import { SITE_NAME } from '@/lib/constants';
 
 export function SiteHeader() {
   const pathname = usePathname();
+  const [isApp, setIsApp] = useState(false);
+
+  useEffect(() => {
+    // Capacitor 앱 환경 감지
+    const isCapacitor = typeof window !== 'undefined' && (
+      window.location.protocol === 'capacitor:' ||
+      (window as any).Capacitor !== undefined
+    );
+    setIsApp(isCapacitor);
+  }, []);
 
   return (
     <>
@@ -69,7 +80,10 @@ export function SiteHeader() {
       {/* 모바일: 하단 고정 탭 바 */}
       <nav
         className="sm:hidden fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 z-50"
-        style={{ paddingBottom: 'max(env(safe-area-inset-bottom), 8px)' }}
+        style={{
+          paddingBottom: 'max(env(safe-area-inset-bottom), 8px)',
+          marginBottom: isApp ? '60px' : '0',
+        }}
       >
         <div className="flex items-center justify-around h-16">
           <Link
