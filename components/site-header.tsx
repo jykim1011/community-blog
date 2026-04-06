@@ -67,7 +67,10 @@ export function SiteHeader() {
       </nav>
 
       {/* 모바일: 하단 고정 탭 바 */}
-      <nav className="sm:hidden fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 z-50 safe-area-inset-bottom">
+      <nav
+        className="sm:hidden fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 z-50"
+        style={{ paddingBottom: 'max(env(safe-area-inset-bottom), 8px)' }}
+      >
         <div className="flex items-center justify-around h-16">
           <Link
             href="/"
