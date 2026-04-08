@@ -91,9 +91,19 @@ export class ClienCrawler extends BaseCrawler {
 
         if (!title || !relativeUrl) return;
 
-        const url = relativeUrl.startsWith('http')
+        let url = relativeUrl.startsWith('http')
           ? relativeUrl
           : `${this.baseUrl}${relativeUrl}`;
+
+        // URL에서 po 파라미터 제거 (페이지네이션 파라미터로 중복 방지)
+        try {
+          const urlObj = new URL(url);
+          urlObj.searchParams.delete('po');
+          url = urlObj.toString();
+        } catch {
+          // URL 파싱 실패 시 정규식 fallback
+          url = url.replace(/[?&]po=\d+/, '').replace(/\?&/, '?');
+        }
 
         // 작성자
         const author = $el.find('.list_author .nickname').text().trim() || '익명';
