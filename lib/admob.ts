@@ -51,15 +51,13 @@ export async function showBannerAd(position: 'top' | 'bottom' = 'bottom') {
       adStateManager.setAdLoaded(false);
     });
 
-    // 네비게이션 바 높이 계산 (64px + safe-area-inset-bottom)
-    // 광고가 네비게이션 바로 위에 표시되도록 margin 설정
-    const navigationHeight = 64; // h-16 = 64px
-
+    // 광고는 화면 최하단에 배치 (margin 0)
+    // 네비게이션 바가 광고 위로 올라가도록 설정됨
     await AdMob.showBanner({
       adId,
       adSize: BannerAdSize.ADAPTIVE_BANNER,
       position: adPosition,
-      margin: position === 'bottom' ? navigationHeight : 0,
+      margin: 0,
     });
 
     console.log(`Banner ad shown at ${position}`);

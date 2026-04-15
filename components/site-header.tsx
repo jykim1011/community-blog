@@ -85,10 +85,12 @@ export function SiteHeader() {
 
       {/* 모바일: 하단 고정 탭 바 */}
       <nav
-        className="sm:hidden fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 z-50"
+        className="sm:hidden fixed left-0 right-0 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 z-50"
         style={{
+          // 앱: 광고 높이(50-60px)만큼 위로 올림 (광고가 네비 아래 표시)
+          // 웹: 화면 최하단 (bottom-0)
+          bottom: isApp && isAdLoaded ? '60px' : '0',
           paddingBottom: 'max(env(safe-area-inset-bottom), 8px)',
-          // 네비게이션 바는 항상 최하단에 고정 (marginBottom 제거)
         }}
       >
         <div className="flex items-center justify-around h-16">
