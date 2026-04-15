@@ -3,6 +3,7 @@ import * as cheerio from 'cheerio';
 import { BaseCrawler } from './base-crawler';
 import { type Post } from '../types';
 
+import { normalizeUrl, toAbsoluteUrl } from '../utils/url-normalizer';
 export class TheQooCrawler extends BaseCrawler {
   siteName = 'theqoo';
   private readonly baseUrl = 'https://theqoo.net';
@@ -89,9 +90,8 @@ export class TheQooCrawler extends BaseCrawler {
 
         if (!title || !relativeUrl) return;
 
-        const url = relativeUrl.startsWith('http')
-          ? relativeUrl
-          : `${this.baseUrl}${relativeUrl}`;
+        const absoluteUrl = toAbsoluteUrl(relativeUrl, this.baseUrl);
+        const url = normalizeUrl(absoluteUrl, this.siteName);
 
         // 카테고리
         const category = $el.find('td.cate span').text().trim() || undefined;

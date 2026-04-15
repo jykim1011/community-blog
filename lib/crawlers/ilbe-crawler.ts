@@ -3,6 +3,7 @@ import * as cheerio from 'cheerio';
 import { BaseCrawler } from './base-crawler';
 import { type Post } from '../types';
 
+import { normalizeUrl, toAbsoluteUrl } from '../utils/url-normalizer';
 export class IlbeCrawler extends BaseCrawler {
   siteName = 'ilbe';
   private readonly baseUrl = 'https://www.ilbe.com';
@@ -88,9 +89,8 @@ export class IlbeCrawler extends BaseCrawler {
 
         if (!title || !relativeUrl) return;
 
-        const url = relativeUrl.startsWith('http')
-          ? relativeUrl
-          : `${this.baseUrl}${relativeUrl}`;
+        const absoluteUrl = toAbsoluteUrl(relativeUrl, this.baseUrl);
+        const url = normalizeUrl(absoluteUrl, this.siteName);
 
         const author = $el.find('span.nick a').text().trim() || $el.find('span.global-nick.nick').text().trim() || '익명';
         const viewCount = parseInt($el.find('span.view').text().trim().replace(/,/g, '')) || 0;

@@ -1,6 +1,7 @@
 import { PostList } from '@/components/post-list';
 import { TrendSummary } from '@/components/trend-summary';
 import { AdMobBanner } from '@/components/admob-banner';
+import { BottomAdContainer } from '@/components/bottom-ad-container';
 import { SiteHeader } from '@/components/site-header';
 import { SiteFooter } from '@/components/site-footer';
 import { SITE_URL, SITE_NAME, SITE_DESCRIPTION } from '@/lib/constants';
@@ -37,7 +38,7 @@ export default function Home() {
       <SiteHeader />
 
       {/* 메인 컨텐츠 - 리스트 우선 */}
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4 pb-20 sm:pb-4">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4 pb-32 sm:pb-4">
         {/* 게시글 목록 - 최상단 배치 */}
         <PostList posts={posts} sites={sites} />
 
@@ -47,8 +48,9 @@ export default function Home() {
         </div>
       </main>
 
-      {/* 하단 광고 */}
+      {/* 하단 광고 (앱: AdMob, 웹: AdSense) */}
       <AdMobBanner position="bottom" />
+      <BottomAdContainer />
 
       {/* 푸터 */}
       <SiteFooter />

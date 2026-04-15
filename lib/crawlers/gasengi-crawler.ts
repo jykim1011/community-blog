@@ -3,6 +3,7 @@ import * as cheerio from 'cheerio';
 import { BaseCrawler } from './base-crawler';
 import { type Post } from '../types';
 
+import { normalizeUrl, toAbsoluteUrl } from '../utils/url-normalizer';
 export class GasengiCrawler extends BaseCrawler {
   siteName = 'gasengi';
   private readonly baseUrl = 'https://www.gasengi.com';

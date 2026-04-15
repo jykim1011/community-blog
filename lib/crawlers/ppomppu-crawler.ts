@@ -4,6 +4,7 @@ import * as iconv from 'iconv-lite';
 import { BaseCrawler } from './base-crawler';
 import { type Post } from '../types';
 
+import { normalizeUrl, toAbsoluteUrl } from '../utils/url-normalizer';
 export class PpomppuCrawler extends BaseCrawler {
   siteName = 'ppomppu';
   private readonly baseUrl = 'https://www.ppomppu.co.kr';

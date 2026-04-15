@@ -16,8 +16,8 @@ export function ShareButton({ title, url, className = '' }: ShareButtonProps) {
     if (navigator.share) {
       try {
         await navigator.share({
-          title,
-          text: title,
+          title: `${title} - 통합 커뮤니티`,
+          text: `${title}\n\n📱 17개 커뮤니티 인기글을 한 번에!\n앱 다운로드: play.google.com/store/apps/details?id=com.communityblog.app`,
           url,
         });
       } catch (error) {

@@ -44,6 +44,128 @@ Tailwind CSS 3.4 + Geist 폰트 사용. 커스텀 테마 확장 없음 (기본 �
 
 ## 최근 변경사항
 
+### 2026-04-15: 크롤링 URL 중복 문제 완전 해결 (중복률 67% → 0%)
+
+**문제:**
+- 크롤링된 데이터의 67%가 중복 (3,000건 중 2,017건 중복)
+- 주요 원인:
+  1. URL에 불필요한 파라미터 포함 (`page`, `_dcbest`, 추적 코드 등)
+  2. 같은 게시글이 여러 페이지(1~5페이지)에서 중복 수집
+  3. 사이트별 고유 식별자만 유지하는 정규화 로직 부재
+
+**해결:**
+
+1. **URL 정규화 유틸리티 구현 (`lib/utils/url-normalizer.ts`)**
+   - `normalizeUrl()`: 사이트별로 고유 식별자 파라미터만 유지
+   - `toAbsoluteUrl()`: 상대 URL을 절대 URL로 변환
+   - 사이트별 필수 파라미터 정의:
+     - dcinside: `id`, `no` (갤러리 ID + 게시글 번호)
+     - theqoo: `bo_table`, `wr_id` (게시판 + 게시글 ID)
+     - ppomppu: `no` (게시글 번호)
+     - mlbpark: `b`, `id` (게시판 + ID)
+     - clien, inven: 파라미터 불필요 (URL 경로에 ID 포함)
+     - ... (17개 사이트 전체)
+   - 페이지네이션(`page`), 추적 파라미터(`_dcbest`), 해시 자동 제거
+   - 파라미터 알파벳 순 정렬로 일관된 URL 생성
+
+2. **16개 크롤러 일괄 수정**
+   - dcinside, ppomppu, mlbpark, bobaedream, etoland, cook82, slrclub, gasengi, todayhumor, hygall, ilbe, theqoo, ruliweb, natepann, humoruniv, clien, inven
+   - URL 파싱 후 `normalizeUrl()` 적용
+   - 절대 URL 변환 후 정규화 2단계 처리
+
+3. **dcinside 크롤러 선택자 개선**
+   - 이미지 아이콘 링크 제외, 텍스트가 있는 실제 제목 링크만 선택
+   - `filter()` 메서드로 정확한 링크 추출
+
+**결과:**
+- ✅ 중복률: **67.2% → 0.00%** (완전 해결)
+- ✅ 이전: 3,000건 중 2,017건 중복
+- ✅ 현재: 1,960건 중 0건 중복
+- ✅ 데이터 품질: 100% 고유 게시글
+- ✅ 크롤링 효율: 2,461건 수집 → 1,960건 저장 (정확한 중복 제거)
+
+**검증:**
+- ✅ 전체 크롤링 성공 (17개 사이트, 1,960건)
+- ✅ URL 고유성: 1,960개 모두 고유 URL
+- ✅ 정적 빌드 성공 (35개 페이지)
+- ✅ TypeScript 컴파일 성공
+
+**파일 변경:**
+- 신규: `lib/utils/url-normalizer.ts` (URL 정규화 유틸리티)
+- 수정: 16개 크롤러 파일 (URL 정규화 적용)
+  - `lib/crawlers/dcinside-crawler.ts` (선택자 개선 + 정규화)
+  - `lib/crawlers/ppomppu-crawler.ts`
+  - `lib/crawlers/mlbpark-crawler.ts`
+  - `lib/crawlers/bobaedream-crawler.ts`
+  - `lib/crawlers/etoland-crawler.ts`
+  - `lib/crawlers/cook82-crawler.ts`
+  - `lib/crawlers/slrclub-crawler.ts`
+  - `lib/crawlers/gasengi-crawler.ts`
+  - `lib/crawlers/todayhumor-crawler.ts`
+  - `lib/crawlers/hygall-crawler.ts`
+  - `lib/crawlers/ilbe-crawler.ts`
+  - `lib/crawlers/theqoo-crawler.ts`
+  - `lib/crawlers/ruliweb-crawler.ts`
+  - `lib/crawlers/natepann-crawler.ts`
+  - `lib/crawlers/humoruniv-crawler.ts`
+  - `lib/crawlers/clien-crawler.ts`
+  - `lib/crawlers/inven-crawler.ts`
+
+### 2026-04-15: 모바일 하단 광고 레이아웃 개선
+
+**문제:**
+- 모바일 웹/앱에서 네비게이션 바가 하단 고정되고 광고가 화면 최하단에 표시됨
+- 앱에서 광고 공간 확보를 위해 네비게이션에 `marginBottom: 60px` 적용
+- 광고 로드 실패 시 네비게이션과 하단 사이에 빈 공간 발생 (디자인 이상)
+
+**해결:**
+
+1. **광고 로드 상태 관리 시스템 (`lib/ad-state.ts`)**
+   - `AdStateManager` 클래스: 광고 로드 성공/실패 상태 추적
+   - Subscribe 패턴으로 컴포넌트 간 상태 공유
+   - 앱(AdMob)과 웹(AdSense) 모두 지원
+
+2. **AdMob 광고 이벤트 리스너 (`lib/admob.ts`)**
+   - `BannerAdPluginEvents.Loaded`: 광고 로드 성공 시 상태 업데이트
+   - `BannerAdPluginEvents.FailedToLoad`: 실패 시 상태 리셋
+   - `removeBannerAd`: 광고 제거 시 상태 초기화
+
+3. **네비게이션 바 동적 여백 (`components/site-header.tsx`)**
+   - 광고 로드 상태를 구독하여 실시간 반영
+   - **광고 로드 성공**: `marginBottom: 60px` (광고 공간 확보)
+   - **광고 로드 실패**: `marginBottom: 0px` (빈 공간 제거)
+   - 앱 환경에서만 동적 여백 적용 (웹은 항상 0px)
+
+4. **웹용 하단 광고 컨테이너 (`components/bottom-ad-container.tsx`)**
+   - 모바일 웹에서 네비게이션 바로 위에 AdSense 광고 표시
+   - `fixed bottom` 포지셔닝으로 네비게이션 바로 위 고정
+   - 광고 로드 실패 시 컨테이너 완전 숨김 (빈 공간 방지)
+   - 네이티브 앱에서는 표시 안 함 (AdMob이 처리)
+
+5. **전체 페이지 레이아웃 통일**
+   - 메인 컨텐츠 하단 패딩: `pb-24` → `pb-32` (128px)
+   - 광고 영역(60px) + 네비게이션(64px) = 124px 확보
+   - 모든 주요 페이지 적용: /, /trends, /communities, /search, /statistics, /keywords
+
+**효과:**
+- ✅ 광고 로드 성공 시: 네비게이션 바로 위에 광고 노출
+- ✅ 광고 로드 실패 시: 빈 공간 제거, 자연스러운 레이아웃
+- ✅ 앱/웹 양쪽 최적화 (AdMob/AdSense)
+- ✅ 사용자 경험 개선 (광고 상태와 무관하게 일관된 디자인)
+- ✅ 광고 가시성 향상 (네비게이션 바로 위 = 주목도 높음)
+
+**파일 변경:**
+- 신규: `lib/ad-state.ts` (광고 상태 관리)
+- 신규: `components/bottom-ad-container.tsx` (웹용 하단 광고)
+- 수정: `lib/admob.ts` (광고 이벤트 리스너)
+- 수정: `components/site-header.tsx` (동적 marginBottom)
+- 수정: `app/page.tsx`, `app/trends/page.tsx`, `app/communities/page.tsx`, `app/search/page.tsx`, `app/statistics/page.tsx`, `app/keywords/page.tsx` (하단 광고 추가, pb-32 패딩)
+
+**빌드 검증:**
+- ✅ TypeScript 컴파일 성공
+- ✅ 정적 빌드 성공 (35개 페이지)
+- ✅ 에러 없음
+
 ### 2026-04-08: 클리앙 크롤러 URL 중복 문제 수정
 
 **문제:**

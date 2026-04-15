@@ -3,6 +3,7 @@ import * as cheerio from 'cheerio';
 import { BaseCrawler } from './base-crawler';
 import { type Post } from '../types';
 
+import { normalizeUrl, toAbsoluteUrl } from '../utils/url-normalizer';
 export class NatepannCrawler extends BaseCrawler {
   siteName = 'natepann';
   private readonly baseUrl = 'https://pann.nate.com';
@@ -85,9 +86,8 @@ export class NatepannCrawler extends BaseCrawler {
 
         if (!title || !relativeUrl) return;
 
-        const url = relativeUrl.startsWith('http')
-          ? relativeUrl
-          : `${this.baseUrl}${relativeUrl}`;
+        const absoluteUrl = toAbsoluteUrl(relativeUrl, this.baseUrl);
+        const url = normalizeUrl(absoluteUrl, this.siteName);
 
         const viewText = $el.find('.count').text().trim().replace(/조회\s*/g, '').replace(/,/g, '');
         const viewCount = parseInt(viewText) || 0;

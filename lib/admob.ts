@@ -1,4 +1,5 @@
 import { AdMob, BannerAdSize, BannerAdPosition, BannerAdPluginEvents, AdMobBannerSize } from '@capacitor-community/admob';
+import { adStateManager } from './ad-state';
 
 // AdMob 앱 ID (실제 ID)
 const ADMOB_APP_ID = 'ca-app-pub-4710152968528474~2341859043';
@@ -39,6 +40,17 @@ export async function showBannerAd(position: 'top' | 'bottom' = 'bottom') {
 
     const adId = position === 'top' ? AD_UNITS.BANNER_TOP : AD_UNITS.BANNER_BOTTOM;
 
+    // 광고 로드 이벤트 리스너 등록
+    AdMob.addListener(BannerAdPluginEvents.Loaded, () => {
+      console.log('Banner ad loaded successfully');
+      adStateManager.setAdLoaded(true);
+    });
+
+    AdMob.addListener(BannerAdPluginEvents.FailedToLoad, (error) => {
+      console.error('Banner ad failed to load:', error);
+      adStateManager.setAdLoaded(false);
+    });
+
     await AdMob.showBanner({
       adId,
       adSize: BannerAdSize.ADAPTIVE_BANNER,
@@ -49,6 +61,7 @@ export async function showBannerAd(position: 'top' | 'bottom' = 'bottom') {
     console.log(`Banner ad shown at ${position}`);
   } catch (error) {
     console.error('Failed to show banner ad:', error);
+    adStateManager.setAdLoaded(false);
   }
 }
 
@@ -70,6 +83,7 @@ export async function hideBannerAd() {
 export async function removeBannerAd() {
   try {
     await AdMob.removeBanner();
+    adStateManager.setAdLoaded(false);
     console.log('Banner ad removed');
   } catch (error) {
     console.error('Failed to remove banner ad:', error);

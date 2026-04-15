@@ -4,10 +4,12 @@ import Link from 'next/link';
 import { usePathname } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { SITE_NAME } from '@/lib/constants';
+import { adStateManager } from '@/lib/ad-state';
 
 export function SiteHeader() {
   const pathname = usePathname();
   const [isApp, setIsApp] = useState(false);
+  const [isAdLoaded, setIsAdLoaded] = useState(false);
 
   useEffect(() => {
     // Capacitor 앱 환경 감지
@@ -16,6 +18,10 @@ export function SiteHeader() {
       (window as any).Capacitor !== undefined
     );
     setIsApp(isCapacitor);
+
+    // 광고 로드 상태 구독
+    const unsubscribe = adStateManager.subscribe(setIsAdLoaded);
+    return unsubscribe;
   }, []);
 
   return (
@@ -82,7 +88,8 @@ export function SiteHeader() {
         className="sm:hidden fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 z-50"
         style={{
           paddingBottom: 'max(env(safe-area-inset-bottom), 8px)',
-          marginBottom: isApp ? '60px' : '0',
+          // 앱이고 광고가 로드된 경우에만 60px 여백 추가
+          marginBottom: isApp && isAdLoaded ? '60px' : '0',
         }}
       >
         <div className="flex items-center justify-around h-16">

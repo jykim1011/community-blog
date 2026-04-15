@@ -4,6 +4,7 @@ import * as iconv from 'iconv-lite';
 import { BaseCrawler } from './base-crawler';
 import { type Post } from '../types';
 
+import { normalizeUrl, toAbsoluteUrl } from '../utils/url-normalizer';
 export class TodayhumorCrawler extends BaseCrawler {
   siteName = 'todayhumor';
   private readonly baseUrl = 'https://www.todayhumor.co.kr';
@@ -91,9 +92,8 @@ export class TodayhumorCrawler extends BaseCrawler {
 
         if (!title || !relativeUrl) return;
 
-        const url = relativeUrl.startsWith('http')
-          ? relativeUrl
-          : `${this.baseUrl}${relativeUrl}`;
+        const absoluteUrl = toAbsoluteUrl(relativeUrl, this.baseUrl);
+        const url = normalizeUrl(absoluteUrl, this.siteName);
 
         const author = $el.find('td.name').text().trim() || '익명';
         const viewCount = parseInt($el.find('td.hits').text().trim().replace(/,/g, '')) || 0;

@@ -2,6 +2,7 @@ import axios from 'axios';
 import * as cheerio from 'cheerio';
 import { BaseCrawler } from './base-crawler';
 import { type Post } from '../types';
+import { normalizeUrl, toAbsoluteUrl } from '../utils/url-normalizer';
 
 export class DcinsideCrawler extends BaseCrawler {
   siteName = 'dcinside';
@@ -78,15 +79,20 @@ export class DcinsideCrawler extends BaseCrawler {
       try {
         const $el = $(element);
 
-        const titleLink = $el.find('td.gall_tit a').first();
-        const title = titleLink.text().trim();
-        const relativeUrl = titleLink.attr('href');
+        // 제목 링크 선택: 이미지 아이콘 링크를 제외한 실제 제목 링크
+        const titleElement = $el.find('td.gall_tit a').filter((_, el) => {
+          const text = $(el).text().trim();
+          return text.length > 0; // 텍스트가 있는 링크만
+        }).first();
 
-        if (!title || !relativeUrl) return;
+        const title = titleElement.text().trim();
+        const href = titleElement.attr('href');
 
-        const url = relativeUrl.startsWith('http')
-          ? relativeUrl
-          : `${this.baseUrl}${relativeUrl}`;
+        if (!title || !href) return;
+
+        // 절대 URL 변환 후 정규화 (page, _dcbest 등 파라미터 제거)
+        const absoluteUrl = toAbsoluteUrl(href, this.baseUrl);
+        const url = normalizeUrl(absoluteUrl, this.siteName);
 
         const author = $el.find('td.gall_writer .nickname').text().trim() || '익명';
         const viewCount = parseInt($el.find('td.gall_count').text().trim()) || 0;

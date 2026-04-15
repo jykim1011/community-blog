@@ -4,6 +4,7 @@ import * as iconv from 'iconv-lite';
 import { BaseCrawler } from './base-crawler';
 import { type Post } from '../types';
 
+import { normalizeUrl, toAbsoluteUrl } from '../utils/url-normalizer';
 export class HumorunivCrawler extends BaseCrawler {
   siteName = 'humoruniv';
   private readonly baseUrl = 'https://web.humoruniv.com';
@@ -93,9 +94,8 @@ export class HumorunivCrawler extends BaseCrawler {
         const cleanTitle = title.replace(/\s+/g, ' ').trim();
         if (!cleanTitle) return;
 
-        const url = relativeUrl.startsWith('http')
-          ? relativeUrl
-          : `${this.baseUrl}${relativeUrl}`;
+        const absoluteUrl = toAbsoluteUrl(relativeUrl, this.baseUrl);
+        const url = normalizeUrl(absoluteUrl, this.siteName);
 
         const author = $el.find('.hu_nick_txt').first().text().trim() || '익명';
         const okText = $el.find('span.ok').text().trim();
