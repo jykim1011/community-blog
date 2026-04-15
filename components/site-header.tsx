@@ -88,8 +88,7 @@ export function SiteHeader() {
         className="sm:hidden fixed bottom-0 left-0 right-0 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 z-50"
         style={{
           paddingBottom: 'max(env(safe-area-inset-bottom), 8px)',
-          // 앱이고 광고가 로드된 경우에만 60px 여백 추가
-          marginBottom: isApp && isAdLoaded ? '60px' : '0',
+          // 네비게이션 바는 항상 최하단에 고정 (marginBottom 제거)
         }}
       >
         <div className="flex items-center justify-around h-16">

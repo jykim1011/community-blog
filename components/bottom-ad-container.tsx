@@ -47,7 +47,7 @@ export function BottomAdContainer() {
     <div
       className="sm:hidden fixed left-0 right-0 z-40 bg-white dark:bg-gray-800"
       style={{
-        bottom: 'calc(64px + env(safe-area-inset-bottom))', // 네비게이션 바 높이
+        bottom: 'calc(64px + max(env(safe-area-inset-bottom), 8px))', // 네비게이션 바 높이
       }}
     >
       {/* AdSense 광고 영역 */}
