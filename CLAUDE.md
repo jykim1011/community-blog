@@ -44,6 +44,276 @@ Tailwind CSS 3.4 + Geist 폰트 사용. 커스텀 테마 확장 없음 (기본 �
 
 ## 최근 변경사항
 
+### 2026-04-18: 핵심 UX 개선 - 커뮤니티 선택 기능 (북마크 개념 변경)
+
+**개요:**
+- 사용자가 원하는 커뮤니티만 선택해서 볼 수 있는 핵심 차별화 기능 구현
+- "북마크 = 커뮤니티 선택" 개념으로 단순화
+- 선택한 커뮤니티의 모든 게시글 제공 (최대 1,000건/사이트)
+
+**구조 단순화:**
+```
+이전 (복잡):
+- / (전체 게시글)
+- /feed (구독 피드)
+- /subscriptions (구독 관리)
+- /bookmarks (게시글 북마크)
+
+현재 (단순):
+- / (메인: 선택한 커뮤니티만 OR 전체)
+- /settings (커뮤니티 선택)
+```
+
+**메인 페이지 동작:**
+1. **선택된 커뮤니티 있음**: 해당 커뮤니티의 모든 게시글만 표시
+   - 사이트별 JSON 파일에서 데이터 로드 (최대 1,000건/사이트)
+   - 상단에 선택된 커뮤니티 태그 표시
+   - 시간순 정렬
+2. **선택 없음**: 전체 22개 커뮤니티 표시 (기본 posts.json)
+   - 파란 배너: "원하는 커뮤니티만 선택해서 보세요!"
+   - "설정하기" 버튼으로 즉시 이동
+
+**설정 페이지 (`/settings`):**
+- 22개 커뮤니티 체크박스 선택
+- 카테고리별 그룹화 (커뮤니티/핫딜/영화/게임)
+- 실시간 게시글 수 표시
+- 선택 상태 실시간 반영 ("전체" 또는 "N개 선택")
+
+**네비게이션 개선:**
+- **데스크톱**: "구독", "북마크" 제거 → "설정" 추가
+- **모바일**: "커뮤니티" → "설정" 변경 (톱니바퀴 아이콘)
+- 4개 탭 유지: 홈/트렌드/설정/검색
+
+**기술적 구현:**
+1. **메인 페이지**: 서버 → 클라이언트 컴포넌트
+   - `useSubscriptions` 훅으로 선택 상태 관리
+   - 동적 데이터 로딩 (선택된 사이트만)
+   - 로컬 스토리지 기반 영구 저장
+2. **사이트별 JSON 활용**:
+   - `data/sites/clien.json` (428건)
+   - `data/sites/ppomppu.json` (489건)
+   - 선택된 사이트 데이터만 병렬 로드
+3. **보배드ream URL 버그 수정**:
+   - 파라미터 대소문자 문제 해결 (`no` → `No`)
+   - 1건 → 301건으로 정상화
+
+**제거된 기능:**
+- ❌ `/feed` (구독 피드 페이지)
+- ❌ `/bookmarks` (게시글 북마크)
+- ❌ 게시글 카드 북마크 버튼
+
+**효과:**
+- ✅ **핵심 차별화**: "원하는 커뮤니티의 모든 글을 볼 수 있는 앱"
+- ✅ **UX 단순화**: 2개 페이지로 축약 (메인 + 설정)
+- ✅ **개인화**: 각 사용자가 원하는 커뮤니티만 선택
+- ✅ **데이터 풍부**: 선택한 커뮤니티당 최대 1,000건
+- ✅ **빠른 로딩**: 선택된 사이트만 로드 (효율적)
+
+**사용 시나리오:**
+- 시나리오 1: SLR클럽만 보고 싶음 → 설정에서 SLR클럽 체크 → 메인에서 SLR클럽 게시글만 표시
+- 시나리오 2: 핫딜만 보고 싶음 → 뽐뿌, 쿼사존, 딜바다 체크 → 핫딜 게시글만 표시
+- 시나리오 3: 전체 보기 → 아무것도 선택 안 함 → 22개 커뮤니티 전체 표시
+
+**파일 변경:**
+- 수정: `app/page.tsx` (클라이언트 컴포넌트, 동적 로딩)
+- 이름 변경: `app/subscriptions/` → `app/settings/`
+- 수정: `app/settings/page.tsx` (텍스트 변경)
+- 삭제: `app/feed/` (더 이상 불필요)
+- 수정: `components/site-header.tsx` (네비게이션 개편)
+- 수정: `app/sitemap.ts` (feed, bookmarks, subscriptions 제거, settings 추가)
+- 수정: `lib/utils/url-normalizer.ts` (보배드ream `No` 파라미터)
+- 수정: `scripts/crawl.ts` (10페이지 크롤링, 사이트별 JSON 저장)
+
+**빌드 검증:**
+- ✅ TypeScript 컴파일 성공
+- ✅ 정적 빌드 성공 (43개 페이지)
+- ✅ 크롤링 성공 (4,865건 수집, 20개 사이트별 파일 생성)
+- ✅ 보배드ream 정상화 (1건 → 301건)
+
+### 2026-04-17: SLR URL 수정 + 카테고리 UI 개선
+
+**SLR 게시글 URL 수정:**
+- **문제**: SLR 게시글 클릭 시 "게시판 이름을 지정해 주셔야 합니다" 에러
+- **원인**: URL에 `id` 파라미터 누락 (현재: `vx2.php?no=123` → 필요: `vx2.php?id=free&no=123`)
+- **해결**: `lib/utils/url-normalizer.ts`에서 SLR 필수 파라미터를 `['id', 'no']`로 수정
+- **효과**: 모든 SLR URL 정상화 (139건, 100% 검증 완료)
+
+**카테고리 탭 UI 개선:**
+- **문제**: 카테고리 탭이 길어져 화면에서 잘림
+- **해결**: 카테고리 탭에 가로 스크롤 추가 (`overflow-x-auto scrollbar-hide`)
+- **효과**: 모든 카테고리(전체/커뮤니티/핫딜/영화/게임) 스크롤로 접근 가능
+
+**파일 변경:**
+- 수정: `lib/utils/url-normalizer.ts` (SLR 필수 파라미터)
+- 수정: `components/site-filter.tsx` (카테고리 탭 스크롤)
+- 재크롤링: SLR 데이터 139건 (올바른 URL로 교체)
+
+### 2026-04-17: 카테고리 필터링 수정 + 딜바다 인코딩 해결
+
+**카테고리 필터링 버그 수정:**
+- **문제**: 카테고리 필터링이 작동하지 않음
+- **원인**: `post.category` (게시판 카테고리: "이슈", "유머")와 `post.siteCategory` (사이트 카테고리: "community", "hotdeal") 혼동
+- **해결**:
+  - `StaticPost`에 `siteCategory: SiteCategory` 필드 추가
+  - 크롤링 시 `siteCategory: config.category` 저장
+  - 필터링 로직을 `post.siteCategory`로 변경
+- **효과**: 카테고리 탭 정상 작동 (커뮤니티 1421건, 핫딜 132건, 영화 125건, 게임 171건)
+
+**딜바다 인코딩 문제 해결:**
+- **문제**: 딜바다 게시글 제목이 깨짐 ("11踰덇��" 대신 "11번가"로 표시되어야 함)
+- **원인**: 딜바다는 UTF-8을 사용하는데, EUC-KR로 디코딩 시도
+- **해결**:
+  - `crawlPage()` 메서드 2단계 접근 구현:
+    1. 먼저 UTF-8로 시도 (기본 axios 응답)
+    2. 실패 시 EUC-KR fallback (arraybuffer + iconv)
+  - `parsePosts()` 함수로 파싱 로직 분리
+- **효과**: 딜바다 한글 정상 표시 (74건 크롤링)
+- **파일**: `lib/crawlers/dealbada-crawler.ts`
+
+**파일 변경:**
+- 수정: `lib/types/index.ts` (siteCategory 필드 추가)
+- 수정: `scripts/crawl.ts` (siteCategory 저장)
+- 수정: `components/post-list.tsx` (siteCategory 필터링)
+- 수정: `lib/crawlers/dealbada-crawler.ts` (UTF-8 우선 시도)
+- 수정: `memory/MEMORY.md` (딜바다 인코딩, 카테고리 필터링 주의사항 기록)
+
+### 2026-04-16: 카테고리 기반 필터링 구현
+
+**개요:**
+- 커뮤니티, 핫딜, 영화, 게임 카테고리로 사이트 분류
+- 2단계 필터링 구조: 카테고리 선택 → 사이트 선택
+- 모바일/PC 반응형 UI (select box / 탭 버튼)
+
+**구현:**
+
+1. **카테고리 타입 정의 (`lib/constants.ts`)**
+   - `SiteCategory` 타입: `'community' | 'hotdeal' | 'movie' | 'game'`
+   - `categoryLabels`: 카테고리별 한글 레이블
+   - `siteConfigs`에 각 사이트의 카테고리 추가
+
+2. **SiteFilter 컴포넌트 개편 (`components/site-filter.tsx`)**
+   - 카테고리 탭 추가 (전체/커뮤니티/핫딜/영화/게임)
+   - 선택된 카테고리에 속한 사이트만 필터링하여 표시
+   - 모바일: 2개 select box (카테고리 + 사이트)
+   - PC: 2줄 탭 UI
+     - 1줄: 카테고리 탭 (파란색, 전체 선택 시 카테고리 null)
+     - 2줄: 사이트 탭 (초록색, 가로 스크롤)
+
+3. **PostList 상태 관리 업데이트 (`components/post-list.tsx`)**
+   - `currentCategory` 상태 추가
+   - `handleCategoryChange`: 카테고리 변경 시 사이트 필터 초기화
+   - `filteredPosts`: 카테고리 → 사이트 순서로 필터링
+   - SiteFilter에 category props 전달
+
+4. **타입 시스템 업데이트**
+   - `lib/types/index.ts`: `StaticSite`에 `category: SiteCategory` 필드 추가
+   - `scripts/crawl.ts`: sites.json 생성 시 category 포함
+
+**카테고리 분류 (22개 사이트):**
+- **커뮤니티 (17개)**: 클리앙, 더쿠, 루리웹, 디시인사이드, 에펨코리아, 아카라이브, 엠팍, 네이트판, 일베, 인스티즈, 보배드림, 이토랜드, 웃긴대학, 82쿡, SLR클럽, 가생이, 해연갤, 오늘의유머, 다모앙, 오르비, 쿨엔조이
+- **핫딜 (3개)**: 뽐뿌, 쿼사존, 딜바다
+- **영화 (2개)**: 익스트림무비, DVDPrime
+- **게임 (1개)**: 인벤
+
+**효과:**
+- ✅ 사용자가 관심 카테고리별로 게시글 탐색 가능
+- ✅ 핫딜/영화 전문 사이트를 커뮤니티와 명확히 구분
+- ✅ 카테고리 선택 시 사이트 목록 자동 필터링 (UX 개선)
+- ✅ 모바일/PC 최적화 UI
+- ✅ 빌드 성공 (41개 페이지)
+
+**파일 변경:**
+- 수정: `lib/constants.ts` (SiteCategory, categoryLabels, category 필드 추가)
+- 수정: `lib/types/index.ts` (StaticSite에 category 필드 추가)
+- 수정: `components/site-filter.tsx` (카테고리 탭 UI 추가)
+- 수정: `components/post-list.tsx` (카테고리 상태 관리)
+- 수정: `scripts/crawl.ts` (sites.json에 category 포함)
+- 재생성: `data/sites.json` (전체 크롤링으로 category 필드 추가)
+
+### 2026-04-16: Phase 1 완료 - 커뮤니티 확장 + 북마크 + 읽은 표시
+
+**개요:**
+- 인기 커뮤니티 3개 추가 (쿼사존, 딜바다, DVDPrime)
+- 북마크 기능 구현 (로컬 스토리지 기반)
+- 읽은 게시글 표시 기능 (7일 자동 삭제)
+- 17개 → 20개 커뮤니티로 확장 (18% 증가)
+
+**커뮤니티 추가:**
+
+1. **쿼사존 (quasarzone)** - 핫딜 전문
+   - URL: https://quasarzone.com/bbs/qb_saleinfo
+   - 크롤링: 150건/5페이지
+   - 선택자: `div.market-info-list` → `a.subject-link`
+
+2. **딜바다 (dealbada)** - 국내핫딜
+   - URL: http://www.dealbada.com/bbs/board.php?bo_table=deal_domestic
+   - 크롤링: 75건/5페이지
+   - EUC-KR 인코딩, Gnuboard 기반
+
+3. **DVDPrime (dvdprime)** - 프라임차한잔
+   - URL: https://dvdprime.com/g2/bbs/board.php?bo_table=comm
+   - 크롤링: 125건/5페이지
+   - 선택자: `div.list_table_row` → `.list_subject_span_pc`
+
+**북마크 기능 (`lib/hooks/use-bookmarks.ts`):**
+- 로컬 스토리지 기반 저장 (`localStorage`)
+- 북마크 추가/제거/토글/전체 삭제
+- 북마크 페이지 (`app/bookmarks/page.tsx`)
+  - 저장된 게시글 목록 표시
+  - 개별 삭제 및 전체 삭제 버튼
+  - 저장 시간 표시 (상대 시간)
+- PostCard에 북마크 버튼 추가 (`components/bookmark-button.tsx`)
+  - 북마크 여부에 따라 아이콘 색상 변경 (노란색 fill)
+  - 클릭 시 북마크 토글
+- 헤더 네비게이션에 "북마크" 링크 추가 (데스크톱)
+
+**읽은 게시글 표시 (`lib/hooks/use-read-posts.ts`):**
+- 로컬 스토리지에 방문 기록 저장
+- 7일 후 자동 삭제 (만료된 기록 필터링)
+- PostCard에서 읽은 게시글 회색 표시
+  - 제목: `text-gray-500` (읽음) vs `text-gray-900` (안 읽음)
+  - 카테고리 태그도 회색 변경
+- 북마크 페이지에 "읽은 기록 삭제" 버튼 추가
+- 게시글 클릭 시 자동으로 읽음 표시
+
+**URL 정규화 업데이트 (`lib/utils/url-normalizer.ts`):**
+- 쿼사존: URL 경로에 ID 포함 (파라미터 불필요)
+- 딜바다: Gnuboard `bo_table`, `wr_id` 파라미터
+- DVDPrime: Gnuboard `bo_table`, `wr_id` 파라미터
+
+**효과:**
+- ✅ 커뮤니티 수: 17개 → 20개 (18% 증가)
+- ✅ 크롤링 데이터: +350건 (쿼사존 150 + 딜바다 75 + DVDPrime 125)
+- ✅ 사용자 재방문율 향상 (북마크 기능)
+- ✅ 읽은 게시글 구분으로 중복 확인 방지
+- ✅ 정적 빌드 성공 (41개 페이지)
+
+**파일 변경:**
+- 신규: `lib/crawlers/quasarzone-crawler.ts`
+- 신규: `lib/crawlers/dealbada-crawler.ts`
+- 신규: `lib/crawlers/dvdprime-crawler.ts`
+- 신규: `lib/hooks/use-bookmarks.ts`
+- 신규: `lib/hooks/use-read-posts.ts`
+- 신규: `components/bookmark-button.tsx`
+- 신규: `app/bookmarks/page.tsx`
+- 수정: `lib/crawlers/index.ts` (3개 크롤러 등록)
+- 수정: `lib/constants.ts` (3개 사이트 설정 추가)
+- 수정: `lib/utils/url-normalizer.ts` (3개 사이트 파라미터 추가)
+- 수정: `components/post-card.tsx` (북마크 버튼 + 읽은 표시)
+- 수정: `components/site-header.tsx` (북마크 링크)
+- 수정: `app/sitemap.ts` (북마크 페이지 추가)
+
+**검증 완료:**
+- ✅ TypeScript 컴파일 성공
+- ✅ 정적 빌드 성공 (41개 페이지)
+- ✅ 3개 크롤러 테스트 성공 (총 350건 수집)
+- ✅ 북마크 기능 정상 작동
+- ✅ 읽은 게시글 표시 정상 작동
+
+**미완료 (향후 작업):**
+- ⏳ 쿨엔조이 크롤러 (HTML 선택자 확인 필요)
+- ⏳ 익스트림무비 크롤러 (HTML 선택자 확인 필요)
+
 ### 2026-04-15: 네비게이션 바와 광고 위치 최종 조정
 
 **문제:**

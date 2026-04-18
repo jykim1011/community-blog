@@ -6,6 +6,7 @@ import { SiteFilter } from '@/components/site-filter';
 import { SortSelector, SortOption } from '@/components/sort-selector';
 import { PullToRefresh } from '@/components/pull-to-refresh';
 import { useMediaQuery } from '@/lib/hooks/use-media-query';
+import { SiteCategory } from '@/lib/constants';
 import type { StaticPost, StaticSite } from '@/lib/types';
 
 const POSTS_PER_PAGE = 20;
@@ -17,6 +18,7 @@ interface PostListProps {
 
 export function PostList({ posts, sites }: PostListProps) {
   const [currentSite, setCurrentSite] = useState<string | null>(null);
+  const [currentCategory, setCurrentCategory] = useState<SiteCategory | null>(null);
   const [currentSort, setCurrentSort] = useState<SortOption>('recent');
   const [currentPage, setCurrentPage] = useState(1);
   const [displayedCount, setDisplayedCount] = useState(10);
@@ -26,9 +28,15 @@ export function PostList({ posts, sites }: PostListProps) {
   const isDesktop = useMediaQuery('(min-width: 768px)');
 
   const filteredPosts = useMemo(() => {
-    let filtered = currentSite
-      ? posts.filter((post) => post.site === currentSite)
+    // 1. 카테고리 필터링 (사이트 카테고리 기준)
+    let filtered = currentCategory
+      ? posts.filter((post) => post.siteCategory === currentCategory)
       : posts;
+
+    // 2. 사이트 필터링
+    filtered = currentSite
+      ? filtered.filter((post) => post.site === currentSite)
+      : filtered;
 
     // 정렬 적용
     const sorted = [...filtered].sort((a, b) => {
@@ -53,7 +61,7 @@ export function PostList({ posts, sites }: PostListProps) {
     });
 
     return sorted;
-  }, [posts, currentSite, currentSort]);
+  }, [posts, currentSite, currentCategory, currentSort]);
 
   const displayedPosts = useMemo(() => {
     if (isDesktop) {
@@ -110,6 +118,14 @@ export function PostList({ posts, sites }: PostListProps) {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const handleCategoryChange = (category: SiteCategory | null) => {
+    setCurrentCategory(category);
+    setCurrentSite(null); // 카테고리 변경 시 사이트 필터 초기화
+    setCurrentPage(1);
+    setDisplayedCount(20);
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  };
+
   const handleSortChange = (sort: SortOption) => {
     setCurrentSort(sort);
     setCurrentPage(1);
@@ -134,6 +150,7 @@ export function PostList({ posts, sites }: PostListProps) {
     id: s.name,
     displayName: s.displayName,
     name: s.name,
+    category: s.category,
   }));
 
   return (
@@ -143,7 +160,9 @@ export function PostList({ posts, sites }: PostListProps) {
         <SiteFilter
           sites={siteFilterData}
           currentSite={currentSite}
+          currentCategory={currentCategory}
           onSiteChange={handleSiteChange}
+          onCategoryChange={handleCategoryChange}
         />
       )}
 

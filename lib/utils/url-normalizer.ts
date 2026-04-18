@@ -16,15 +16,20 @@ const SITE_ESSENTIAL_PARAMS: Record<string, string[]> = {
   mlbpark: ['b', 'id'], // 게시판 + ID
   natepann: ['s', 'n'], // 게시판 + 번호
   ilbe: ['no'], // 게시글 번호
-  bobaedream: ['no'], // 게시글 번호
+  bobaedream: ['No'], // 게시글 번호 (대문자 주의!)
   etoland: ['no'], // 게시글 번호
   humoruniv: ['table', 'no'], // 게시판 + 번호
   cook82: ['no'], // 게시글 번호
-  slrclub: ['no'], // 게시글 번호
+  slrclub: ['id', 'no'], // 게시판 ID + 게시글 번호
   gasengi: ['bo_table', 'wr_id'], // 게시판 + 게시글 ID
   hygall: ['document_srl'], // 문서 일련번호
   todayhumor: ['no'], // 게시글 번호
   inven: [], // URL 경로에 ID 포함
+  quasarzone: [], // URL 경로에 ID 포함 (/bbs/qb_saleinfo/views/12345)
+  extmovie: [], // URL 경로에 ID 포함
+  dvdprime: ['bo_table', 'wr_id'], // Gnuboard: 게시판 + 게시글 ID
+  dealbada: ['bo_table', 'wr_id'], // Gnuboard: 게시판 + 게시글 ID
+  coolenjoy: [], // URL 경로에 ID 포함
 };
 
 /**

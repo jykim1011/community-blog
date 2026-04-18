@@ -15,6 +15,11 @@ import { SlrclubCrawler } from './slrclub-crawler';
 import { GasengiCrawler } from './gasengi-crawler';
 import { HygallCrawler } from './hygall-crawler';
 import { TodayhumorCrawler } from './todayhumor-crawler';
+import { QuasarzoneCrawler } from './quasarzone-crawler';
+import { ExtmovieCrawler } from './extmovie-crawler';
+import { DvdprimeCrawler } from './dvdprime-crawler';
+import { DealbadaCrawler } from './dealbada-crawler';
+import { CoolenjoyCrawler } from './coolenjoy-crawler';
 import type { ICrawler } from '../types';
 
 // 사용 가능한 모든 크롤러 등록
@@ -36,6 +41,11 @@ export const crawlers: Record<string, ICrawler> = {
   gasengi: new GasengiCrawler(),
   hygall: new HygallCrawler(),
   todayhumor: new TodayhumorCrawler(),
+  quasarzone: new QuasarzoneCrawler(),
+  extmovie: new ExtmovieCrawler(),
+  dvdprime: new DvdprimeCrawler(),
+  dealbada: new DealbadaCrawler(),
+  coolenjoy: new CoolenjoyCrawler(),
 };
 
 // 차단/접근불가 사이트 (향후 재활성화 가능):

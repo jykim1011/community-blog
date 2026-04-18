@@ -1,3 +1,5 @@
+import { SiteCategory } from '@/lib/constants';
+
 // 게시글 타입
 export interface Post {
   id: string;
@@ -40,13 +42,14 @@ export interface StaticPost {
   url: string;
   site: string;
   siteDisplayName: string;
+  siteCategory: SiteCategory; // 사이트 카테고리 (community, hotdeal, movie, game)
   thumbnail?: string;
   viewCount?: number;
   commentCount?: number;
   likeCount?: number;
   createdAt: string; // ISO string
   fetchedAt: string; // ISO string
-  category?: string;
+  category?: string; // 게시판 카테고리 (이슈, 유머 등)
 }
 
 // 정적 JSON용 사이트 타입
@@ -54,5 +57,6 @@ export interface StaticSite {
   name: string;
   displayName: string;
   url: string;
+  category: SiteCategory;
   lastCrawledAt: string | null; // ISO string
 }

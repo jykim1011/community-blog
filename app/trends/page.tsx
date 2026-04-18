@@ -42,7 +42,7 @@ export default function TrendsPage() {
                 📊 실시간 커뮤니티 트렌드
               </h1>
               <p className="text-sm text-gray-600 dark:text-gray-400">
-                17개 커뮤니티의 3,000개 게시글을 분석한 결과입니다.
+                22개 커뮤니티의 실시간 데이터를 분석한 결과입니다.
                 <span className="ml-2 text-xs">
                   마지막 업데이트: {generatedDate.toLocaleString('ko-KR')}
                 </span>
@@ -85,9 +85,6 @@ export default function TrendsPage() {
                   <div className="text-sm font-semibold text-gray-900 dark:text-white truncate">
                     {keyword.word}
                   </div>
-                  <div className="text-xs text-gray-500 dark:text-gray-400">
-                    {keyword.frequency}회 언급
-                  </div>
                 </div>
               </div>
             ))}
@@ -121,20 +118,14 @@ export default function TrendsPage() {
                     <div className="text-sm font-semibold text-gray-900 dark:text-white">{dateStr}</div>
                   </div>
 
-                  <div className="flex-1 grid grid-cols-2 sm:grid-cols-3 gap-3">
-                    <div>
-                      <div className="text-xs text-gray-500 dark:text-gray-400">게시글</div>
-                      <div className="text-sm font-semibold text-gray-900 dark:text-white">
-                        {trend.postCount.toLocaleString()}건
-                      </div>
-                    </div>
+                  <div className="flex-1 grid grid-cols-2 gap-3">
                     <div>
                       <div className="text-xs text-gray-500 dark:text-gray-400">평균 조회</div>
                       <div className="text-sm font-semibold text-gray-900 dark:text-white">
                         {trend.avgViewCount.toLocaleString()}
                       </div>
                     </div>
-                    <div className="col-span-2 sm:col-span-1">
+                    <div>
                       <div className="text-xs text-gray-500 dark:text-gray-400">인기 키워드</div>
                       <div className="text-sm font-semibold text-blue-600 dark:text-blue-400">
                         {trend.topKeyword || '-'}
@@ -173,13 +164,8 @@ export default function TrendsPage() {
                         {site.displayName}
                       </span>
                     </div>
-                    <div className="flex items-center gap-4 text-xs">
-                      <span className="text-gray-600 dark:text-gray-400">
-                        게시글 <strong className="text-gray-900 dark:text-white">{site.postCount}</strong>
-                      </span>
-                      <span className="text-gray-600 dark:text-gray-400">
-                        평균 조회 <strong className="text-gray-900 dark:text-white">{site.avgViewCount.toLocaleString()}</strong>
-                      </span>
+                    <div className="text-xs text-gray-600 dark:text-gray-400">
+                      평균 조회 <strong className="text-gray-900 dark:text-white">{site.avgViewCount.toLocaleString()}</strong>
                     </div>
                   </div>
                 </div>
@@ -194,7 +180,7 @@ export default function TrendsPage() {
             🤖 AI 기반 크로스 커뮤니티 트렌드 분석
           </h3>
           <p className="text-xs text-blue-800 dark:text-blue-400 leading-relaxed">
-            본 페이지는 17개 한국 커뮤니티의 실시간 데이터를 수집하여 자동으로 생성됩니다.
+            본 페이지는 한국 주요 커뮤니티의 실시간 데이터를 수집하여 자동으로 생성됩니다.
             TF-IDF 알고리즘으로 중요 키워드를 추출하고, 일별/커뮤니티별 활동 패턴을 분석하여
             한국 인터넷 커뮤니티의 전체적인 흐름을 한눈에 파악할 수 있습니다.
             30분마다 자동 업데이트됩니다.

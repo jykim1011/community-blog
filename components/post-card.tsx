@@ -4,6 +4,8 @@ import { useState, useEffect } from 'react';
 import { formatRelativeTime, formatNumber } from '@/lib/utils';
 import { getSiteColor } from '@/lib/utils/site-colors';
 import { ShareButton } from '@/components/share-button';
+import { BookmarkButton } from '@/components/bookmark-button';
+import { useReadPosts } from '@/lib/hooks/use-read-posts';
 
 interface PostCardProps {
   id: string;
@@ -35,6 +37,7 @@ export function PostCard({
 }: PostCardProps) {
   // 클라이언트에서만 상대 시간 렌더링 (hydration 오류 방지)
   const [relativeTime, setRelativeTime] = useState<string>('');
+  const { isRead, markAsRead, isLoaded } = useReadPosts();
 
   useEffect(() => {
     setRelativeTime(formatRelativeTime(new Date(createdAt)));
@@ -46,6 +49,12 @@ export function PostCard({
 
     return () => clearInterval(interval);
   }, [createdAt]);
+
+  const handleClick = () => {
+    markAsRead(url);
+  };
+
+  const isReadPost = isLoaded && isRead(url);
 
   // 각 사이트의 도메인 매핑
   const getSiteDomain = (siteName: string): string => {
@@ -79,13 +88,26 @@ export function PostCard({
       href={url}
       target="_blank"
       rel="noopener noreferrer"
+      onClick={handleClick}
       className="block px-3 py-2.5 sm:px-4 sm:py-3.5 border border-gray-200 rounded-lg hover:bg-gray-50 hover:border-gray-300 transition-all dark:border-gray-700 dark:hover:bg-gray-800"
     >
       <div className="w-full">
         {/* 제목 & 카테고리 */}
-        <h3 className="text-base sm:text-lg font-semibold text-gray-900 dark:text-gray-100 line-clamp-1 sm:line-clamp-2 mb-2.5 sm:mb-3 leading-relaxed">
+        <h3
+          className={`text-base sm:text-lg font-semibold line-clamp-1 sm:line-clamp-2 mb-2.5 sm:mb-3 leading-relaxed ${
+            isReadPost
+              ? 'text-gray-500 dark:text-gray-500'
+              : 'text-gray-900 dark:text-gray-100'
+          }`}
+        >
           {category && (
-            <span className="inline-block px-2 py-0.5 mr-1.5 text-xs font-medium bg-violet-100 text-violet-700 dark:bg-violet-900 dark:text-violet-300 rounded">
+            <span
+              className={`inline-block px-2 py-0.5 mr-1.5 text-xs font-medium rounded ${
+                isReadPost
+                  ? 'bg-gray-100 text-gray-500 dark:bg-gray-800 dark:text-gray-500'
+                  : 'bg-violet-100 text-violet-700 dark:bg-violet-900 dark:text-violet-300'
+              }`}
+            >
               {category}
             </span>
           )}
@@ -142,8 +164,11 @@ export function PostCard({
               )}
             </div>
 
-            {/* 공유 버튼 */}
-            <ShareButton title={title} url={url} />
+            {/* 북마크 & 공유 버튼 */}
+            <div className="flex items-center gap-1">
+              <BookmarkButton url={url} title={title} site={site.name} />
+              <ShareButton title={title} url={url} />
+            </div>
           </div>
         </div>
       </div>

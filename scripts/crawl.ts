@@ -17,9 +17,11 @@ const DATA_DIR = path.join(__dirname, '..', 'data');
 const POSTS_FILE = path.join(DATA_DIR, 'posts.json');
 const SITES_FILE = path.join(DATA_DIR, 'sites.json');
 const ANALYSIS_FILE = path.join(DATA_DIR, 'analysis.json');
+const SITES_DIR = path.join(DATA_DIR, 'sites');
 
 const MAX_POSTS = 3000;
 const MAX_AGE_HOURS = 120;
+const MAX_POSTS_PER_SITE = 1000; // 사이트별 최대 저장 개수
 
 // 인기 게시글 필터 기준 (OR 조건: 하나라도 만족하면 유지)
 const POPULARITY_FILTER: PopularityFilterConfig = {
@@ -119,7 +121,7 @@ async function main() {
       console.log(`[${siteName}] 크롤링 시작...`);
       const posts = await crawler.crawl();
 
-      const config = siteConfigs[siteName] || { displayName: siteName, url: '' };
+      const config = siteConfigs[siteName] || { displayName: siteName, url: '', category: 'community' as const };
       const staticPosts: StaticPost[] = posts.map((post) => ({
         id: `${siteName}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
         title: post.title,
@@ -127,6 +129,7 @@ async function main() {
         url: post.url,
         site: siteName,
         siteDisplayName: config.displayName,
+        siteCategory: config.category,
         thumbnail: post.thumbnail,
         viewCount: post.viewCount,
         commentCount: post.commentCount,
@@ -191,7 +194,24 @@ async function main() {
 
   const final = interleaved.slice(0, MAX_POSTS);
 
-  // 저장
+  // 사이트별 전체 데이터 저장 (구독 기능용)
+  fs.mkdirSync(SITES_DIR, { recursive: true });
+
+  for (const [siteName, posts] of Object.entries(groupedBySite)) {
+    const siteData = {
+      site: siteName,
+      totalCount: posts.length,
+      lastUpdated: now.toISOString(),
+      posts: posts.slice(0, MAX_POSTS_PER_SITE),
+    };
+
+    const siteFile = path.join(SITES_DIR, `${siteName}.json`);
+    fs.writeFileSync(siteFile, JSON.stringify(siteData, null, 2), 'utf-8');
+  }
+
+  console.log(`\n사이트별 데이터 저장: ${Object.keys(groupedBySite).length}개 파일`);
+
+  // 메인 피드 저장 (라운드로빈 3000건)
   fs.writeFileSync(POSTS_FILE, JSON.stringify(final, null, 2), 'utf-8');
 
   // 통계 로그
@@ -216,11 +236,12 @@ async function main() {
 
   // 크롤링한 사이트의 lastCrawledAt 업데이트
   for (const siteName of Object.keys(sitesToCrawl)) {
-    const config = siteConfigs[siteName] || { displayName: siteName, url: '' };
+    const config = siteConfigs[siteName] || { displayName: siteName, url: '', category: 'community' as const };
     siteMap.set(siteName, {
       name: siteName,
       displayName: config.displayName,
       url: config.url,
+      category: config.category,
       lastCrawledAt: now.toISOString(),
     });
   }
@@ -228,11 +249,12 @@ async function main() {
   // 등록된 모든 크롤러 사이트를 sites.json에 포함
   for (const siteName of Object.keys(crawlers)) {
     if (!siteMap.has(siteName)) {
-      const config = siteConfigs[siteName] || { displayName: siteName, url: '' };
+      const config = siteConfigs[siteName] || { displayName: siteName, url: '', category: 'community' as const };
       siteMap.set(siteName, {
         name: siteName,
         displayName: config.displayName,
         url: config.url,
+        category: config.category,
         lastCrawledAt: null,
       });
     }

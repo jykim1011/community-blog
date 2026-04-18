@@ -30,11 +30,11 @@ const analysis = analysisData as {
 };
 
 export const metadata = {
-  title: `커뮤니티 가이드 - ${SITE_NAME}`,
-  description: '한국 주요 커뮤니티 17곳의 특징, 문화, 주요 토픽을 상세히 비교 분석합니다. 각 커뮤니티의 차이점과 이용 팁을 확인하세요.',
+  title: `가이드 - ${SITE_NAME}`,
+  description: '한국 주요 커뮤니티의 특징, 문화, 주요 토픽을 상세히 비교 분석합니다. 각 커뮤니티의 차이점과 이용 팁을 확인하세요.',
   openGraph: {
-    title: `커뮤니티 가이드 - ${SITE_NAME}`,
-    description: '한국 주요 커뮤니티 17곳의 특징, 문화, 주요 토픽을 상세히 비교 분석합니다.',
+    title: `가이드 - ${SITE_NAME}`,
+    description: '한국 주요 커뮤니티의 특징, 문화, 주요 토픽을 상세히 비교 분석합니다.',
     url: `${SITE_URL}/communities`,
   },
 };
@@ -43,8 +43,8 @@ export default function CommunitiesPage() {
   const { communityProfiles, categoryGroups } = analysis;
   const generatedDate = new Date(analysis.generatedAt);
 
-  // 활동 점수 순으로 정렬
-  const sortedProfiles = [...communityProfiles].sort((a, b) => b.activityScore - a.activityScore);
+  // 평균 조회수 순으로 정렬
+  const sortedProfiles = [...communityProfiles].sort((a, b) => b.avgViewCount - a.avgViewCount);
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
@@ -56,17 +56,17 @@ export default function CommunitiesPage() {
           <div className="flex items-start justify-between mb-3">
             <div>
               <h1 className="text-2xl sm:text-3xl font-bold text-gray-900 dark:text-white mb-2">
-                🌐 한국 커뮤니티 가이드
+                🌐 커뮤니티 가이드
               </h1>
               <p className="text-sm text-gray-600 dark:text-gray-400">
-                17개 주요 커뮤니티의 특징, 문화, 주요 토픽을 상세히 비교합니다.
+                주요 커뮤니티의 특징, 문화, 주요 토픽을 상세히 비교합니다.
                 <span className="ml-2 text-xs">
                   업데이트: {generatedDate.toLocaleString('ko-KR')}
                 </span>
               </p>
             </div>
             <ShareButton
-              title="한국 커뮤니티 가이드"
+              title="커뮤니티 가이드"
               url={`${SITE_URL}/communities`}
             />
           </div>
@@ -77,17 +77,17 @@ export default function CommunitiesPage() {
           <h2 className="text-xl font-bold text-gray-900 dark:text-white mb-4">
             📂 카테고리별 분류
           </h2>
-          <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+          <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
             {Object.entries(categoryGroups).map(([category, profiles]) => (
               <div
                 key={category}
-                className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-3"
+                className="bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 rounded-lg p-4"
               >
-                <div className="text-sm font-semibold text-gray-900 dark:text-white mb-1">
+                <div className="text-base font-semibold text-gray-900 dark:text-white mb-2">
                   {category}
                 </div>
-                <div className="text-xs text-gray-600 dark:text-gray-400">
-                  {profiles.length}개 커뮤니티
+                <div className="text-sm text-gray-600 dark:text-gray-400 leading-relaxed">
+                  {profiles.map(p => p.displayName).join(', ')}
                 </div>
               </div>
             ))}
@@ -127,13 +127,7 @@ export default function CommunitiesPage() {
                 </div>
 
                 {/* 통계 */}
-                <div className="grid grid-cols-2 sm:grid-cols-4 gap-3 mb-4">
-                  <div className="text-center p-2 bg-gray-50 dark:bg-gray-700/50 rounded">
-                    <div className="text-xs text-gray-500 dark:text-gray-400">게시글</div>
-                    <div className="text-sm font-bold text-gray-900 dark:text-white">
-                      {profile.postCount}
-                    </div>
-                  </div>
+                <div className="grid grid-cols-3 gap-3 mb-4">
                   <div className="text-center p-2 bg-gray-50 dark:bg-gray-700/50 rounded">
                     <div className="text-xs text-gray-500 dark:text-gray-400">평균 조회</div>
                     <div className="text-sm font-bold text-gray-900 dark:text-white">
@@ -237,8 +231,8 @@ export default function CommunitiesPage() {
             🌐 데이터 기반 커뮤니티 분석
           </h3>
           <p className="text-xs text-indigo-800 dark:text-indigo-400 leading-relaxed">
-            본 가이드는 17개 커뮤니티의 실시간 데이터를 수집하여 자동으로 생성됩니다.
-            각 커뮤니티의 게시글 수, 조회수, 댓글, 좋아요, 활동 시간대 등을 분석하여
+            본 가이드는 주요 커뮤니티의 실시간 데이터를 수집하여 자동으로 생성됩니다.
+            각 커뮤니티의 조회수, 댓글, 좋아요, 활동 시간대 등을 분석하여
             객관적인 데이터를 제공합니다. 30분마다 자동 업데이트됩니다.
           </p>
         </div>

@@ -11,7 +11,7 @@ export class SlrclubCrawler extends BaseCrawler {
 
   async crawl(): Promise<Post[]> {
     const allPosts: Post[] = [];
-    const PAGES_TO_CRAWL = 5;
+    const PAGES_TO_CRAWL = 10;
 
     try {
       console.log(`[${this.siteName}] Starting crawl...`);
