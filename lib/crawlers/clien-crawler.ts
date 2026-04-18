@@ -6,7 +6,7 @@ import { type Post } from '../types';
 import { normalizeUrl, toAbsoluteUrl } from '../utils/url-normalizer';
 export class ClienCrawler extends BaseCrawler {
   siteName = 'clien';
-  private readonly baseUrl = 'https://www.clien.net';
+  protected readonly baseUrl = 'https://www.clien.net';
   private readonly boardUrl = 'https://www.clien.net/service/board/park';
 
   async crawl(): Promise<Post[]> {
@@ -16,9 +16,23 @@ export class ClienCrawler extends BaseCrawler {
     try {
       console.log(`[${this.siteName}] Starting crawl...`);
 
+      // robots.txt의 Crawl-Delay 확인
+      const crawlDelay = await this.getCrawlDelay();
+      if (crawlDelay) {
+        console.log(`[${this.siteName}] Respecting Crawl-Delay: ${crawlDelay}s`);
+      }
+
       for (let page = 1; page <= PAGES_TO_CRAWL; page++) {
         try {
           const pageUrl = this.getPageUrl(page);
+
+          // robots.txt 확인
+          const canCrawl = await this.checkRobotsTxt(pageUrl);
+          if (!canCrawl) {
+            console.warn(`[${this.siteName}] Skipping page ${page} due to robots.txt`);
+            continue;
+          }
+
           const posts = await this.crawlPage(pageUrl);
 
           // 빈 페이지 감지 (더 이상 페이지 없음)
@@ -29,9 +43,10 @@ export class ClienCrawler extends BaseCrawler {
 
           allPosts.push(...posts);
 
-          // 페이지 간 딜레이 (IP 차단 방지)
+          // 페이지 간 딜레이 (robots.txt Crawl-Delay 또는 기본 1초)
           if (page < PAGES_TO_CRAWL) {
-            await this.delay(1000);
+            const delayMs = crawlDelay ? crawlDelay * 1000 : 1000;
+            await this.delay(delayMs);
           }
         } catch (error) {
           // 429 Too Many Requests
