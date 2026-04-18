@@ -7,7 +7,7 @@ import { type Post } from '../types';
 import { normalizeUrl, toAbsoluteUrl } from '../utils/url-normalizer';
 export class HumorunivCrawler extends BaseCrawler {
   siteName = 'humoruniv';
-  private readonly baseUrl = 'https://web.humoruniv.com';
+  protected readonly baseUrl = 'https://web.humoruniv.com';
   private readonly boardUrl = 'http://web.humoruniv.com/board/humor/list.html?table=pds&st=day';
 
   async crawl(): Promise<Post[]> {

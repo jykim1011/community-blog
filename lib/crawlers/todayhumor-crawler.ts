@@ -7,7 +7,7 @@ import { type Post } from '../types';
 import { normalizeUrl, toAbsoluteUrl } from '../utils/url-normalizer';
 export class TodayhumorCrawler extends BaseCrawler {
   siteName = 'todayhumor';
-  private readonly baseUrl = 'https://www.todayhumor.co.kr';
+  protected readonly baseUrl = 'https://www.todayhumor.co.kr';
   private readonly boardUrl = 'https://www.todayhumor.co.kr/board/list.php?table=bestofbest';
 
   async crawl(): Promise<Post[]> {

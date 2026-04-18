@@ -6,7 +6,7 @@ import { type Post } from '../types';
 import { normalizeUrl, toAbsoluteUrl } from '../utils/url-normalizer';
 export class TheQooCrawler extends BaseCrawler {
   siteName = 'theqoo';
-  private readonly baseUrl = 'https://theqoo.net';
+  protected readonly baseUrl = 'https://theqoo.net';
   private readonly boardUrl = 'https://theqoo.net/hot';
 
   async crawl(): Promise<Post[]> {

@@ -6,7 +6,7 @@ import { type Post } from '../types';
 import { normalizeUrl, toAbsoluteUrl } from '../utils/url-normalizer';
 export class HygallCrawler extends BaseCrawler {
   siteName = 'hygall';
-  private readonly baseUrl = 'https://hygall.com';
+  protected readonly baseUrl = 'https://hygall.com';
   private readonly boardUrl = 'https://hygall.com/index.php?mid=hy';
 
   async crawl(): Promise<Post[]> {

@@ -6,7 +6,7 @@ import { normalizeUrl, toAbsoluteUrl } from '../utils/url-normalizer';
 
 export class DvdprimeCrawler extends BaseCrawler {
   siteName = 'dvdprime';
-  private readonly baseUrl = 'https://dvdprime.com';
+  protected readonly baseUrl = 'https://dvdprime.com';
   private readonly boardUrl = 'https://dvdprime.com/g2/bbs/board.php?bo_table=comm';
 
   async crawl(): Promise<Post[]> {

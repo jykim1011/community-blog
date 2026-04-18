@@ -6,7 +6,7 @@ import { type Post } from '../types';
 import { normalizeUrl, toAbsoluteUrl } from '../utils/url-normalizer';
 export class RuliwebCrawler extends BaseCrawler {
   siteName = 'ruliweb';
-  private readonly baseUrl = 'https://bbs.ruliweb.com';
+  protected readonly baseUrl = 'https://bbs.ruliweb.com';
   private readonly boardUrl = 'https://bbs.ruliweb.com/community/board/300143';
 
   async crawl(): Promise<Post[]> {

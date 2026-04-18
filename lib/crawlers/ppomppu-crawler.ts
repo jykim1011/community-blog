@@ -7,7 +7,7 @@ import { type Post } from '../types';
 import { normalizeUrl, toAbsoluteUrl } from '../utils/url-normalizer';
 export class PpomppuCrawler extends BaseCrawler {
   siteName = 'ppomppu';
-  private readonly baseUrl = 'https://www.ppomppu.co.kr';
+  protected readonly baseUrl = 'https://www.ppomppu.co.kr';
   private readonly boardUrl = 'https://www.ppomppu.co.kr/zboard/zboard.php?id=freeboard';
 
   async crawl(): Promise<Post[]> {

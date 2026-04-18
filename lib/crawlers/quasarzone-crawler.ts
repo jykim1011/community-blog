@@ -6,7 +6,7 @@ import { normalizeUrl, toAbsoluteUrl } from '../utils/url-normalizer';
 
 export class QuasarzoneCrawler extends BaseCrawler {
   siteName = 'quasarzone';
-  private readonly baseUrl = 'https://quasarzone.com';
+  protected readonly baseUrl = 'https://quasarzone.com';
   private readonly boardUrl = 'https://quasarzone.com/bbs/qb_saleinfo';
 
   async crawl(): Promise<Post[]> {

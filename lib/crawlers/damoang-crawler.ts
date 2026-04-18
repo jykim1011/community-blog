@@ -5,7 +5,7 @@ import { type Post } from '../types';
 
 export class DamoangCrawler extends BaseCrawler {
   siteName = 'damoang';
-  private readonly baseUrl = 'https://damoang.net';
+  protected readonly baseUrl = 'https://damoang.net';
   private readonly boardUrl = 'https://damoang.net/free';
 
   async crawl(): Promise<Post[]> {

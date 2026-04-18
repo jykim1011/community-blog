@@ -6,7 +6,7 @@ import { type Post } from '../types';
 import { normalizeUrl, toAbsoluteUrl } from '../utils/url-normalizer';
 export class MlbparkCrawler extends BaseCrawler {
   siteName = 'mlbpark';
-  private readonly baseUrl = 'https://mlbpark.donga.com';
+  protected readonly baseUrl = 'https://mlbpark.donga.com';
   private readonly boardUrl = 'https://mlbpark.donga.com/mp/b.php?b=bullpen';
 
   async crawl(): Promise<Post[]> {

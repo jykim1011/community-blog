@@ -5,7 +5,7 @@ import { type Post } from '../types';
 
 export class InstizCrawler extends BaseCrawler {
   siteName = 'instiz';
-  private readonly baseUrl = 'https://www.instiz.net';
+  protected readonly baseUrl = 'https://www.instiz.net';
   private readonly boardUrl = 'https://www.instiz.net/pt';
 
   async crawl(): Promise<Post[]> {

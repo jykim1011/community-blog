@@ -5,7 +5,7 @@ import { type Post } from '../types';
 
 export class ArcaCrawler extends BaseCrawler {
   siteName = 'arca';
-  private readonly baseUrl = 'https://arca.live';
+  protected readonly baseUrl = 'https://arca.live';
   private readonly boardUrl = 'https://arca.live/b/live';
 
   async crawl(): Promise<Post[]> {

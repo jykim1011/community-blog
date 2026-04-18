@@ -7,7 +7,7 @@ import { normalizeUrl, toAbsoluteUrl } from '../utils/url-normalizer';
 
 export class DealbadaCrawler extends BaseCrawler {
   siteName = 'dealbada';
-  private readonly baseUrl = 'http://www.dealbada.com';
+  protected readonly baseUrl = 'http://www.dealbada.com';
   private readonly boardUrl = 'http://www.dealbada.com/bbs/board.php?bo_table=deal_domestic';
 
   async crawl(): Promise<Post[]> {

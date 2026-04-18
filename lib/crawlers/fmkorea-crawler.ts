@@ -5,7 +5,7 @@ import { type Post } from '../types';
 
 export class FmkoreaCrawler extends BaseCrawler {
   siteName = 'fmkorea';
-  private readonly baseUrl = 'https://www.fmkorea.com';
+  protected readonly baseUrl = 'https://www.fmkorea.com';
   private readonly boardUrl = 'https://www.fmkorea.com/index.php?mid=best';
 
   async crawl(): Promise<Post[]> {

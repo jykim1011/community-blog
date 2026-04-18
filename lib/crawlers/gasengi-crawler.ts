@@ -6,7 +6,7 @@ import { type Post } from '../types';
 import { normalizeUrl, toAbsoluteUrl } from '../utils/url-normalizer';
 export class GasengiCrawler extends BaseCrawler {
   siteName = 'gasengi';
-  private readonly baseUrl = 'https://www.gasengi.com';
+  protected readonly baseUrl = 'https://www.gasengi.com';
   private readonly boardUrl = 'https://www.gasengi.com/main/board.php?bo_table=commu08';
 
   async crawl(): Promise<Post[]> {

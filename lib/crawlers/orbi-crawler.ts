@@ -5,7 +5,7 @@ import { type Post } from '../types';
 
 export class OrbiCrawler extends BaseCrawler {
   siteName = 'orbi';
-  private readonly baseUrl = 'https://orbi.kr';
+  protected readonly baseUrl = 'https://orbi.kr';
   private readonly boardUrl = 'https://orbi.kr/board/united';
 
   async crawl(): Promise<Post[]> {

@@ -6,7 +6,7 @@ import { normalizeUrl, toAbsoluteUrl } from '../utils/url-normalizer';
 
 export class CoolenjoyCrawler extends BaseCrawler {
   siteName = 'coolenjoy';
-  private readonly baseUrl = 'https://coolenjoy.net';
+  protected readonly baseUrl = 'https://coolenjoy.net';
   private readonly boardUrl = 'https://coolenjoy.net/bbs/freeboard2';
 
   async crawl(): Promise<Post[]> {
@@ -16,9 +16,23 @@ export class CoolenjoyCrawler extends BaseCrawler {
     try {
       console.log(`[${this.siteName}] Starting crawl...`);
 
+      // robots.txt의 Crawl-Delay 확인
+      const crawlDelay = await this.getCrawlDelay();
+      if (crawlDelay) {
+        console.log(`[${this.siteName}] Respecting Crawl-Delay: ${crawlDelay}s`);
+      }
+
       for (let page = 1; page <= PAGES_TO_CRAWL; page++) {
         try {
           const pageUrl = this.getPageUrl(page);
+
+          // robots.txt 확인
+          const canCrawl = await this.checkRobotsTxt(pageUrl);
+          if (!canCrawl) {
+            console.warn(`[${this.siteName}] Skipping page ${page} due to robots.txt`);
+            continue;
+          }
+
           const posts = await this.crawlPage(pageUrl);
 
           if (posts.length === 0) {
@@ -28,8 +42,10 @@ export class CoolenjoyCrawler extends BaseCrawler {
 
           allPosts.push(...posts);
 
+          // 페이지 간 딜레이 (robots.txt Crawl-Delay 또는 기본 1초)
           if (page < PAGES_TO_CRAWL) {
-            await this.delay(1000);
+            const delayMs = crawlDelay ? crawlDelay * 1000 : 1000;
+            await this.delay(delayMs);
           }
         } catch (error) {
           if ((error as any).response?.status === 429) {
@@ -76,15 +92,15 @@ export class CoolenjoyCrawler extends BaseCrawler {
     const $ = cheerio.load(response.data);
     const posts: Post[] = [];
 
-    // 쿨엔조이 게시판 구조 (Gnuboard 기반)
-    $('div.list-body div.list-row').each((_, element) => {
+    // 쿨엔조이 게시판 구조 (LI 기반)
+    $('li.d-md-table-row').each((_, element) => {
       try {
         const $el = $(element);
 
         // 공지 스킵
         if ($el.hasClass('notice')) return;
 
-        const titleLink = $el.find('div.wr-subject a.list-subject').first();
+        const titleLink = $el.find('a.na-subject').first();
         const title = titleLink
           .clone()
           .children()
@@ -100,19 +116,22 @@ export class CoolenjoyCrawler extends BaseCrawler {
         const absoluteUrl = toAbsoluteUrl(relativeUrl, this.baseUrl);
         const normalizedUrl = normalizeUrl(absoluteUrl, this.siteName);
 
-        const author = $el.find('div.wr-name span.sv_member').text().trim() ||
-                      $el.find('div.wr-name').text().trim() || '익명';
+        // 작성자
+        const author = $el.find('a.sv_member').text().trim() || '익명';
 
-        const viewText = $el.find('div.wr-hit').text().trim().replace(/,/g, '');
-        const viewCount = parseInt(viewText) || 0;
+        // 조회수 (쿨엔조이 목록 페이지에는 조회수 표시 안 됨)
+        const viewCount = 0;
 
-        const commentMatch = titleLink.find('.cnt_cmt').text().match(/\d+/);
+        // 댓글수
+        const commentMatch = $el.find('span.count-plus a').text().match(/\d+/);
         const commentCount = commentMatch ? parseInt(commentMatch[0]) : 0;
 
-        const likeText = $el.find('div.wr-good').text().trim();
-        const likeCount = parseInt(likeText) || 0;
+        // 좋아요 (쿨엔조이 목록 페이지에는 좋아요 표시 안 됨)
+        const likeCount = 0;
 
-        const timeText = $el.find('div.wr-date').text().trim();
+        // 날짜 (여러 위치에 있을 수 있음)
+        const timeText = $el.find('.d-md-table-cell').last().text().trim() ||
+                        $el.find('.text-muted').last().text().trim();
         const createdAt = this.parseDate(timeText);
 
         // 썸네일

@@ -6,7 +6,7 @@ import { type Post } from '../types';
 import { normalizeUrl, toAbsoluteUrl } from '../utils/url-normalizer';
 export class NatepannCrawler extends BaseCrawler {
   siteName = 'natepann';
-  private readonly baseUrl = 'https://pann.nate.com';
+  protected readonly baseUrl = 'https://pann.nate.com';
   private readonly boardUrl = 'https://pann.nate.com/talk/ranking';
 
   async crawl(): Promise<Post[]> {

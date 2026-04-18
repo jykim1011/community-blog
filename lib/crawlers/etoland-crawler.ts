@@ -7,7 +7,7 @@ import { type Post } from '../types';
 import { normalizeUrl, toAbsoluteUrl } from '../utils/url-normalizer';
 export class EtolandCrawler extends BaseCrawler {
   siteName = 'etoland';
-  private readonly baseUrl = 'https://www.etoland.co.kr';
+  protected readonly baseUrl = 'https://www.etoland.co.kr';
   private readonly boardUrl = 'https://www.etoland.co.kr/bbs/hit.php';
 
   async crawl(): Promise<Post[]> {

@@ -6,7 +6,7 @@ import { type Post } from '../types';
 import { normalizeUrl, toAbsoluteUrl } from '../utils/url-normalizer';
 export class InvenCrawler extends BaseCrawler {
   siteName = 'inven';
-  private readonly baseUrl = 'https://hot.inven.co.kr';
+  protected readonly baseUrl = 'https://hot.inven.co.kr';
   private readonly boardUrl = 'https://hot.inven.co.kr/';
 
   async crawl(): Promise<Post[]> {
