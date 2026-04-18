@@ -6,7 +6,7 @@ import { normalizeUrl, toAbsoluteUrl } from '../utils/url-normalizer';
 
 export class ExtmovieCrawler extends BaseCrawler {
   siteName = 'extmovie';
-  private readonly baseUrl = 'https://extmovie.com';
+  protected readonly baseUrl = 'https://extmovie.com';
   private readonly boardUrl = 'https://extmovie.com/movietalk';
 
   async crawl(): Promise<Post[]> {
@@ -76,22 +76,16 @@ export class ExtmovieCrawler extends BaseCrawler {
     const $ = cheerio.load(response.data);
     const posts: Post[] = [];
 
-    // 익스트림무비 게시판 구조
-    $('div.list-body div.list-item').each((_, element) => {
+    // 익스트림무비 게시판 구조 (TABLE 기반)
+    $('div.ink_list tbody tr').each((_, element) => {
       try {
         const $el = $(element);
 
         // 공지 스킵
         if ($el.hasClass('notice')) return;
 
-        const titleLink = $el.find('div.subject a').first();
-        const title = titleLink
-          .clone()
-          .children()
-          .remove()
-          .end()
-          .text()
-          .trim();
+        const titleLink = $el.find('td.list_title a.title_link').first();
+        const title = titleLink.text().trim();
         const relativeUrl = titleLink.attr('href');
 
         if (!title || !relativeUrl) return;
@@ -100,18 +94,24 @@ export class ExtmovieCrawler extends BaseCrawler {
         const absoluteUrl = toAbsoluteUrl(relativeUrl, this.baseUrl);
         const normalizedUrl = normalizeUrl(absoluteUrl, this.siteName);
 
-        const author = $el.find('div.author span.name').text().trim() || '익명';
+        // 작성자
+        const authorElement = $el.find('td.list_author a');
+        const author = authorElement.text().trim().replace(/\[레벨:\d+\]/, '').trim() || '익명';
 
-        const viewText = $el.find('div.view-count').text().trim().replace(/,/g, '');
+        // 조회수
+        const viewText = $el.find('td.extra_col span').text().trim().replace(/,/g, '');
         const viewCount = parseInt(viewText) || 0;
 
-        const commentMatch = titleLink.find('span.comment-count').text().match(/\d+/);
-        const commentCount = commentMatch ? parseInt(commentMatch[0]) : 0;
+        // 댓글
+        const commentLink = $el.find('a.cmt_num');
+        const commentText = commentLink.text().trim();
+        const commentCount = parseInt(commentText) || 0;
 
-        const likeText = $el.find('div.like-count').text().trim();
-        const likeCount = parseInt(likeText) || 0;
+        // 좋아요 (익스트림무비는 좋아요 정보 없음)
+        const likeCount = 0;
 
-        const timeText = $el.find('div.date').text().trim();
+        // 날짜
+        const timeText = $el.find('td.date span.ink_date').text().trim();
         const createdAt = this.parseDate(timeText);
 
         // 썸네일
@@ -164,6 +164,14 @@ export class ExtmovieCrawler extends BaseCrawler {
     if (hoursMatch) {
       const date = new Date(now);
       date.setHours(date.getHours() - parseInt(hoursMatch[1]));
+      return date;
+    }
+
+    // "N일 전"
+    const daysMatch = timeText.match(/(\d+)일\s*전/);
+    if (daysMatch) {
+      const date = new Date(now);
+      date.setDate(date.getDate() - parseInt(daysMatch[1]));
       return date;
     }
 
