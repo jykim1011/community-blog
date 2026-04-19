@@ -80,6 +80,46 @@ Tailwind CSS 3.4 + 다크모드는 `prefers-color-scheme` 미디어 쿼리 기�
 
 ## 최근 변경사항
 
+### 2026-04-20: 🔥 인기글 전용 페이지(/hot) 추가 + 네비게이션 적용
+
+**개요:**
+- 인기 점수(조회수×0.1 + 댓글×5 + 좋아요×2) 기준 TOP 100 전용 페이지
+- PC/모바일 네비게이션 전체에 인기글 항목 추가
+- 트렌드 요약 섹션 강화 (3→7개 표시, 전체보기 링크)
+
+**변경 내용:**
+
+1. **app/hot/page.tsx (신규)**
+   - 정적 서버 컴포넌트로 posts.json에서 TOP 100 계산
+   - SiteHeader + HotPosts 렌더링
+
+2. **components/hot-posts.tsx (신규)**
+   - 랭킹 번호 컬럼 (1~3위 accent 색상, 나머지 fg-4)
+   - 사이트 컬러 바 (3px 좌측)
+   - 파비콘 + 사이트명 + 시간 + 조회/댓글/좋아요
+   - 무한 스크롤 (PAGE_SIZE=20, IntersectionObserver)
+   - 읽음 표시 (`useReadPosts`)
+
+3. **components/dashboard-home.tsx**
+   - ICONS에 `hot` (번개 아이콘) 추가
+   - Rail(PC 아이콘 레일)에 `/hot` 항목 추가
+   - MobileNav에 `/hot` 항목 추가
+
+4. **components/site-header.tsx**
+   - PC 데스크톱 nav에 `🔥 인기글` 링크 추가
+   - 모바일 탭바에 `인기글` 탭 추가
+
+5. **components/trend-summary.tsx**
+   - 뜨거운 글 표시 3→7개
+   - "전체보기 →" 링크 추가 (/hot 이동)
+
+6. **app/sitemap.ts**
+   - `/hot` 페이지 추가 (priority 0.95)
+
+**파일 변경:**
+- 신규: `app/hot/page.tsx`, `components/hot-posts.tsx`
+- 수정: `components/dashboard-home.tsx`, `components/site-header.tsx`, `components/trend-summary.tsx`, `app/sitemap.ts`
+
 ### 2026-04-19 (밤): 대시보드 레이아웃 전면 전환 - 3컬럼 Dashboard-First 디자인
 
 **개요:**
