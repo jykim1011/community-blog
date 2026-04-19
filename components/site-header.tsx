@@ -11,6 +11,7 @@ export function SiteHeader() {
   const router = useRouter();
   const [isApp, setIsApp] = useState(false);
   const [isAdLoaded, setIsAdLoaded] = useState(false);
+  const [isMobileView, setIsMobileView] = useState(true);
 
   useEffect(() => {
     const isCapacitor = typeof window !== 'undefined' && (
@@ -19,7 +20,15 @@ export function SiteHeader() {
     );
     setIsApp(isCapacitor);
     const unsubscribe = adStateManager.subscribe(setIsAdLoaded);
-    return unsubscribe;
+
+    const checkMobile = () => setIsMobileView(window.innerWidth < 640);
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    return () => {
+      unsubscribe();
+      window.removeEventListener('resize', checkMobile);
+    };
   }, []);
 
   const navLinks = [
@@ -32,10 +41,10 @@ export function SiteHeader() {
 
   return (
     <>
-      <div className="h-3 sm:hidden" />
+      {isMobileView && <div className="h-3" />}
 
       {/* 데스크톱 네비게이션 */}
-      <nav className="hidden sm:block bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 sticky top-0 z-30">
+      {!isMobileView && <nav className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 sticky top-0 z-30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-14">
             <Link

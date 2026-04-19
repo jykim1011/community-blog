@@ -5,6 +5,9 @@ import { useRouter } from 'next/navigation';
 import { useSubscriptions } from '@/lib/hooks/use-subscriptions';
 import { siteConfigs, categoryLabels, type SiteCategory } from '@/lib/constants';
 import { SiteHeader } from '@/components/site-header';
+import { AdMobBanner } from '@/components/admob-banner';
+import { BottomAdContainer } from '@/components/bottom-ad-container';
+import { adStateManager } from '@/lib/ad-state';
 
 interface SiteWithCount {
   name: string;
@@ -47,6 +50,21 @@ export default function SettingsPage() {
   const { subscriptions, isLoaded, toggleSubscription, isSubscribed } = useSubscriptions();
   const [sitesData, setSitesData] = useState<SiteWithCount[]>([]);
   const [loading, setLoading] = useState(true);
+  const [isApp, setIsApp] = useState(false);
+  const [isAdLoaded, setIsAdLoaded] = useState(false);
+
+  const mobilePadBottom =
+    isApp && isAdLoaded
+      ? 'calc(120px + max(env(safe-area-inset-bottom), 0px))'
+      : 'calc(72px + max(env(safe-area-inset-bottom), 0px))';
+
+  useEffect(() => {
+    const isCapacitor =
+      typeof window !== 'undefined' &&
+      (window.location.protocol === 'capacitor:' || (window as unknown as { Capacitor?: unknown }).Capacitor !== undefined);
+    setIsApp(!!isCapacitor);
+    return adStateManager.subscribe(setIsAdLoaded);
+  }, []);
 
   useEffect(() => {
     // 모든 사이트 정보 로드 (dynamic import 사용)
@@ -105,20 +123,28 @@ export default function SettingsPage() {
 
   if (!isLoaded || loading) {
     return (
-      <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
+      <div
+        className="min-h-screen bg-gray-50 dark:bg-gray-950 max-sm:pb-[var(--settings-mobile-pb)]"
+        style={{ ['--settings-mobile-pb' as string]: mobilePadBottom } as React.CSSProperties}
+      >
         <SiteHeader />
         <div className="flex items-center justify-center h-96">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
         </div>
+        <AdMobBanner position="bottom" />
+        <BottomAdContainer />
       </div>
     );
   }
 
   return (
-    <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
+    <div
+      className="min-h-screen bg-gray-50 dark:bg-gray-950 max-sm:pb-[var(--settings-mobile-pb)]"
+      style={{ ['--settings-mobile-pb' as string]: mobilePadBottom } as React.CSSProperties}
+    >
       <SiteHeader />
 
-      <main className="container mx-auto px-4 py-8 max-w-4xl pb-24 sm:pb-8">
+      <main className="container mx-auto px-4 pt-8 max-w-4xl max-sm:pb-0 sm:pb-8">
         <div className="mb-6">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">
             커뮤니티 설정
@@ -213,6 +239,9 @@ export default function SettingsPage() {
           ))}
         </div>
       </main>
+
+      <AdMobBanner position="bottom" />
+      <BottomAdContainer />
     </div>
   );
 }

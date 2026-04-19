@@ -3,6 +3,7 @@
 import { useState, useRef, useEffect } from 'react';
 import { formatRelativeTime, formatNumber } from '@/lib/utils';
 import { useReadPosts } from '@/lib/hooks/use-read-posts';
+import { adStateManager } from '@/lib/ad-state';
 import type { StaticPost } from '@/lib/types';
 
 const SITE_THEME: Record<string, { color: string; domain: string }> = {
@@ -128,8 +129,18 @@ function HotPostItem({ post, rank }: { post: StaticPost; rank: number }) {
 export function HotPosts({ posts }: Props) {
   const [shown, setShown] = useState(PAGE_SIZE);
   const [isLoading, setIsLoading] = useState(false);
+  const [isApp, setIsApp] = useState(false);
+  const [isAdLoaded, setIsAdLoaded] = useState(false);
   const loadRef = useRef<HTMLDivElement>(null);
   const hasMore = shown < posts.length;
+
+  useEffect(() => {
+    const isCapacitor =
+      typeof window !== 'undefined' &&
+      (window.location.protocol === 'capacitor:' || (window as unknown as { Capacitor?: unknown }).Capacitor !== undefined);
+    setIsApp(!!isCapacitor);
+    return adStateManager.subscribe(setIsAdLoaded);
+  }, []);
 
   useEffect(() => {
     if (!hasMore || isLoading) return;
@@ -149,8 +160,16 @@ export function HotPosts({ posts }: Props) {
   const now = new Date();
   const timeStr = `${now.getHours() < 12 ? '오전' : '오후'} ${String(now.getHours() % 12 || 12).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')} 기준`;
 
+  const mobilePadBottom =
+    isApp && isAdLoaded
+      ? 'calc(120px + max(env(safe-area-inset-bottom), 0px))'
+      : 'calc(72px + max(env(safe-area-inset-bottom), 0px))';
+
   return (
-    <div className="max-w-3xl mx-auto px-4 py-6 pb-32 sm:pb-10">
+    <div
+      className="max-w-3xl mx-auto px-4 pt-6 max-sm:pb-[var(--hot-mobile-pb)] sm:pb-10"
+      style={{ ['--hot-mobile-pb' as string]: mobilePadBottom } as React.CSSProperties}
+    >
       {/* 헤더 */}
       <div className="flex items-end justify-between mb-4">
         <div>
