@@ -460,7 +460,14 @@ export function DashboardHome({ initialPosts, initialSites }: Props) {
       </div>
 
       {/* Mobile: single column */}
-      <div className="sm:hidden pb-16" style={{ paddingBottom: 'calc(60px + max(env(safe-area-inset-bottom), 0px))' }}>
+      <div
+        className="sm:hidden"
+        style={{
+          paddingBottom: isApp && isAdLoaded
+            ? 'calc(120px + max(env(safe-area-inset-bottom), 0px))'
+            : 'calc(72px + max(env(safe-area-inset-bottom), 0px))',
+        }}
+      >
         {/* Mobile top bar */}
         <div className="flex items-center justify-between px-4 py-3 sticky top-0 z-10"
           style={{ background: 'var(--surface)', borderBottom: '1px solid var(--border)' }}>

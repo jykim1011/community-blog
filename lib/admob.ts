@@ -40,12 +40,7 @@ export async function showBannerAd(position: 'top' | 'bottom' = 'bottom') {
 
     const adId = position === 'top' ? AD_UNITS.BANNER_TOP : AD_UNITS.BANNER_BOTTOM;
 
-    // 광고 로드 이벤트 리스너 등록
-    AdMob.addListener(BannerAdPluginEvents.Loaded, () => {
-      console.log('Banner ad loaded successfully');
-      adStateManager.setAdLoaded(true);
-    });
-
+    // 로드 실패 시에만 상태 리셋 (성공은 showBanner 이후 즉시 처리)
     AdMob.addListener(BannerAdPluginEvents.FailedToLoad, (error) => {
       console.error('Banner ad failed to load:', error);
       adStateManager.setAdLoaded(false);
@@ -60,6 +55,8 @@ export async function showBannerAd(position: 'top' | 'bottom' = 'bottom') {
       margin: 0,
     });
 
+    // showBanner 완료 직후 상태 업데이트 → native 배너 노출 전에 nav 위치 선점
+    adStateManager.setAdLoaded(true);
     console.log(`Banner ad shown at ${position}`);
   } catch (error) {
     console.error('Failed to show banner ad:', error);
