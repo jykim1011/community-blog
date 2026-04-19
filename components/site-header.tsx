@@ -82,7 +82,7 @@ export function SiteHeader() {
             </div>
           </div>
         </div>
-      </nav>
+      </nav>}
 
       {/* 모바일 하단 탭 바 */}
       <nav
