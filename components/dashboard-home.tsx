@@ -292,11 +292,13 @@ function MobileNav({ pathname, isApp, isAdLoaded }: { pathname: string; isApp: b
     <nav
       className="sm:hidden fixed left-0 right-0 flex items-center justify-around z-50"
       style={{
-        bottom: isApp && isAdLoaded ? '60px' : '0',
-        height: 60,
+        bottom: isApp && isAdLoaded
+          ? 'calc(60px + max(env(safe-area-inset-bottom), 0px))'
+          : '0',
+        height: 56,
         background: 'var(--surface)',
         borderTop: '1px solid var(--border)',
-        paddingBottom: 'max(env(safe-area-inset-bottom), 0px)',
+        paddingBottom: isApp && isAdLoaded ? '0' : 'max(env(safe-area-inset-bottom), 0px)',
       }}
     >
       {items.map(item => {
