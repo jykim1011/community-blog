@@ -1,13 +1,14 @@
 'use client';
 
 import Link from 'next/link';
-import { usePathname } from 'next/navigation';
+import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { SITE_NAME } from '@/lib/constants';
 import { adStateManager } from '@/lib/ad-state';
 
 export function SiteHeader() {
   const pathname = usePathname();
+  const router = useRouter();
   const [isApp, setIsApp] = useState(false);
   const [isAdLoaded, setIsAdLoaded] = useState(false);
 
@@ -76,7 +77,7 @@ export function SiteHeader() {
 
       {/* 모바일 하단 탭 바 */}
       <nav
-        className="sm:hidden fixed left-0 right-0 flex items-center z-50"
+        className="sm:hidden fixed left-0 right-0 flex items-center justify-around z-50"
         style={{
           bottom: isApp && isAdLoaded
             ? 'calc(60px + max(env(safe-area-inset-bottom), 0px))'
@@ -97,10 +98,10 @@ export function SiteHeader() {
           const isActive = pathname === href;
           const iconColor = isActive ? '#4f46e5' : '#71717a';
           return (
-            <Link
+            <button
               key={href}
-              href={href}
-              className="flex flex-col items-center justify-center flex-1 h-full gap-0.5"
+              onClick={() => router.push(href)}
+              className="flex flex-col items-center justify-center flex-1 h-full gap-1 border-0 bg-transparent cursor-pointer"
             >
               <svg width={22} height={22} viewBox="0 0 24 24" fill="none"
                 stroke={iconColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
@@ -109,7 +110,7 @@ export function SiteHeader() {
               <span style={{ fontSize: 10, fontWeight: isActive ? 600 : 400, color: iconColor }}>
                 {label}
               </span>
-            </Link>
+            </button>
           );
         })}
       </nav>
