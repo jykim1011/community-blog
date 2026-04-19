@@ -24,6 +24,7 @@ export function SiteHeader() {
   const navLinks = [
     { href: '/', label: '홈' },
     { href: '/trends', label: '트렌드' },
+    { href: '/hot', label: '🔥 인기글' },
     { href: '/communities', label: '가이드' },
     { href: '/settings', label: '설정' },
   ];
@@ -87,6 +88,7 @@ export function SiteHeader() {
         {[
           { href: '/', label: '홈', paths: ['M3 10.5L12 3l9 7.5', 'M5 9.5V21h14V9.5'] },
           { href: '/trends', label: '트렌드', paths: ['M3 17l6-6 4 4 8-8', 'M14 7h7v7'] },
+          { href: '/hot', label: '인기글', paths: ['M13 2L3 14h9l-1 8 10-12h-9l1-8z'] },
           { href: '/settings', label: '설정', paths: ['M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2', 'M12 8v4', 'M12 16h.01'] },
           { href: '/communities', label: '가이드', paths: ['M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253'] },
         ].map(({ href, label, paths }) => {

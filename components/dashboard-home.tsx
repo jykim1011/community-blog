@@ -37,6 +37,7 @@ function Icon({ d, size = 18 }: { d: string | string[]; size?: number }) {
 const ICONS = {
   home:     ['M3 10.5L12 3l9 7.5', 'M5 9.5V21h14V9.5'],
   trend:    ['M3 17l6-6 4 4 8-8', 'M14 7h7v7'],
+  hot:      ['M13 2L3 14h9l-1 8 10-12h-9l1-8z'],
   settings: ['M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2', 'M12 8v4', 'M12 16h.01'],
   guide:    ['M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253'],
   search:   ['M21 21l-4.35-4.35', 'M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0'],
@@ -49,6 +50,7 @@ function Rail({ pathname }: { pathname: string }) {
   const navItems = [
     { href: '/', icon: ICONS.home, label: '홈' },
     { href: '/trends', icon: ICONS.trend, label: '트렌드' },
+    { href: '/hot', icon: ICONS.hot, label: '인기글' },
     { href: '/settings', icon: ICONS.settings, label: '설정' },
     { href: '/communities', icon: ICONS.guide, label: '가이드' },
   ];
@@ -282,6 +284,7 @@ function MobileNav({ pathname, isApp, isAdLoaded }: { pathname: string; isApp: b
   const items = [
     { href: '/', label: '홈', icon: ICONS.home },
     { href: '/trends', label: '트렌드', icon: ICONS.trend },
+    { href: '/hot', label: '인기글', icon: ICONS.hot },
     { href: '/settings', label: '설정', icon: ICONS.settings },
     { href: '/communities', label: '가이드', icon: ICONS.guide },
   ];

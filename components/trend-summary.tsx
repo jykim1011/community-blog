@@ -68,7 +68,7 @@ function getHottestPosts(posts: StaticPost[]): StaticPost[] {
       _score: (post.viewCount || 0) * 0.1 + (post.commentCount || 0) * 5 + (post.likeCount || 0) * 2,
     }))
     .sort((a, b) => b._score - a._score)
-    .slice(0, 3);
+    .slice(0, 7);
 }
 
 export function TrendSummary({ posts, sites }: TrendSummaryProps) {
@@ -135,8 +135,13 @@ export function TrendSummary({ posts, sites }: TrendSummaryProps) {
 
         {/* 에디터 픽 */}
         <div>
-          <h3 className="text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 flex items-center gap-1.5">
-            <span className="text-sm sm:text-base">🔥</span> 지금 가장 뜨거운 글
+          <h3 className="text-xs sm:text-sm font-semibold text-gray-700 dark:text-gray-300 mb-2 flex items-center justify-between gap-1.5">
+            <span className="flex items-center gap-1.5">
+              <span className="text-sm sm:text-base">🔥</span> 지금 가장 뜨거운 글
+            </span>
+            <a href="/hot" className="text-[10px] text-blue-500 hover:text-blue-700 dark:text-blue-400 dark:hover:text-blue-300 font-normal">
+              전체보기 →
+            </a>
           </h3>
           <div className="space-y-1.5">
             {hottestPosts.map((post, i) => (

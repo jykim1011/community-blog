@@ -39,6 +39,11 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.5,
     },
     {
+      url: `${SITE_URL}/hot`,
+      changeFrequency: 'always',
+      priority: 0.95,
+    },
+    {
       url: `${SITE_URL}/trends`,
       changeFrequency: 'always',
       priority: 0.9,
