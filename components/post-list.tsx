@@ -6,6 +6,7 @@ import { SiteFilter } from '@/components/site-filter';
 import { SortSelector, SortOption } from '@/components/sort-selector';
 import { PullToRefresh } from '@/components/pull-to-refresh';
 import { useMediaQuery } from '@/lib/hooks/use-media-query';
+import { useLocalStorage } from '@/lib/hooks/use-local-storage';
 import { SiteCategory } from '@/lib/constants';
 import type { StaticPost, StaticSite } from '@/lib/types';
 
@@ -18,8 +19,8 @@ interface PostListProps {
 
 export function PostList({ posts, sites }: PostListProps) {
   const [currentSite, setCurrentSite] = useState<string | null>(null);
-  const [currentCategory, setCurrentCategory] = useState<SiteCategory | null>(null);
-  const [currentSort, setCurrentSort] = useState<SortOption>('recent');
+  const [currentCategory, setCurrentCategory] = useLocalStorage<SiteCategory | null>('feed-category', null);
+  const [currentSort, setCurrentSort] = useLocalStorage<SortOption>('feed-sort', 'recent');
   const [currentPage, setCurrentPage] = useState(1);
   const [displayedCount, setDisplayedCount] = useState(10);
   const [isLoading, setIsLoading] = useState(false);
