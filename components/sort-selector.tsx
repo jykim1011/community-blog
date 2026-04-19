@@ -15,21 +15,23 @@ const sortOptions: { value: SortOption; label: string; icon: string }[] = [
 
 export function SortSelector({ currentSort, onSortChange }: SortSelectorProps) {
   return (
-    <div className="flex items-center gap-2">
-      <span className="text-sm text-gray-600 dark:text-gray-400 font-medium hidden sm:inline">정렬:</span>
+    <div className="flex items-center gap-2.5 px-3">
+      <span className="text-[11px] font-semibold flex-shrink-0 uppercase tracking-wide" style={{ color: 'var(--fg-3)' }}>
+        정렬
+      </span>
       <div className="flex gap-1.5">
         {sortOptions.map((option) => (
           <button
             key={option.value}
             onClick={() => onSortChange(option.value)}
-            className={`px-3.5 py-1.5 rounded-full text-sm font-medium transition-all ${
+            className="flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-medium border-0 cursor-pointer transition-colors"
+            style={
               currentSort === option.value
-                ? 'bg-blue-600 text-white shadow-sm'
-                : 'bg-gray-100 dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-200 dark:hover:bg-gray-700'
-            }`}
+                ? { background: 'var(--accent)', color: '#fff' }
+                : { background: 'var(--surface-2)', color: 'var(--fg-2)' }
+            }
           >
-            <span className="mr-1">{option.icon}</span>
-            {option.label}
+            {option.icon} {option.label}
           </button>
         ))}
       </div>

@@ -167,7 +167,7 @@ export function PostList({ posts, sites }: PostListProps) {
       )}
 
       {/* 정렬 선택기 */}
-      <div className="mb-3 sm:mb-4">
+      <div className="py-2.5" style={{ borderBottom: '1px solid var(--border)' }}>
         <SortSelector
           currentSort={currentSort}
           onSortChange={handleSortChange}
@@ -185,25 +185,26 @@ export function PostList({ posts, sites }: PostListProps) {
         </div>
       ) : (
         <>
-          <div className="space-y-1 sm:space-y-1.5">
+          <div className="space-y-1.5">
             {displayedPosts.map((post) => (
-              <PostCard
-                key={post.id}
-                id={post.id}
-                title={post.title}
-                author={post.author}
-                url={post.url}
-                site={{
-                  displayName: post.siteDisplayName,
-                  name: post.site,
-                }}
-                viewCount={post.viewCount}
-                commentCount={post.commentCount}
-                likeCount={post.likeCount}
-                createdAt={new Date(post.createdAt)}
-                thumbnail={post.thumbnail}
-                category={post.category}
-              />
+              <div key={post.id}>
+                <PostCard
+                  id={post.id}
+                  title={post.title}
+                  author={post.author}
+                  url={post.url}
+                  site={{
+                    displayName: post.siteDisplayName,
+                    name: post.site,
+                  }}
+                  viewCount={post.viewCount}
+                  commentCount={post.commentCount}
+                  likeCount={post.likeCount}
+                  createdAt={new Date(post.createdAt)}
+                  thumbnail={post.thumbnail}
+                  category={post.category}
+                />
+              </div>
             ))}
           </div>
 
@@ -213,33 +214,27 @@ export function PostList({ posts, sites }: PostListProps) {
               <button
                 onClick={() => handlePageChange(currentPage - 1)}
                 disabled={currentPage === 1}
-                className="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                className="px-4 py-2 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-sm font-medium text-gray-700 dark:text-gray-300 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors"
               >
-                이전
+                ← 이전
               </button>
 
               <div className="flex items-center gap-1">
                 {Array.from({ length: Math.min(totalPages, 10) }, (_, i) => {
                   let pageNum: number;
-
-                  if (totalPages <= 10) {
-                    pageNum = i + 1;
-                  } else if (currentPage <= 5) {
-                    pageNum = i + 1;
-                  } else if (currentPage >= totalPages - 4) {
-                    pageNum = totalPages - 9 + i;
-                  } else {
-                    pageNum = currentPage - 4 + i;
-                  }
+                  if (totalPages <= 10) pageNum = i + 1;
+                  else if (currentPage <= 5) pageNum = i + 1;
+                  else if (currentPage >= totalPages - 4) pageNum = totalPages - 9 + i;
+                  else pageNum = currentPage - 4 + i;
 
                   return (
                     <button
                       key={pageNum}
                       onClick={() => handlePageChange(pageNum)}
-                      className={`w-10 h-10 rounded-lg transition-colors ${
+                      className={`w-9 h-9 rounded-lg text-sm font-medium transition-colors ${
                         currentPage === pageNum
-                          ? 'bg-blue-600 text-white font-medium'
-                          : 'border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-700'
+                          ? 'bg-blue-600 text-white'
+                          : 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-750'
                       }`}
                     >
                       {pageNum}
@@ -251,9 +246,9 @@ export function PostList({ posts, sites }: PostListProps) {
               <button
                 onClick={() => handlePageChange(currentPage + 1)}
                 disabled={currentPage === totalPages}
-                className="px-4 py-2 rounded-lg border border-gray-300 dark:border-gray-700 bg-white dark:bg-gray-800 text-gray-700 dark:text-gray-300 disabled:opacity-50 disabled:cursor-not-allowed hover:bg-gray-50 dark:hover:bg-gray-700 transition-colors"
+                className="px-4 py-2 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-sm font-medium text-gray-700 dark:text-gray-300 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors"
               >
-                다음
+                다음 →
               </button>
             </div>
           )}

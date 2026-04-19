@@ -12,75 +12,58 @@ export function SiteHeader() {
   const [isAdLoaded, setIsAdLoaded] = useState(false);
 
   useEffect(() => {
-    // Capacitor 앱 환경 감지
     const isCapacitor = typeof window !== 'undefined' && (
       window.location.protocol === 'capacitor:' ||
       (window as any).Capacitor !== undefined
     );
     setIsApp(isCapacitor);
-
-    // 광고 로드 상태 구독
     const unsubscribe = adStateManager.subscribe(setIsAdLoaded);
     return unsubscribe;
   }, []);
 
+  const navLinks = [
+    { href: '/', label: '홈' },
+    { href: '/trends', label: '트렌드' },
+    { href: '/communities', label: '가이드' },
+    { href: '/settings', label: '설정' },
+  ];
+
   return (
     <>
-      {/* 모바일: 기존 안전 영역 여백만 (앱/웹 동일) */}
       <div className="h-3 sm:hidden" />
 
-      {/* 데스크톱: 네비게이션 바 */}
-      <nav className="hidden sm:block bg-white dark:bg-gray-800 border-b border-gray-200 dark:border-gray-700">
+      {/* 데스크톱 네비게이션 */}
+      <nav className="hidden sm:block bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 sticky top-0 z-30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-14">
-            {/* 로고 */}
             <Link
               href="/"
-              className="text-lg font-bold text-gray-900 dark:text-gray-100 hover:text-violet-600 dark:hover:text-violet-400 transition-colors"
+              className="text-xl font-bold text-gray-900 dark:text-white transition-colors hover:text-violet-600 dark:hover:text-violet-400"
             >
               {SITE_NAME}
             </Link>
 
-            {/* 데스크톱 메뉴 */}
-            <div className="flex items-center gap-4">
-              <Link
-                href="/"
-                className="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
-              >
-                홈
-              </Link>
-              <Link
-                href="/trends"
-                className="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
-              >
-                트렌드
-              </Link>
-              <Link
-                href="/communities"
-                className="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
-              >
-                가이드
-              </Link>
-              {/* 검색 임시 비노출 */}
-              {/* <Link
-                href="/search"
-                className="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
-              >
-                검색
-              </Link> */}
-              <Link
-                href="/settings"
-                className="text-sm text-gray-600 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-colors"
-              >
-                설정
-              </Link>
+            <div className="flex items-center gap-1">
+              {navLinks.map(({ href, label }) => (
+                <Link
+                  key={href}
+                  href={href}
+                  className={`px-3 py-2 rounded-lg text-sm transition-colors ${
+                    pathname === href
+                      ? 'text-gray-900 dark:text-white font-semibold'
+                      : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
+                  }`}
+                >
+                  {label}
+                </Link>
+              ))}
               <a
                 href="https://play.google.com/store/apps/details?id=com.communityblog.app"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1.5 px-3 py-1.5 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-lg hover:bg-gray-700 dark:hover:bg-gray-200 transition-colors text-sm font-medium"
+                className="ml-2 inline-flex items-center gap-1.5 px-3 py-1.5 bg-gray-900 dark:bg-white text-white dark:text-gray-900 rounded-lg text-sm font-medium hover:bg-gray-700 dark:hover:bg-gray-200 transition-colors"
               >
-                <svg className="w-4 h-4" viewBox="0 0 24 24" fill="currentColor">
+                <svg className="w-3.5 h-3.5" viewBox="0 0 24 24" fill="currentColor">
                   <path d="M3,20.5V3.5C3,2.91 3.34,2.39 3.84,2.15L13.69,12L3.84,21.85C3.34,21.6 3,21.09 3,20.5M16.81,15.12L6.05,21.34L14.54,12.85L16.81,15.12M20.16,10.81C20.5,11.08 20.75,11.5 20.75,12C20.75,12.5 20.53,12.9 20.18,13.18L17.89,14.5L15.39,12L17.89,9.5L20.16,10.81M6.05,2.66L16.81,8.88L14.54,11.15L6.05,2.66Z" />
                 </svg>
                 앱
@@ -90,74 +73,38 @@ export function SiteHeader() {
         </div>
       </nav>
 
-      {/* 모바일: 하단 고정 탭 바 */}
+      {/* 모바일 하단 탭 바 */}
       <nav
-        className="sm:hidden fixed left-0 right-0 bg-white dark:bg-gray-800 border-t border-gray-200 dark:border-gray-700 z-50"
+        className="sm:hidden fixed left-0 right-0 flex items-center justify-around z-50"
         style={{
-          // 앱: 광고 높이(50-60px)만큼 위로 올림 (광고가 네비 아래 표시)
-          // 웹: 화면 최하단 (bottom-0)
           bottom: isApp && isAdLoaded ? '60px' : '0',
-          paddingBottom: 'max(env(safe-area-inset-bottom), 8px)',
+          height: 60,
+          background: 'var(--surface)',
+          borderTop: '1px solid var(--border)',
+          paddingBottom: 'max(env(safe-area-inset-bottom), 0px)',
         }}
       >
-        <div className="flex items-center justify-around h-16">
-          <Link
-            href="/"
-            className={`flex flex-col items-center justify-center flex-1 h-full transition-colors ${
-              pathname === '/'
-                ? 'text-blue-600 dark:text-blue-400'
-                : 'text-gray-600 dark:text-gray-400'
-            }`}
-          >
-            <svg className="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
-            </svg>
-            <span className="text-xs font-medium">홈</span>
-          </Link>
-
-          <Link
-            href="/trends"
-            className={`flex flex-col items-center justify-center flex-1 h-full transition-colors ${
-              pathname === '/trends'
-                ? 'text-blue-600 dark:text-blue-400'
-                : 'text-gray-600 dark:text-gray-400'
-            }`}
-          >
-            <svg className="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7h8m0 0v8m0-8l-8 8-4-4-6 6" />
-            </svg>
-            <span className="text-xs font-medium">트렌드</span>
-          </Link>
-
-          <Link
-            href="/settings"
-            className={`flex flex-col items-center justify-center flex-1 h-full transition-colors ${
-              pathname === '/settings'
-                ? 'text-blue-600 dark:text-blue-400'
-                : 'text-gray-600 dark:text-gray-400'
-            }`}
-          >
-            <svg className="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z" />
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
-            </svg>
-            <span className="text-xs font-medium">설정</span>
-          </Link>
-
-          <Link
-            href="/communities"
-            className={`flex flex-col items-center justify-center flex-1 h-full transition-colors ${
-              pathname === '/communities'
-                ? 'text-blue-600 dark:text-blue-400'
-                : 'text-gray-600 dark:text-gray-400'
-            }`}
-          >
-            <svg className="w-6 h-6 mb-1" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
-            </svg>
-            <span className="text-xs font-medium">가이드</span>
-          </Link>
-        </div>
+        {[
+          { href: '/', label: '홈', paths: ['M3 10.5L12 3l9 7.5', 'M5 9.5V21h14V9.5'] },
+          { href: '/trends', label: '트렌드', paths: ['M3 17l6-6 4 4 8-8', 'M14 7h7v7'] },
+          { href: '/settings', label: '설정', paths: ['M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2', 'M12 8v4', 'M12 16h.01'] },
+          { href: '/communities', label: '가이드', paths: ['M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253'] },
+        ].map(({ href, label, paths }) => {
+          const isActive = pathname === href;
+          return (
+            <Link
+              key={href}
+              href={href}
+              className="flex flex-col items-center justify-center flex-1 h-full gap-1"
+              style={{ color: isActive ? 'var(--accent)' : 'var(--fg-3)' }}
+            >
+              <svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+                {paths.map((d, i) => <path key={i} d={d} />)}
+              </svg>
+              <span style={{ fontSize: 10, fontWeight: 500 }}>{label}</span>
+            </Link>
+          );
+        })}
       </nav>
     </>
   );

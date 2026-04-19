@@ -118,7 +118,7 @@ export default function SettingsPage() {
     <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
       <SiteHeader />
 
-      <main className="container mx-auto px-4 py-8 max-w-4xl">
+      <main className="container mx-auto px-4 py-8 max-w-4xl pb-24 sm:pb-8">
         <div className="mb-6">
           <h1 className="text-2xl font-bold text-gray-900 dark:text-gray-100 mb-2">
             커뮤니티 설정

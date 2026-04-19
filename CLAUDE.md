@@ -35,14 +35,238 @@ npx tsx scripts/crawl.ts [사이트명]  # 특정 사이트만 크롤링
 
 ## 스타일링
 
-Tailwind CSS 3.4 + Geist 폰트 사용. 커스텀 테마 확장 없음 (기본 테마). 다크모드는 `prefers-color-scheme` 미디어 쿼리 기반. 클래스 병합 유틸: `cn()` (`lib/utils/index.ts`).
+Tailwind CSS 3.4 + 다크모드는 `prefers-color-scheme` 미디어 쿼리 기반. 클래스 병합 유틸: `cn()` (`lib/utils/index.ts`).
 
-**타이포그래피 가이드:**
-- 한글 콘텐츠 줄높이: `leading-relaxed` (1.625) 권장
-- 최소 폰트 크기: 12px (`text-xs`)
-- 색상 대비: WCAG AA 기준 (4.5:1) 충족
+### 디자인 시스템: "통합 커뮤니티" (Clean Modern)
+
+**개념**: 한국 커뮤니티 콘텐츠를 편리하게 볼 수 있는 깔끔하고 읽기 쉬운 디자인. 군더더기 없는 정보 중심 레이아웃.
+
+**타이포그래피:**
+- **Font**: Geist (next/font/google) + 한글 fallback (Apple SD Gothic Neo, Pretendard, Malgun Gothic)
+- **Scale**: 12 / 14 / 16 / 17 / 18 / 20 / 24 / 30px
+- **Weights**: 400 (body), 500 (medium), 600 (semibold), 700 (bold)
+- 한글 콘텐츠 줄높이: `leading-relaxed` (1.625)
+
+**색상 시스템:**
+- 배경: `gray-50` / `gray-900`
+- 카드/네비 배경: `white` / `gray-800`
+- 기본 accent: `blue-600` (#2563eb) — CTA, 활성 상태
+- 테마 accent: `violet-600` (#7c3aed) — 로고 호버, 카테고리 태그
+- 보조 accent: `green-600` — 사이트 필터 활성
+- 커뮤니티 배지: 사이트별 tinted bg + accessible fg 쌍
+- 통계 아이콘: 💬 = `orange-600`, ❤️ = `red-600`
+
+**레이아웃:**
+- max-width: `max-w-7xl` (1280px), padding: `px-4 sm:px-6 lg:px-8`
+- 데스크톱: sticky top nav 56px (`h-14`)
+- 모바일: fixed bottom tab bar 64px (`h-16`), `pb-32`
+- 카드 간격: `space-y-1.5`
+
+**컴포넌트 스타일:**
+- **PostCard**: 1px `border-gray-200`, `rounded-lg`, `hover:bg-gray-50`, 플랫 통계
+- **SiteHeader**: 1px `border-b-gray-200`, 텍스트 링크 nav, 활성 `font-semibold`
+- **Banner**: `bg-blue-50 border border-blue-200 rounded-lg`
+- **Pagination**: `border border-gray-200 rounded-lg` 버튼
+- **Filter Pills**: `rounded-full`, 활성 `bg-blue-600` (카테고리) / `bg-green-600` (사이트)
+
+**커뮤니티 배지 컬러 (SITE_THEME in post-card.tsx):**
+- 클리앙: `#dbeafe` / `#1d4ed8`, 더쿠: `#fce7f3` / `#be185d`
+- 루리웹: `#f3e8ff` / `#7e22ce`, 디시: `#dcfce7` / `#15803d`
+- 인벤: `#ede9fe` / `#6d28d9`, 뽐뿌: `#ffedd5` / `#c2410c`
+- (전체 22개 사이트 정의 — `components/post-card.tsx` 참조)
+
+**클래스 유틸리티 (app/globals.css):**
+- `.scrollbar-hide` - 스크롤바 숨기기 (webkit/firefox)
 
 ## 최근 변경사항
+
+### 2026-04-19 (밤): 대시보드 레이아웃 전면 전환 - 3컬럼 Dashboard-First 디자인
+
+**개요:**
+- 기존 단일 컬럼 레이아웃 → 72px 아이콘 레일 + 240px 사이드바 + 메인 콘텐츠 3컬럼 대시보드
+- Pretendard Variable + JetBrains Mono 폰트 시스템
+- Indigo (#4f46e5) 액센트 + Zinc 색상 스케일 CSS 변수 시스템
+- 홈 페이지 전용 `dashboard-home.tsx` 컴포넌트 분리
+
+**변경 내용:**
+
+1. **app/globals.css - 디자인 토큰 교체**
+   - Pretendard Variable (CDN), JetBrains Mono import
+   - CSS 변수: `--bg`, `--surface`, `--surface-2`, `--hover`, `--border`, `--fg~--fg-4`, `--accent`, `--accent-tint`, `--pos`, `--hot`
+   - 레이아웃 변수: `--rail-w: 72px`, `--sidebar-w: 240px`
+   - `word-break: keep-all` 한국어 최적화
+   - 다크모드 zinc 색상 토큰
+
+2. **components/post-card.tsx - PostRow 디자인**
+   - 3px 좌측 컬러 바 (22개 사이트 브랜드 hex 색상)
+   - 2열 그리드: `gridTemplateColumns: '3px 1fr'`
+   - 메타 행: 사이트명 · 시간 · 조회수 · 댓글
+   - 제목 2줄 clamp + 카테고리 칩 (--accent-tint)
+   - 전체 CSS 변수 기반 다크모드
+
+3. **components/dashboard-home.tsx - 신규 (메인 홈 전용)**
+   - Sub-components: `Icon`, `Rail`, `Sidebar`, `StatsBar`, `TopBar`, `MobileNav`
+   - 데스크톱: Rail(sticky 72px) + Sidebar(sticky 240px) + 메인 영역(overflow-auto)
+   - 사이드바: 카테고리별 커뮤니티 목록 + 게시글 수
+   - StatsBar: 총 게시글/댓글/조회/커뮤니티 수 4개 카드
+   - TopBar: 제목 + LIVE 뱃지 + 인라인 검색 입력
+   - 모바일: 단일 컬럼 + 하단 고정 탭바 (60px)
+   - 구독 로딩 로직 (기존 main-content.tsx에서 이전)
+   - 피드 + 트렌드 패널 2열 그리드
+
+4. **app/page.tsx - DashboardHome으로 교체**
+   - `SiteHeader` + `MainContent` 제거
+   - `DashboardHome` 렌더링 (광고 컴포넌트 유지)
+
+**효과:**
+- ✅ **대시보드 UX** - 사이드바 커뮤니티 목록, 실시간 통계, 검색 바
+- ✅ **브랜드 아이덴티티** - Indigo 액센트, Zinc 색상, 22개 사이트별 고유 컬러
+- ✅ **한국어 최적화** - Pretendard 폰트, word-break keep-all
+- ✅ **다크모드** - prefers-color-scheme 미디어 쿼리 완전 지원
+- ✅ **빌드 성공** - 43개 페이지
+
+**파일 변경:**
+- 수정: `app/globals.css` (디자인 토큰 전면 교체)
+- 수정: `components/post-card.tsx` (PostRow 디자인)
+- 신규: `components/dashboard-home.tsx` (대시보드 레이아웃)
+- 수정: `app/page.tsx` (DashboardHome 적용)
+
+### 2026-04-19: 디자인 시스템 전면 교체 - 클린 모던 UI (통합 커뮤니티 Design System)
+
+**개요:**
+- Claude Design (claude.ai/design)에서 만든 "통합 커뮤니티" 디자인 시스템 적용
+- Neo-Brutalist → 클린 모던 디자인으로 전환
+- Geist 폰트, 1px 테두리, 서브틀 섀도우, 깔끔한 레이아웃
+
+**변경 내용:**
+
+1. **app/globals.css** - 브루탈리스트 스타일 전면 제거
+   - Black Han Sans, Bebas Neue, IBM Plex Sans 폰트 제거 → Geist 폰트 유지
+   - grain 텍스처 오버레이 애니메이션 제거
+   - `.shadow-brutal*`, `.glow-*`, `.hover-lift`, `.animate-slide-in-up`, `.btn-brutal` 제거
+   - `scrollbar-hide` 유틸리티만 유지
+
+2. **components/post-card.tsx** - 클린 카드 디자인
+   - 4px 두꺼운 테두리 → 1px `border-gray-200` (rounded-lg)
+   - 6×6px 오프셋 섀도우 → 제거
+   - 코너 액센트 장식 → 제거
+   - 카테고리 태그: 브루탈리스트 → `bg-violet-100 text-violet-700 rounded`
+   - 커뮤니티 배지: 디자인 시스템의 `SITE_THEME` 컬러 (tinted bg + accessible fg)
+   - 통계: 박스 테두리 제거 → 플랫 인라인 표시
+   - 호버: `hover:bg-gray-50 hover:border-gray-300` (색상 전환만)
+   - 스태거 애니메이션 제거
+
+3. **components/site-header.tsx** - 클린 네비게이션
+   - `border-b-4 border-black` → `border-b border-gray-200` (1px)
+   - 브루탈리스트 버튼 → 클린 텍스트 링크 (활성: `font-semibold`)
+   - 그라데이션 accent bar 제거
+   - 로고 호버: `hover:text-violet-600`
+   - 앱 버튼: `bg-gray-900 rounded-lg`
+   - 모바일 탭바: `border-t border-gray-200`, 활성: `text-blue-600`
+
+4. **components/main-content.tsx** - 클린 배너 & 로딩
+   - 설정 배너: 브루탈리스트 → `bg-blue-50 border border-blue-200 rounded-lg`
+   - 선택된 커뮤니티 태그: `rounded-full bg-gray-100`
+   - 로딩: 회전 정사각형 → 표준 `animate-spin` 서클 스피너
+
+5. **components/post-list.tsx** - 클린 페이지네이션
+   - 스태거 애니메이션 래퍼 제거
+   - 카드 간격: `space-y-1.5`
+   - 페이지 버튼: 브루탈리스트 → `border border-gray-200 rounded-lg`
+
+6. **app/page.tsx** - 배경 정리
+   - 대각선 줄무늬 패턴 제거
+   - `bg-gray-50 dark:bg-gray-900` (깔끔한 회색 배경)
+
+**디자인 토큰:**
+- 기본 accent: `blue-600` (#2563eb)
+- 테마 accent: `violet-600` (#7c3aed)
+- 카드 테두리: `gray-200` / `gray-700`
+- 배경: `gray-50` / `gray-900`
+- 카드 배경: `white` / `gray-800`
+- 커뮤니티 배지: 각 사이트별 tinted bg/fg 쌍
+
+**빌드 검증:**
+- ✅ TypeScript 컴파일 성공
+- ✅ 정적 빌드 성공 (43개 페이지)
+
+**파일 변경:**
+- 수정: `app/globals.css`
+- 수정: `components/post-card.tsx`
+- 수정: `components/site-header.tsx`
+- 수정: `components/main-content.tsx`
+- 수정: `components/post-list.tsx`
+- 수정: `app/page.tsx`
+
+### 2026-04-18 (밤): 디자인 시스템 전면 개편 - Neo-Brutalist "Digital Street Culture"
+
+**개요:**
+- 한국 커뮤니티의 생동감을 담은 대담한 네오-브루탈리스트 디자인으로 전환
+- 독특한 타이포그래피 (Black Han Sans, Bebas Neue, IBM Plex Sans)
+- 굵은 테두리, 오프셋 그림자, 네온 액센트로 차별화된 UI
+- 스태거 애니메이션, 그레인 텍스처, 대각선 패턴으로 분위기 연출
+
+**변경 내용:**
+
+1. **app/globals.css - 디자인 시스템 구축**
+   - Google Fonts 3종 import (Black Han Sans, Bebas Neue, IBM Plex Sans)
+   - CSS 변수: `--grain-opacity`, `--card-shadow`, `--glow-size`
+   - 그레인 텍스처 오버레이 애니메이션 (`body::before`)
+   - 브루탈리스트 유틸리티 클래스 (`.shadow-brutal`, `.hover-lift`, `.btn-brutal`)
+   - 네온 글로우 효과 (`.glow-blue/pink/green/orange`)
+   - 스태거 애니메이션 (`@keyframes slideInUp`, `.animate-slide-in-up`)
+
+2. **components/post-card.tsx - 카드 디자인 재설계**
+   - 4px 굵은 테두리 + 커뮤니티별 컬러 매칭
+   - 6×6px 오프셋 컬러 그림자 (사이트별 색상)
+   - 코너 액센트 장식 (대각선 삼각형)
+   - 굵은 타이포그래피 (제목 `font-bold`, 배지 `font-black`)
+   - 박스형 메트릭 (테두리 + 배경색)
+   - 호버 리프트 + 스케일 효과
+
+3. **components/site-header.tsx - 네비게이션 강화**
+   - **데스크톱**: 그라데이션 액센트 바, 굵은 버튼, 활성 페이지 컬러 배경
+   - **모바일**: 굵은 하단 탭 바, 활성 인디케이터, 스트로크 두께 변화
+   - 한글 사이트명 Black Han Sans 적용
+   - 브루탈리스트 버튼 스타일 (2px 테두리, 그림자)
+
+4. **components/main-content.tsx - 배너 & 로딩 업그레이드**
+   - **설정 배너**: 그라데이션 배경, 코너 액센트, 굵은 테두리
+   - **선택된 커뮤니티**: 블루 액센트 바, 박스형 태그
+   - **로딩 스피너**: 회전 정사각형 + 컬러 센터
+
+5. **components/post-list.tsx - 애니메이션 & 페이징**
+   - 카드 진입 스태거 애니메이션 (50ms 딜레이)
+   - 카드 간격 확대 (`space-y-3 sm:space-y-4`)
+   - 브루탈리스트 페이징 버튼 (굵은 테두리, 그림자, 활성 색상)
+
+6. **app/page.tsx - 배경 패턴**
+   - 대각선 줄무늬 패턴 (`repeating-linear-gradient`)
+   - 화이트/블랙 배경
+
+**효과:**
+- ✅ **차별화된 브랜드 아이덴티티** - 일반적인 AI 디자인과 확연히 구분
+- ✅ **높은 시각적 임팩트** - 굵은 테두리, 컬러 그림자, 네온 액센트
+- ✅ **한국 커뮤니티 특성 반영** - 생동감, 날것의 에너지, 거리 문화
+- ✅ **프로덕션 그레이드** - 접근성 유지, 반응형, 다크모드 지원
+- ✅ **독특한 타이포그래피** - 한글 전용 굵은 고딕 + 브루탈리스트 헤더
+
+**파일 변경:**
+- 수정: `app/globals.css` (디자인 시스템 전체)
+- 수정: `components/post-card.tsx` (네오-브루탈리스트 카드)
+- 수정: `components/site-header.tsx` (굵은 네비게이션)
+- 수정: `components/main-content.tsx` (배너, 로딩, 태그)
+- 수정: `components/post-list.tsx` (애니메이션, 페이징)
+- 수정: `app/page.tsx` (배경 패턴)
+
+**빌드 검증:**
+- ✅ TypeScript 컴파일 성공
+- ✅ 정적 빌드 성공 (43개 페이지)
+- ✅ Google Fonts 로딩 정상
+- ✅ 다크모드 동작 확인
+- ✅ 반응형 레이아웃 유지
+
+
 
 ### 2026-04-18 (저녁): robots.txt 준수 + 3개 크롤러 수정 (dcinside, extmovie, coolenjoy)
 
