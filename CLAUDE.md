@@ -80,6 +80,26 @@ Tailwind CSS 3.4 + 다크모드는 `prefers-color-scheme` 미디어 쿼리 기�
 
 ## 최근 변경사항
 
+### 2026-04-20: 모바일 앱 버그 2건 수정 (AdMob 광고 + 하단 탭 아이콘)
+
+**문제 1: 광고 로드 시 네비게이션 바가 가려짐**
+- **원인**: `adStateManager.setAdLoaded(true)` 호출이 `await AdMob.showBanner()` 이후였음
+- 네이티브 광고 뷰가 먼저 렌더되고 React 리렌더는 그 이후 발생 → 광고가 네비를 일시 덮음
+- **해결**: `setAdLoaded(true)`를 `showBanner()` 호출 전으로 이동 (React가 먼저 네비 위치를 올림)
+- **파일**: `lib/admob.ts`
+
+**문제 2: 모바일 하단 탭바에 아이콘 미표시 (한글 텍스트만 표시)**
+- **원인**: SVG `stroke="currentColor"` 가 Android WebView에서 CSS 변수 상속 실패
+- `--fg-3`, `--border` 등 CSS 변수 값을 WebView SVG가 인식 못함
+- **해결**: `stroke={iconColor}` 하드코딩으로 변경 (`isActive ? '#4f46e5' : '#71717a'`)
+- 추가로 광고 로드 시 `bottom` 계산식 수정: `calc(60px + max(env(safe-area-inset-bottom), 0px))`
+- 탭바 높이 56px, `paddingBottom` 광고 상태에 따라 조건부 safe-area 적용
+- **파일**: `components/site-header.tsx`
+
+**파일 변경:**
+- 수정: `lib/admob.ts` (setAdLoaded 타이밍 수정)
+- 수정: `components/site-header.tsx` (SVG 하드코딩 컬러, 광고 bottom 계산식)
+
 ### 2026-04-20: 🔥 인기글 전용 페이지(/hot) 추가 + 네비게이션 적용
 
 **개요:**

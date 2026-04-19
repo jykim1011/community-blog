@@ -46,8 +46,9 @@ export async function showBannerAd(position: 'top' | 'bottom' = 'bottom') {
       adStateManager.setAdLoaded(false);
     });
 
-    // 광고는 화면 최하단에 배치 (margin 0)
-    // 네비게이션 바가 광고 위로 올라가도록 설정됨
+    // nav를 먼저 올린 후 광고 표시 → 네이티브 뷰가 나타나기 전에 React가 리렌더되도록
+    adStateManager.setAdLoaded(true);
+
     await AdMob.showBanner({
       adId,
       adSize: BannerAdSize.ADAPTIVE_BANNER,
@@ -55,8 +56,6 @@ export async function showBannerAd(position: 'top' | 'bottom' = 'bottom') {
       margin: 0,
     });
 
-    // showBanner 완료 직후 상태 업데이트 → native 배너 노출 전에 nav 위치 선점
-    adStateManager.setAdLoaded(true);
     console.log(`Banner ad shown at ${position}`);
   } catch (error) {
     console.error('Failed to show banner ad:', error);

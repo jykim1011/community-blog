@@ -76,13 +76,15 @@ export function SiteHeader() {
 
       {/* 모바일 하단 탭 바 */}
       <nav
-        className="sm:hidden fixed left-0 right-0 flex items-center justify-around z-50"
+        className="sm:hidden fixed left-0 right-0 flex items-center z-50"
         style={{
-          bottom: isApp && isAdLoaded ? '60px' : '0',
-          height: 60,
+          bottom: isApp && isAdLoaded
+            ? 'calc(60px + max(env(safe-area-inset-bottom), 0px))'
+            : '0',
+          height: 56,
           background: 'var(--surface)',
           borderTop: '1px solid var(--border)',
-          paddingBottom: 'max(env(safe-area-inset-bottom), 0px)',
+          paddingBottom: isApp && isAdLoaded ? '0' : 'max(env(safe-area-inset-bottom), 0px)',
         }}
       >
         {[
@@ -93,17 +95,20 @@ export function SiteHeader() {
           { href: '/communities', label: '가이드', paths: ['M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253'] },
         ].map(({ href, label, paths }) => {
           const isActive = pathname === href;
+          const iconColor = isActive ? '#4f46e5' : '#71717a';
           return (
             <Link
               key={href}
               href={href}
-              className="flex flex-col items-center justify-center flex-1 h-full gap-1"
-              style={{ color: isActive ? 'var(--accent)' : 'var(--fg-3)' }}
+              className="flex flex-col items-center justify-center flex-1 h-full gap-0.5"
             >
-              <svg width={20} height={20} viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
+              <svg width={22} height={22} viewBox="0 0 24 24" fill="none"
+                stroke={iconColor} strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
                 {paths.map((d, i) => <path key={i} d={d} />)}
               </svg>
-              <span style={{ fontSize: 10, fontWeight: 500 }}>{label}</span>
+              <span style={{ fontSize: 10, fontWeight: isActive ? 600 : 400, color: iconColor }}>
+                {label}
+              </span>
             </Link>
           );
         })}
