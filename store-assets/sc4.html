@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="UTF-8">
+<style>
+@import url('https://cdn.jsdelivr.net/gh/orioncactus/pretendard@v1.3.9/dist/web/variable/pretendardvariable.css');
+*{box-sizing:border-box;margin:0;padding:0;}
+html,body{width:1080px;height:1920px;overflow:hidden;}
+body{
+  background:linear-gradient(150deg,#022c22 0%,#064e3b 25%,#059669 55%,#0d9488 85%,#0f766e 100%);
+  font-family:'Pretendard Variable',Pretendard,-apple-system,sans-serif;
+  position:relative;
+}
+.c1{position:absolute;width:800px;height:800px;border-radius:50%;background:rgba(255,255,255,0.04);top:-250px;right:-220px;}
+.c2{position:absolute;width:500px;height:500px;border-radius:50%;background:rgba(255,255,255,0.04);bottom:420px;left:-150px;}
+
+.top{padding:100px 88px 48px;position:relative;z-index:2;}
+.chip{display:inline-flex;align-items:center;gap:12px;background:rgba(255,255,255,0.15);border:1px solid rgba(255,255,255,0.25);border-radius:100px;padding:14px 34px;color:white;font-size:29px;font-weight:600;margin-bottom:52px;}
+h1{font-size:112px;font-weight:900;color:white;line-height:1.06;letter-spacing:-0.045em;margin-bottom:36px;word-break:keep-all;}
+h1 em{font-style:normal;color:#a7f3d0;}
+.desc{font-size:36px;color:rgba(255,255,255,0.75);line-height:1.65;letter-spacing:-0.01em;word-break:keep-all;}
+
+.timeline{margin-top:50px;display:flex;flex-direction:column;gap:0;}
+.tl-item{display:flex;gap:24px;align-items:flex-start;padding:20px 0;}
+.tl-item:not(:last-child){border-bottom:1px solid rgba(255,255,255,0.1);}
+.tl-time{flex-shrink:0;width:120px;text-align:right;}
+.tl-t{font-size:26px;font-weight:700;color:#a7f3d0;}
+.tl-dot{flex-shrink:0;width:16px;height:16px;border-radius:50%;background:#a7f3d0;margin-top:6px;box-shadow:0 0 0 4px rgba(167,243,208,0.2);}
+.tl-content{}
+.tl-label{font-size:26px;font-weight:600;color:white;}
+.tl-desc{font-size:21px;color:rgba(255,255,255,0.6);margin-top:4px;}
+
+.phone-wrap{display:flex;justify-content:center;padding-top:44px;position:relative;z-index:2;}
+.phone{width:640px;height:1040px;background:#0a0a0b;border-radius:68px;overflow:hidden;box-shadow:0 70px 140px -20px rgba(0,0,0,0.75),0 0 0 1.5px rgba(255,255,255,0.1);display:flex;flex-direction:column;}
+.sbar{height:52px;flex-shrink:0;background:#141416;display:flex;align-items:center;justify-content:space-between;padding:0 32px;}
+.sbar-t{color:white;font-size:22px;font-weight:700;}
+.sbar-r{color:rgba(255,255,255,0.65);font-size:19px;}
+
+.tbar{background:#141416;padding:16px 22px 13px;border-bottom:1px solid #27272a;flex-shrink:0;}
+.tbar-row{display:flex;align-items:center;justify-content:space-between;}
+.tbar-title{font-size:24px;font-weight:700;color:#fafafa;display:flex;align-items:center;gap:10px;letter-spacing:-0.02em;}
+.live{background:rgba(16,185,129,0.2);color:#34d399;border-radius:4px;padding:3px 9px;font-size:13px;font-weight:700;}
+.update-badge{font-size:15px;color:#71717a;}
+.tbar-sub{font-size:16px;color:#71717a;margin-top:4px;}
+
+.stats-row{background:#141416;padding:14px 18px;border-bottom:1px solid #27272a;flex-shrink:0;display:grid;grid-template-columns:repeat(4,1fr);gap:8px;}
+.stat{background:#1c1c1f;border-radius:10px;padding:10px 12px;text-align:center;}
+.stat-v{font-size:19px;font-weight:700;color:#fafafa;font-variant-numeric:tabular-nums;}
+.stat-l{font-size:13px;color:#71717a;margin-top:2px;}
+
+.posts{flex:1;overflow:hidden;background:#0a0a0b;}
+.p{display:flex;border-bottom:1px solid #1a1a1d;background:#141416;}
+.bar{width:3px;flex-shrink:0;}
+.pc{flex:1;padding:12px 16px 10px;}
+.pm{display:flex;align-items:center;gap:6px;font-size:14px;color:#71717a;margin-bottom:4px;white-space:nowrap;overflow:hidden;}
+.psite{font-weight:600;}
+.sep{color:#3f3f46;}
+.ptitle{font-size:19px;font-weight:500;color:#f4f4f5;line-height:1.4;letter-spacing:-0.01em;}
+.pnew{display:inline-block;background:rgba(16,185,129,0.15);color:#34d399;border-radius:4px;padding:1px 7px;font-size:12px;font-weight:600;margin-right:6px;}
+
+.bnav{height:64px;flex-shrink:0;background:#141416;border-top:1px solid #27272a;display:flex;}
+.ni{flex:1;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:4px;}
+.nicon{width:20px;height:20px;border-radius:3px;background:#3f3f46;}
+.nicon.a{background:#059669;}
+.nlabel{font-size:12px;color:#52525b;}
+.nlabel.a{color:#34d399;}
+</style>
+</head>
+<body>
+<div class="c1"></div><div class="c2"></div>
+<div class="top">
+  <div class="chip">⏱ 자동 업데이트</div>
+  <h1>항상 최신<br><em>놓치는 글 없이</em></h1>
+  <p class="desc">GitHub Actions로<br>22개 커뮤니티 자동 크롤링</p>
+  <div class="timeline">
+    <div class="tl-item">
+      <div class="tl-time"><div class="tl-t">:00</div></div>
+      <div class="tl-dot"></div>
+      <div class="tl-content"><div class="tl-label">크롤링 시작</div><div class="tl-desc">22개 사이트 동시 수집</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time"><div class="tl-t">:05</div></div>
+      <div class="tl-dot"></div>
+      <div class="tl-content"><div class="tl-label">인기 필터링</div><div class="tl-desc">조회·댓글·좋아요 점수 계산</div></div>
+    </div>
+    <div class="tl-item">
+      <div class="tl-time"><div class="tl-t">:08</div></div>
+      <div class="tl-dot"></div>
+      <div class="tl-content"><div class="tl-label">자동 배포</div><div class="tl-desc">CDN 즉시 반영 완료</div></div>
+    </div>
+  </div>
+</div>
+<div class="phone-wrap"><div class="phone">
+  <div class="sbar"><span class="sbar-t">9:41</span><span class="sbar-r">●●● WiFi 100%</span></div>
+  <div class="tbar">
+    <div class="tbar-row">
+      <div class="tbar-title">통커 <span class="live">LIVE</span></div>
+      <span class="update-badge">9분 전 업데이트</span>
+    </div>
+    <div class="tbar-sub">22개 커뮤니티 인기글 실시간 업데이트</div>
+  </div>
+  <div class="stats-row">
+    <div class="stat"><div class="stat-v">4.8k</div><div class="stat-l">📰 게시글</div></div>
+    <div class="stat"><div class="stat-v">38k</div><div class="stat-l">💬 댓글</div></div>
+    <div class="stat"><div class="stat-v">2.1M</div><div class="stat-l">👁 조회</div></div>
+    <div class="stat"><div class="stat-v">22</div><div class="stat-l">🏠 커뮤니티</div></div>
+  </div>
+  <div class="posts">
+    <div class="p"><div class="bar" style="background:#475569"></div><div class="pc"><div class="pm"><span class="psite" style="color:#6c7a8d">클리앙</span><span class="sep">·</span><span>방금 전</span><span class="sep">·</span><span>👁 342</span></div><div class="ptitle"><span class="pnew">NEW</span>애플 아이폰 17 Pro 실제 스펙 유출됨</div></div></div>
+    <div class="p"><div class="bar" style="background:#d6006c"></div><div class="pc"><div class="pm"><span class="psite" style="color:#d6006c">더쿠</span><span class="sep">·</span><span>1분 전</span><span class="sep">·</span><span>👁 1.2k</span></div><div class="ptitle"><span class="pnew">NEW</span>오늘 방영된 드라마 결말 충격반전 ㄷㄷ</div></div></div>
+    <div class="p"><div class="bar" style="background:#d1410c"></div><div class="pc"><div class="pm"><span class="psite" style="color:#d1410c">디시인사이드</span><span class="sep">·</span><span>3분 전</span><span class="sep">·</span><span>👁 4.7k</span><span class="sep">·</span><span>💬 89</span></div><div class="ptitle">경제 상황 진짜 심각한 이유 정리</div></div></div>
+    <div class="p"><div class="bar" style="background:#a16207"></div><div class="pc"><div class="pm"><span class="psite" style="color:#a16207">뽐뿌</span><span class="sep">·</span><span>7분 전</span><span class="sep">·</span><span>👁 891</span></div><div class="ptitle">[핫딜] 에어팟 4세대 최저가 업데이트</div></div></div>
+    <div class="p"><div class="bar" style="background:#c81e1e"></div><div class="pc"><div class="pm"><span class="psite" style="color:#c81e1e">루리웹</span><span class="sep">·</span><span>9분 전</span><span class="sep">·</span><span>👁 2.3k</span><span class="sep">·</span><span>💬 34</span></div><div class="ptitle">GTA 6 플레이 영상 첫 공개 ㄷㄷ</div></div></div>
+    <div class="p"><div class="bar" style="background:#b4530b"></div><div class="pc"><div class="pm"><span class="psite" style="color:#b4530b">인벤</span><span class="sep">·</span><span>12분 전</span><span class="sep">·</span><span>👁 3.1k</span><span class="sep">·</span><span>💬 67</span></div><div class="ptitle">T1 월즈 진출 확정 기념 이벤트 공지</div></div></div>
+  </div>
+  <div class="bnav">
+    <div class="ni"><div class="nicon a"></div><span class="nlabel a">홈</span></div>
+    <div class="ni"><div class="nicon"></div><span class="nlabel">트렌드</span></div>
+    <div class="ni"><div class="nicon"></div><span class="nlabel">인기글</span></div>
+    <div class="ni"><div class="nicon"></div><span class="nlabel">설정</span></div>
+  </div>
+</div></div>
+</body>
+</html>
