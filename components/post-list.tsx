@@ -15,15 +15,26 @@ const POSTS_PER_PAGE = 20;
 interface PostListProps {
   posts: StaticPost[];
   sites: StaticSite[];
+  selectedSite?: string | null;
 }
 
-export function PostList({ posts, sites }: PostListProps) {
+export function PostList({ posts, sites, selectedSite }: PostListProps) {
   const [currentSite, setCurrentSite] = useState<string | null>(null);
   const [currentCategory, setCurrentCategory] = useLocalStorage<SiteCategory | null>('feed-category', null);
   const [currentSort, setCurrentSort] = useLocalStorage<SortOption>('feed-sort', 'recent');
   const [currentPage, setCurrentPage] = useState(1);
   const [displayedCount, setDisplayedCount] = useState(10);
   const [isLoading, setIsLoading] = useState(false);
+
+  // 사이드바에서 사이트 선택 시 동기화
+  useEffect(() => {
+    if (selectedSite !== undefined) {
+      setCurrentSite(selectedSite ?? null);
+      setCurrentPage(1);
+      setDisplayedCount(20);
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [selectedSite]);
 
   // PC/모바일 감지 (md = 768px)
   const isDesktop = useMediaQuery('(min-width: 768px)');

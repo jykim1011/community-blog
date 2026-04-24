@@ -3,7 +3,6 @@
 import { useEffect, useState, useMemo } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { PostList } from '@/components/post-list';
-import { TrendSummary } from '@/components/trend-summary';
 import { useSubscriptions } from '@/lib/hooks/use-subscriptions';
 import { adStateManager } from '@/lib/ad-state';
 import { SITE_NAME } from '@/lib/constants';
@@ -100,7 +99,12 @@ function Rail({ pathname }: { pathname: string }) {
 }
 
 // ── Sidebar (desktop community list) ─────────────────────────
-function Sidebar({ sites, posts, activeSite }: { sites: StaticSite[]; posts: StaticPost[]; activeSite: string | null }) {
+function Sidebar({ sites, posts, activeSite, onSiteClick }: {
+  sites: StaticSite[];
+  posts: StaticPost[];
+  activeSite: string | null;
+  onSiteClick: (site: string | null) => void;
+}) {
   const router = useRouter();
   const postCounts = useMemo(() => {
     const m: Record<string, number> = {};
@@ -148,6 +152,7 @@ function Sidebar({ sites, posts, activeSite }: { sites: StaticSite[]; posts: Sta
               }}
               onMouseEnter={e => { if (activeSite !== item.key) e.currentTarget.style.background = 'var(--hover)'; }}
               onMouseLeave={e => { if (activeSite !== item.key) e.currentTarget.style.background = 'transparent'; }}
+              onClick={() => item.key === 'hot' ? router.push('/hot') : onSiteClick(item.key)}
             >
               <span className="w-2 h-2 rounded flex-shrink-0" style={{ background: item.color }} />
               <span className="flex-1 min-w-0 truncate">{item.label}</span>
@@ -181,6 +186,7 @@ function Sidebar({ sites, posts, activeSite }: { sites: StaticSite[]; posts: Sta
                   }}
                   onMouseEnter={e => { if (!isActive) e.currentTarget.style.background = 'var(--hover)'; }}
                   onMouseLeave={e => { if (!isActive) e.currentTarget.style.background = 'transparent'; }}
+                  onClick={() => onSiteClick(isActive ? null : s.name)}
                 >
                   <span className="w-2 h-2 rounded flex-shrink-0" style={{ background: color }} />
                   <span className="flex-1 min-w-0 truncate">{s.displayName}</span>
@@ -328,6 +334,7 @@ export function DashboardHome({ initialPosts, initialSites }: Props) {
   const [loading, setLoading] = useState(false);
   const [isApp, setIsApp] = useState(false);
   const [isAdLoaded, setIsAdLoaded] = useState(false);
+  const [activeSite, setActiveSite] = useState<string | null>(null);
 
   useEffect(() => {
     const isCapacitor = typeof window !== 'undefined' && (
@@ -387,7 +394,7 @@ export function DashboardHome({ initialPosts, initialSites }: Props) {
       {/* Desktop: 3-column dashboard */}
       <div className="hidden sm:flex" style={{ minHeight: '100vh' }}>
         <Rail pathname={pathname} />
-        <Sidebar sites={filteredSites} posts={displayPosts} activeSite={null} />
+        <Sidebar sites={filteredSites} posts={displayPosts} activeSite={activeSite} onSiteClick={setActiveSite} />
 
         {/* Main content area */}
         <div className="flex-1 flex flex-col min-w-0 overflow-auto">
@@ -442,23 +449,15 @@ export function DashboardHome({ initialPosts, initialSites }: Props) {
               </div>
             )}
 
-            {/* Feed + Trend panel */}
+            {/* Feed */}
             {!loading && (
-              <div className="grid gap-4" style={{ gridTemplateColumns: 'minmax(0, 1.7fr) minmax(260px, 1fr)' }}>
-                {/* Left: post feed */}
-                <section className="rounded-xl overflow-hidden" style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}>
-                  <div className="flex items-center justify-between px-4 py-3" style={{ borderBottom: '1px solid var(--border)' }}>
-                    <h3 className="text-sm font-semibold" style={{ color: 'var(--fg)', margin: 0 }}>🔥 실시간 인기 게시글</h3>
-                    <span className="text-[11px]" style={{ color: 'var(--fg-3)' }}>자동 갱신 · {new Date().toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' })}</span>
-                  </div>
-                  <PostList posts={displayPosts} sites={filteredSites} />
-                </section>
-
-                {/* Right: trend panel */}
-                <div className="flex flex-col gap-4">
-                  <TrendSummary posts={displayPosts} sites={filteredSites} />
+              <section className="rounded-xl overflow-hidden" style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}>
+                <div className="flex items-center justify-between px-4 py-3" style={{ borderBottom: '1px solid var(--border)' }}>
+                  <h3 className="text-sm font-semibold" style={{ color: 'var(--fg)', margin: 0 }}>🔥 실시간 인기 게시글</h3>
+                  <span className="text-[11px]" style={{ color: 'var(--fg-3)' }}>자동 갱신 · {new Date().toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' })}</span>
                 </div>
-              </div>
+                <PostList posts={displayPosts} sites={filteredSites} selectedSite={activeSite} />
+              </section>
             )}
           </div>
         </div>
