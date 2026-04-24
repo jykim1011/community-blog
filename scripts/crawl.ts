@@ -113,15 +113,17 @@ async function main() {
   console.log(`기존 게시글: ${existingPosts.length}건`);
   console.log(`크롤링 대상: ${Object.keys(sitesToCrawl).join(', ')}`);
 
-  // 크롤링 실행
-  let newPosts: StaticPost[] = [];
+  // 크롤러별 타임아웃 (90초) - 개별 크롤러가 멈춰도 전체를 막지 않음
+  const CRAWLER_TIMEOUT_MS = 90_000;
 
-  for (const [siteName, crawler] of Object.entries(sitesToCrawl)) {
+  async function crawlSite(siteName: string, crawler: (typeof sitesToCrawl)[string]): Promise<StaticPost[]> {
+    const config = siteConfigs[siteName] || { displayName: siteName, url: '', category: 'community' as const };
+    const timeout = new Promise<never>((_, reject) =>
+      setTimeout(() => reject(new Error(`타임아웃 (${CRAWLER_TIMEOUT_MS / 1000}s)`)), CRAWLER_TIMEOUT_MS)
+    );
     try {
       console.log(`[${siteName}] 크롤링 시작...`);
-      const posts = await crawler.crawl();
-
-      const config = siteConfigs[siteName] || { displayName: siteName, url: '', category: 'community' as const };
+      const posts = await Promise.race([crawler.crawl(), timeout]);
       const staticPosts: StaticPost[] = posts.map((post) => ({
         id: `${siteName}-${Date.now()}-${Math.random().toString(36).slice(2, 8)}`,
         title: post.title,
@@ -138,13 +140,22 @@ async function main() {
         fetchedAt: now.toISOString(),
         category: post.category,
       }));
-
-      newPosts = newPosts.concat(staticPosts);
       console.log(`[${siteName}] ${staticPosts.length}건 크롤링 완료`);
+      return staticPosts;
     } catch (error) {
-      console.error(`[${siteName}] 크롤링 실패:`, error);
+      console.error(`[${siteName}] 크롤링 실패:`, (error as Error).message);
+      return [];
     }
   }
+
+  // 모든 크롤러 병렬 실행
+  const crawlResults = await Promise.allSettled(
+    Object.entries(sitesToCrawl).map(([siteName, crawler]) => crawlSite(siteName, crawler))
+  );
+
+  const newPosts: StaticPost[] = crawlResults.flatMap((result) =>
+    result.status === 'fulfilled' ? result.value : []
+  );
 
   // 머지: URL 기준 중복 제거 (새 게시글 우선)
   const urlSet = new Set<string>();
