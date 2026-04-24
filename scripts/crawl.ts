@@ -299,7 +299,9 @@ async function main() {
   console.log(`  - 커뮤니티 프로필 ${analysis.communityProfiles.length}개`);
 }
 
-main().catch((error) => {
-  console.error('크롤링 스크립트 오류:', error);
-  process.exit(1);
-});
+main()
+  .then(() => process.exit(0))
+  .catch((error) => {
+    console.error('크롤링 스크립트 오류:', error);
+    process.exit(1);
+  });
