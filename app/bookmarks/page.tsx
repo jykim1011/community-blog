@@ -15,7 +15,8 @@ export default function BookmarksPage() {
     if (Capacitor.isNativePlatform()) {
       e.preventDefault();
       try {
-        await InAppBrowser.openWebView({ url });
+        const height = Math.round(window.screen.height) - 60;
+        await InAppBrowser.openWebView({ url, height });
       } catch {
         window.open(url, '_blank');
       }
