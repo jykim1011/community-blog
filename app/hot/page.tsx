@@ -1,7 +1,5 @@
 import { SiteHeader } from '@/components/site-header';
 import { HotPosts } from '@/components/hot-posts';
-import { AdMobBanner } from '@/components/admob-banner';
-import { BottomAdContainer } from '@/components/bottom-ad-container';
 import postsData from '@/data/posts.json';
 import type { StaticPost } from '@/lib/types';
 
@@ -21,8 +19,6 @@ export default function HotPage() {
     <>
       <SiteHeader />
       <HotPosts posts={hotPosts} />
-      <AdMobBanner position="bottom" />
-      <BottomAdContainer />
     </>
   );
 }

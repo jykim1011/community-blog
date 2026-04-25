@@ -2,6 +2,8 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { SITE_URL, SITE_NAME, SITE_DESCRIPTION } from "@/lib/constants";
 import Script from "next/script";
+import { AdMobBanner } from '@/components/admob-banner';
+import { BottomAdContainer } from '@/components/bottom-ad-container';
 import "./globals.css";
 
 const geistSans = Geist({
@@ -70,6 +72,8 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
+        <AdMobBanner position="bottom" />
+        <BottomAdContainer />
         {children}
       </body>
     </html>

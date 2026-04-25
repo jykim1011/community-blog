@@ -5,8 +5,6 @@ import { useRouter } from 'next/navigation';
 import { useSubscriptions } from '@/lib/hooks/use-subscriptions';
 import { siteConfigs, categoryLabels, type SiteCategory } from '@/lib/constants';
 import { SiteHeader } from '@/components/site-header';
-import { AdMobBanner } from '@/components/admob-banner';
-import { BottomAdContainer } from '@/components/bottom-ad-container';
 import { adStateManager } from '@/lib/ad-state';
 
 interface SiteWithCount {
@@ -131,8 +129,6 @@ export default function SettingsPage() {
         <div className="flex items-center justify-center h-96">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
         </div>
-        <AdMobBanner position="bottom" />
-        <BottomAdContainer />
       </div>
     );
   }
@@ -240,8 +236,6 @@ export default function SettingsPage() {
         </div>
       </main>
 
-      <AdMobBanner position="bottom" />
-      <BottomAdContainer />
     </div>
   );
 }

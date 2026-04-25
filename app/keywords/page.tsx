@@ -2,8 +2,6 @@ import Link from 'next/link';
 import { SiteHeader } from '@/components/site-header';
 import { SiteFooter } from '@/components/site-footer';
 import { ShareButton } from '@/components/share-button';
-import { AdMobBanner } from '@/components/admob-banner';
-import { BottomAdContainer } from '@/components/bottom-ad-container';
 import { SITE_URL, SITE_NAME } from '@/lib/constants';
 import analysisData from '@/data/analysis.json';
 import postsData from '@/data/posts.json';
@@ -120,10 +118,6 @@ export default function KeywordsPage() {
           </p>
         </div>
       </main>
-
-      {/* 하단 광고 (앱: AdMob, 웹: AdSense) */}
-      <AdMobBanner position="bottom" />
-      <BottomAdContainer />
 
       <SiteFooter />
     </div>

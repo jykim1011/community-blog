@@ -5,8 +5,6 @@ import { useSearchParams } from 'next/navigation';
 import { PostCard } from '@/components/post-card';
 import { SiteHeader } from '@/components/site-header';
 import { SiteFooter } from '@/components/site-footer';
-import { AdMobBanner } from '@/components/admob-banner';
-import { BottomAdContainer } from '@/components/bottom-ad-container';
 import postsData from '@/data/posts.json';
 import sitesData from '@/data/sites.json';
 import type { StaticPost, StaticSite } from '@/lib/types';
@@ -118,10 +116,6 @@ function SearchContent() {
         )}
       </main>
 
-      {/* 하단 광고 (앱: AdMob, 웹: AdSense) */}
-      <AdMobBanner position="bottom" />
-      <BottomAdContainer />
-
       <SiteFooter />
     </div>
   );
@@ -135,8 +129,6 @@ export default function SearchPage() {
         <div className="flex items-center justify-center py-12">
           <div className="text-gray-600 dark:text-gray-400">로딩 중...</div>
         </div>
-        <AdMobBanner position="bottom" />
-        <BottomAdContainer />
         <SiteFooter />
       </div>
     }>

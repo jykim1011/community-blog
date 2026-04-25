@@ -4,10 +4,23 @@ import { useBookmarks } from '@/lib/hooks/use-bookmarks';
 import { useReadPosts } from '@/lib/hooks/use-read-posts';
 import { siteConfigs } from '@/lib/constants';
 import { formatRelativeTime } from '@/lib/utils';
+import { Capacitor } from '@capacitor/core';
+import { Browser } from '@capacitor/browser';
 
 export default function BookmarksPage() {
   const { bookmarks, isLoaded, removeBookmark, clearBookmarks } = useBookmarks();
   const { clearReadPosts } = useReadPosts();
+
+  const handleLinkClick = async (e: React.MouseEvent | React.KeyboardEvent, url: string) => {
+    if (Capacitor.isNativePlatform()) {
+      e.preventDefault();
+      try {
+        await Browser.open({ url, presentationStyle: 'popover' });
+      } catch {
+        window.open(url, '_blank');
+      }
+    }
+  };
 
   if (!isLoaded) {
     return (
@@ -86,6 +99,8 @@ export default function BookmarksPage() {
                       href={bookmark.url}
                       target="_blank"
                       rel="noopener noreferrer"
+                      onClick={(e) => handleLinkClick(e, bookmark.url)}
+                      onKeyDown={(e) => { if (e.key === ' ') handleLinkClick(e, bookmark.url); }}
                       className="flex-1 min-w-0"
                     >
                       <h3 className="text-base font-semibold text-gray-900 dark:text-gray-100 mb-2 line-clamp-2">
