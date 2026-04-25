@@ -61,7 +61,12 @@ export function PostCard({ title, author, url, site, viewCount, commentCount, li
     if (Capacitor.isNativePlatform()) {
       e.preventDefault();
       try {
-        const height = Math.round(window.screen.height) - 60;
+        const el = document.createElement('div');
+        el.style.paddingBottom = 'env(safe-area-inset-bottom, 0px)';
+        document.documentElement.appendChild(el);
+        const safeBottom = parseFloat(getComputedStyle(el).paddingBottom) || 0;
+        el.remove();
+        const height = Math.round(window.screen.height) - 60 - Math.round(safeBottom);
         await InAppBrowser.openWebView({ url, height });
       } catch {
         window.open(url, '_blank');
