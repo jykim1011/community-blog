@@ -473,8 +473,8 @@ export function DashboardHome({ initialPosts, initialSites }: Props) {
         }}
       >
         {/* Mobile top bar */}
-        <div className="flex items-center justify-between px-4 py-3 sticky top-0 z-10"
-          style={{ background: 'var(--surface)', borderBottom: '1px solid var(--border)' }}>
+        <div className="flex items-center justify-between px-4 py-3 sticky z-10"
+          style={{ top: 'env(safe-area-inset-top, 0px)', background: 'var(--surface)', borderBottom: '1px solid var(--border)' }}>
           <span className="text-base font-bold" style={{ color: 'var(--fg)' }}>{SITE_NAME}</span>
           <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: 'var(--pos)' }} />
         </div>

@@ -18,10 +18,10 @@ export default function BookmarksPage() {
         const el = document.createElement('div');
         el.style.paddingBottom = 'env(safe-area-inset-bottom, 0px)';
         document.documentElement.appendChild(el);
-        const safeBottom = parseFloat(getComputedStyle(el).paddingBottom) || 0;
+        const safeBottom = Math.max(parseFloat(getComputedStyle(el).paddingBottom) || 0, 56);
         el.remove();
         const height = Math.round(window.screen.height) - 60 - Math.round(safeBottom);
-        await InAppBrowser.openWebView({ url, height });
+        await InAppBrowser.openWebView({ url, height, useTopInset: true });
       } catch {
         window.open(url, '_blank');
       }
