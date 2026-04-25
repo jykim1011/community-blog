@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { Capacitor } from '@capacitor/core';
+import { Browser } from '@capacitor/browser';
 import { formatRelativeTime, formatNumber } from '@/lib/utils';
 import { useReadPosts } from '@/lib/hooks/use-read-posts';
 
@@ -53,7 +55,14 @@ export function PostCard({ title, author, url, site, viewCount, commentCount, li
     return () => clearInterval(t);
   }, [createdAt]);
 
-  const handleClick = () => markAsRead(url);
+  const handleClick = async (e: React.MouseEvent | React.KeyboardEvent) => {
+    markAsRead(url);
+
+    if (Capacitor.isNativePlatform()) {
+      e.preventDefault();
+      await Browser.open({ url, presentationStyle: 'popover' });
+    }
+  };
   const isReadPost = isLoaded && isRead(url);
   const theme = SITE_THEME[site.name] || { color: '#71717a', domain: site.name };
 
@@ -63,6 +72,7 @@ export function PostCard({ title, author, url, site, viewCount, commentCount, li
       target="_blank"
       rel="noopener noreferrer"
       onClick={handleClick}
+      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleClick(e); }}
       className="grid gap-3 px-4 py-3 border-b last:border-b-0 transition-colors cursor-pointer"
       style={{
         gridTemplateColumns: '3px 1fr',
