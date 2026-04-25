@@ -60,7 +60,11 @@ export function PostCard({ title, author, url, site, viewCount, commentCount, li
 
     if (Capacitor.isNativePlatform()) {
       e.preventDefault();
-      await Browser.open({ url, presentationStyle: 'popover' });
+      try {
+        await Browser.open({ url, presentationStyle: 'popover' });
+      } catch {
+        window.open(url, '_blank');
+      }
     }
   };
   const isReadPost = isLoaded && isRead(url);
@@ -72,7 +76,7 @@ export function PostCard({ title, author, url, site, viewCount, commentCount, li
       target="_blank"
       rel="noopener noreferrer"
       onClick={handleClick}
-      onKeyDown={(e) => { if (e.key === 'Enter' || e.key === ' ') handleClick(e); }}
+      onKeyDown={(e) => { if (e.key === ' ') handleClick(e); }}
       className="grid gap-3 px-4 py-3 border-b last:border-b-0 transition-colors cursor-pointer"
       style={{
         gridTemplateColumns: '3px 1fr',
