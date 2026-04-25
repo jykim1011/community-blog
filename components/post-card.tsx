@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Capacitor } from '@capacitor/core';
-import { Browser } from '@capacitor/browser';
+import { InAppBrowser } from '@capgo/inappbrowser';
 import { formatRelativeTime, formatNumber } from '@/lib/utils';
 import { useReadPosts } from '@/lib/hooks/use-read-posts';
 
@@ -61,7 +61,7 @@ export function PostCard({ title, author, url, site, viewCount, commentCount, li
     if (Capacitor.isNativePlatform()) {
       e.preventDefault();
       try {
-        await Browser.open({ url, presentationStyle: 'popover' });
+        await InAppBrowser.openWebView({ url });
       } catch {
         window.open(url, '_blank');
       }

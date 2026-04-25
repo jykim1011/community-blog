@@ -5,7 +5,7 @@ import { useReadPosts } from '@/lib/hooks/use-read-posts';
 import { siteConfigs } from '@/lib/constants';
 import { formatRelativeTime } from '@/lib/utils';
 import { Capacitor } from '@capacitor/core';
-import { Browser } from '@capacitor/browser';
+import { InAppBrowser } from '@capgo/inappbrowser';
 
 export default function BookmarksPage() {
   const { bookmarks, isLoaded, removeBookmark, clearBookmarks } = useBookmarks();
@@ -15,7 +15,7 @@ export default function BookmarksPage() {
     if (Capacitor.isNativePlatform()) {
       e.preventDefault();
       try {
-        await Browser.open({ url, presentationStyle: 'popover' });
+        await InAppBrowser.openWebView({ url });
       } catch {
         window.open(url, '_blank');
       }
