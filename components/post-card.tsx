@@ -2,7 +2,7 @@
 
 import { useState, useEffect } from 'react';
 import { Capacitor } from '@capacitor/core';
-import { InAppBrowser } from '@capgo/inappbrowser';
+import { InAppBrowser, ToolBarType } from '@capgo/inappbrowser';
 import { formatRelativeTime, formatNumber } from '@/lib/utils';
 import { useReadPosts } from '@/lib/hooks/use-read-posts';
 
@@ -64,10 +64,18 @@ export function PostCard({ title, author, url, site, viewCount, commentCount, li
         const el = document.createElement('div');
         el.style.paddingBottom = 'env(safe-area-inset-bottom, 0px)';
         document.documentElement.appendChild(el);
-        const safeBottom = Math.max(parseFloat(getComputedStyle(el).paddingBottom) || 0, 56);
+        const navInset = parseFloat(getComputedStyle(el).paddingBottom) || 0;
         el.remove();
-        const height = Math.round(window.screen.height) - 60 - Math.round(safeBottom);
-        await InAppBrowser.openWebView({ url, height, useTopInset: true });
+        const AD_BANNER_HEIGHT = 80;
+        const bottomReserved = Math.round(navInset) + AD_BANNER_HEIGHT;
+        const height = Math.round(window.screen.height) - bottomReserved;
+        const y = -Math.round(bottomReserved / 2);
+        await InAppBrowser.openWebView({
+          url,
+          height,
+          y,
+          toolbarType: ToolBarType.BLANK,
+        });
       } catch {
         window.open(url, '_blank');
       }
