@@ -1,6 +1,8 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
+import { Capacitor } from '@capacitor/core';
+import { InAppBrowser, ToolBarType } from '@capgo/inappbrowser';
 import { formatRelativeTime, formatNumber } from '@/lib/utils';
 import { useReadPosts } from '@/lib/hooks/use-read-posts';
 import { adStateManager } from '@/lib/ad-state';
@@ -51,12 +53,32 @@ function HotPostItem({ post, rank }: { post: StaticPost; rank: number }) {
   const isReadPost = isLoaded && isRead(post.url);
   const isTop3 = rank <= 3;
 
+  const handleClick = async (e: React.MouseEvent) => {
+    markAsRead(post.url);
+    if (Capacitor.isNativePlatform()) {
+      e.preventDefault();
+      try {
+        const el = document.createElement('div');
+        el.style.paddingBottom = 'env(safe-area-inset-bottom, 0px)';
+        document.documentElement.appendChild(el);
+        const navInset = parseFloat(getComputedStyle(el).paddingBottom) || 0;
+        el.remove();
+        const AD_BANNER_HEIGHT = 60;
+        const bottomReserved = Math.round(navInset) + AD_BANNER_HEIGHT;
+        const height = Math.round(window.innerHeight) - bottomReserved;
+        await InAppBrowser.openWebView({ url: post.url, height, toolbarType: ToolBarType.BLANK });
+      } catch {
+        window.open(post.url, '_blank');
+      }
+    }
+  };
+
   return (
     <a
       href={post.url}
       target="_blank"
       rel="noopener noreferrer"
-      onClick={() => markAsRead(post.url)}
+      onClick={handleClick}
       className="flex items-stretch border-b last:border-b-0 cursor-pointer transition-colors"
       style={{ borderColor: 'var(--border)', backgroundColor: 'transparent' }}
       onMouseEnter={e => e.currentTarget.style.backgroundColor = 'var(--hover)'}
