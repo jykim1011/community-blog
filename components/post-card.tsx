@@ -66,14 +66,13 @@ export function PostCard({ title, author, url, site, viewCount, commentCount, li
         document.documentElement.appendChild(el);
         const navInset = parseFloat(getComputedStyle(el).paddingBottom) || 0;
         el.remove();
-        const AD_BANNER_HEIGHT = 80;
+        const AD_BANNER_HEIGHT = 60;
         const bottomReserved = Math.round(navInset) + AD_BANNER_HEIGHT;
-        const height = Math.round(window.screen.height) - bottomReserved;
-        const y = -Math.round(bottomReserved / 2);
+        // innerHeight = content area height (status bar 제외), Gravity.TOP으로 상단 고정
+        const height = Math.round(window.innerHeight) - bottomReserved;
         await InAppBrowser.openWebView({
           url,
           height,
-          y,
           toolbarType: ToolBarType.BLANK,
         });
       } catch {
