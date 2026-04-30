@@ -23,7 +23,7 @@ const SITE_ESSENTIAL_PARAMS: Record<string, string[]> = {
   slrclub: ['id', 'no'], // 게시판 ID + 게시글 번호
   gasengi: ['bo_table', 'wr_id'], // 게시판 + 게시글 ID
   hygall: ['document_srl'], // 문서 일련번호
-  todayhumor: ['no'], // 게시글 번호
+  todayhumor: ['table', 'no'], // 게시판 테이블 + 게시글 번호
   inven: [], // URL 경로에 ID 포함
   quasarzone: [], // URL 경로에 ID 포함 (/bbs/qb_saleinfo/views/12345)
   extmovie: [], // URL 경로에 ID 포함
