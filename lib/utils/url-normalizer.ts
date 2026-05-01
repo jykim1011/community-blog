@@ -16,7 +16,7 @@ const SITE_ESSENTIAL_PARAMS: Record<string, string[]> = {
   mlbpark: ['b', 'id'], // 게시판 + ID
   natepann: ['s', 'n'], // 게시판 + 번호
   ilbe: ['no'], // 게시글 번호
-  bobaedream: ['No'], // 게시글 번호 (대문자 주의!)
+  bobaedream: ['code', 'No'], // 게시판 코드 + 게시글 번호
   etoland: ['no'], // 게시글 번호
   humoruniv: ['table', 'no'], // 게시판 + 번호
   cook82: ['no'], // 게시글 번호
