@@ -114,7 +114,7 @@ async function main() {
   console.log(`크롤링 대상: ${Object.keys(sitesToCrawl).join(', ')}`);
 
   // 크롤러별 타임아웃 (90초) - 개별 크롤러가 멈춰도 전체를 막지 않음
-  const CRAWLER_TIMEOUT_MS = 90_000;
+  const CRAWLER_TIMEOUT_MS = 60_000;
 
   async function crawlSite(siteName: string, crawler: (typeof sitesToCrawl)[string]): Promise<StaticPost[]> {
     const config = siteConfigs[siteName] || { displayName: siteName, url: '', category: 'community' as const };

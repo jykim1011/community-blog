@@ -15,7 +15,7 @@ permissions:
 jobs:
   crawl:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v4
         with:
@@ -29,6 +29,8 @@ jobs:
       - run: npm ci
 
       - name: Run crawler
+        env:
+          TZ: Asia/Seoul
         run: npx tsx scripts/crawl.ts
 
       - name: Commit and push
