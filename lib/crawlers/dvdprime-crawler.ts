@@ -12,40 +12,60 @@ export class DvdprimeCrawler extends BaseCrawler {
   async crawl(): Promise<Post[]> {
     const allPosts: Post[] = [];
     const PAGES_TO_CRAWL = 10;
+    const MAX_RATE_LIMIT_RETRIES = 2;
 
     try {
       console.log(`[${this.siteName}] Starting crawl...`);
 
+      // Acquire session cookies first to reduce bot detection
+      let sessionCookies = '';
+      try {
+        const mainRes = await axios.get(this.baseUrl, {
+          headers: { 'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36' },
+          timeout: 10000,
+        });
+        const setCookie = mainRes.headers['set-cookie'];
+        if (setCookie) {
+          sessionCookies = setCookie.map((c: string) => c.split(';')[0]).join('; ');
+        }
+      } catch {
+        // continue without cookies
+      }
+
       for (let page = 1; page <= PAGES_TO_CRAWL; page++) {
-        try {
-          const pageUrl = this.getPageUrl(page);
-          const posts = await this.crawlPage(pageUrl);
+        let rateLimitRetries = 0;
+        let success = false;
 
-          if (posts.length === 0) {
-            console.log(`[${this.siteName}] No more posts at page ${page}, stopping`);
-            break;
+        while (!success && rateLimitRetries <= MAX_RATE_LIMIT_RETRIES) {
+          try {
+            const pageUrl = this.getPageUrl(page);
+            const posts = await this.crawlPage(pageUrl, sessionCookies);
+
+            if (posts.length === 0) {
+              console.log(`[${this.siteName}] No more posts at page ${page}, stopping`);
+              return allPosts;
+            }
+
+            allPosts.push(...posts);
+            if (page < PAGES_TO_CRAWL) await this.delay(2000);
+            success = true;
+          } catch (error) {
+            if ((error as any).response?.status === 429) {
+              rateLimitRetries++;
+              if (rateLimitRetries > MAX_RATE_LIMIT_RETRIES) {
+                console.warn(`[${this.siteName}] Rate limited repeatedly, stopping`);
+                return allPosts;
+              }
+              console.warn(`[${this.siteName}] Rate limited, retry ${rateLimitRetries}/${MAX_RATE_LIMIT_RETRIES}`);
+              await this.delay(5000 * rateLimitRetries);
+            } else if ((error as any).response?.status === 404) {
+              console.log(`[${this.siteName}] Page ${page} not found, stopping`);
+              return allPosts;
+            } else {
+              console.error(`[${this.siteName}] Error at page ${page}:`, (error as Error).message);
+              return allPosts;
+            }
           }
-
-          allPosts.push(...posts);
-
-          if (page < PAGES_TO_CRAWL) {
-            await this.delay(1000);
-          }
-        } catch (error) {
-          if ((error as any).response?.status === 429) {
-            console.warn(`[${this.siteName}] Rate limited at page ${page}, waiting 10 seconds...`);
-            await this.delay(10000);
-            page--;
-            continue;
-          }
-
-          if ((error as any).response?.status === 404) {
-            console.log(`[${this.siteName}] Page ${page} not found, stopping`);
-            break;
-          }
-
-          console.error(`[${this.siteName}] Error at page ${page}:`, (error as Error).message);
-          break;
         }
       }
 
@@ -62,15 +82,19 @@ export class DvdprimeCrawler extends BaseCrawler {
     return `${this.boardUrl}&page=${page}`;
   }
 
-  private async crawlPage(url: string): Promise<Post[]> {
+  private async crawlPage(url: string, cookies = ''): Promise<Post[]> {
     const response = await axios.get(url, {
       headers: {
-        'User-Agent':
-          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-        Referer: this.baseUrl,
-        Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+        'Referer': this.baseUrl,
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+        'Accept-Language': 'ko-KR,ko;q=0.9,en-US;q=0.8,en;q=0.7',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Connection': 'keep-alive',
+        'Upgrade-Insecure-Requests': '1',
+        ...(cookies ? { 'Cookie': cookies } : {}),
       },
-      timeout: 10000,
+      timeout: 15000,
     });
 
     const $ = cheerio.load(response.data);
