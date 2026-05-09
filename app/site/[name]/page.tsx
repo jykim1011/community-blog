@@ -1,17 +1,17 @@
 import type { Metadata } from 'next';
 import Link from 'next/link';
+import fs from 'fs';
+import path from 'path';
 import { PostList } from '@/components/post-list';
 import { SiteHeader } from '@/components/site-header';
 import { SiteFooter } from '@/components/site-footer';
 import { ShareButton } from '@/components/share-button';
 import { SITE_URL, SITE_NAME, siteConfigs } from '@/lib/constants';
 import { crawlers } from '@/lib/crawlers';
-import postsData from '@/data/posts.json';
 import sitesData from '@/data/sites.json';
 import analysisData from '@/data/analysis.json';
 import type { StaticPost, StaticSite } from '@/lib/types';
 
-const allPosts: StaticPost[] = postsData as StaticPost[];
 const allSites: StaticSite[] = sitesData as StaticSite[];
 const analysis = analysisData as {
   communityProfiles: {
@@ -68,7 +68,15 @@ export default function SitePage({
   const config = siteConfigs[params.name];
   const profile = analysis.communityProfiles.find((p) => p.name === params.name);
   const displayName = config?.displayName || params.name;
-  const sitePosts = allPosts.filter((post) => post.site === params.name);
+
+  let sitePosts: StaticPost[] = [];
+  try {
+    const siteFilePath = path.join(process.cwd(), 'data', 'sites', `${params.name}.json`);
+    const siteData = JSON.parse(fs.readFileSync(siteFilePath, 'utf-8')) as { posts: StaticPost[] };
+    sitePosts = siteData.posts;
+  } catch {
+    sitePosts = [];
+  }
 
   const jsonLd = {
     '@context': 'https://schema.org',
