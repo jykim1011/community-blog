@@ -289,10 +289,8 @@ function MobileNav({ pathname, isApp, isAdLoaded }: { pathname: string; isApp: b
   const router = useRouter();
   const items = [
     { href: '/', label: '홈', icon: ICONS.home },
-    { href: '/trends', label: '트렌드', icon: ICONS.trend },
     { href: '/hot', label: '인기글', icon: ICONS.hot },
     { href: '/settings', label: '설정', icon: ICONS.settings },
-    { href: '/communities', label: '가이드', icon: ICONS.guide },
   ];
   return (
     <nav
