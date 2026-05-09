@@ -132,7 +132,7 @@ export class EtolandCrawler extends BaseCrawler {
       const title: string = article.subject || '';
       if (!title) return null;
 
-      const url = `${this.baseUrl}/${boTable}/${slug}`;
+      const url = `${this.baseUrl}/b/${boTable}/view/${slug}`;
 
       const rawThumb: string | undefined = article.thumbnail;
       const thumbnail = rawThumb
