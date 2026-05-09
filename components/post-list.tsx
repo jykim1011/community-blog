@@ -5,12 +5,12 @@ import { PostCard } from '@/components/post-card';
 import { SiteFilter } from '@/components/site-filter';
 import { SortSelector, SortOption } from '@/components/sort-selector';
 import { PullToRefresh } from '@/components/pull-to-refresh';
-import { useMediaQuery } from '@/lib/hooks/use-media-query';
 import { useLocalStorage } from '@/lib/hooks/use-local-storage';
 import { SiteCategory } from '@/lib/constants';
 import type { StaticPost, StaticSite } from '@/lib/types';
 
 const POSTS_PER_PAGE = 20;
+const INITIAL_COUNT = 20;
 
 interface PostListProps {
   posts: StaticPost[];
@@ -22,24 +22,19 @@ export function PostList({ posts, sites, selectedSite }: PostListProps) {
   const [currentSite, setCurrentSite] = useState<string | null>(null);
   const [currentCategory, setCurrentCategory] = useLocalStorage<SiteCategory | null>('feed-category', null);
   const [currentSort, setCurrentSort] = useLocalStorage<SortOption>('feed-sort', 'recent');
-  const [currentPage, setCurrentPage] = useState(1);
-  const [displayedCount, setDisplayedCount] = useState(10);
+  const [displayedCount, setDisplayedCount] = useState(INITIAL_COUNT);
   const [isLoading, setIsLoading] = useState(false);
 
   // 사이드바에서 사이트 선택 시 동기화
   useEffect(() => {
     if (selectedSite !== undefined) {
       setCurrentSite(selectedSite ?? null);
-      setCurrentPage(1);
-      setDisplayedCount(20);
+      setDisplayedCount(INITIAL_COUNT);
     }
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [selectedSite]);
 
-  // PC/모바일 감지 (md = 768px)
-  const isDesktop = useMediaQuery('(min-width: 768px)');
-
-  const filteredPosts = useMemo(() => {
+const filteredPosts = useMemo(() => {
     // 1. 카테고리 필터링 (사이트 카테고리 기준)
     let filtered = currentCategory
       ? posts.filter((post) => post.siteCategory === currentCategory)
@@ -76,25 +71,16 @@ export function PostList({ posts, sites, selectedSite }: PostListProps) {
   }, [posts, currentSite, currentCategory, currentSort]);
 
   const displayedPosts = useMemo(() => {
-    if (isDesktop) {
-      // PC: 페이징 방식
-      const start = (currentPage - 1) * POSTS_PER_PAGE;
-      const end = start + POSTS_PER_PAGE;
-      return filteredPosts.slice(start, end);
-    } else {
-      // 모바일: 무한 스크롤 방식
-      return filteredPosts.slice(0, displayedCount);
-    }
-  }, [filteredPosts, isDesktop, currentPage, displayedCount]);
+    return filteredPosts.slice(0, displayedCount);
+  }, [filteredPosts, displayedCount]);
 
-  const totalPages = Math.ceil(filteredPosts.length / POSTS_PER_PAGE);
   const hasMore = displayedCount < filteredPosts.length;
 
   const loadMoreRef = useRef<HTMLDivElement>(null);
 
-  // 무한 스크롤 (모바일 전용)
+  // 무한 스크롤
   useEffect(() => {
-    if (isDesktop || !hasMore || isLoading) return;
+    if (!hasMore || isLoading) return;
 
     const observer = new IntersectionObserver(
       (entries) => {
@@ -121,32 +107,24 @@ export function PostList({ posts, sites, selectedSite }: PostListProps) {
     }
 
     return () => observer.disconnect();
-  }, [isDesktop, hasMore, isLoading, filteredPosts.length]);
+  }, [hasMore, isLoading, filteredPosts.length]);
 
   const handleSiteChange = (site: string | null) => {
     setCurrentSite(site);
-    setCurrentPage(1);
-    setDisplayedCount(20);
+    setDisplayedCount(INITIAL_COUNT);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleCategoryChange = (category: SiteCategory | null) => {
     setCurrentCategory(category);
-    setCurrentSite(null); // 카테고리 변경 시 사이트 필터 초기화
-    setCurrentPage(1);
-    setDisplayedCount(20);
+    setCurrentSite(null);
+    setDisplayedCount(INITIAL_COUNT);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   const handleSortChange = (sort: SortOption) => {
     setCurrentSort(sort);
-    setCurrentPage(1);
-    setDisplayedCount(20);
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-  };
-
-  const handlePageChange = (page: number) => {
-    setCurrentPage(page);
+    setDisplayedCount(INITIAL_COUNT);
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
@@ -220,53 +198,8 @@ export function PostList({ posts, sites, selectedSite }: PostListProps) {
             ))}
           </div>
 
-          {/* PC: 페이징 버튼 */}
-          {isDesktop && totalPages > 1 && (
-            <div className="mt-8 flex justify-center items-center gap-2">
-              <button
-                onClick={() => handlePageChange(currentPage - 1)}
-                disabled={currentPage === 1}
-                className="px-4 py-2 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-sm font-medium text-gray-700 dark:text-gray-300 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors"
-              >
-                ← 이전
-              </button>
-
-              <div className="flex items-center gap-1">
-                {Array.from({ length: Math.min(totalPages, 10) }, (_, i) => {
-                  let pageNum: number;
-                  if (totalPages <= 10) pageNum = i + 1;
-                  else if (currentPage <= 5) pageNum = i + 1;
-                  else if (currentPage >= totalPages - 4) pageNum = totalPages - 9 + i;
-                  else pageNum = currentPage - 4 + i;
-
-                  return (
-                    <button
-                      key={pageNum}
-                      onClick={() => handlePageChange(pageNum)}
-                      className={`w-9 h-9 rounded-lg text-sm font-medium transition-colors ${
-                        currentPage === pageNum
-                          ? 'bg-blue-600 text-white'
-                          : 'bg-white dark:bg-gray-800 border border-gray-200 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-50 dark:hover:bg-gray-750'
-                      }`}
-                    >
-                      {pageNum}
-                    </button>
-                  );
-                })}
-              </div>
-
-              <button
-                onClick={() => handlePageChange(currentPage + 1)}
-                disabled={currentPage === totalPages}
-                className="px-4 py-2 border border-gray-200 dark:border-gray-700 rounded-lg bg-white dark:bg-gray-800 text-sm font-medium text-gray-700 dark:text-gray-300 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-gray-50 dark:hover:bg-gray-750 transition-colors"
-              >
-                다음 →
-              </button>
-            </div>
-          )}
-
-          {/* 모바일: 무한 스크롤 로딩 표시기 */}
-          {!isDesktop && hasMore && (
+          {/* 무한 스크롤 로딩 표시기 */}
+          {hasMore && (
             <div ref={loadMoreRef} className="py-8 flex justify-center">
               {isLoading ? (
                 <div className="flex items-center gap-2 text-gray-500">
@@ -292,8 +225,8 @@ export function PostList({ posts, sites, selectedSite }: PostListProps) {
             </div>
           )}
 
-          {/* 모바일: 완료 메시지 */}
-          {!isDesktop && !hasMore && displayedPosts.length > 0 && (
+          {/* 완료 메시지 */}
+          {!hasMore && displayedPosts.length > 0 && (
             <div className="py-8 text-center text-sm text-gray-500 dark:text-gray-400">
               모든 게시글을 확인했습니다
             </div>
