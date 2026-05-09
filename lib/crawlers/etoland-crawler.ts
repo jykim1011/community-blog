@@ -1,260 +1,166 @@
 import axios from 'axios';
-import * as cheerio from 'cheerio';
-import * as iconv from 'iconv-lite';
 import { BaseCrawler } from './base-crawler';
 import { type Post } from '../types';
 
-import { normalizeUrl, toAbsoluteUrl } from '../utils/url-normalizer';
 export class EtolandCrawler extends BaseCrawler {
   siteName = 'etoland';
   protected readonly baseUrl = 'https://www.etoland.co.kr';
-  private readonly boardUrl = 'https://www.etoland.co.kr/bbs/hit.php';
+  private readonly cdnBase = 'https://btcdn.etoland.co.kr';
+  private readonly listUrl = 'https://www.etoland.co.kr/hit/list';
+  private readonly PAGES_TO_CRAWL = 10;
 
   async crawl(): Promise<Post[]> {
     const allPosts: Post[] = [];
-    const PAGES_TO_CRAWL = 10;
+    console.log(`[${this.siteName}] Starting crawl...`);
 
-    try {
-      console.log(`[${this.siteName}] Starting crawl...`);
+    for (let page = 1; page <= this.PAGES_TO_CRAWL; page++) {
+      try {
+        const url = page === 1 ? this.listUrl : `${this.listUrl}?page=${page}`;
+        const posts = await this.crawlPage(url);
 
-      for (let page = 1; page <= PAGES_TO_CRAWL; page++) {
-        try {
-          const pageUrl = this.getPageUrl(page);
-          const posts = await this.crawlPage(pageUrl);
-
-          if (posts.length === 0) {
-            console.log(`[${this.siteName}] No more posts at page ${page}, stopping`);
-            break;
-          }
-
-          allPosts.push(...posts);
-
-          if (page < PAGES_TO_CRAWL) {
-            await this.delay(1000);
-          }
-        } catch (error) {
-          if ((error as any).response?.status === 429) {
-            console.warn(`[${this.siteName}] Rate limited at page ${page}, waiting 10 seconds...`);
-            await this.delay(10000);
-            page--;
-            continue;
-          }
-
-          if ((error as any).response?.status === 404) {
-            console.log(`[${this.siteName}] Page ${page} not found, stopping`);
-            break;
-          }
-
-          console.error(`[${this.siteName}] Error at page ${page}:`, (error as Error).message);
+        if (posts.length === 0) {
+          console.log(`[${this.siteName}] No more posts at page ${page}, stopping`);
           break;
         }
+
+        allPosts.push(...posts);
+
+        if (page < this.PAGES_TO_CRAWL) {
+          await this.delay(1000);
+        }
+      } catch (error) {
+        console.error(`[${this.siteName}] Error at page ${page}:`, (error as Error).message);
+        break;
       }
-
-      console.log(`[${this.siteName}] Crawled ${allPosts.length} posts`);
-      return allPosts;
-    } catch (error) {
-      this.handleError(error, 'crawl');
-      return allPosts;
     }
-  }
 
-  private getPageUrl(page: number): string {
-    if (page === 1) {
-      return this.boardUrl;
-    }
-    return `${this.boardUrl}?page=${page}`;
+    console.log(`[${this.siteName}] Crawled ${allPosts.length} posts`);
+    return allPosts;
   }
 
   private async crawlPage(url: string): Promise<Post[]> {
     const response = await axios.get(url, {
       headers: {
-        'User-Agent':
-          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-        Referer: this.baseUrl,
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        'Accept-Language': 'ko-KR,ko;q=0.9,en;q=0.8',
+        'Referer': this.baseUrl,
       },
-      responseType: 'arraybuffer',
-      timeout: 10000,
+      timeout: 15000,
     });
 
-    const html = iconv.decode(Buffer.from(response.data), 'EUC-KR');
-    const $ = cheerio.load(html);
-
-    // 1단계: hit.php에서 게시글 목록 + bn_id 수집
-    const rawPosts: { title: string; author: string; viewCount: number; likeCount: number; commentCount: number; createdAt: Date; bnId: string }[] = [];
-
-    $('li.hit_item').each((_, element) => {
-      try {
-        const $el = $(element);
-        if ($el.hasClass('ad_list')) return;
-
-        const contentLink = $el.find('a.content_link').first();
-        const title = $el.find('p.subject').text().trim();
-        const relativeUrl = contentLink.attr('href');
-
-        if (!title || !relativeUrl) return;
-
-        // hit.php?bn_id= 형태에서 bn_id 추출
-        const bnMatch = relativeUrl.match(/bn_id=(\d+)/);
-        if (!bnMatch) return;
-
-        const author = $el.find('span.nick').text().trim() || '익명';
-        const hitText = $el.find('span.hit').text().trim();
-        const viewCount = parseInt(hitText.replace(/[^0-9]/g, '')) || 0;
-        const goodText = $el.find('span.good').text().trim();
-        const likeCount = parseInt(goodText.replace(/[^0-9]/g, '')) || 0;
-        const commentText = $el.find('span.comment_cnt').text().trim();
-        const commentCount = parseInt(commentText.replace(/[()]/g, '')) || 0;
-        const timeText = $el.find('span.datetime').text().trim();
-        const createdAt = this.parseDate(timeText);
-
-        rawPosts.push({
-          title, author, viewCount, likeCount, commentCount, createdAt,
-          bnId: bnMatch[1],
-        });
-      } catch (error) {
-        this.handleError(error, 'parsing post');
-      }
-    });
-
-    // 2단계: 각 bn_id의 실제 URL과 제목을 병렬로 추출 (최대 20개)
-    const postsToResolve = rawPosts.slice(0, 20);
-    const resolvedData = await Promise.allSettled(
-      postsToResolve.map(p => this.resolveRealUrlAndTitle(p.bnId))
-    );
-
-    const posts: Post[] = [];
-    for (let i = 0; i < postsToResolve.length; i++) {
-      const result = resolvedData[i];
-      if (result.status !== 'fulfilled' || !result.value) continue;
-
-      const { url, title } = result.value;
-      if (!url) continue;
-
-      const p = postsToResolve[i];
-
-      // 썸네일 이미지 추출 시도 (hit.php에서)
-      const $hitEl = $('li.hit_item').eq(i);
-      const thumbnailElement = $hitEl.find('img').first();
-      const thumbnailSrc = thumbnailElement.attr('data-src') || thumbnailElement.attr('src');
-      const thumbnail = thumbnailSrc && thumbnailSrc.startsWith('http')
-        ? thumbnailSrc
-        : thumbnailSrc
-        ? `${this.baseUrl}${thumbnailSrc}`
-        : undefined;
-
-      posts.push({
-        id: '',
-        title: title || p.title, // 실제 페이지 제목 우선, 없으면 hit.php 제목 사용
-        author: p.author,
-        site: this.siteName,
-        url,
-        viewCount: p.viewCount,
-        commentCount: p.commentCount,
-        likeCount: p.likeCount,
-        createdAt: p.createdAt,
-        fetchedAt: new Date(),
-        thumbnail,
-      });
-    }
-
-    return posts;
+    const articles = this.extractArticlesFromRsc(response.data as string);
+    return articles.map((a) => this.mapArticleToPost(a)).filter((p): p is Post => p !== null);
   }
 
-  /**
-   * hit.php?bn_id= 페이지에서 JS 리다이렉트 URL과 실제 제목을 추출
-   * 1. location.href에서 실제 URL 추출
-   * 2. 해당 URL로 다시 요청하여 실제 제목 가져오기
-   */
-  private async resolveRealUrlAndTitle(bnId: string): Promise<{ url: string; title: string } | null> {
-    try {
-      // 1단계: hit.php에서 실제 URL 추출
-      const hitRes = await axios.get(`${this.baseUrl}/bbs/hit.php?bn_id=${bnId}`, {
-        headers: {
-          'User-Agent':
-            'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-        },
-        responseType: 'arraybuffer',
-        timeout: 5000,
-      });
-      const hitHtml = iconv.decode(Buffer.from(hitRes.data), 'EUC-KR');
+  private extractArticlesFromRsc(html: string): any[] {
+    // RSC data is embedded as: self.__next_f.push([1,"<JSON-encoded RSC tree>"])
+    // Strategy: locate the push call containing "articleList", extract the full
+    // quoted string by character-walking (handles \" and \\ escapes), then
+    // JSON.parse to unescape, then extract the articleList array.
+    const marker = '\\"articleList\\":[';
+    const markerIdx = html.indexOf(marker);
+    if (markerIdx === -1) return [];
 
-      const match = hitHtml.match(/location\.href\s*=\s*['"]([^'"]+)['"]/);
-      if (!match) return null;
+    // Find the enclosing push([1," call by searching backwards
+    const pushPrefix = 'self.__next_f.push([1,"';
+    const pushStart = html.lastIndexOf(pushPrefix, markerIdx);
+    if (pushStart === -1) return [];
 
-      let realUrl = match[1];
-      if (realUrl.startsWith('http')) {
-        // 이미 완전한 URL
-      } else if (realUrl.startsWith('./')) {
-        realUrl = `${this.baseUrl}/bbs/${realUrl.slice(2)}`;
-      } else if (realUrl.startsWith('/')) {
-        realUrl = `${this.baseUrl}${realUrl}`;
+    // Walk forward from the opening quote, skipping \" and \\ escape sequences,
+    // until we find the unescaped closing "
+    let i = pushStart + pushPrefix.length; // first char inside the quoted string
+    while (i < html.length) {
+      const ch = html[i];
+      if (ch === '\\') {
+        i += 2; // skip escape sequence (\" or \\)
+      } else if (ch === '"') {
+        break; // found the closing quote
       } else {
-        realUrl = `${this.baseUrl}/bbs/${realUrl}`;
+        i++;
       }
+    }
 
-      // 2단계: 실제 페이지에서 제목 추출
-      try {
-        const pageRes = await axios.get(realUrl, {
-          headers: {
-            'User-Agent':
-              'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-          },
-          responseType: 'arraybuffer',
-          timeout: 5000,
-        });
-        const pageHtml = iconv.decode(Buffer.from(pageRes.data), 'EUC-KR');
-        const $page = cheerio.load(pageHtml);
+    // Extract the full JSON string literal (from opening " to closing ")
+    const openingQuoteIdx = pushStart + pushPrefix.length - 1;
+    const jsonStr = html.slice(openingQuoteIdx, i + 1);
 
-        // 제목 추출 (여러 선택자 시도)
-        let title = $page('#bo_v_title').text().trim();
-        if (!title) title = $page('.view_title').text().trim();
-        if (!title) title = $page('h1').first().text().trim();
-        if (!title) title = $page('title').text().split('-')[0].trim();
+    try {
+      const content: string = JSON.parse(jsonStr);
+      return this.extractArticleList(content);
+    } catch {
+      return [];
+    }
+  }
 
-        return { url: realUrl, title };
-      } catch {
-        // 제목 추출 실패 시 URL만 반환
-        return { url: realUrl, title: '' };
+  private extractArticleList(content: string): any[] {
+    // content is now unescaped. Extract the articleList JSON array using
+    // bracket-balanced scanning with proper string-awareness.
+    const artKey = '"articleList":[';
+    const artIdx = content.indexOf(artKey);
+    if (artIdx === -1) return [];
+
+    const arrayStart = artIdx + artKey.length - 1; // points to '['
+    let depth = 0;
+    let inString = false;
+    let i = arrayStart;
+
+    while (i < content.length) {
+      const ch = content[i];
+      if (ch === '\\') { i += 2; continue; }           // skip escaped char
+      if (ch === '"') { inString = !inString; i++; continue; }
+      if (!inString) {
+        if (ch === '[') depth++;
+        else if (ch === ']') { depth--; if (depth === 0) break; }
       }
+      i++;
+    }
+
+    try {
+      return JSON.parse(content.slice(arrayStart, i + 1));
+    } catch {
+      return [];
+    }
+  }
+
+  private mapArticleToPost(article: any): Post | null {
+    try {
+      const slug: string = article.slug;
+      const boTable: string = article.boTable;
+      if (!slug || !boTable) return null;
+
+      const title: string = article.subject || '';
+      if (!title) return null;
+
+      const url = `${this.baseUrl}/${boTable}/${slug}`;
+
+      const rawThumb: string | undefined = article.thumbnail;
+      const thumbnail = rawThumb
+        ? rawThumb.startsWith('http')
+          ? rawThumb
+          : `${this.cdnBase}${rawThumb}`
+        : undefined;
+
+      const createdAt = article.writeDateTimestamp
+        ? new Date(article.writeDateTimestamp)
+        : new Date();
+
+      return {
+        id: '',
+        title,
+        author: article.member?.nickname || '익명',
+        site: this.siteName,
+        url,
+        viewCount: article.viewCount ?? 0,
+        commentCount: article.commentCount ?? 0,
+        likeCount: article.recommendCount ?? 0,
+        createdAt,
+        fetchedAt: new Date(),
+        thumbnail,
+        category: article.category,
+      };
     } catch {
       return null;
     }
-  }
-
-  private parseDate(timeText: string): Date {
-    const now = new Date();
-
-    if (timeText.includes('방금') || timeText.includes('초 전')) {
-      return now;
-    }
-
-    if (timeText.includes('분 전')) {
-      const minutes = parseInt(timeText);
-      return new Date(now.getTime() - minutes * 60 * 1000);
-    }
-
-    if (timeText.includes('시간 전')) {
-      const hours = parseInt(timeText);
-      return new Date(now.getTime() - hours * 60 * 60 * 1000);
-    }
-
-    // MM-DD
-    if (timeText.match(/^\d{2}-\d{2}$/)) {
-      const [month, day] = timeText.split('-').map(Number);
-      let date = new Date(now.getFullYear(), month - 1, day);
-      if (date > now) {
-        date = new Date(now.getFullYear() - 1, month - 1, day);
-      }
-      return date;
-    }
-
-    if (timeText.match(/^\d{2}:\d{2}$/)) {
-      const [hours, minutes] = timeText.split(':').map(Number);
-      const date = new Date(now);
-      date.setHours(hours, minutes, 0, 0);
-      return date;
-    }
-
-    return now;
   }
 }
