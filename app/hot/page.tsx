@@ -12,8 +12,7 @@ export default function HotPage() {
       ...p,
       _score: (p.viewCount || 0) * 0.1 + (p.commentCount || 0) * 5 + (p.likeCount || 0) * 2,
     }))
-    .sort((a, b) => b._score - a._score)
-    .slice(0, 100);
+    .sort((a, b) => b._score - a._score);
 
   return (
     <>
