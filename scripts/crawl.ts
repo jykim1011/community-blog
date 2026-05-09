@@ -19,9 +19,9 @@ const SITES_FILE = path.join(DATA_DIR, 'sites.json');
 const ANALYSIS_FILE = path.join(DATA_DIR, 'analysis.json');
 const SITES_DIR = path.join(DATA_DIR, 'sites');
 
-const MAX_POSTS = 3000;
-const MAX_AGE_HOURS = 120;
-const MAX_POSTS_PER_SITE = 1000; // 사이트별 최대 저장 개수
+const MAX_POSTS = 7000;
+const MAX_AGE_HOURS = 168;
+const MAX_POSTS_PER_SITE = 1500; // 사이트별 최대 저장 개수
 
 // 인기 게시글 필터 기준 (OR 조건: 하나라도 만족하면 유지)
 const POPULARITY_FILTER: PopularityFilterConfig = {
