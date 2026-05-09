@@ -94,16 +94,15 @@ export class QuasarzoneCrawler extends BaseCrawler {
         const absoluteUrl = toAbsoluteUrl(relativeUrl, this.baseUrl);
         const normalizedUrl = normalizeUrl(absoluteUrl, this.siteName);
 
-        const author = $el.find('p.nick').text().trim() || '익명';
+        const author = $el.find('span.nick').first().clone().children().remove().end().text().trim() || '익명';
 
-        const viewText = $el.find('span.count').first().text().trim().replace(/,/g, '');
-        const viewCount = parseInt(viewText) || 0;
+        const viewText = $el.find('span.count').first().text();
+        const viewCount = this.parseCount(viewText);
 
-        const commentMatch = $el.find('span.num-comment').text().match(/\d+/);
-        const commentCount = commentMatch ? parseInt(commentMatch[0]) : 0;
+        const commentText = $el.find('span.ctn-count').first().text();
+        const commentCount = this.parseCount(commentText);
 
-        const likeText = $el.find('span.num-thumbup').text().trim();
-        const likeCount = parseInt(likeText) || 0;
+        const likeCount = 0; // 목록 페이지에 좋아요 미노출
 
         const timeText = $el.find('span.date').text().trim();
         const createdAt = this.parseDate(timeText);
@@ -137,6 +136,13 @@ export class QuasarzoneCrawler extends BaseCrawler {
     });
 
     return posts;
+  }
+
+  private parseCount(text: string): number {
+    const t = text.trim().replace(/,/g, '');
+    if (t.endsWith('k') || t.endsWith('K')) return Math.round(parseFloat(t) * 1000);
+    if (t.endsWith('m') || t.endsWith('M')) return Math.round(parseFloat(t) * 1_000_000);
+    return parseInt(t) || 0;
   }
 
   private parseDate(timeText: string): Date {
