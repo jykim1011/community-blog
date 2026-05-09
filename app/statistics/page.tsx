@@ -62,7 +62,7 @@ export default function StatisticsPage() {
               <p className="text-sm text-gray-600 dark:text-gray-400">
                 한국 커뮤니티의 전체 활동 지표를 한눈에 확인하세요.
                 <span className="ml-2 text-xs">
-                  업데이트: {generatedDate.toLocaleString('ko-KR')}
+                  업데이트: {generatedDate.toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' })}
                 </span>
               </p>
             </div>

@@ -59,7 +59,7 @@ export default function CommunitiesPage() {
               <p className="text-sm text-gray-600 dark:text-gray-400">
                 주요 커뮤니티의 특징, 문화, 주요 토픽을 상세히 비교합니다.
                 <span className="ml-2 text-xs">
-                  업데이트: {generatedDate.toLocaleString('ko-KR')}
+                  업데이트: {generatedDate.toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' })}
                 </span>
               </p>
             </div>

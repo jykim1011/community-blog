@@ -44,7 +44,7 @@ export default function KeywordsPage() {
               <p className="text-sm text-gray-600 dark:text-gray-400">
                 지금 커뮤니티에서 가장 많이 언급되는 키워드 {keywords.length}개
                 <span className="ml-2 text-xs">
-                  업데이트: {generatedDate.toLocaleString('ko-KR')}
+                  업데이트: {generatedDate.toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' })}
                 </span>
               </p>
             </div>

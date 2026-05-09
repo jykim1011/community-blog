@@ -42,7 +42,7 @@ export default function TrendsPage() {
               <p className="text-sm text-gray-600 dark:text-gray-400">
                 22개 커뮤니티의 실시간 데이터를 분석한 결과입니다.
                 <span className="ml-2 text-xs">
-                  마지막 업데이트: {generatedDate.toLocaleString('ko-KR')}
+                  마지막 업데이트: {generatedDate.toLocaleString('ko-KR', { timeZone: 'Asia/Seoul' })}
                 </span>
               </p>
             </div>
@@ -103,8 +103,8 @@ export default function TrendsPage() {
           <div className="space-y-3">
             {recentTrends.map((trend) => {
               const date = new Date(trend.date);
-              const dayName = date.toLocaleDateString('ko-KR', { weekday: 'short' });
-              const dateStr = date.toLocaleDateString('ko-KR', { month: 'short', day: 'numeric' });
+              const dayName = date.toLocaleDateString('ko-KR', { weekday: 'short', timeZone: 'Asia/Seoul' });
+              const dateStr = date.toLocaleDateString('ko-KR', { month: 'short', day: 'numeric', timeZone: 'Asia/Seoul' });
 
               return (
                 <div

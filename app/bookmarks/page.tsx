@@ -21,7 +21,7 @@ export default function BookmarksPage() {
         const safeBottom = Math.max(parseFloat(getComputedStyle(el).paddingBottom) || 0, 56);
         el.remove();
         const height = Math.round(window.screen.height) - 60 - Math.round(safeBottom);
-        await InAppBrowser.openWebView({ url, height, useTopInset: true });
+        await InAppBrowser.openWebView({ url, height });
       } catch {
         window.open(url, '_blank');
       }

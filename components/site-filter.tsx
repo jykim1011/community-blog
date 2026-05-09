@@ -68,7 +68,7 @@ export function SiteFilter({
   return (
     <div className="space-y-1.5 px-3 pt-3">
       {/* 카테고리 필터 */}
-      <div className="overflow-x-auto scrollbar-hide">
+      <div className="overflow-x-auto scrollbar-hide touch-pan-x overscroll-x-contain">
         <div className="flex gap-1.5 w-max py-0.5">
           <FilterChip
             active={!currentCategory}
@@ -91,7 +91,7 @@ export function SiteFilter({
       </div>
 
       {/* 사이트 필터 */}
-      <div className="overflow-x-auto scrollbar-hide pb-1">
+      <div className="overflow-x-auto scrollbar-hide pb-1 touch-pan-x overscroll-x-contain">
         <div className="flex gap-1.5 w-max py-0.5">
           <FilterChip
             active={!currentSite}
