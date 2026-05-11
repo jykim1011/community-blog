@@ -28,6 +28,14 @@ export class SlrclubCrawler extends BaseCrawler {
 
           allPosts.push(...posts);
 
+          // 페이지의 모든 게시글이 30일 초과면 조기 종료
+          const cutoff = new Date(Date.now() - 30 * 24 * 60 * 60 * 1000);
+          const hasRecentPost = posts.some(p => p.createdAt > cutoff);
+          if (!hasRecentPost) {
+            console.log(`[${this.siteName}] Page ${page} has no recent posts, stopping early`);
+            break;
+          }
+
           if (page < PAGES_TO_CRAWL) {
             await this.delay(2000);
           }
@@ -150,6 +158,12 @@ export class SlrclubCrawler extends BaseCrawler {
     if (timeText.match(/^\d{4}\/\d{2}\/\d{2}$/)) {
       const [year, month, day] = timeText.split('/').map(Number);
       return new Date(year, month - 1, day);
+    }
+
+    // YY/MM/DD (2자리 연도, 예: "25/01/14")
+    if (timeText.match(/^\d{2}\/\d{2}\/\d{2}$/)) {
+      const [year, month, day] = timeText.split('/').map(Number);
+      return new Date(2000 + year, month - 1, day);
     }
 
     // "YYYY년 MM월 DD일 HH시 MM분 SS초" format from title attr
