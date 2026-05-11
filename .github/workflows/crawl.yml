@@ -44,8 +44,8 @@ jobs:
             echo "changed=false" >> $GITHUB_OUTPUT
           else
             git commit -m "chore: update crawled data [skip ci]"
-            # Pull latest changes before pushing to avoid conflicts
-            git pull --rebase origin master
+            # Pull latest changes before pushing, prefer our new crawl data on conflict
+            git pull --rebase -X theirs origin master
             git push
             echo "changed=true" >> $GITHUB_OUTPUT
           fi
