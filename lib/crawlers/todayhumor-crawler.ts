@@ -140,6 +140,7 @@ export class TodayhumorCrawler extends BaseCrawler {
       const [hours, minutes] = timeText.split(':').map(Number);
       const date = new Date(now);
       date.setHours(hours, minutes, 0, 0);
+      if (date > now) date.setDate(date.getDate() - 1);
       return date;
     }
 

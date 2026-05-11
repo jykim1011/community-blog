@@ -16,10 +16,30 @@ export class QuasarzoneCrawler extends BaseCrawler {
     try {
       console.log(`[${this.siteName}] Starting crawl...`);
 
+      // 세션 쿠키 획득
+      let sessionCookies = '';
+      try {
+        const mainRes = await axios.get(this.baseUrl, {
+          headers: {
+            'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+            'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+            'Accept-Language': 'ko-KR,ko;q=0.9,en-US;q=0.8',
+          },
+          timeout: 15000,
+        });
+        const setCookie = mainRes.headers['set-cookie'];
+        if (setCookie) {
+          sessionCookies = setCookie.map((c: string) => c.split(';')[0]).join('; ');
+        }
+        await this.delay(1500);
+      } catch {
+        // 쿠키 없이 계속
+      }
+
       for (let page = 1; page <= PAGES_TO_CRAWL; page++) {
         try {
           const pageUrl = this.getPageUrl(page);
-          const posts = await this.crawlPage(pageUrl);
+          const posts = await this.crawlPage(pageUrl, sessionCookies);
 
           if (posts.length === 0) {
             console.log(`[${this.siteName}] No more posts at page ${page}, stopping`);
@@ -62,15 +82,19 @@ export class QuasarzoneCrawler extends BaseCrawler {
     return `${this.boardUrl}?page=${page}`;
   }
 
-  private async crawlPage(url: string): Promise<Post[]> {
+  private async crawlPage(url: string, cookies = ''): Promise<Post[]> {
     const response = await axios.get(url, {
       headers: {
-        'User-Agent':
-          'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/120.0.0.0 Safari/537.36',
-        Referer: this.baseUrl,
-        Accept: 'text/html,application/xhtml+xml,application/xml;q=0.9,*/*;q=0.8',
+        'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36',
+        'Referer': this.baseUrl,
+        'Accept': 'text/html,application/xhtml+xml,application/xml;q=0.9,image/webp,*/*;q=0.8',
+        'Accept-Language': 'ko-KR,ko;q=0.9,en-US;q=0.8',
+        'Accept-Encoding': 'gzip, deflate, br',
+        'Connection': 'keep-alive',
+        'Upgrade-Insecure-Requests': '1',
+        ...(cookies ? { 'Cookie': cookies } : {}),
       },
-      timeout: 10000,
+      timeout: 15000,
     });
 
     const $ = cheerio.load(response.data);
@@ -172,6 +196,7 @@ export class QuasarzoneCrawler extends BaseCrawler {
       const [hours, minutes] = timeText.split(':').map(Number);
       const date = new Date(now);
       date.setHours(hours, minutes, 0, 0);
+      if (date > now) date.setDate(date.getDate() - 1);
       return date;
     }
 

@@ -146,6 +146,7 @@ export class Cook82Crawler extends BaseCrawler {
       const [hours, minutes, seconds] = timeText.trim().split(':').map(Number);
       const date = new Date(now);
       date.setHours(hours, minutes, seconds, 0);
+      if (date > now) date.setDate(date.getDate() - 1);
       return date;
     }
 
