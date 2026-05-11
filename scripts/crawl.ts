@@ -22,6 +22,7 @@ const SITES_DIR = path.join(DATA_DIR, 'sites');
 const MAX_POSTS = 7000;
 const MAX_AGE_HOURS = 168;
 const MAX_POSTS_PER_SITE = 1500; // 사이트별 최대 저장 개수
+const MAX_CREATED_AGE_DAYS = 30; // createdAt 기준 최대 보관 기간 (미래 날짜도 제외)
 
 // 인기 게시글 필터 기준 (OR 조건: 하나라도 만족하면 유지)
 const POPULARITY_FILTER: PopularityFilterConfig = {
@@ -168,15 +169,22 @@ async function main() {
     }
   }
 
-  // 48시간 초과 삭제 (fetchedAt 기준 - 크롤링된 지 48시간 이내 유지)
+  // fetchedAt 기준: 크롤링된 지 MAX_AGE_HOURS 초과 삭제
   const cutoff = new Date(now.getTime() - MAX_AGE_HOURS * 60 * 60 * 1000);
   const ageFiltered = merged.filter((post) => {
     const fetchedDate = new Date(post.fetchedAt);
     return fetchedDate > cutoff;
   });
 
+  // createdAt 기준: 30일 초과 오래된 게시글 및 미래 날짜 게시글 제거
+  const createdAtCutoff = new Date(now.getTime() - MAX_CREATED_AGE_DAYS * 24 * 60 * 60 * 1000);
+  const createdAtFiltered = ageFiltered.filter((post) => {
+    const createdDate = new Date(post.createdAt);
+    return createdDate > createdAtCutoff && createdDate <= now;
+  });
+
   // 인기 게시글 필터링 적용
-  const popularFiltered = filterPopularPosts(ageFiltered);
+  const popularFiltered = filterPopularPosts(createdAtFiltered);
 
   // 사이트별로 그룹화하고 각 그룹 내에서 createdAt 정렬
   const groupedBySite = popularFiltered.reduce((acc, post) => {
@@ -227,12 +235,14 @@ async function main() {
 
   // 통계 로그
   const removedByAge = merged.length - ageFiltered.length;
-  const removedByPopularity = ageFiltered.length - popularFiltered.length;
+  const removedByCreatedAt = ageFiltered.length - createdAtFiltered.length;
+  const removedByPopularity = createdAtFiltered.length - popularFiltered.length;
   const removedByLimit = popularFiltered.length - final.length;
 
   console.log(`\n저장 완료: ${final.length}건`);
   console.log(`  - 신규 크롤링: ${newPosts.length}건`);
-  console.log(`  - 제거 (기간 만료): ${removedByAge}건`);
+  console.log(`  - 제거 (fetchedAt 만료): ${removedByAge}건`);
+  console.log(`  - 제거 (createdAt 30일 초과/미래): ${removedByCreatedAt}건`);
   console.log(`  - 제거 (인기 부족): ${removedByPopularity}건`);
   console.log(`  - 제거 (개수 제한): ${removedByLimit}건`);
   console.log(`  - 필터 기준: 조회수>=${MIN_VIEW_COUNT} OR 댓글>=${MIN_COMMENT_COUNT} OR 좋아요>=${MIN_LIKE_COUNT}`);
