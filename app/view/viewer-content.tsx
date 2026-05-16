@@ -11,6 +11,7 @@ const BLOCKED_DOMAINS = new Set([
   'clien.net',
   'etoland.co.kr',
   'quasarzone.com',
+  'ruliweb.com',
 ]);
 
 function isDomainBlocked(url: string): boolean {
@@ -71,7 +72,7 @@ export function ViewerContent() {
         siteName={site}
         siteColor={color}
         url={url}
-        onBack={() => router.back()}
+        onBack={() => router.replace('/')}
       />
 
       <div style={{ position: 'relative', flex: 1, overflow: 'hidden' }}>

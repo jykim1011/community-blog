@@ -18,11 +18,13 @@ export function ViewerToolbar({ siteName, siteColor, url, onBack }: ViewerToolba
         display: 'flex',
         alignItems: 'center',
         gap: 8,
-        padding: '8px 12px',
+        paddingTop: 'calc(env(safe-area-inset-top, 0px) + 8px)',
+        paddingBottom: 8,
+        paddingLeft: 12,
+        paddingRight: 12,
         borderBottom: '1px solid var(--border)',
         background: 'var(--surface)',
         flexShrink: 0,
-        height: 48,
       }}
     >
       <button
