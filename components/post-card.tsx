@@ -1,8 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { Capacitor } from '@capacitor/core';
-import { InAppBrowser, ToolBarType } from '@capgo/inappbrowser';
+import { useRouter } from 'next/navigation';
 import { formatRelativeTime, formatNumber } from '@/lib/utils';
 import { useReadPosts } from '@/lib/hooks/use-read-posts';
 
@@ -46,6 +45,7 @@ const SITE_THEME: Record<string, { color: string; domain: string }> = {
 };
 
 export function PostCard({ title, author, url, site, viewCount, commentCount, likeCount, createdAt, category }: PostCardProps) {
+  const router = useRouter();
   const [relativeTime, setRelativeTime] = useState('');
   const { isRead, markAsRead, isLoaded } = useReadPosts();
 
@@ -55,30 +55,13 @@ export function PostCard({ title, author, url, site, viewCount, commentCount, li
     return () => clearInterval(t);
   }, [createdAt]);
 
-  const handleClick = async (e: React.MouseEvent | React.KeyboardEvent) => {
+  const handleClick = (e: React.MouseEvent | React.KeyboardEvent) => {
+    e.preventDefault();
     markAsRead(url);
-
-    if (Capacitor.isNativePlatform()) {
-      e.preventDefault();
-      try {
-        const el = document.createElement('div');
-        el.style.paddingBottom = 'env(safe-area-inset-bottom, 0px)';
-        document.documentElement.appendChild(el);
-        const navInset = parseFloat(getComputedStyle(el).paddingBottom) || 0;
-        el.remove();
-        const AD_BANNER_HEIGHT = 60;
-        const bottomReserved = Math.round(navInset) + AD_BANNER_HEIGHT;
-        // innerHeight = content area height (status bar 제외), Gravity.TOP으로 상단 고정
-        const height = Math.round(window.innerHeight) - bottomReserved;
-        await InAppBrowser.openWebView({
-          url,
-          height,
-          toolbarType: ToolBarType.BLANK,
-        });
-      } catch {
-        window.open(url, '_blank');
-      }
-    }
+    const color = SITE_THEME[site.name]?.color ?? '#71717a';
+    router.push(
+      `/view?url=${encodeURIComponent(url)}&site=${encodeURIComponent(site.displayName)}&color=${encodeURIComponent(color)}`
+    );
   };
   const isReadPost = isLoaded && isRead(url);
   const theme = SITE_THEME[site.name] || { color: '#71717a', domain: site.name };
@@ -86,8 +69,6 @@ export function PostCard({ title, author, url, site, viewCount, commentCount, li
   return (
     <a
       href={url}
-      target="_blank"
-      rel="noopener noreferrer"
       onClick={handleClick}
       onKeyDown={(e) => { if (e.key === ' ') handleClick(e); }}
       className="grid gap-3 px-4 py-3 border-b last:border-b-0 transition-colors cursor-pointer"

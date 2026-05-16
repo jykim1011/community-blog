@@ -87,3 +87,13 @@ button { font-family: inherit; }
   .font-mono { font-family: var(--font-mono); }
   .tabular-nums { font-variant-numeric: tabular-nums; }
 }
+
+/* ─── In-App Viewer ─────────────────────────────── */
+@keyframes slide-in-right {
+  from { transform: translateX(100%); }
+  to   { transform: translateX(0); }
+}
+
+.viewer-page {
+  animation: slide-in-right 280ms ease;
+}
