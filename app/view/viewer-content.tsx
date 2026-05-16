@@ -12,6 +12,9 @@ const BLOCKED_DOMAINS = new Set([
   'etoland.co.kr',
   'quasarzone.com',
   'ruliweb.com',
+  'orbi.kr',
+  'arca.live',
+  'damoang.net',
 ]);
 
 function isDomainBlocked(url: string): boolean {
