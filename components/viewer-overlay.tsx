@@ -1,6 +1,7 @@
 'use client';
 
 import { useRef, useState, useEffect } from 'react';
+import { Capacitor } from '@capacitor/core';
 import { useViewer } from '@/lib/contexts/viewer-context';
 import { ViewerToolbar } from '@/components/viewer-toolbar';
 
@@ -15,6 +16,14 @@ export function ViewerOverlay() {
       setLoading(true);
       history.pushState({ viewer: true }, '');
     }
+  }, [viewer?.url]);
+
+  // 네이티브 앱: iframe이 외부 URL 로드 시 AdMob 배너가 hide될 수 있으므로 뷰어가 열릴 때 재표시
+  useEffect(() => {
+    if (!viewer || !Capacitor.isNativePlatform()) return;
+    import('@/lib/admob').then(({ resumeBannerAd }) => {
+      resumeBannerAd().catch(() => {});
+    });
   }, [viewer?.url]);
 
   // popstate = 하드웨어 뒤로가기 or history.back() 호출
@@ -67,7 +76,15 @@ export function ViewerOverlay() {
         <iframe
           ref={iframeRef}
           src={viewer.url}
-          onLoad={() => setLoading(false)}
+          onLoad={() => {
+            setLoading(false);
+            // iframe이 외부 URL 로드 완료 후 AdMob 배너 재표시
+            if (Capacitor.isNativePlatform()) {
+              import('@/lib/admob').then(({ resumeBannerAd }) => {
+                resumeBannerAd().catch(() => {});
+              });
+            }
+          }}
           style={{
             position: 'absolute',
             inset: 0,

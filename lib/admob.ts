@@ -1,6 +1,9 @@
 import { AdMob, BannerAdSize, BannerAdPosition, BannerAdPluginEvents, AdMobBannerSize } from '@capacitor-community/admob';
 import { adStateManager } from './ad-state';
 
+// FailedToLoad 리스너 중복 등록 방지
+let bannerFailedListenerAdded = false;
+
 // AdMob 앱 ID (실제 ID)
 const ADMOB_APP_ID = 'ca-app-pub-4710152968528474~2341859043';
 
@@ -40,11 +43,14 @@ export async function showBannerAd(position: 'top' | 'bottom' = 'bottom') {
 
     const adId = position === 'top' ? AD_UNITS.BANNER_TOP : AD_UNITS.BANNER_BOTTOM;
 
-    // 로드 실패 시에만 상태 리셋 (성공은 showBanner 이후 즉시 처리)
-    AdMob.addListener(BannerAdPluginEvents.FailedToLoad, (error) => {
-      console.error('Banner ad failed to load:', error);
-      adStateManager.setAdLoaded(false);
-    });
+    // 로드 실패 리스너 중복 등록 방지 (showBannerAd 재호출 시 누적 방지)
+    if (!bannerFailedListenerAdded) {
+      bannerFailedListenerAdded = true;
+      AdMob.addListener(BannerAdPluginEvents.FailedToLoad, (error) => {
+        console.error('Banner ad failed to load:', error);
+        adStateManager.setAdLoaded(false);
+      });
+    }
 
     // nav를 먼저 올린 후 광고 표시 → 네이티브 뷰가 나타나기 전에 React가 리렌더되도록
     adStateManager.setAdLoaded(true);
