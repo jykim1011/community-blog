@@ -10,6 +10,13 @@ export function ViewerOverlay() {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [loading, setLoading] = useState(true);
 
+  // 네이티브 앱: 초기 가드 항목 추가 → canGoBack()이 항상 true여서 첫 뒤로가기도 앱 종료 대신 popstate 발생
+  useEffect(() => {
+    if (Capacitor.isNativePlatform()) {
+      history.pushState({ guard: true }, '');
+    }
+  }, []);
+
   // 뷰어 열릴 때 가짜 히스토리 항목 추가 → 하드웨어 뒤로가기가 이 항목을 pop
   useEffect(() => {
     if (viewer) {
@@ -29,7 +36,12 @@ export function ViewerOverlay() {
   // popstate = 하드웨어 뒤로가기 or history.back() 호출
   useEffect(() => {
     const handlePopState = () => {
-      if (viewer) closeViewer();
+      if (viewer) {
+        closeViewer();
+      } else if (Capacitor.isNativePlatform()) {
+        // 뷰어 없는 상태에서 뒤로가기: 가드 항목 재추가 → 앱 종료 방지
+        history.pushState({ guard: true }, '');
+      }
     };
     window.addEventListener('popstate', handlePopState);
     return () => window.removeEventListener('popstate', handlePopState);
