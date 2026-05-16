@@ -1,9 +1,10 @@
 'use client';
 
 import { useState, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import { formatRelativeTime, formatNumber } from '@/lib/utils';
 import { useReadPosts } from '@/lib/hooks/use-read-posts';
+import { isDomainBlocked } from '@/lib/utils/blocked-domains';
+import { useViewer } from '@/lib/contexts/viewer-context';
 
 interface PostCardProps {
   id: string;
@@ -45,7 +46,7 @@ const SITE_THEME: Record<string, { color: string; domain: string }> = {
 };
 
 export function PostCard({ title, author, url, site, viewCount, commentCount, likeCount, createdAt, category }: PostCardProps) {
-  const router = useRouter();
+  const { openViewer } = useViewer();
   const [relativeTime, setRelativeTime] = useState('');
   const { isRead, markAsRead, isLoaded } = useReadPosts();
 
@@ -58,10 +59,11 @@ export function PostCard({ title, author, url, site, viewCount, commentCount, li
   const handleClick = (e: React.MouseEvent | React.KeyboardEvent) => {
     e.preventDefault();
     markAsRead(url);
-    const color = SITE_THEME[site.name]?.color ?? '#71717a';
-    router.push(
-      `/view?url=${encodeURIComponent(url)}&site=${encodeURIComponent(site.displayName)}&color=${encodeURIComponent(color)}`
-    );
+    if (isDomainBlocked(url)) {
+      window.open(url, '_blank', 'noopener,noreferrer');
+      return;
+    }
+    openViewer({ url, site: site.displayName, color: SITE_THEME[site.name]?.color ?? '#71717a' });
   };
   const isReadPost = isLoaded && isRead(url);
   const theme = SITE_THEME[site.name] || { color: '#71717a', domain: site.name };

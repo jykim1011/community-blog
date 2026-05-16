@@ -4,6 +4,8 @@ import { SITE_URL, SITE_NAME, SITE_DESCRIPTION } from "@/lib/constants";
 import Script from "next/script";
 import { AdMobBanner } from '@/components/admob-banner';
 import { BottomAdContainer } from '@/components/bottom-ad-container';
+import { ViewerProvider } from '@/lib/contexts/viewer-context';
+import { ViewerOverlay } from '@/components/viewer-overlay';
 import "./globals.css";
 
 const geistSans = Geist({
@@ -72,9 +74,12 @@ export default function RootLayout({
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        <AdMobBanner position="bottom" />
-        <BottomAdContainer />
-        {children}
+        <ViewerProvider>
+          <AdMobBanner position="bottom" />
+          <BottomAdContainer />
+          {children}
+          <ViewerOverlay />
+        </ViewerProvider>
       </body>
     </html>
   );

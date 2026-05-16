@@ -1,40 +1,38 @@
 'use client';
 
-import { useSearchParams, useRouter } from 'next/navigation';
 import { useRef, useState, useEffect } from 'react';
+import { useViewer } from '@/lib/contexts/viewer-context';
 import { ViewerToolbar } from '@/components/viewer-toolbar';
 
-export function ViewerContent() {
-  const searchParams = useSearchParams();
-  const router = useRouter();
+export function ViewerOverlay() {
+  const { viewer, closeViewer } = useViewer();
   const iframeRef = useRef<HTMLIFrameElement>(null);
-
-  const url = searchParams.get('url') ?? '';
-  const site = searchParams.get('site') ?? '';
-  const color = searchParams.get('color') ?? '#71717a';
-
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (!url) router.replace('/');
-  }, [url, router]);
+    if (viewer) setLoading(true);
+  }, [viewer?.url]);
 
-  // 알 수 없는 차단 사이트 fallback: 10초 내 onLoad 없으면 외부 브라우저로 이동
+  // 미확인 차단 사이트 fallback: 10초 내 로드 없으면 외부 브라우저로
   useEffect(() => {
-    if (!url) return;
+    if (!viewer) return;
     const t = setTimeout(() => {
-      if (loading) {
-        window.open(url, '_blank', 'noopener,noreferrer');
-        router.replace('/');
-      }
+      setLoading(prev => {
+        if (prev) {
+          window.open(viewer.url, '_blank', 'noopener,noreferrer');
+          closeViewer();
+        }
+        return prev;
+      });
     }, 10000);
     return () => clearTimeout(t);
-  }, [url, loading, router]);
+  }, [viewer?.url]);
 
-  if (!url) return null;
+  if (!viewer) return null;
 
   return (
     <div
+      key={viewer.url}
       className="viewer-page"
       style={{
         position: 'fixed',
@@ -46,16 +44,16 @@ export function ViewerContent() {
       }}
     >
       <ViewerToolbar
-        siteName={site}
-        siteColor={color}
-        url={url}
-        onBack={() => router.replace('/')}
+        siteName={viewer.site}
+        siteColor={viewer.color}
+        url={viewer.url}
+        onBack={closeViewer}
       />
 
       <div style={{ position: 'relative', flex: 1, overflow: 'hidden' }}>
         <iframe
           ref={iframeRef}
-          src={url}
+          src={viewer.url}
           onLoad={() => setLoading(false)}
           style={{
             position: 'absolute',
@@ -64,7 +62,7 @@ export function ViewerContent() {
             height: '100%',
             border: 'none',
           }}
-          title={site}
+          title={viewer.site}
         />
 
         {loading && (

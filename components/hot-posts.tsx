@@ -1,10 +1,11 @@
 'use client';
 
 import { useState, useRef, useEffect } from 'react';
-import { useRouter } from 'next/navigation';
 import { formatRelativeTime, formatNumber } from '@/lib/utils';
 import { useReadPosts } from '@/lib/hooks/use-read-posts';
 import { adStateManager } from '@/lib/ad-state';
+import { isDomainBlocked } from '@/lib/utils/blocked-domains';
+import { useViewer } from '@/lib/contexts/viewer-context';
 import type { StaticPost } from '@/lib/types';
 
 const SITE_THEME: Record<string, { color: string; domain: string }> = {
@@ -39,7 +40,7 @@ interface Props {
 const PAGE_SIZE = 20;
 
 function HotPostItem({ post, rank }: { post: StaticPost; rank: number }) {
-  const router = useRouter();
+  const { openViewer } = useViewer();
   const [time, setTime] = useState('');
   const { isRead, markAsRead, isLoaded } = useReadPosts();
 
@@ -56,10 +57,11 @@ function HotPostItem({ post, rank }: { post: StaticPost; rank: number }) {
   const handleClick = (e: React.MouseEvent) => {
     e.preventDefault();
     markAsRead(post.url);
-    const color = SITE_THEME[post.site]?.color ?? '#71717a';
-    router.push(
-      `/view?url=${encodeURIComponent(post.url)}&site=${encodeURIComponent(post.siteDisplayName)}&color=${encodeURIComponent(color)}`
-    );
+    if (isDomainBlocked(post.url)) {
+      window.open(post.url, '_blank', 'noopener,noreferrer');
+      return;
+    }
+    openViewer({ url: post.url, site: post.siteDisplayName, color: SITE_THEME[post.site]?.color ?? '#71717a' });
   };
 
   return (
