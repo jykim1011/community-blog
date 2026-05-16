@@ -9,9 +9,22 @@ export function ViewerOverlay() {
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [loading, setLoading] = useState(true);
 
+  // 뷰어 열릴 때 가짜 히스토리 항목 추가 → 하드웨어 뒤로가기가 이 항목을 pop
   useEffect(() => {
-    if (viewer) setLoading(true);
+    if (viewer) {
+      setLoading(true);
+      history.pushState({ viewer: true }, '');
+    }
   }, [viewer?.url]);
+
+  // popstate = 하드웨어 뒤로가기 or history.back() 호출
+  useEffect(() => {
+    const handlePopState = () => {
+      if (viewer) closeViewer();
+    };
+    window.addEventListener('popstate', handlePopState);
+    return () => window.removeEventListener('popstate', handlePopState);
+  }, [viewer, closeViewer]);
 
   // 미확인 차단 사이트 fallback: 10초 내 로드 없으면 외부 브라우저로
   useEffect(() => {
@@ -20,7 +33,7 @@ export function ViewerOverlay() {
       setLoading(prev => {
         if (prev) {
           window.open(viewer.url, '_blank', 'noopener,noreferrer');
-          closeViewer();
+          history.back();
         }
         return prev;
       });
@@ -47,7 +60,7 @@ export function ViewerOverlay() {
         siteName={viewer.site}
         siteColor={viewer.color}
         url={viewer.url}
-        onBack={closeViewer}
+        onBack={() => history.back()}
       />
 
       <div style={{ position: 'relative', flex: 1, overflow: 'hidden' }}>
