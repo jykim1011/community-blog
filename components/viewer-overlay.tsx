@@ -9,23 +9,13 @@ export function ViewerOverlay() {
   const { viewer, closeViewer } = useViewer();
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [loading, setLoading] = useState(true);
+  const lastBackTimeRef = useRef(0);
 
-  // 네이티브 앱: 초기 가드 항목 추가 → canGoBack()이 항상 true여서 첫 뒤로가기도 앱 종료 대신 popstate 발생
   useEffect(() => {
-    if (Capacitor.isNativePlatform()) {
-      history.pushState({ guard: true }, '');
-    }
-  }, []);
-
-  // 뷰어 열릴 때 가짜 히스토리 항목 추가 → 하드웨어 뒤로가기가 이 항목을 pop
-  useEffect(() => {
-    if (viewer) {
-      setLoading(true);
-      history.pushState({ viewer: true }, '');
-    }
+    if (viewer) setLoading(true);
   }, [viewer?.url]);
 
-  // 네이티브 앱: iframe이 외부 URL 로드 시 AdMob 배너가 hide될 수 있으므로 뷰어가 열릴 때 재표시
+  // 네이티브 앱: iframe이 외부 URL 로드 시 AdMob 배너 재표시
   useEffect(() => {
     if (!viewer || !Capacitor.isNativePlatform()) return;
     import('@/lib/admob').then(({ resumeBannerAd }) => {
@@ -33,18 +23,28 @@ export function ViewerOverlay() {
     });
   }, [viewer?.url]);
 
-  // popstate = 하드웨어 뒤로가기 or history.back() 호출
+  // 네이티브 앱: 하드웨어 뒤로가기 처리 (MainActivity.java에서 이벤트 발송)
   useEffect(() => {
-    const handlePopState = () => {
+    if (!Capacitor.isNativePlatform()) return;
+
+    const handleNativeBack = () => {
       if (viewer) {
         closeViewer();
-      } else if (Capacitor.isNativePlatform()) {
-        // 뷰어 없는 상태에서 뒤로가기: 가드 항목 재추가 → 앱 종료 방지
-        history.pushState({ guard: true }, '');
+        return;
+      }
+      // 뷰어 없음: 2초 내 두 번 누르면 앱 종료
+      const bridge = (window as unknown as { NativeBridge?: { exitApp: () => void; showExitToast: () => void } }).NativeBridge;
+      const now = Date.now();
+      if (now - lastBackTimeRef.current < 2000) {
+        bridge?.exitApp();
+      } else {
+        lastBackTimeRef.current = now;
+        bridge?.showExitToast();
       }
     };
-    window.addEventListener('popstate', handlePopState);
-    return () => window.removeEventListener('popstate', handlePopState);
+
+    window.addEventListener('nativeBackButton', handleNativeBack);
+    return () => window.removeEventListener('nativeBackButton', handleNativeBack);
   }, [viewer, closeViewer]);
 
   // 미확인 차단 사이트 fallback: 10초 내 로드 없으면 외부 브라우저로
@@ -52,10 +52,7 @@ export function ViewerOverlay() {
     if (!viewer) return;
     const t = setTimeout(() => {
       setLoading(prev => {
-        if (prev) {
-          window.open(viewer.url, '_blank', 'noopener,noreferrer');
-          history.back();
-        }
+        if (prev) window.open(viewer.url, '_blank', 'noopener,noreferrer');
         return prev;
       });
     }, 10000);
@@ -81,7 +78,7 @@ export function ViewerOverlay() {
         siteName={viewer.site}
         siteColor={viewer.color}
         url={viewer.url}
-        onBack={() => history.back()}
+        onBack={closeViewer}
       />
 
       <div style={{ position: 'relative', flex: 1, overflow: 'hidden' }}>
@@ -90,7 +87,6 @@ export function ViewerOverlay() {
           src={viewer.url}
           onLoad={() => {
             setLoading(false);
-            // iframe이 외부 URL 로드 완료 후 AdMob 배너 재표시
             if (Capacitor.isNativePlatform()) {
               import('@/lib/admob').then(({ resumeBannerAd }) => {
                 resumeBannerAd().catch(() => {});
