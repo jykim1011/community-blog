@@ -1,6 +1,7 @@
 'use client';
 
 import Link from 'next/link';
+import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { SITE_NAME } from '@/lib/constants';
@@ -47,11 +48,17 @@ export function SiteHeader() {
       {!isMobileView && <nav className="bg-white dark:bg-gray-900 border-b border-gray-200 dark:border-gray-800 sticky top-0 z-30">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-14">
-            <Link
-              href="/"
-              className="text-xl font-bold text-gray-900 dark:text-white transition-colors hover:text-violet-600 dark:hover:text-violet-400"
-            >
-              {SITE_NAME}
+            <Link href="/" className="flex items-center gap-2 group">
+              <Image
+                src="/icon-192.png"
+                alt={SITE_NAME}
+                width={28}
+                height={28}
+                className="rounded-lg"
+              />
+              <span className="text-xl font-bold text-gray-900 dark:text-white transition-colors group-hover:text-violet-600 dark:group-hover:text-violet-400">
+                {SITE_NAME}
+              </span>
             </Link>
 
             <div className="flex items-center gap-1">
