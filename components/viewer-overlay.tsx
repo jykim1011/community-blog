@@ -6,7 +6,7 @@ import { useViewer } from '@/lib/contexts/viewer-context';
 import { ViewerToolbar } from '@/components/viewer-toolbar';
 
 export function ViewerOverlay() {
-  const { viewer, closeViewer } = useViewer();
+  const { viewer, closeViewer, preloadUrl } = useViewer();
   const iframeRef = useRef<HTMLIFrameElement>(null);
   const [loading, setLoading] = useState(true);
   const lastBackTimeRef = useRef(0);
@@ -59,7 +59,17 @@ export function ViewerOverlay() {
     return () => clearTimeout(t);
   }, [viewer?.url]);
 
-  if (!viewer) return null;
+  if (!viewer) {
+    if (!preloadUrl) return null;
+    return (
+      <iframe
+        src={preloadUrl}
+        style={{ position: 'fixed', width: 0, height: 0, opacity: 0, border: 'none', pointerEvents: 'none' }}
+        aria-hidden="true"
+        tabIndex={-1}
+      />
+    );
+  }
 
   return (
     <div

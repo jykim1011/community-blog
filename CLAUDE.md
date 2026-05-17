@@ -111,6 +111,90 @@ Tailwind CSS 3.4 + 다크모드는 `prefers-color-scheme` 미디어 쿼리 기�
 - 커밋/푸시는 항상 사용자에게 확인 후 실행
 - 커밋 메시지에 `Co-Authored-By` 태그 추가 금지
 
-## jvaa 빌드 참조
+## Android 빌드 환경 및 버전 지침
 
-jdk는 `C:\Users\junyoung\.jdks`에 있습니다.
+> **반드시 읽을 것.** 이 프로젝트는 버전 불일치로 잘못된 메서드를 반복 사용한 이력이 있습니다.
+> Android 코드를 작성하기 전에 아래 제약을 먼저 확인하세요.
+
+### 빌드 툴체인 (변경 금지)
+
+| 항목 | 값 | 위치 |
+|---|---|---|
+| Gradle JDK | Corretto 21.0.11 | `android/gradle.properties` > `org.gradle.java.home` |
+| Gradle Wrapper | 8.14.3 | `android/gradle/wrapper/gradle-wrapper.properties` |
+| AGP (Android Gradle Plugin) | 8.13.0 | `android/build.gradle` |
+| compileSdkVersion | 36 (Android 16) | `android/variables.gradle` |
+| targetSdkVersion | 36 (Android 16) | `android/variables.gradle` |
+| minSdkVersion | 24 (Android 7.0) | `android/variables.gradle` |
+
+- **JDK 경로**: `C:\Users\junyoung\.jdks\corretto-21.0.11`
+- 시스템 기본 Java(11)는 Gradle 빌드에 사용되지 않음 — `gradle.properties`의 `org.gradle.java.home`이 우선
+
+### targetSdkVersion ≥ 35에서 사용 금지 메서드
+
+Android 15 (API 35)부터 back button 처리 방식이 변경됩니다. **targetSdkVersion = 36인 이 프로젝트에서는 아래가 적용됩니다.**
+
+#### 뒤로가기 처리
+
+```java
+// ❌ 사용 금지 — targetSdk 35+에서 호출되지 않음
+@Override
+public void onBackPressed() { ... }
+
+// ✅ 올바른 방법 — OnBackPressedDispatcher 사용
+// super.onCreate() 이후에 추가해야 LIFO 순서로 가장 먼저 실행됨
+getOnBackPressedDispatcher().addCallback(this, new OnBackPressedCallback(true) {
+    @Override
+    public void handleOnBackPressed() {
+        // 뒤로가기 처리 로직
+    }
+});
+```
+
+**이유**: Android 15+에서는 `OnBackInvokedDispatcher`가 back 이벤트를 처리하며, `onBackPressed()`는 호출되지 않는 경우가 있음. `OnBackPressedDispatcher`는 AndroidX가 이를 추상화한 안전한 대체제.
+
+#### WebViewClient URL 인터셉트
+
+```java
+// ❌ 비권장 (API 24에서 deprecated) — 이 시그니처만 단독 사용 금지
+@Override
+public boolean shouldOverrideUrlLoading(WebView view, String url) { ... }
+
+// ✅ 올바른 방법 — WebResourceRequest 시그니처 사용
+@Override
+public boolean shouldOverrideUrlLoading(WebView view, WebResourceRequest request) {
+    String url = request.getUrl().toString();
+    if (!request.isForMainFrame()) return false; // iframe은 통과
+    // 메인 프레임 URL만 처리
+}
+```
+
+**이유**: API 24+ 에서 WebView는 `WebResourceRequest` 버전을 우선 호출. String 버전만 오버라이드하면 iframe 포함 모든 요청을 구분 없이 가로챌 수 있어 iframe 로딩이 차단됨.
+
+### Capacitor 8 + Android 주의사항
+
+- `BridgeActivity`는 `onBackPressed()`를 오버라이드하지 않음 → back button 처리는 전적으로 앱이 담당
+- `this.bridge.getWebView().setWebViewClient(...)` 호출 시 Capacitor의 `BridgeWebViewClient`가 교체됨
+  - `shouldInterceptRequest` (로컬 에셋 서빙) 도 사라지므로, CDN 배포 앱에서만 안전
+  - `BridgeWebViewClient`를 확장하는 것이 더 안전한 방법이지만, 현재는 CDN 배포 구조라 허용
+- JavaScript 이벤트 발송은 `bridge.getWebView().evaluateJavascript()`로 처리 — WebViewClient와 무관하게 동작
+
+### Android 코드 작성 전 체크리스트
+
+1. [ ] 사용하려는 메서드가 `minSdkVersion = 24` 이상에서 지원되는지 확인
+2. [ ] 사용하려는 메서드가 `targetSdkVersion = 36` 기준으로 deprecated/removed가 아닌지 확인
+3. [ ] back button 관련 코드는 반드시 `OnBackPressedDispatcher.addCallback()` 사용
+4. [ ] WebViewClient 확장 시 `shouldOverrideUrlLoading(WebView, WebResourceRequest)` 사용, `isForMainFrame()` 체크
+
+### 빌드 명령어
+
+```bash
+# 릴리즈 APK 빌드 (android/ 디렉토리에서 실행)
+./gradlew assembleRelease
+
+# 컴파일만 확인 (빠름)
+./gradlew :app:compileReleaseJavaWithJavac
+
+# 클린 빌드
+./gradlew clean assembleRelease
+```

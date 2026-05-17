@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { formatRelativeTime, formatNumber } from '@/lib/utils';
 import { useReadPosts } from '@/lib/hooks/use-read-posts';
 import { isDomainBlocked } from '@/lib/utils/blocked-domains';
@@ -46,15 +46,39 @@ const SITE_THEME: Record<string, { color: string; domain: string }> = {
 };
 
 export function PostCard({ title, author, url, site, viewCount, commentCount, likeCount, createdAt, category }: PostCardProps) {
-  const { openViewer } = useViewer();
+  const { openViewer, preloadViewer, cancelPreload } = useViewer();
   const [relativeTime, setRelativeTime] = useState('');
   const { isRead, markAsRead, isLoaded } = useReadPosts();
+  const touchStartPos = useRef<{ x: number; y: number } | null>(null);
 
   useEffect(() => {
     setRelativeTime(formatRelativeTime(new Date(createdAt)));
     const t = setInterval(() => setRelativeTime(formatRelativeTime(new Date(createdAt))), 60000);
     return () => clearInterval(t);
   }, [createdAt]);
+
+  const handleTouchStart = (e: React.TouchEvent) => {
+    if (isDomainBlocked(url)) return;
+    const t = e.touches[0];
+    touchStartPos.current = { x: t.clientX, y: t.clientY };
+    preloadViewer(url);
+  };
+
+  const handleTouchMove = (e: React.TouchEvent) => {
+    if (!touchStartPos.current) return;
+    const t = e.touches[0];
+    const dx = t.clientX - touchStartPos.current.x;
+    const dy = t.clientY - touchStartPos.current.y;
+    if (dx * dx + dy * dy > 25) {
+      cancelPreload();
+      touchStartPos.current = null;
+    }
+  };
+
+  const handleTouchCancel = () => {
+    cancelPreload();
+    touchStartPos.current = null;
+  };
 
   const handleClick = (e: React.MouseEvent | React.KeyboardEvent) => {
     e.preventDefault();
@@ -73,6 +97,9 @@ export function PostCard({ title, author, url, site, viewCount, commentCount, li
       href={url}
       onClick={handleClick}
       onKeyDown={(e) => { if (e.key === ' ') handleClick(e); }}
+      onTouchStart={handleTouchStart}
+      onTouchMove={handleTouchMove}
+      onTouchCancel={handleTouchCancel}
       className="grid gap-3 px-4 py-3 border-b last:border-b-0 transition-colors cursor-pointer"
       style={{
         gridTemplateColumns: '3px 1fr',
