@@ -22,13 +22,17 @@ export function PullToRefresh({ onRefresh, children }: PullToRefreshProps) {
     if (!container) return;
 
     let touchStartY = 0;
+    let touchStartX = 0;
     let scrollTop = 0;
+    let isHorizontalGesture = false;
 
     const handleTouchStart = (e: TouchEvent) => {
       // 페이지가 최상단일 때만 작동
       scrollTop = window.scrollY || document.documentElement.scrollTop;
       if (scrollTop === 0) {
         touchStartY = e.touches[0].clientY;
+        touchStartX = e.touches[0].clientX;
+        isHorizontalGesture = false;
         startY.current = touchStartY;
       }
     };
@@ -48,13 +52,21 @@ export function PullToRefresh({ onRefresh, children }: PullToRefreshProps) {
       }
 
       const currentY = e.touches[0].clientY;
-      const distance = currentY - touchStartY;
+      const currentX = e.touches[0].clientX;
+      const dy = currentY - touchStartY;
+      const dx = Math.abs(currentX - touchStartX);
+
+      // 수평 이동이 더 크면 이번 터치 전체를 수평 제스처로 확정 → pull 무시
+      if (!isHorizontalGesture && dx > Math.abs(dy)) {
+        isHorizontalGesture = true;
+      }
+      if (isHorizontalGesture) return;
 
       // 아래로 당길 때만 작동 (최상단에서만)
-      if (distance > 0 && currentScrollTop === 0) {
+      if (dy > 0 && currentScrollTop === 0) {
         setIsPulling(true);
         // 저항감 추가 (거리가 멀수록 덜 당겨짐)
-        const resistance = Math.min(distance / 2.5, MAX_PULL);
+        const resistance = Math.min(dy / 2.5, MAX_PULL);
         setPullDistance(resistance);
 
         // 너무 많이 당기지 못하도록 제한
