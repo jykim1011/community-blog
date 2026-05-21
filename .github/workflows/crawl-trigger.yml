@@ -3,6 +3,10 @@ name: Crawl Chain Trigger
 on:
   workflow_dispatch:
 
+concurrency:
+  group: crawl-chain
+  cancel-in-progress: true
+
 jobs:
   wait-and-trigger:
     runs-on: ubuntu-latest
