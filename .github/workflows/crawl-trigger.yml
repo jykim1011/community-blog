@@ -18,4 +18,4 @@ jobs:
       - name: Trigger crawl
         env:
           GH_TOKEN: ${{ secrets.WORKFLOW_TRIGGER_TOKEN }}
-        run: gh workflow run crawl.yml --repo ${{ github.repository }}
+        run: gh workflow run crawl.yml --repo ${{ github.repository }} --ref master || true

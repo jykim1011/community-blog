@@ -61,4 +61,4 @@ jobs:
       - name: Trigger next crawl cycle (28min later)
         env:
           GH_TOKEN: ${{ secrets.WORKFLOW_TRIGGER_TOKEN }}
-        run: gh workflow run crawl-trigger.yml --repo ${{ github.repository }}
+        run: gh workflow run crawl-trigger.yml --repo ${{ github.repository }} --ref master || true
