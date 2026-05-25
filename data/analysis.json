@@ -1,72 +1,106 @@
 {
-  "generatedAt": "2026-05-25T10:40:02.626Z",
+  "generatedAt": "2026-05-25T11:09:32.858Z",
   "keywords": [
     {
       "word": "스타벅스",
-      "frequency": 160,
-      "tfidf": 763.5846255988374,
+      "frequency": 158,
+      "tfidf": 756.0148434956006,
       "relatedPosts": [
-        "ilbe-1779705622234-ace2bh",
-        "ppomppu-1779705631482-cxxrvx",
-        "clien-1779705614923-lx7vej",
-        "cook82-1779705616183-osroxw",
-        "dcinside-1779705651289-o0s045",
-        "ppomppu-1779705631482-ey26tw",
-        "ilbe-1779705622234-5nnr3f",
-        "theqoo-1779705614021-y1sdpa",
-        "ilbe-1779696765992-pb454x",
-        "dcinside-1779705651290-od276w"
+        "dcinside-1779707424094-igj7gk",
+        "ilbe-1779707392889-wv8y3l",
+        "ppomppu-1779707402050-ql9d19",
+        "ilbe-1779707392889-xly7mw",
+        "dcinside-1779707424094-mjknnk",
+        "clien-1779707385181-u4ovah",
+        "theqoo-1779707384199-ubo773",
+        "cook82-1779707387105-c426xd",
+        "ilbe-1779707392889-8nccg6",
+        "cook82-1779705616183-osroxw"
       ]
     },
     {
       "word": "일베",
-      "frequency": 122,
-      "tfidf": 617.0781629844157,
+      "frequency": 127,
+      "tfidf": 637.2258487392663,
       "relatedPosts": [
+        "etoland-1779707396222-0ig8ka",
+        "cook82-1779707387105-5pzuoj",
         "gasengi-1779627975551-vvwqk4",
+        "theqoo-1779707384199-6ufl3j",
+        "ilbe-1779707392889-fy9q1l",
+        "etoland-1779707396222-6tz9ss",
+        "cook82-1779707387105-c426xd",
         "cook82-1779705616183-osroxw",
-        "ilbe-1779705622234-9hzirz",
-        "etoland-1779705623324-lzidzy",
-        "theqoo-1779705614021-eue3f2",
-        "slrclub-1779703840070-10t3gh",
-        "gasengi-1779705618313-nfeost",
-        "gasengi-1779705618313-j8i1ol",
-        "clien-1779703846397-4es5fv",
-        "gasengi-1779705618313-ergmdl"
-      ]
-    },
-    {
-      "word": "이유",
-      "frequency": 119,
-      "tfidf": 602.8916673312231,
-      "relatedPosts": [
-        "inven-1779705604395-f5nlom",
-        "theqoo-1779705614021-1ys0uz",
-        "bobaedream-1779705618469-xem3ec",
-        "theqoo-1779705614021-emfwqk",
-        "bobaedream-1779705618469-q0ab6c",
-        "gasengi-1779705618313-nt08vi",
-        "ilbe-1779705622234-mdru96",
-        "extmovie-1779705618326-so1gn2",
-        "slrclub-1779702061775-05zae1",
-        "clien-1779702068945-d0jprw"
+        "gasengi-1779707390069-f3sd91",
+        "gasengi-1779707390069-kck32t"
       ]
     },
     {
       "word": "근황",
-      "frequency": 111,
-      "tfidf": 570.0193438087134,
+      "frequency": 112,
+      "tfidf": 574.159091101664,
       "relatedPosts": [
-        "etoland-1779705623324-4r49oi",
-        "theqoo-1779705614021-z8bvjc",
-        "ilbe-1779705622234-sogzzz",
-        "theqoo-1779705614021-n53dxd",
-        "bobaedream-1779705618469-i43i0t",
-        "ruliweb-1779705615442-xz71b6",
-        "bobaedream-1779705618469-654euo",
-        "ilbe-1779705622234-j9baug",
-        "etoland-1779705623324-td5v7m",
-        "dcinside-1779705651289-eyk5cv"
+        "inven-1779707374953-6udig5",
+        "theqoo-1779707384199-gaskia",
+        "etoland-1779707396222-k2gtbo",
+        "theqoo-1779707384199-vwx19h",
+        "bobaedream-1779707389372-ouuulk",
+        "slrclub-1779707382887-2zouk2",
+        "bobaedream-1779707389372-nz8nvz",
+        "ilbe-1779707392889-zmls4s",
+        "etoland-1779707396222-ct1tl4",
+        "dcinside-1779707424094-p7hiyw"
+      ]
+    },
+    {
+      "word": "이유",
+      "frequency": 110,
+      "tfidf": 565.870588103135,
+      "relatedPosts": [
+        "theqoo-1779707384199-ipods1",
+        "bobaedream-1779707389372-165815",
+        "inven-1779707374952-g0s4ki",
+        "theqoo-1779707384199-6mcqpz",
+        "bobaedream-1779707389372-6o0dkg",
+        "gasengi-1779707390069-jmwduw",
+        "ilbe-1779707392889-cd7nqa",
+        "extmovie-1779707390018-tfovj2",
+        "clien-1779702068945-d0jprw",
+        "extmovie-1779707390018-zvnun9"
+      ]
+    },
+    {
+      "word": "진짜",
+      "frequency": 104,
+      "tfidf": 540.7841841812461,
+      "relatedPosts": [
+        "ruliweb-1779707385750-hb6jw1",
+        "inven-1779707374952-nyyuc9",
+        "extmovie-1779707390018-gm2p30",
+        "hygall-1779707386485-aggqur",
+        "dcinside-1779707424094-gddbxh",
+        "hygall-1779707386485-nr4g64",
+        "slrclub-1779705607797-sy2rp1",
+        "theqoo-1779707384199-hl6a5r",
+        "ruliweb-1779707385751-cg4gti",
+        "dcinside-1779707424094-a1tfzs"
+      ]
+    },
+    {
+      "word": "김용남",
+      "frequency": 100,
+      "tfidf": 523.8687758135939,
+      "relatedPosts": [
+        "ppomppu-1779707402050-yrgkpb",
+        "ppomppu-1779707402050-wl3xyv",
+        "ppomppu-1779707402050-l1f6jx",
+        "etoland-1779707396222-q9fk46",
+        "ppomppu-1779707402050-41xe98",
+        "ppomppu-1779707402050-l1p8rb",
+        "ppomppu-1779707402050-v0ih63",
+        "ppomppu-1779707402050-gcgwpq",
+        "ppomppu-1779707402050-t2pgsx",
+        "ppomppu-1779707402050-aon4xk"
       ]
     },
     {
@@ -74,84 +108,33 @@
       "frequency": 97,
       "tfidf": 511.07755724174274,
       "relatedPosts": [
-        "dealbada-1779705630740-2q159u",
-        "dealbada-1779705630740-r60kgc",
-        "dealbada-1779705630741-bnwg4m",
-        "dealbada-1779705630741-3xiedb",
-        "dealbada-1779705630741-0npg7q",
-        "dealbada-1779705630741-r0wv9x",
-        "dealbada-1779705630741-yyzye7",
-        "dealbada-1779705630741-biznvw",
-        "dealbada-1779705630741-t7qmuj",
-        "dealbada-1779705630741-byu3bs"
-      ]
-    },
-    {
-      "word": "진짜",
-      "frequency": 92,
-      "tfidf": 489.55120792780264,
-      "relatedPosts": [
-        "inven-1779705604395-z92l1f",
-        "hygall-1779705615054-tj8agj",
-        "slrclub-1779705607797-sy2rp1",
-        "extmovie-1779705618326-a0lrdd",
-        "dcinside-1779705651289-oa03u5",
-        "hygall-1779703846563-kmn21a",
-        "theqoo-1779705614022-pgblo1",
-        "dcinside-1779705651290-i5q53z",
-        "theqoo-1779124761695-yxauk8",
-        "gasengi-1779705618313-7zo5j3"
+        "dealbada-1779707402685-ggcx18",
+        "dealbada-1779707402685-s1w4lh",
+        "dealbada-1779707402685-8ngald",
+        "dealbada-1779707402685-6thnnn",
+        "dealbada-1779707402685-637ef5",
+        "dealbada-1779707402685-86h4tz",
+        "dealbada-1779707402685-vlhpnc",
+        "dealbada-1779707402685-dxauwt",
+        "dealbada-1779707402685-wpa6tt",
+        "dealbada-1779707402685-po556g"
       ]
     },
     {
       "word": "스벅",
-      "frequency": 85,
-      "tfidf": 459.94834657138483,
+      "frequency": 91,
+      "tfidf": 486.2083379298916,
       "relatedPosts": [
-        "bobaedream-1779705618469-hi7q02",
+        "bobaedream-1779707389372-qpdd84",
+        "bobaedream-1779707389372-d93q36",
+        "clien-1779707385181-1mkd04",
+        "clien-1779707385181-pedj9l",
+        "bobaedream-1779707389372-ughuaw",
+        "cook82-1779707387105-epxyq1",
         "cook82-1779705616183-ncr1qq",
-        "bobaedream-1779705618469-t6ggc5",
-        "clien-1779705614923-2898o1",
-        "clien-1779705614923-jeoi6t",
-        "bobaedream-1779705618469-f27cqe",
-        "etoland-1779705623324-74sznh",
-        "cook82-1779705616183-708hki",
-        "cook82-1779702070263-qfuvlj",
-        "cook82-1779705616183-44hs9h"
-      ]
-    },
-    {
-      "word": "김용남",
-      "frequency": 85,
-      "tfidf": 458.95418319151366,
-      "relatedPosts": [
-        "ppomppu-1779705631482-klmvog",
-        "ppomppu-1779705631482-4m4bru",
-        "ppomppu-1779705631482-5obuk3",
-        "ppomppu-1779705631482-brcmgo",
-        "clien-1779705614923-gnuuo9",
-        "ppomppu-1779705631482-ltv3f1",
-        "clien-1779703846397-c6lufk",
-        "clien-1779703846397-kmhp2x",
-        "clien-1779702068945-cor55y",
-        "clien-1779702068945-uqfui0"
-      ]
-    },
-    {
-      "word": "대통령",
-      "frequency": 85,
-      "tfidf": 458.95418319151366,
-      "relatedPosts": [
-        "gasengi-1779627975551-vvwqk4",
-        "etoland-1779705623324-lzidzy",
-        "gasengi-1779705618313-qraj9m",
-        "gasengi-1779705618313-m142o6",
-        "clien-1779703846397-slxqac",
-        "gasengi-1779705618313-ergmdl",
-        "gasengi-1779705618313-0xsb3a",
-        "gasengi-1779705618313-moy30n",
-        "clien-1779694981081-a7lfxo",
-        "ilbe-1779705622234-b1yatr"
+        "etoland-1779707396222-ck3zpz",
+        "cook82-1779707387105-5i2l5u",
+        "cook82-1779705616183-708hki"
       ]
     },
     {
@@ -159,152 +142,152 @@
       "frequency": 83,
       "tfidf": 450.10829251911235,
       "relatedPosts": [
-        "dealbada-1779705630740-g1f1cp",
-        "dealbada-1779705630740-3sln7d",
-        "dealbada-1779705630741-s6anaa",
-        "dealbada-1779705630741-bzcxmw",
-        "dealbada-1779705630741-qjgi8w",
-        "dealbada-1779705630741-629not",
-        "dealbada-1779705630741-bzd8bs",
-        "dealbada-1779705630741-rwed8b",
-        "dealbada-1779705630741-w3nx5s",
-        "dealbada-1779705630741-bt1t73"
+        "dealbada-1779707402685-lox7xf",
+        "dealbada-1779707402685-bm3915",
+        "dealbada-1779707402685-eouyxt",
+        "dealbada-1779707402685-pi7whz",
+        "dealbada-1779707402685-5485vu",
+        "dealbada-1779707402685-o00t3r",
+        "dealbada-1779707402685-yg5at9",
+        "dealbada-1779707402685-e0ey5z",
+        "dealbada-1779707402685-6jw4t2",
+        "dealbada-1779707402685-2fq0p5"
+      ]
+    },
+    {
+      "word": "대통령",
+      "frequency": 80,
+      "tfidf": 436.74872962438076,
+      "relatedPosts": [
+        "gasengi-1779627975551-vvwqk4",
+        "gasengi-1779707390069-wp8v3f",
+        "etoland-1779707396222-6tz9ss",
+        "gasengi-1779707390069-a8bujc",
+        "clien-1779703846397-slxqac",
+        "gasengi-1779707390069-592769",
+        "gasengi-1779707390069-f81xvf",
+        "gasengi-1779707390069-ubumrg",
+        "clien-1779694981081-a7lfxo",
+        "gasengi-1779705618313-moy30n"
       ]
     },
     {
       "word": "군체",
-      "frequency": 75,
-      "tfidf": 414.23062010181496,
+      "frequency": 78,
+      "tfidf": 427.7801129557937,
       "relatedPosts": [
-        "extmovie-1779705618326-9465zg",
-        "extmovie-1779705618326-a0lrdd",
-        "extmovie-1779705618326-owjon4",
-        "dcinside-1779705651289-7y1rwd",
-        "extmovie-1779705618326-j0vgpe",
-        "extmovie-1779705618326-mckc2v",
-        "extmovie-1779705618326-esvtzi",
-        "extmovie-1779705618326-ohiuxf",
-        "extmovie-1779705618327-vk2ffi",
-        "extmovie-1779705618327-o5ng44"
+        "extmovie-1779707390018-sm2w02",
+        "extmovie-1779707390018-3lzlok",
+        "extmovie-1779707390018-gm2p30",
+        "dcinside-1779707424094-744yyb",
+        "extmovie-1779707390018-0quz1f",
+        "extmovie-1779707390018-2kbvbi",
+        "extmovie-1779707390018-umzvz6",
+        "extmovie-1779707390018-0yvsny",
+        "extmovie-1779707390018-se4t8c",
+        "extmovie-1779707390018-g305hx"
       ]
     },
     {
       "word": "한국",
-      "frequency": 71,
-      "tfidf": 398.99882569697564,
+      "frequency": 74,
+      "tfidf": 413.74350144725526,
       "relatedPosts": [
-        "bobaedream-1779705618469-fiiuf6",
-        "ilbe-1779705622234-lufwa2",
-        "dcinside-1779705651289-ns77q8",
-        "ppomppu-1779705631482-oyjbqg",
-        "ilbe-1779705622234-ldmmib",
-        "dcinside-1779705651290-xgt0ov",
-        "ilbe-1779705622234-7vsfl2",
-        "dcinside-1779705651290-1kft03",
+        "bobaedream-1779707389372-72ipni",
+        "dcinside-1779707424094-12utd7",
+        "ilbe-1779707392889-yvjp3u",
+        "dcinside-1779707424094-ropo30",
+        "ilbe-1779707392889-v5ej0g",
+        "dcinside-1779707424094-qqwwp6",
+        "ilbe-1779707392889-w1dfxg",
         "gasengi-1779548336305-31kqxo",
-        "gasengi-1779705618313-7o0zto"
-      ]
-    },
-    {
-      "word": "이재명",
-      "frequency": 66,
-      "tfidf": 372.8416332686913,
-      "relatedPosts": [
-        "gasengi-1779705618313-wolnz8",
-        "clien-1779705614923-7ffb2h",
-        "ppomppu-1779705631482-1ly68j",
-        "ilbe-1779705622234-qm9w72",
-        "theqoo-1779705614021-rkol0e",
-        "gasengi-1779705618313-m142o6",
-        "clien-1779703846397-kmhp2x",
-        "etoland-1779705623324-8gn7d9",
-        "dcinside-1779705651290-hxtnhs",
-        "inven-1779705604395-9lssfy"
+        "gasengi-1779707390069-stfs5c",
+        "gasengi-1779707390069-2bbk16"
       ]
     },
     {
       "word": "너무",
-      "frequency": 61,
-      "tfidf": 350.318999059037,
+      "frequency": 66,
+      "tfidf": 374.841786335383,
       "relatedPosts": [
-        "hygall-1779705615054-73evux",
-        "hygall-1779705615054-w6gc9c",
-        "theqoo-1779705614021-4q5xox",
+        "ruliweb-1779707385750-hb6jw1",
+        "theqoo-1779707384199-xa4yco",
         "clien-1779705614923-ephl7f",
-        "dcinside-1779705651290-8hf4bo",
-        "ruliweb-1779705615443-9e6pnf",
-        "bobaedream-1779705618469-69pugw",
-        "ruliweb-1779705615443-0v81m7",
-        "hygall-1779705615054-j9wyzn",
-        "inven-1779705604395-mthgis"
+        "dcinside-1779707424094-ry98jk",
+        "bobaedream-1779707389372-6r1eox",
+        "hygall-1779707386485-uv8t0h",
+        "hygall-1779705615054-73evux",
+        "hygall-1779707386485-sr2u7m",
+        "hygall-1779705615054-w6gc9c",
+        "inven-1779707374952-tk6w7m"
       ]
     },
     {
-      "word": "림버스",
-      "frequency": 57,
-      "tfidf": 330.22182007255435,
+      "word": "이재명",
+      "frequency": 63,
+      "tfidf": 358.7802870719041,
       "relatedPosts": [
-        "ruliweb-1779705615442-iol4m1",
-        "ruliweb-1779705615443-t0hhu6",
-        "ruliweb-1779705615443-4jmcsi",
-        "ruliweb-1779705615443-75m9mk",
-        "ruliweb-1779705615443-7beaiv",
-        "ruliweb-1779705615443-8y1t4j",
-        "ruliweb-1779705615443-r3r8fl",
-        "ruliweb-1779705615443-1e88u1",
-        "ruliweb-1779705615443-8kc6gz",
-        "ruliweb-1779705615443-1nb906"
+        "gasengi-1779707390069-m5crwe",
+        "clien-1779707385181-ttkv5t",
+        "theqoo-1779707384199-h0ioe5",
+        "ilbe-1779707392889-cdf3gd",
+        "gasengi-1779707390069-a8bujc",
+        "clien-1779703846397-kmhp2x",
+        "ppomppu-1779707402050-wwoby6",
+        "ppomppu-1779705631482-1ly68j",
+        "dcinside-1779707424094-8p8bt9",
+        "etoland-1779707396222-4rhwvc"
       ]
     },
     {
       "word": "후기",
-      "frequency": 56,
-      "tfidf": 325.40239239998823,
+      "frequency": 54,
+      "tfidf": 315.70965484621524,
       "relatedPosts": [
-        "dcinside-1779705651289-fk4be0",
-        "ilbe-1779705622234-htzdvk",
-        "inven-1779705604395-1lzrfu",
-        "extmovie-1779705618326-owjon4",
-        "dcinside-1779705651290-muoyta",
-        "dcinside-1779705651290-li8bgm",
-        "dcinside-1779705651290-am2ehw",
-        "inven-1779705604395-yjjjjj",
-        "extmovie-1779705618326-twpbaa",
-        "inven-1779705604395-v4vbof"
+        "dcinside-1779707424094-xjw6ob",
+        "ilbe-1779707392889-pl4d8q",
+        "extmovie-1779707390018-3lzlok",
+        "inven-1779707374952-5ioivx",
+        "dcinside-1779707424094-0y49xs",
+        "dcinside-1779707424094-4gy23x",
+        "dcinside-1779707424094-z0dmh3",
+        "inven-1779707374952-4fe03h",
+        "extmovie-1779707390018-itlyi8",
+        "inven-1779707374952-d6l9hx"
       ]
     },
     {
-      "word": "영화",
-      "frequency": 55,
-      "tfidf": 320.56511213331265,
+      "word": "오늘",
+      "frequency": 54,
+      "tfidf": 315.70965484621524,
       "relatedPosts": [
-        "hygall-1779705615054-uj23az",
-        "extmovie-1779705618326-9p9ljj",
-        "ppomppu-1779705631482-rc6jzk",
-        "slrclub-1779705607797-27tig0",
-        "extmovie-1779705618326-h226j7",
-        "slrclub-1779702061775-kdyury",
-        "extmovie-1779705618326-2obvwo",
-        "ruliweb-1779705615443-xxpvh1",
-        "clien-1779689664980-lopube",
-        "extmovie-1779705618327-herce1"
+        "ppomppu-1779707402050-ql9d19",
+        "ilbe-1779707392889-hv80to",
+        "clien-1779707385181-pedj9l",
+        "bobaedream-1779707389372-ughuaw",
+        "ruliweb-1779707385751-s87hp4",
+        "ruliweb-1779707385751-gthm70",
+        "ruliweb-1779707385751-xhf44y",
+        "ruliweb-1779707385751-pkhra9",
+        "gasengi-1779707390069-nymxid",
+        "ruliweb-1779707385751-43c4ci"
       ]
     },
     {
-      "word": "요즘",
-      "frequency": 51,
-      "tfidf": 301.0307923761843,
+      "word": "버튜버",
+      "frequency": 53,
+      "tfidf": 310.8356841058849,
       "relatedPosts": [
-        "cook82-1779705616183-heha48",
-        "theqoo-1779705614021-1ys0uz",
-        "etoland-1779705623324-ie8mxk",
-        "ppomppu-1779705631482-uttgnq",
-        "theqoo-1779705614021-n53dxd",
-        "hygall-1779703846563-kmn21a",
-        "gasengi-1779705618313-pbjkne",
-        "etoland-1779705623325-iis3yr",
-        "gasengi-1779617508549-5kvci3",
-        "bobaedream-1779705618469-3crqba"
+        "ruliweb-1779707385750-ytyqu2",
+        "ruliweb-1779707385750-2yoeqw",
+        "ruliweb-1779707385750-75iz4b",
+        "ruliweb-1779707385750-16rumr",
+        "ruliweb-1779707385751-378ie8",
+        "ruliweb-1779707385751-irtglj",
+        "ruliweb-1779707385751-2gwu4i",
+        "ruliweb-1779707385751-nh2vlf",
+        "ruliweb-1779707385751-rftxoe",
+        "ruliweb-1779707385751-wbs5i4"
       ]
     },
     {
@@ -312,118 +295,135 @@
       "frequency": 51,
       "tfidf": 301.0307923761843,
       "relatedPosts": [
-        "dcinside-1779705651289-tsu1i0",
-        "dcinside-1779705651289-eyk5cv",
-        "dcinside-1779705651289-c3oi0o",
-        "dcinside-1779705651290-8hf4bo",
-        "dcinside-1779705651290-vgpeio",
-        "dcinside-1779705651290-xgt0ov",
-        "dcinside-1779705651290-8jgx38",
-        "dcinside-1779705651290-ouqd4f",
-        "dcinside-1779705651290-faw583",
-        "dcinside-1779705651290-ml21us"
-      ]
-    },
-    {
-      "word": "오늘",
-      "frequency": 47,
-      "tfidf": 281.18254141125743,
-      "relatedPosts": [
-        "ilbe-1779705622234-murc9y",
-        "clien-1779705614923-jeoi6t",
-        "bobaedream-1779705618469-f27cqe",
-        "hygall-1779705615054-fabnlw",
-        "hygall-1779705615054-ocuy1u",
-        "hygall-1779703846563-04nj11",
-        "gasengi-1779705618313-mnzb3j",
-        "gasengi-1779615734546-j9vpxt",
-        "etoland-1779705623325-znic32",
-        "dcinside-1779705651290-ti3e6u"
+        "dcinside-1779707424094-x7t6gs",
+        "dcinside-1779707424094-p7hiyw",
+        "dcinside-1779707424094-tfp6l4",
+        "dcinside-1779707424094-ry98jk",
+        "dcinside-1779707424094-cndzlw",
+        "dcinside-1779707424094-ropo30",
+        "dcinside-1779707424094-jeetwx",
+        "dcinside-1779707424094-xqcsdr",
+        "dcinside-1779707424094-5x8csb",
+        "dcinside-1779707424094-gon1o7"
       ]
     },
     {
       "word": "폐쇄",
-      "frequency": 47,
-      "tfidf": 281.18254141125743,
+      "frequency": 48,
+      "tfidf": 286.17542288959544,
       "relatedPosts": [
+        "cook82-1779707387105-5pzuoj",
         "gasengi-1779627975551-vvwqk4",
-        "ilbe-1779705622234-9hzirz",
-        "etoland-1779705623324-lzidzy",
-        "theqoo-1779705614021-eue3f2",
-        "gasengi-1779705618313-j8i1ol",
-        "gasengi-1779705618313-ergmdl",
-        "dcinside-1779705651290-r4mcmq",
+        "theqoo-1779707384199-6ufl3j",
+        "ilbe-1779707392889-fy9q1l",
+        "etoland-1779707396222-6tz9ss",
+        "gasengi-1779707390069-kck32t",
+        "dcinside-1779707424094-7cbirc",
+        "gasengi-1779707390069-592769",
         "gasengi-1779665582928-9994kw",
-        "ilbe-1779705622234-em1d4i",
-        "ilbe-1779705622234-7kcugw"
+        "ilbe-1779707392889-gjwoxd"
       ]
     },
     {
-      "word": "지금",
-      "frequency": 47,
-      "tfidf": 281.18254141125743,
+      "word": "영화",
+      "frequency": 48,
+      "tfidf": 286.17542288959544,
       "relatedPosts": [
-        "inven-1779705604395-67iqoa",
-        "bobaedream-1779705618469-ogytts",
-        "clien-1779702068945-2znp42",
-        "hygall-1779705615054-n9d40l",
-        "slrclub-1779700296251-xehcf7",
-        "hygall-1779703846563-z7ddhr",
-        "hygall-1779705615054-3kc6pv",
-        "hygall-1779703846563-53l9uj",
-        "ilbe-1779705622234-fbyian",
-        "ilbe-1779705622234-rlsuqo"
-      ]
-    },
-    {
-      "word": "일본",
-      "frequency": 45,
-      "tfidf": 271.1325095319646,
-      "relatedPosts": [
-        "etoland-1779705623324-9zc2ri",
-        "extmovie-1779705618326-8760y5",
-        "theqoo-1779705614021-bkfpno",
-        "ilbe-1779705622234-xmlhpo",
-        "extmovie-1779705618326-muryfe",
-        "slrclub-1779703840070-5t5mwz",
-        "extmovie-1779705618326-ymsuac",
-        "bobaedream-1779705618469-qkf5rp",
-        "slrclub-1779694974071-9j9fzn",
-        "slrclub-1779691427547-e1rqir"
-      ]
-    },
-    {
-      "word": "보고",
-      "frequency": 43,
-      "tfidf": 260.9936015655343,
-      "relatedPosts": [
-        "extmovie-1779705618326-yvu9w8",
-        "extmovie-1779705618326-s3ag0q",
-        "extmovie-1779705618326-ri2aae",
-        "ppomppu-1779705631482-oyjbqg",
-        "etoland-1779705623325-8zd8j8",
-        "slrclub-1779698523006-7wg1cu",
-        "gasengi-1779705618313-whm74e",
-        "gasengi-1779678275936-qpyqvl",
-        "clien-1779689664980-lfymmn",
-        "gasengi-1779550105371-4437u2"
+        "extmovie-1779707390018-hudulr",
+        "hygall-1779707386485-2e7jzb",
+        "slrclub-1779705607797-27tig0",
+        "extmovie-1779707390018-tmv11f",
+        "ppomppu-1779707402050-5pmgf5",
+        "ppomppu-1779705631482-rc6jzk",
+        "hygall-1779707386485-a6fxk5",
+        "hygall-1779705615054-uj23az",
+        "slrclub-1779702061775-kdyury",
+        "clien-1779689664980-lopube"
       ]
     },
     {
       "word": "조국",
-      "frequency": 40,
-      "tfidf": 245.60944833091557,
+      "frequency": 47,
+      "tfidf": 281.18254141125743,
       "relatedPosts": [
-        "etoland-1779705623324-gxekyj",
-        "clien-1779705614923-up2ey1",
+        "etoland-1779707396222-mgwcgy",
+        "clien-1779707385181-o4ffnt",
+        "ppomppu-1779707402050-v1rzy4",
         "ppomppu-1779705631482-455gnd",
         "ilbe-1779681814072-z6ny9s",
         "clien-1779693204555-aqd3tb",
-        "ppomppu-1779705631482-j6tbvp",
-        "ppomppu-1779703862433-l11218",
-        "ppomppu-1779702085732-xfzu6m",
-        "ppomppu-1779705631482-u1izqh",
-        "ppomppu-1779703862433-dbdr9s"
+        "ilbe-1779707392889-ogzl39",
+        "ilbe-1779707392889-txiqft",
+        "ppomppu-1779707402050-mum5a4",
+        "ppomppu-1779705631482-j6tbvp"
+      ]
+    },
+    {
+      "word": "일본",
+      "frequency": 43,
+      "tfidf": 260.9936015655343,
+      "relatedPosts": [
+        "etoland-1779707396222-oyuug0",
+        "extmovie-1779707390018-7tcwlm",
+        "theqoo-1779707384199-k3moe1",
+        "extmovie-1779707390018-4pu7nu",
+        "ruliweb-1779707385751-thasur",
+        "ilbe-1779707392889-ke40m3",
+        "extmovie-1779707390018-tn5zf0",
+        "slrclub-1779703840070-5t5mwz",
+        "bobaedream-1779707389372-amzjmv",
+        "ruliweb-1779707385751-lea3or"
+      ]
+    },
+    {
+      "word": "많이",
+      "frequency": 41,
+      "tfidf": 250.761684924447,
+      "relatedPosts": [
+        "ruliweb-1779707385750-a3cm2n",
+        "theqoo-1779707384199-8ctfcm",
+        "ruliweb-1779707385750-4dsrp6",
+        "slrclub-1779707382887-logywo",
+        "cook82-1779707387105-k50p4y",
+        "cook82-1779705616183-c38yd7",
+        "etoland-1779707396222-x3vh6i",
+        "hygall-1779707386485-x3fe1a",
+        "inven-1779707374952-lwft07",
+        "hygall-1779707386485-6n9m5o"
+      ]
+    },
+    {
+      "word": "보고",
+      "frequency": 40,
+      "tfidf": 245.60944833091557,
+      "relatedPosts": [
+        "extmovie-1779707390018-8ciu0a",
+        "extmovie-1779707390018-60ki6x",
+        "extmovie-1779707390018-2fmlos",
+        "etoland-1779707396222-vr29c4",
+        "ppomppu-1779707402050-256pj7",
+        "ppomppu-1779705631482-oyjbqg",
+        "gasengi-1779707390069-obnzer",
+        "slrclub-1779698523006-7wg1cu",
+        "gasengi-1779678275936-qpyqvl",
+        "clien-1779689664980-lfymmn"
+      ]
+    },
+    {
+      "word": "지금",
+      "frequency": 39,
+      "tfidf": 240.4322240136672,
+      "relatedPosts": [
+        "hygall-1779707386485-rbv8eq",
+        "bobaedream-1779707389372-2446dq",
+        "inven-1779707374952-25rxmv",
+        "clien-1779702068945-2znp42",
+        "slrclub-1779700296251-xehcf7",
+        "ilbe-1779707392889-wxczet",
+        "ruliweb-1779707385751-bdhw3w",
+        "ruliweb-1779707385751-ambqfa",
+        "hygall-1779707386485-ml970h",
+        "hygall-1779705615054-n9d40l"
       ]
     },
     {
@@ -431,33 +431,50 @@
       "frequency": 39,
       "tfidf": 240.4322240136672,
       "relatedPosts": [
-        "etoland-1779705623324-uiv0o6",
-        "etoland-1779705623324-4u9dyw",
-        "ilbe-1779705622234-4p2xqh",
+        "etoland-1779707396222-kn8pqv",
+        "etoland-1779707396222-zqzkvz",
+        "ilbe-1779707392889-y8vvhn",
+        "cook82-1779707387105-dgeld9",
         "cook82-1779705616183-esh252",
-        "etoland-1779705623325-rq4l8d",
-        "ppomppu-1779705631482-mzlljt",
-        "ppomppu-1779703862433-yh74i2",
-        "slrclub-1779700296251-mdm9fj",
+        "etoland-1779707396222-0qki4a",
         "clien-1779696756981-at2jm5",
-        "clien-1779696756981-47zg15"
+        "clien-1779696756981-47zg15",
+        "slrclub-1779700296251-mdm9fj",
+        "ppomppu-1779707402050-1j7vsf"
       ]
     },
     {
-      "word": "많이",
+      "word": "요즘",
       "frequency": 39,
       "tfidf": 240.4322240136672,
       "relatedPosts": [
-        "theqoo-1779705614021-8j9qnl",
-        "cook82-1779705616183-c38yd7",
-        "hygall-1779705615054-ljt2a1",
-        "etoland-1779705623325-pmd90n",
-        "inven-1779705604395-p4asgf",
-        "hygall-1779705615054-8vrf15",
-        "hygall-1779703846563-tzaohu",
-        "hygall-1779705615054-0rcv2t",
-        "hygall-1779703846563-hk603t",
-        "extmovie-1779705618326-twpbaa"
+        "etoland-1779707396222-2gbx6b",
+        "theqoo-1779707384199-ipods1",
+        "theqoo-1779707384199-vwx19h",
+        "ruliweb-1779707385750-4k7c0i",
+        "cook82-1779707387105-kdb44q",
+        "slrclub-1779707382887-logywo",
+        "ppomppu-1779707402050-bz3maf",
+        "ppomppu-1779705631482-uttgnq",
+        "gasengi-1779707390069-xypknd",
+        "etoland-1779707396222-hksx5o"
+      ]
+    },
+    {
+      "word": "이번",
+      "frequency": 36,
+      "tfidf": 224.74405304398704,
+      "relatedPosts": [
+        "cook82-1779707387105-3xb9kc",
+        "slrclub-1779707382887-pc17by",
+        "inven-1779707374952-uvajv7",
+        "clien-1779696756981-sm9etr",
+        "gasengi-1779707390069-2mfafj",
+        "gasengi-1779700302952-edz4z6",
+        "bobaedream-1779707389372-1q47lb",
+        "ilbe-1779707392889-d3h9lg",
+        "gasengi-1779591739001-4weda0",
+        "ilbe-1779707392889-j499wq"
       ]
     },
     {
@@ -465,135 +482,118 @@
       "frequency": 34,
       "tfidf": 215.1332235122752,
       "relatedPosts": [
-        "etoland-1779705623324-5h2rk3",
-        "extmovie-1779705618326-stpiwn",
-        "gasengi-1779705618313-diny2t",
+        "etoland-1779707396222-yfymvp",
+        "extmovie-1779707390018-hdjqpv",
+        "gasengi-1779707390069-9h7ue3",
         "gasengi-1779700302952-1omjst",
-        "dcinside-1779705651290-fd0qe7",
-        "extmovie-1779705618327-7pab0e",
-        "ruliweb-1779705615443-00tzz8",
-        "dcinside-1779705651290-xchsdy",
-        "extmovie-1779705618327-vs5ey9",
-        "extmovie-1779705618327-asel2w"
+        "extmovie-1779707390018-ap4tue",
+        "dcinside-1779707424094-n0l1wp",
+        "dcinside-1779707424094-woostw",
+        "extmovie-1779707390018-24i3z3",
+        "extmovie-1779707390018-aq43k4",
+        "extmovie-1779707390018-3paej2"
       ]
     },
     {
-      "word": "이번",
+      "word": "내일",
       "frequency": 34,
       "tfidf": 214.14764725858467,
       "relatedPosts": [
-        "cook82-1779705616183-5p2hv1",
-        "ruliweb-1779705615443-nkgq8f",
-        "ruliweb-1779705615443-0v81m7",
-        "inven-1779705604395-p2ni6p",
-        "clien-1779696756981-sm9etr",
-        "gasengi-1779705618313-uevagl",
-        "gasengi-1779700302952-edz4z6",
-        "bobaedream-1779705618469-iv6kme",
-        "gasengi-1779591739001-4weda0",
-        "ilbe-1779705622234-qflac1"
-      ]
-    },
-    {
-      "word": "속보",
-      "frequency": 33,
-      "tfidf": 208.8057757619142,
-      "relatedPosts": [
-        "ilbe-1779705622234-fl1q6p",
-        "ilbe-1779705622234-qm9w72",
-        "inven-1779705604395-zpu43l",
-        "ilbe-1779705622234-xjwoz7",
-        "ilbe-1779702076197-5kz6tw",
-        "ilbe-1779705622234-6987ox",
-        "ilbe-1779705622234-0dqraj",
-        "ilbe-1779681814072-z6ny9s",
-        "ilbe-1779705622234-runr32",
-        "ilbe-1779705622234-pxor92"
+        "slrclub-1779707382887-xj751o",
+        "cook82-1779707387105-47atm9",
+        "ruliweb-1779707385750-a3cm2n",
+        "ruliweb-1779707385750-4dsrp6",
+        "ruliweb-1779707385750-irtl7g",
+        "clien-1779707385181-zn60nm",
+        "extmovie-1779707390018-4fqt1y",
+        "hygall-1779707386485-bg4yah",
+        "hygall-1779705615054-nbqk22",
+        "clien-1779689664980-yzfhv5"
       ]
     }
   ],
   "dailyTrends": [
     {
       "date": "2026-05-25",
-      "postCount": 3251,
-      "avgViewCount": 3130,
-      "avgCommentCount": 16,
+      "postCount": 3313,
+      "avgViewCount": 3235,
+      "avgCommentCount": 17,
       "avgLikeCount": 15,
-      "topKeyword": "림버스"
+      "topKeyword": "김용남"
     },
     {
       "date": "2026-05-24",
-      "postCount": 1430,
-      "avgViewCount": 14045,
-      "avgCommentCount": 41,
-      "avgLikeCount": 60,
+      "postCount": 1400,
+      "avgViewCount": 14216,
+      "avgCommentCount": 42,
+      "avgLikeCount": 61,
       "topKeyword": "일베"
     },
     {
       "date": "2026-05-23",
-      "postCount": 766,
-      "avgViewCount": 4933,
+      "postCount": 749,
+      "avgViewCount": 4938,
       "avgCommentCount": 64,
       "avgLikeCount": 41,
       "topKeyword": "싱갤"
     },
     {
       "date": "2026-05-22",
-      "postCount": 489,
-      "avgViewCount": 6191,
+      "postCount": 487,
+      "avgViewCount": 6174,
       "avgCommentCount": 82,
       "avgLikeCount": 40,
       "topKeyword": "싱갤"
     },
     {
       "date": "2026-05-21",
-      "postCount": 428,
-      "avgViewCount": 5803,
-      "avgCommentCount": 67,
+      "postCount": 431,
+      "avgViewCount": 5753,
+      "avgCommentCount": 66,
       "avgLikeCount": 33,
       "topKeyword": "군체"
     },
     {
       "date": "2026-05-20",
-      "postCount": 306,
-      "avgViewCount": 3492,
+      "postCount": 312,
+      "avgViewCount": 3432,
       "avgCommentCount": 9,
-      "avgLikeCount": 37,
+      "avgLikeCount": 36,
       "topKeyword": "이스라엘"
     },
     {
       "date": "2026-05-19",
-      "postCount": 132,
-      "avgViewCount": 3592,
-      "avgCommentCount": 16,
-      "avgLikeCount": 32,
+      "postCount": 111,
+      "avgViewCount": 4205,
+      "avgCommentCount": 19,
+      "avgLikeCount": 39,
       "topKeyword": "대통령"
     },
     {
       "date": "2026-05-18",
-      "postCount": 40,
-      "avgViewCount": 8130,
-      "avgCommentCount": 28,
-      "avgLikeCount": 85,
+      "postCount": 39,
+      "avgViewCount": 8310,
+      "avgCommentCount": 29,
+      "avgLikeCount": 87,
       "topKeyword": "지마켓"
     }
   ],
   "hourlyTrends": [
     {
       "hour": 0,
-      "postCount": 1262
+      "postCount": 1238
     },
     {
       "hour": 1,
-      "postCount": 129
+      "postCount": 118
     },
     {
       "hour": 2,
-      "postCount": 85
+      "postCount": 82
     },
     {
       "hour": 3,
-      "postCount": 47
+      "postCount": 48
     },
     {
       "hour": 4,
@@ -609,19 +609,19 @@
     },
     {
       "hour": 7,
-      "postCount": 128
+      "postCount": 123
     },
     {
       "hour": 8,
-      "postCount": 166
+      "postCount": 171
     },
     {
       "hour": 9,
-      "postCount": 461
+      "postCount": 451
     },
     {
       "hour": 10,
-      "postCount": 203
+      "postCount": 205
     },
     {
       "hour": 11,
@@ -629,43 +629,43 @@
     },
     {
       "hour": 12,
-      "postCount": 201
+      "postCount": 203
     },
     {
       "hour": 13,
-      "postCount": 229
+      "postCount": 163
     },
     {
       "hour": 14,
-      "postCount": 324
+      "postCount": 307
     },
     {
       "hour": 15,
-      "postCount": 308
+      "postCount": 327
     },
     {
       "hour": 16,
-      "postCount": 318
+      "postCount": 290
     },
     {
       "hour": 17,
-      "postCount": 734
+      "postCount": 484
     },
     {
       "hour": 18,
-      "postCount": 871
+      "postCount": 812
     },
     {
       "hour": 19,
-      "postCount": 809
+      "postCount": 882
     },
     {
       "hour": 20,
-      "postCount": 74
+      "postCount": 453
     },
     {
       "hour": 21,
-      "postCount": 84
+      "postCount": 83
     },
     {
       "hour": 22,
@@ -673,15 +673,15 @@
     },
     {
       "hour": 23,
-      "postCount": 100
+      "postCount": 93
     }
   ],
   "siteTrends": [
     {
       "siteName": "clien",
       "displayName": "클리앙",
-      "postCount": 529,
-      "avgViewCount": 2058,
+      "postCount": 528,
+      "avgViewCount": 2059,
       "avgCommentCount": 8,
       "avgLikeCount": 3,
       "topPost": {
@@ -694,10 +694,10 @@
     {
       "siteName": "ruliweb",
       "displayName": "루리웹",
-      "postCount": 529,
-      "avgViewCount": 624,
+      "postCount": 528,
+      "avgViewCount": 577,
       "avgCommentCount": 0,
-      "avgLikeCount": 8,
+      "avgLikeCount": 7,
       "topPost": {
         "id": "ruliweb-1779705615443-m0t0be",
         "title": "주식)현재 미국 주식갤러리에서 난리난 루리웹회원                                                                                 (29)",
@@ -709,22 +709,22 @@
       "siteName": "dcinside",
       "displayName": "디시인사이드",
       "postCount": 528,
-      "avgViewCount": 16248,
-      "avgCommentCount": 266,
-      "avgLikeCount": 117,
+      "avgViewCount": 16316,
+      "avgCommentCount": 267,
+      "avgLikeCount": 118,
       "topPost": {
-        "id": "dcinside-1779705651290-t4qvdp",
+        "id": "dcinside-1779707424094-gj4cjp",
         "title": "[싱갤] 와들와들 일본인도 반박 못하는 만행.JPG",
         "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=431867",
-        "score": 15699.3
+        "score": 15711.7
       }
     },
     {
       "siteName": "inven",
       "displayName": "인벤",
       "postCount": 528,
-      "avgViewCount": 1792,
-      "avgCommentCount": 30,
+      "avgViewCount": 1819,
+      "avgCommentCount": 31,
       "avgLikeCount": 20,
       "topPost": {
         "id": "inven-1779705604395-4376zn",
@@ -737,22 +737,22 @@
       "siteName": "ppomppu",
       "displayName": "뽐뿌",
       "postCount": 528,
-      "avgViewCount": 1138,
+      "avgViewCount": 1217,
       "avgCommentCount": 0,
-      "avgLikeCount": 4,
+      "avgLikeCount": 5,
       "topPost": {
-        "id": "ppomppu-1779705631482-hg54au",
+        "id": "ppomppu-1779707402050-25ph08",
         "title": "민주당 망했네요",
-        "url": "https://www.ppomppu.co.kr/zboard/view.php?id=freeboard&page=5&divpage=1858&no=9949683",
-        "score": 2301.3
+        "url": "https://www.ppomppu.co.kr/zboard/view.php?id=freeboard&page=6&divpage=1858&no=9949683",
+        "score": 2437.6
       }
     },
     {
       "siteName": "ilbe",
       "displayName": "일베",
       "postCount": 528,
-      "avgViewCount": 34283,
-      "avgCommentCount": 27,
+      "avgViewCount": 34399,
+      "avgCommentCount": 28,
       "avgLikeCount": 125,
       "topPost": {
         "id": "ilbe-1779651812142-g4js9h",
@@ -765,35 +765,35 @@
       "siteName": "etoland",
       "displayName": "이토랜드",
       "postCount": 528,
-      "avgViewCount": 4577,
+      "avgViewCount": 4552,
       "avgCommentCount": 25,
-      "avgLikeCount": 50,
+      "avgLikeCount": 49,
       "topPost": {
-        "id": "etoland-1779705623325-g6iysq",
+        "id": "etoland-1779707396222-k8y7mo",
         "title": "약후 )) 뜬금없이 노모가 나왔네요...",
         "url": "https://www.etoland.co.kr/b/etohumor07/view/약후-뜬금없이-노모가-나왔네요-9064533",
-        "score": 3151
+        "score": 3179.5
       }
     },
     {
       "siteName": "cook82",
       "displayName": "82쿡",
       "postCount": 528,
-      "avgViewCount": 1355,
-      "avgCommentCount": 10,
+      "avgViewCount": 1246,
+      "avgCommentCount": 9,
       "avgLikeCount": 0,
       "topPost": {
-        "id": "cook82-1779705616183-1075ya",
-        "title": "모자무싸 배종옥씨 목에 주름이 자글자글한데",
-        "url": "https://www.82cook.com/entiz/read.php?bn=15&num=4192660&page=6",
-        "score": 690.6
+        "id": "cook82-1779707387106-ywr97f",
+        "title": "태혜지 중 한가인이 젤 결혼 잘한것 같아요",
+        "url": "https://www.82cook.com/entiz/read.php?bn=15&num=4192714&page=5",
+        "score": 698.3000000000001
       }
     },
     {
       "siteName": "slrclub",
       "displayName": "SLR클럽",
       "postCount": 528,
-      "avgViewCount": 361,
+      "avgViewCount": 343,
       "avgCommentCount": 5,
       "avgLikeCount": 1,
       "topPost": {
@@ -811,7 +811,7 @@
       "avgCommentCount": 2,
       "avgLikeCount": 0,
       "topPost": {
-        "id": "gasengi-1779705618313-ergmdl",
+        "id": "gasengi-1779707390069-592769",
         "title": "[속보] 李대통령 \"일베 등 혐오 방치 사이트 폐쇄·과징금 실제 검토\"",
         "url": "https://www.gasengi.com/main/board.php?bo_table=commu08&wr_id=1997238&page=2",
         "score": 250.9
@@ -820,22 +820,22 @@
     {
       "siteName": "hygall",
       "displayName": "해연갤",
-      "postCount": 528,
-      "avgViewCount": 200,
+      "postCount": 527,
+      "avgViewCount": 191,
       "avgCommentCount": 3,
-      "avgLikeCount": 5,
+      "avgLikeCount": 6,
       "topPost": {
-        "id": "hygall-1779705615054-q5gmaw",
-        "title": "ㅃ요즘 사람들 재력과시 심하다더니 ㄹㅇ 선을 넘는구나",
-        "url": "https://hygall.com/index.php?page=8&document_srl=659457309",
-        "score": 521
+        "id": "hygall-1779707386486-lhgxul",
+        "title": "ㅃ '이 별에 잘못 떨어진 외계인.'이라는 표현이 있거든",
+        "url": "https://hygall.com/index.php?page=10&document_srl=659458180",
+        "score": 404
       }
     },
     {
       "siteName": "extmovie",
       "displayName": "익스트림무비",
-      "postCount": 528,
-      "avgViewCount": 1830,
+      "postCount": 527,
+      "avgViewCount": 1836,
       "avgCommentCount": 3,
       "avgLikeCount": 0,
       "topPost": {
@@ -848,10 +848,10 @@
     {
       "siteName": "bobaedream",
       "displayName": "보배드림",
-      "postCount": 345,
-      "avgViewCount": 10070,
+      "postCount": 348,
+      "avgViewCount": 10220,
       "avgCommentCount": 21,
-      "avgLikeCount": 128,
+      "avgLikeCount": 130,
       "topPost": {
         "id": "bobaedream-1779199986270-o15flr",
         "title": "여동생 뒷바라지 해서 의사 만든 오빠",
@@ -867,7 +867,7 @@
       "avgCommentCount": 0,
       "avgLikeCount": 0,
       "topPost": {
-        "id": "dealbada-1779705630741-il2lgm",
+        "id": "dealbada-1779707402685-xsbq29",
         "title": "[G마켓] 로보락 H60 Hub Ultra 무선청소기 (399,000원/무료)",
         "url": "http://www.dealbada.com/bbs/board.php?bo_table=deal_domestic&wr_id=569504",
         "score": 304
@@ -876,15 +876,15 @@
     {
       "siteName": "theqoo",
       "displayName": "더쿠",
-      "postCount": 80,
-      "avgViewCount": 46153,
-      "avgCommentCount": 352,
+      "postCount": 81,
+      "avgViewCount": 47090,
+      "avgCommentCount": 361,
       "avgLikeCount": 0,
       "topPost": {
-        "id": "theqoo-1779705614022-nt4ovk",
+        "id": "theqoo-1779707384199-tco2tb",
         "title": "멤버들이랑 찐친이 되긴 힘든거 같다는 아이돌들",
         "url": "https://theqoo.net/hot/4216082124",
-        "score": 15920.6
+        "score": 15925.6
       }
     }
   ],
@@ -903,70 +903,70 @@
         "일상"
       ],
       "postCount": 528,
-      "avgViewCount": 16248,
-      "avgCommentCount": 266,
-      "avgLikeCount": 117,
-      "activityScore": 202270,
+      "avgViewCount": 16316,
+      "avgCommentCount": 267,
+      "avgLikeCount": 118,
+      "activityScore": 203060,
       "topPosts": [
         {
-          "id": "dcinside-1779705651290-t4qvdp",
+          "id": "dcinside-1779707424094-gj4cjp",
           "title": "[싱갤] 와들와들 일본인도 반박 못하는 만행.JPG",
           "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=431867",
-          "score": 15699.3
+          "score": 15711.7
         },
         {
-          "id": "dcinside-1779705651290-fr2ej9",
+          "id": "dcinside-1779707424095-zzenyu",
           "title": "[코갤] 스벅 진짜 ㅈ된거 같다",
           "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=431692",
-          "score": 12782.2
+          "score": 12793.1
         },
         {
-          "id": "dcinside-1779705651290-shf62o",
+          "id": "dcinside-1779707424095-4ukzm5",
           "title": "[이갤] 부정선거가 물리적으로 불가능한 이유",
           "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=431570",
-          "score": 11425
+          "score": 11430.8
         },
         {
-          "id": "dcinside-1779705651290-4ys3zx",
+          "id": "dcinside-1779707424095-8mplqd",
           "title": "[중갤] 李대통령 “일베 등 혐오 방치 사이트 폐쇄 검토 지시”",
           "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=431720",
-          "score": 11034.9
+          "score": 11036.4
         },
         {
-          "id": "dcinside-1779705651290-w1ti2s",
+          "id": "dcinside-1779707424095-0trct9",
           "title": "[한갤] 김수현 BBC입갤 ㄷㄷ",
           "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=431540",
-          "score": 10217.3
+          "score": 10218.3
         },
         {
-          "id": "dcinside-1779705651290-2hl8ac",
+          "id": "dcinside-1779707424094-tqumv4",
           "title": "[코갤] 스타벅스 불매운동 근황.JPG",
           "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=431855",
-          "score": 9611.4
+          "score": 9634.9
         },
         {
-          "id": "dcinside-1779705651290-blmbpp",
+          "id": "dcinside-1779707424095-xx5dgj",
           "title": "[중갤] 대한민국의 주적에 대한 후보별 답변.JPG",
           "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=431615",
-          "score": 9525.4
+          "score": 9528.6
         },
         {
-          "id": "dcinside-1779705651290-lv8je6",
+          "id": "dcinside-1779707424095-zukhe8",
           "title": "[싱갤] \"얘들아 남자는 절대 믿지말고 경계해ㅠㅠㅠ\"",
           "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=431474",
-          "score": 9357.7
+          "score": 9359.400000000001
         },
         {
-          "id": "dcinside-1779705651291-4pahre",
-          "title": "[싱갤] 싱글벙글 스타벅스 탱크데이 사건 근황(블라인드)",
-          "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=431295",
-          "score": 8808.4
-        },
-        {
-          "id": "dcinside-1779705651290-trkgsg",
+          "id": "dcinside-1779707424094-9ce906",
           "title": "[싱갤] 오늘자 창팝 유튜버 미성년자 성범죄 ㄷㄷㄷㄷ",
           "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=431927",
-          "score": 8771.6
+          "score": 8861.7
+        },
+        {
+          "id": "dcinside-1779707424095-je30vc",
+          "title": "[싱갤] 싱글벙글 스타벅스 탱크데이 사건 근황(블라인드)",
+          "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=431295",
+          "score": 8813.9
         }
       ],
       "peakHours": [
@@ -989,10 +989,10 @@
         "밈"
       ],
       "postCount": 528,
-      "avgViewCount": 34283,
-      "avgCommentCount": 27,
+      "avgViewCount": 34399,
+      "avgCommentCount": 28,
       "avgLikeCount": 125,
-      "activityScore": 80391,
+      "activityScore": 80432,
       "topPosts": [
         {
           "id": "ilbe-1779651812142-g4js9h",
@@ -1001,10 +1001,10 @@
           "score": 14387.6
         },
         {
-          "id": "ilbe-1779705622234-53dgso",
+          "id": "ilbe-1779707392889-1htmra",
           "title": "남친이랑 헤어진후 헬스장.gif",
           "url": "https://www.ilbe.com/view/11614888304",
-          "score": 13962.2
+          "score": 14036.6
         },
         {
           "id": "ilbe-1779698535779-b2jtap",
@@ -1019,10 +1019,10 @@
           "score": 11638.1
         },
         {
-          "id": "ilbe-1779705622234-ttoh55",
+          "id": "ilbe-1779707392889-jxwygq",
           "title": "19)연대 하얼빈 미녀",
           "url": "https://www.ilbe.com/view/11614808592",
-          "score": 11526
+          "score": 11547.6
         },
         {
           "id": "ilbe-1779672967822-rdo91m",
@@ -1031,22 +1031,22 @@
           "score": 11294.1
         },
         {
+          "id": "ilbe-1779707392889-i8mf77",
+          "title": "스타벅스 하나로 덮은 사건들..ㄷㄷㄷㄷ",
+          "url": "https://www.ilbe.com/view/11614857813",
+          "score": 11111.800000000001
+        },
+        {
           "id": "ilbe-1779663818295-s2h57a",
           "title": "19) 배우 문가영",
           "url": "https://www.ilbe.com/view/11614791745",
           "score": 10950.1
         },
         {
-          "id": "ilbe-1779705622234-mtnrs7",
-          "title": "스타벅스 하나로 덮은 사건들..ㄷㄷㄷㄷ",
-          "url": "https://www.ilbe.com/view/11614857813",
-          "score": 10810.1
-        },
-        {
-          "id": "ilbe-1779705622234-2oiqfr",
+          "id": "ilbe-1779707392889-nw0cuk",
           "title": "19) 발육잘된 본인에 만족하는 18세 양녀",
           "url": "https://www.ilbe.com/view/11614894667",
-          "score": 10709.2
+          "score": 10851.6
         },
         {
           "id": "ilbe-1779684341692-22rdo2",
@@ -1074,11 +1074,11 @@
         "정비",
         "자동차뉴스"
       ],
-      "postCount": 345,
-      "avgViewCount": 10070,
+      "postCount": 348,
+      "avgViewCount": 10220,
       "avgCommentCount": 21,
-      "avgLikeCount": 128,
-      "activityScore": 51205,
+      "avgLikeCount": 130,
+      "activityScore": 52379,
       "topPosts": [
         {
           "id": "bobaedream-1779199986270-o15flr",
@@ -1093,10 +1093,10 @@
           "score": 9125
         },
         {
-          "id": "bobaedream-1779705618469-1ety5f",
+          "id": "bobaedream-1779707389372-t81l1u",
           "title": "美 뉴욕에서 차량 폭발로 불타던 일본 반응",
           "url": "https://www.bobaedream.co.kr/view?code=best&No=992548",
-          "score": 8115.200000000001
+          "score": 8331.5
         },
         {
           "id": "bobaedream-1779359958074-9imfwv",
@@ -1111,10 +1111,10 @@
           "score": 7333
         },
         {
-          "id": "bobaedream-1779705618469-zy833u",
+          "id": "bobaedream-1779707389372-g1vgfr",
           "title": "아내 체면 살려주기 성공했습니다",
           "url": "https://www.bobaedream.co.kr/view?code=best&No=992659",
-          "score": 6858.2
+          "score": 7184.900000000001
         },
         {
           "id": "bobaedream-1779368903504-qdaf2s",
@@ -1129,10 +1129,10 @@
           "score": 6328
         },
         {
-          "id": "bobaedream-1779705618469-1iqapp",
+          "id": "bobaedream-1779707389372-you8rf",
           "title": "철마산 조난 신고 외국인 여성...귀가 했는데 안 알려",
           "url": "https://www.bobaedream.co.kr/view?code=best&No=992553",
-          "score": 5979.3
+          "score": 6170
         },
         {
           "id": "bobaedream-1779458390878-yei15f",
@@ -1161,16 +1161,16 @@
         "금융"
       ],
       "postCount": 528,
-      "avgViewCount": 4577,
+      "avgViewCount": 4552,
       "avgCommentCount": 25,
-      "avgLikeCount": 50,
-      "activityScore": 39244,
+      "avgLikeCount": 49,
+      "activityScore": 38977,
       "topPosts": [
         {
-          "id": "etoland-1779705623325-g6iysq",
+          "id": "etoland-1779707396222-k8y7mo",
           "title": "약후 )) 뜬금없이 노모가 나왔네요...",
           "url": "https://www.etoland.co.kr/b/etohumor07/view/약후-뜬금없이-노모가-나왔네요-9064533",
-          "score": 3151
+          "score": 3179.5
         },
         {
           "id": "etoland-1779680047207-74shvu",
@@ -1179,22 +1179,16 @@
           "score": 2761.8
         },
         {
-          "id": "etoland-1779705623325-9whi55",
+          "id": "etoland-1779707396222-c62kmo",
           "title": "새로운 맘의 탄생",
           "url": "https://www.etoland.co.kr/b/etohumor07/view/새로운-맘의-탄생-9064344",
-          "score": 2633
+          "score": 2643.9
         },
         {
-          "id": "etoland-1779627985274-8f3e64",
-          "title": "요즘 처참히 망해가는 5대 취미",
-          "url": "https://www.etoland.co.kr/b/etohumor07/view/요즘-처참히-망해가는-5대-취미-9062083",
-          "score": 2572.6000000000004
-        },
-        {
-          "id": "etoland-1779705623325-oxf627",
+          "id": "etoland-1779707396222-2f0ks6",
           "title": "49평 아파트 내부에 페인트칠을 한 세입자.",
           "url": "https://www.etoland.co.kr/b/etohumor07/view/49평-아파트-내부에-페인트칠을-한-세입자-9064742",
-          "score": 2473
+          "score": 2518
         },
         {
           "id": "etoland-1779640562105-88rvnt",
@@ -1215,22 +1209,28 @@
           "score": 2258
         },
         {
-          "id": "etoland-1779705623325-gk0y5a",
+          "id": "etoland-1779707396222-fk3ggq",
           "title": "중국 실제 게이 클럽 보고 자아분열중인 여자들",
           "url": "https://www.etoland.co.kr/b/etohumor07/view/중국-실제-게이-클럽-보고-자아분열중인-여자들-9064098",
-          "score": 2165.8
+          "score": 2187.9
         },
         {
           "id": "etoland-1779691443949-xj5vzx",
           "title": "MBC) '김수현 목소리' 조작 드러나자.. \"원본이라 한 적 없다\"",
           "url": "https://www.etoland.co.kr/b/etohumor07/view/mbc-39김수현-목소리39-조작-드러나자-34원본이라-한-적-없다34-9063767",
           "score": 2070.6000000000004
+        },
+        {
+          "id": "etoland-1779707396222-k86cpw",
+          "title": "완벽한 몸매",
+          "url": "https://www.etoland.co.kr/b/etohumor07/view/완벽한-몸매-9063796",
+          "score": 2013.7
         }
       ],
       "peakHours": [
         22,
         21,
-        18
+        17
       ]
     },
     {
@@ -1246,71 +1246,71 @@
         "방송",
         "K-POP"
       ],
-      "postCount": 80,
-      "avgViewCount": 46153,
-      "avgCommentCount": 352,
+      "postCount": 81,
+      "avgViewCount": 47090,
+      "avgCommentCount": 361,
       "avgLikeCount": 0,
-      "activityScore": 28120,
+      "activityScore": 29278.999999999996,
       "topPosts": [
         {
-          "id": "theqoo-1779705614022-nt4ovk",
+          "id": "theqoo-1779707384199-tco2tb",
           "title": "멤버들이랑 찐친이 되긴 힘든거 같다는 아이돌들",
           "url": "https://theqoo.net/hot/4216082124",
-          "score": 15920.6
+          "score": 15925.6
         },
         {
-          "id": "theqoo-1779705614022-pgblo1",
+          "id": "theqoo-1779707384199-hl6a5r",
           "title": "진짜 미친놈 오는 신상과자.jpg",
           "url": "https://theqoo.net/hot/4216030069",
           "score": 13688.7
         },
         {
-          "id": "theqoo-1779705614022-otkhxb",
+          "id": "theqoo-1779707384199-o7dlhn",
           "title": "반반 결혼 이게 맞아..?",
           "url": "https://theqoo.net/hot/4216122887",
-          "score": 13111.300000000001
+          "score": 13145.300000000001
         },
         {
-          "id": "theqoo-1779705614021-3vnlf2",
+          "id": "theqoo-1779707384199-f5w1xv",
           "title": "천연 위고비로 또 시작된 \"그 감성\"",
           "url": "https://theqoo.net/hot/4216308158",
-          "score": 12627.2
+          "score": 12764.300000000001
         },
         {
-          "id": "theqoo-1779705614021-336x8u",
+          "id": "theqoo-1779707384199-nrr38a",
           "title": "식탐도 지능이라는 주우재.jpg",
           "url": "https://theqoo.net/hot/4216281948",
-          "score": 12094
+          "score": 12222.9
         },
         {
-          "id": "theqoo-1779705614021-3i7gjq",
+          "id": "theqoo-1779707384199-m5w06q",
           "title": "핫게 간 결혼식 복장 현재 판매중인 기성복 원피스임.jpg",
           "url": "https://theqoo.net/hot/4216184503",
           "score": 11944.7
         },
         {
-          "id": "theqoo-1779705614022-7jjkvt",
+          "id": "theqoo-1779707384199-1dqrsz",
           "title": "결혼식장에 옷이 이게 맞나요?",
           "url": "https://theqoo.net/hot/4216166422",
-          "score": 11593.2
+          "score": 11624.9
         },
         {
-          "id": "theqoo-1779705614021-3s5pwv",
+          "id": "theqoo-1779707384199-pwoocn",
           "title": "다영 “우주소녀 시절 몸까지 밝게 화장, 폼클렌저 2주에 1통 써”(전참시)",
           "url": "https://theqoo.net/hot/4216321699",
-          "score": 11182.3
+          "score": 11281.2
         },
         {
-          "id": "theqoo-1779705614021-xgfgf9",
+          "id": "theqoo-1779707384199-d5mozs",
           "title": "온실 속에서 자란 사람이 첫 직장 들어가서 겪는 감정",
           "url": "https://theqoo.net/hot/4216191089",
-          "score": 10848.2
+          "score": 10889.8
         },
         {
-          "id": "theqoo-1779705614022-hcwcri",
+          "id": "theqoo-1779707384199-gpxubb",
           "title": "오늘자 반응 안좋은 막방 드라마",
           "url": "https://theqoo.net/hot/4216008728",
-          "score": 10793.2
+          "score": 10841.6
         }
       ],
       "peakHours": [
@@ -1333,10 +1333,10 @@
         "FPS"
       ],
       "postCount": 528,
-      "avgViewCount": 1792,
-      "avgCommentCount": 30,
+      "avgViewCount": 1819,
+      "avgCommentCount": 31,
       "avgLikeCount": 20,
-      "activityScore": 26773,
+      "activityScore": 26981,
       "topPosts": [
         {
           "id": "inven-1779705604395-4376zn",
@@ -1345,10 +1345,10 @@
           "score": 2053.4
         },
         {
-          "id": "inven-1779705604395-932c9r",
+          "id": "inven-1779707374952-dxptbw",
           "title": "햄부기 + 배민 상품권 이벤트 제논 장갑 추옵 수배합니다.",
           "url": "https://www.inven.co.kr/board/maple/5974/6602401",
-          "score": 1827.2
+          "score": 1832
         },
         {
           "id": "inven-1779691420042-32np8w",
@@ -1363,16 +1363,16 @@
           "score": 1726.2
         },
         {
+          "id": "inven-1779707374952-utsslu",
+          "title": "카데나 입장에서 본 가장 웃기는 말",
+          "url": "https://www.inven.co.kr/board/maple/5974/6603288",
+          "score": 1720.4
+        },
+        {
           "id": "inven-1779617496278-613azz",
           "title": "몬스터 컬렉션 올컬렉 완료+부기 뿌림",
           "url": "https://www.inven.co.kr/board/maple/5974/6598768",
           "score": 1693.5
-        },
-        {
-          "id": "inven-1779705604395-tlhrwo",
-          "title": "카데나 입장에서 본 가장 웃기는 말",
-          "url": "https://www.inven.co.kr/board/maple/5974/6603288",
-          "score": 1677.8000000000002
         },
         {
           "id": "inven-1779672949251-3rg12v",
@@ -1381,10 +1381,10 @@
           "score": 1648.2
         },
         {
-          "id": "inven-1779705604395-1u1d7b",
+          "id": "inven-1779707374952-5qpn5o",
           "title": "9.83 카데나 데티카링 클",
           "url": "https://www.inven.co.kr/board/maple/5974/6602719",
-          "score": 1600.4
+          "score": 1625.3000000000002
         },
         {
           "id": "inven-1779608443756-1aa6lp",
@@ -1393,10 +1393,10 @@
           "score": 1491.8
         },
         {
-          "id": "inven-1779705604395-9ow6ag",
+          "id": "inven-1779707374952-kv33fb",
           "title": "나라 공산화 다 된거야?",
           "url": "https://www.inven.co.kr/board/maple/5974/6602925",
-          "score": 1403.2
+          "score": 1410.2
         }
       ],
       "peakHours": [
@@ -1418,11 +1418,11 @@
         "노트북",
         "스마트폰"
       ],
-      "postCount": 529,
-      "avgViewCount": 2058,
+      "postCount": 528,
+      "avgViewCount": 2059,
       "avgCommentCount": 8,
       "avgLikeCount": 3,
-      "activityScore": 5983,
+      "activityScore": 6025,
       "topPosts": [
         {
           "id": "clien-1779582799024-43mq5h",
@@ -1487,8 +1487,8 @@
       ],
       "peakHours": [
         18,
-        10,
-        19
+        19,
+        10
       ]
     },
     {
@@ -1505,16 +1505,22 @@
         "학부모"
       ],
       "postCount": 528,
-      "avgViewCount": 1355,
-      "avgCommentCount": 10,
+      "avgViewCount": 1246,
+      "avgCommentCount": 9,
       "avgLikeCount": 0,
-      "activityScore": 5243,
+      "activityScore": 4876,
       "topPosts": [
         {
-          "id": "cook82-1779705616183-1075ya",
-          "title": "모자무싸 배종옥씨 목에 주름이 자글자글한데",
-          "url": "https://www.82cook.com/entiz/read.php?bn=15&num=4192660&page=6",
-          "score": 690.6
+          "id": "cook82-1779707387106-ywr97f",
+          "title": "태혜지 중 한가인이 젤 결혼 잘한것 같아요",
+          "url": "https://www.82cook.com/entiz/read.php?bn=15&num=4192714&page=5",
+          "score": 698.3000000000001
+        },
+        {
+          "id": "cook82-1779707387106-3v1eel",
+          "title": "너 늙었다 할때 뭐라 답해야되나요?",
+          "url": "https://www.82cook.com/entiz/read.php?bn=15&num=4192676&page=6",
+          "score": 686.9000000000001
         },
         {
           "id": "cook82-1779705616183-6dyoeo",
@@ -1523,34 +1529,16 @@
           "score": 684
         },
         {
-          "id": "cook82-1779705616183-nodbxb",
-          "title": "너 늙었다 할때 뭐라 답해야되나요?",
-          "url": "https://www.82cook.com/entiz/read.php?bn=15&num=4192676&page=6",
-          "score": 677.9000000000001
-        },
-        {
-          "id": "cook82-1779702070263-hwh4eg",
-          "title": "모자무싸 배종옥씨 목에 주름이 자글자글한데",
-          "url": "https://www.82cook.com/entiz/read.php?bn=15&num=4192660&page=5",
-          "score": 672.2
-        },
-        {
           "id": "cook82-1779703847609-egydi0",
           "title": "너 늙었다 할때 뭐라 답해야되나요?",
           "url": "https://www.82cook.com/entiz/read.php?bn=15&num=4192676&page=5",
           "score": 671.2
         },
         {
-          "id": "cook82-1779705616183-vr3kwi",
+          "id": "cook82-1779707387106-ixw0h9",
           "title": "지방사는 사람들 부러워요",
           "url": "https://www.82cook.com/entiz/read.php?bn=15&num=4192673&page=6",
-          "score": 648.2
-        },
-        {
-          "id": "cook82-1779698528981-2lkkcz",
-          "title": "모자무싸 배종옥씨 목에 주름이 자글자글한데",
-          "url": "https://www.82cook.com/entiz/read.php?bn=15&num=4192660&page=4",
-          "score": 641.8000000000001
+          "score": 657
         },
         {
           "id": "cook82-1779700300800-n5tdwm",
@@ -1559,22 +1547,34 @@
           "score": 640.2
         },
         {
-          "id": "cook82-1779705616183-ulfvxk",
-          "title": "조선이  터뜨린 이유",
-          "url": "https://www.82cook.com/entiz/read.php?bn=15&num=4192659&page=6",
-          "score": 639.2
-        },
-        {
           "id": "cook82-1779703847609-38mu3m",
           "title": "지방사는 사람들 부러워요",
           "url": "https://www.82cook.com/entiz/read.php?bn=15&num=4192673&page=5",
           "score": 634.4000000000001
+        },
+        {
+          "id": "cook82-1779702070263-7fe0ht",
+          "title": "태혜지 중 한가인이 젤 결혼 잘한것 같아요",
+          "url": "https://www.82cook.com/entiz/read.php?bn=15&num=4192714&page=3",
+          "score": 623.9000000000001
+        },
+        {
+          "id": "cook82-1779700300800-6g5qmo",
+          "title": "지방사는 사람들 부러워요",
+          "url": "https://www.82cook.com/entiz/read.php?bn=15&num=4192673&page=4",
+          "score": 602.7
+        },
+        {
+          "id": "cook82-1779707387106-sr6w5k",
+          "title": "내일 삼전닉스 어떻게 될까요?",
+          "url": "https://www.82cook.com/entiz/read.php?bn=15&num=4192728&page=4",
+          "score": 597.9
         }
       ],
       "peakHours": [
-        14,
         15,
-        16
+        16,
+        14
       ]
     },
     {
@@ -1590,23 +1590,17 @@
         "챔스",
         "월드컵"
       ],
-      "postCount": 528,
-      "avgViewCount": 200,
+      "postCount": 527,
+      "avgViewCount": 191,
       "avgCommentCount": 3,
-      "avgLikeCount": 5,
-      "activityScore": 4341,
+      "avgLikeCount": 6,
+      "activityScore": 4559,
       "topPosts": [
         {
-          "id": "hygall-1779705615054-q5gmaw",
-          "title": "ㅃ요즘 사람들 재력과시 심하다더니 ㄹㅇ 선을 넘는구나",
-          "url": "https://hygall.com/index.php?page=8&document_srl=659457309",
-          "score": 521
-        },
-        {
-          "id": "hygall-1779703846563-ixe78l",
-          "title": "ㅃ요즘 사람들 재력과시 심하다더니 ㄹㅇ 선을 넘는구나",
-          "url": "https://hygall.com/index.php?page=7&document_srl=659457309",
-          "score": 448.3
+          "id": "hygall-1779707386486-lhgxul",
+          "title": "ㅃ '이 별에 잘못 떨어진 외계인.'이라는 표현이 있거든",
+          "url": "https://hygall.com/index.php?page=10&document_srl=659458180",
+          "score": 404
         },
         {
           "id": "hygall-1779705615054-qhro8d",
@@ -1615,10 +1609,10 @@
           "score": 341
         },
         {
-          "id": "hygall-1779702069130-ebd16h",
-          "title": "ㅃ요즘 사람들 재력과시 심하다더니 ㄹㅇ 선을 넘는구나",
-          "url": "https://hygall.com/index.php?page=5&document_srl=659457309",
-          "score": 314.1
+          "id": "hygall-1779707386485-75sjvj",
+          "title": "오스카 암저슷켄 이장면 괜히 더 야해보이는 게",
+          "url": "https://hygall.com/index.php?page=6&document_srl=659460509",
+          "score": 281.4
         },
         {
           "id": "hygall-1779703846563-r2qce8",
@@ -1627,10 +1621,10 @@
           "score": 239
         },
         {
-          "id": "hygall-1779700299961-1gx6no",
-          "title": "ㅃ요즘 사람들 재력과시 심하다더니 ㄹㅇ 선을 넘는구나",
-          "url": "https://hygall.com/index.php?page=2&document_srl=659457309",
-          "score": 231.4
+          "id": "hygall-1779707386486-6av6zh",
+          "title": "잠깐만, 피츠버그 병원에서 연애 대상을 찾으라고? 6",
+          "url": "https://hygall.com/index.php?page=9&document_srl=659458545",
+          "score": 210
         },
         {
           "id": "hygall-1779705615054-j9zjzj",
@@ -1639,28 +1633,34 @@
           "score": 192.9
         },
         {
-          "id": "hygall-1779705615054-hmsqsd",
-          "title": "ㅃ 고곰아케이크 싫어하는 사람들이 있어?!",
-          "url": "https://hygall.com/index.php?page=8&document_srl=659457574",
-          "score": 170.3
+          "id": "hygall-1779707386485-lw7tni",
+          "title": "ㅃ 좋은 여자를 연기하는 것도 쉽지는 않아",
+          "url": "https://hygall.com/index.php?page=4&document_srl=659462479",
+          "score": 173.10000000000002
         },
         {
-          "id": "hygall-1779703846563-abatad",
-          "title": "ㅃ 고곰아케이크 싫어하는 사람들이 있어?!",
-          "url": "https://hygall.com/index.php?page=6&document_srl=659457574",
-          "score": 168.7
+          "id": "hygall-1779707386486-arxapm",
+          "title": "[고슬고슬2] 닐그레이스, <나사 우주 과학실험 방송 송출중>",
+          "url": "https://hygall.com/index.php?page=8&document_srl=659459555",
+          "score": 161.7
         },
         {
-          "id": "hygall-1779702069130-c5x9in",
-          "title": "ㅃ 고곰아케이크 싫어하는 사람들이 있어?!",
-          "url": "https://hygall.com/index.php?page=4&document_srl=659457574",
-          "score": 165.2
+          "id": "hygall-1779707386486-1mg3s5",
+          "title": "가슴에 점 찍어놓고 섹스어필 하는 거 이젠 좀 진부하지",
+          "url": "https://hygall.com/index.php?page=8&document_srl=659458869",
+          "score": 156
+        },
+        {
+          "id": "hygall-1779702069130-dflw67",
+          "title": "ㅃ '이 별에 잘못 떨어진 외계인.'이라는 표현이 있거든",
+          "url": "https://hygall.com/index.php?page=3&document_srl=659458180",
+          "score": 153.9
         }
       ],
       "peakHours": [
         18,
-        17,
-        19
+        19,
+        17
       ]
     },
     {
@@ -1676,11 +1676,11 @@
         "PC게임",
         "모바일게임"
       ],
-      "postCount": 529,
-      "avgViewCount": 624,
+      "postCount": 528,
+      "avgViewCount": 577,
       "avgCommentCount": 0,
-      "avgLikeCount": 8,
-      "activityScore": 3968,
+      "avgLikeCount": 7,
+      "activityScore": 3748,
       "topPosts": [
         {
           "id": "ruliweb-1779705615443-m0t0be",
@@ -1689,16 +1689,16 @@
           "score": 1007.3000000000001
         },
         {
+          "id": "ruliweb-1779707385751-iqcmgg",
+          "title": "위구르 수용소 폭로하고 미국으로 망명갔던 중국인 따거                                                                                 (24)",
+          "url": "https://bbs.ruliweb.com/community/board/300143/read/75315484?page=10",
+          "score": 976.4000000000001
+        },
+        {
           "id": "ruliweb-1779705615443-3ay95p",
           "title": "\"작가의 처녀작이라고 봐주자는 말이 무슨소리냐\"                                                                                 (16)",
           "url": "https://bbs.ruliweb.com/community/board/300143/read/75314873?page=10",
           "score": 939.5
-        },
-        {
-          "id": "ruliweb-1779703846881-tg4jqr",
-          "title": "윤.남.노가 진짜인 이유                                                                                 (21)",
-          "url": "https://bbs.ruliweb.com/community/board/300143/read/75314496?page=10",
-          "score": 922.9000000000001
         },
         {
           "id": "ruliweb-1779705615443-3wqwh6",
@@ -1707,22 +1707,22 @@
           "score": 876.8000000000001
         },
         {
-          "id": "ruliweb-1779703846881-6f74te",
-          "title": "이제 음주측정 거부하면 무조건 면허 취소                                                                                 (26)",
-          "url": "https://bbs.ruliweb.com/community/board/300143/read/75314557?page=8",
-          "score": 842.2
-        },
-        {
-          "id": "ruliweb-1779703846880-qzurz2",
-          "title": "하루 3시간만 자도 멀쩡한 수면법 도전해본 대학원생                                                                                 (26)",
-          "url": "https://bbs.ruliweb.com/community/board/300143/read/75314589?page=7",
-          "score": 829.9000000000001
-        },
-        {
           "id": "ruliweb-1779705615443-6mj4f3",
           "title": "대만 여행 중 중국인 인줄 의심받은 여행 유튜버                                                                                 (44)",
           "url": "https://bbs.ruliweb.com/community/board/300143/read/75314907?page=9",
           "score": 829.1
+        },
+        {
+          "id": "ruliweb-1779707385751-ambqfa",
+          "title": "지금 용진이가 이뻐 죽을것같은 사람들                                                                                 (21)",
+          "url": "https://bbs.ruliweb.com/community/board/300143/read/75315546?page=8",
+          "score": 804
+        },
+        {
+          "id": "ruliweb-1779707385751-0x8r1y",
+          "title": "내장지방 자가진단법.jpg                                                                                 (27)",
+          "url": "https://bbs.ruliweb.com/community/board/300143/read/75315523?page=9",
+          "score": 796.9000000000001
         },
         {
           "id": "ruliweb-1779705615443-vrog8i",
@@ -1737,16 +1737,16 @@
           "score": 764.6
         },
         {
-          "id": "ruliweb-1779703846880-1qa6yr",
-          "title": "각자의 직업병을 말해보자.jpg                                                                                 (39)",
-          "url": "https://bbs.ruliweb.com/community/board/300143/read/75314587?page=7",
-          "score": 738.8000000000001
+          "id": "ruliweb-1779707385751-lea3or",
+          "title": "\"일본 여행 갈건데 일본의 911은 뭐지?\"                                                                                 (35)",
+          "url": "https://bbs.ruliweb.com/community/board/300143/read/75315596?page=6",
+          "score": 708.2
         }
       ],
       "peakHours": [
         19,
-        18,
-        0
+        20,
+        18
       ]
     },
     {
@@ -1763,10 +1763,10 @@
         "인물사진"
       ],
       "postCount": 528,
-      "avgViewCount": 361,
+      "avgViewCount": 343,
       "avgCommentCount": 5,
       "avgLikeCount": 1,
-      "activityScore": 2846,
+      "activityScore": 2840,
       "topPosts": [
         {
           "id": "slrclub-1779702061775-y2hp0y",
@@ -1823,10 +1823,10 @@
           "score": 281.3
         },
         {
-          "id": "slrclub-1779655442217-byfi88",
-          "title": "미쳤네 ㄷㄷㄷ 스페이스x",
-          "url": "https://www.slrclub.com/bbs/vx2.php?id=free&no=41632596",
-          "score": 280.1
+          "id": "slrclub-1779694974071-8dfhhs",
+          "title": "저는 스벅만 가네요ㅜㅜ",
+          "url": "https://www.slrclub.com/bbs/vx2.php?id=free&no=41633042",
+          "score": 279.4
         }
       ],
       "peakHours": [
@@ -1849,11 +1849,17 @@
         "가격비교"
       ],
       "postCount": 528,
-      "avgViewCount": 1138,
+      "avgViewCount": 1217,
       "avgCommentCount": 0,
-      "avgLikeCount": 4,
-      "activityScore": 1867,
+      "avgLikeCount": 5,
+      "activityScore": 2475,
       "topPosts": [
+        {
+          "id": "ppomppu-1779707402050-25ph08",
+          "title": "민주당 망했네요",
+          "url": "https://www.ppomppu.co.kr/zboard/view.php?id=freeboard&page=6&divpage=1858&no=9949683",
+          "score": 2437.6
+        },
         {
           "id": "ppomppu-1779705631482-hg54au",
           "title": "민주당 망했네요",
@@ -1873,16 +1879,16 @@
           "score": 1995.9
         },
         {
-          "id": "ppomppu-1779705631482-3coh5z",
-          "title": "헤어드라이기 켜둔채 외출한 투숙객.jpg",
-          "url": "https://www.ppomppu.co.kr/zboard/view.php?id=freeboard&page=6&divpage=1858&no=9949664",
-          "score": 1830.7
+          "id": "ppomppu-1779707402050-xs7l70",
+          "title": "충격적인) 성인 사이트 차단 150만개 ㄷㄷ.jpg",
+          "url": "https://www.ppomppu.co.kr/zboard/view.php?id=freeboard&page=4&divpage=1858&no=9949746",
+          "score": 1730.2
         },
         {
-          "id": "ppomppu-1779703862434-ng9id6",
-          "title": "헤어드라이기 켜둔채 외출한 투숙객.jpg",
-          "url": "https://www.ppomppu.co.kr/zboard/view.php?id=freeboard&page=5&divpage=1858&no=9949664",
-          "score": 1697.4
+          "id": "ppomppu-1779707402050-e6krk1",
+          "title": "조국 대표 경찰청 공문 공개",
+          "url": "https://www.ppomppu.co.kr/zboard/view.php?id=freeboard&page=6&divpage=1858&no=9949696",
+          "score": 1556.8000000000002
         },
         {
           "id": "ppomppu-1779700316023-m1lr10",
@@ -1891,28 +1897,22 @@
           "score": 1536.3000000000002
         },
         {
-          "id": "ppomppu-1779702085732-tl6u3o",
-          "title": "헤어드라이기 켜둔채 외출한 투숙객.jpg",
-          "url": "https://www.ppomppu.co.kr/zboard/view.php?id=freeboard&page=4&divpage=1858&no=9949664",
-          "score": 1519.1000000000001
-        },
-        {
           "id": "ppomppu-1779705631482-73un3h",
           "title": "조국 대표 경찰청 공문 공개",
           "url": "https://www.ppomppu.co.kr/zboard/view.php?id=freeboard&page=5&divpage=1858&no=9949696",
           "score": 1463.1000000000001
         },
         {
+          "id": "ppomppu-1779707402050-mum5a4",
+          "title": "조국 유세 분위기 장난 아니네요 ㅋㅋ",
+          "url": "https://www.ppomppu.co.kr/zboard/view.php?id=freeboard&page=4&divpage=1858&no=9949755",
+          "score": 1334.2
+        },
+        {
           "id": "ppomppu-1779703862434-ex20of",
           "title": "조국 대표 경찰청 공문 공개",
           "url": "https://www.ppomppu.co.kr/zboard/view.php?id=freeboard&page=4&divpage=1858&no=9949696",
           "score": 1331.2
-        },
-        {
-          "id": "ppomppu-1779705631482-x1yaec",
-          "title": "충격적인) 성인 사이트 차단 150만개 ㄷㄷ.jpg",
-          "url": "https://www.ppomppu.co.kr/zboard/view.php?id=freeboard&page=3&divpage=1858&no=9949746",
-          "score": 1290.3000000000002
         }
       ],
       "peakHours": [
@@ -1927,11 +1927,11 @@
       "description": "커뮤니티 정보",
       "category": "종합",
       "primaryTopics": [],
-      "postCount": 528,
-      "avgViewCount": 1830,
+      "postCount": 527,
+      "avgViewCount": 1836,
       "avgCommentCount": 3,
       "avgLikeCount": 0,
-      "activityScore": 1481,
+      "activityScore": 1479.9999999999998,
       "topPosts": [
         {
           "id": "extmovie-1779610239089-611w3k",
@@ -1988,16 +1988,16 @@
           "score": 896.9000000000001
         },
         {
-          "id": "extmovie-1779705618327-xecan1",
+          "id": "extmovie-1779707390018-p8sn9i",
           "title": "79회 칸 영화제 수상작 리스트",
           "url": "https://extmovie.com/movietalk/94053049",
-          "score": 889.1
+          "score": 890.6
         }
       ],
       "peakHours": [
-        19,
+        20,
         23,
-        14
+        19
       ]
     },
     {
@@ -2017,16 +2017,16 @@
       "avgViewCount": 484,
       "avgCommentCount": 2,
       "avgLikeCount": 0,
-      "activityScore": 1165,
+      "activityScore": 1186,
       "topPosts": [
         {
-          "id": "gasengi-1779705618313-ergmdl",
+          "id": "gasengi-1779707390069-592769",
           "title": "[속보] 李대통령 \"일베 등 혐오 방치 사이트 폐쇄·과징금 실제 검토\"",
           "url": "https://www.gasengi.com/main/board.php?bo_table=commu08&wr_id=1997238&page=2",
           "score": 250.9
         },
         {
-          "id": "gasengi-1779705618313-qkknfs",
+          "id": "gasengi-1779707390069-cpk1qh",
           "title": "중국막으면 일본처들어오고 일본막으면 중국처들어오고 진짜 우리조상들 대단함 ?",
           "url": "https://www.gasengi.com/main/board.php?bo_table=commu08&wr_id=1996739&page=7",
           "score": 235.2
@@ -2038,7 +2038,7 @@
           "score": 234.9
         },
         {
-          "id": "gasengi-1779705618313-zcqqo4",
+          "id": "gasengi-1779707390069-0k0lqs",
           "title": "한국으로부터 미국이 배울 수 있는 점(해외)",
           "url": "https://www.gasengi.com/main/board.php?bo_table=commu08&wr_id=1997020&page=4",
           "score": 224.10000000000002
@@ -2062,13 +2062,13 @@
           "score": 202
         },
         {
-          "id": "gasengi-1779705618313-mf7uhc",
+          "id": "gasengi-1779707390069-lntkr8",
           "title": "2026년 국가별 1분기 GDP 성장률 순위(해외)",
           "url": "https://www.gasengi.com/main/board.php?bo_table=commu08&wr_id=1997231&page=2",
-          "score": 197.4
+          "score": 197.5
         },
         {
-          "id": "gasengi-1779705618313-aakup1",
+          "id": "gasengi-1779707390069-f87rn4",
           "title": "최근 이재명의 대이스라엘 강경 발언은",
           "url": "https://www.gasengi.com/main/board.php?bo_table=commu08&wr_id=1997034&page=4",
           "score": 197.20000000000002
@@ -2099,7 +2099,7 @@
       "activityScore": 0.9999999999999999,
       "topPosts": [
         {
-          "id": "dealbada-1779705630741-il2lgm",
+          "id": "dealbada-1779707402685-xsbq29",
           "title": "[G마켓] 로보락 H60 Hub Ultra 무선청소기 (399,000원/무료)",
           "url": "http://www.dealbada.com/bbs/board.php?bo_table=deal_domestic&wr_id=569504",
           "score": 304
@@ -2117,13 +2117,13 @@
           "score": 265.90000000000003
         },
         {
-          "id": "dealbada-1779705630741-3gb227",
+          "id": "dealbada-1779707402685-xsow7h",
           "title": "[지마켓] 5/18 14시 BSD 3천만 돌파 라이브 구매인증 1만명 커피 증정 (0원/무료)",
           "url": "http://www.dealbada.com/bbs/board.php?bo_table=deal_domestic&wr_id=569469",
           "score": 229.70000000000002
         },
         {
-          "id": "dealbada-1779705630741-r0wv9x",
+          "id": "dealbada-1779707402685-86h4tz",
           "title": "[네이버]로트벡쉔 이뮨샷+그로우업 바이탈+메노-밸런스 바이탈 버라이어티팩 (234,000원/무료)",
           "url": "http://www.dealbada.com/bbs/board.php?bo_table=deal_domestic&wr_id=569574",
           "score": 222.4
@@ -2135,25 +2135,25 @@
           "score": 221.4
         },
         {
-          "id": "dealbada-1779705630741-bw84lk",
+          "id": "dealbada-1779707402685-ie3tbt",
           "title": "[패션플러스] 바쏘옴므 썸머 베이직 스탠다드 정장 세트 (89,800원/무료)",
           "url": "http://www.dealbada.com/bbs/board.php?bo_table=deal_domestic&wr_id=569561",
           "score": 220.70000000000002
         },
         {
-          "id": "dealbada-1779705630741-c0humh",
+          "id": "dealbada-1779707402685-ja2xti",
           "title": "[G마켓] 동일식품 어포튀각 오리지널,청양,먹태맛 12봉 (19,900원/무료)",
           "url": "http://www.dealbada.com/bbs/board.php?bo_table=deal_domestic&wr_id=569496",
-          "score": 218.5
+          "score": 218.60000000000002
         },
         {
-          "id": "dealbada-1779705630741-6a8eic",
+          "id": "dealbada-1779707402685-3ck22c",
           "title": "[네이버] 순수식품 rTG 오메가3 360캡슐 (53,960원 / 무료)",
           "url": "http://www.dealbada.com/bbs/board.php?bo_table=deal_domestic&wr_id=569519",
           "score": 215.8
         },
         {
-          "id": "dealbada-1779705630741-p84aw8",
+          "id": "dealbada-1779707402685-chcje4",
           "title": "[지마켓] 숨 순수 소프트 3겹 30m 30롤 2팩 (카드 14,720원/무료)",
           "url": "http://www.dealbada.com/bbs/board.php?bo_table=deal_domestic&wr_id=569503",
           "score": 215.20000000000002
@@ -2182,70 +2182,70 @@
           "일상"
         ],
         "postCount": 528,
-        "avgViewCount": 16248,
-        "avgCommentCount": 266,
-        "avgLikeCount": 117,
-        "activityScore": 202270,
+        "avgViewCount": 16316,
+        "avgCommentCount": 267,
+        "avgLikeCount": 118,
+        "activityScore": 203060,
         "topPosts": [
           {
-            "id": "dcinside-1779705651290-t4qvdp",
+            "id": "dcinside-1779707424094-gj4cjp",
             "title": "[싱갤] 와들와들 일본인도 반박 못하는 만행.JPG",
             "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=431867",
-            "score": 15699.3
+            "score": 15711.7
           },
           {
-            "id": "dcinside-1779705651290-fr2ej9",
+            "id": "dcinside-1779707424095-zzenyu",
             "title": "[코갤] 스벅 진짜 ㅈ된거 같다",
             "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=431692",
-            "score": 12782.2
+            "score": 12793.1
           },
           {
-            "id": "dcinside-1779705651290-shf62o",
+            "id": "dcinside-1779707424095-4ukzm5",
             "title": "[이갤] 부정선거가 물리적으로 불가능한 이유",
             "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=431570",
-            "score": 11425
+            "score": 11430.8
           },
           {
-            "id": "dcinside-1779705651290-4ys3zx",
+            "id": "dcinside-1779707424095-8mplqd",
             "title": "[중갤] 李대통령 “일베 등 혐오 방치 사이트 폐쇄 검토 지시”",
             "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=431720",
-            "score": 11034.9
+            "score": 11036.4
           },
           {
-            "id": "dcinside-1779705651290-w1ti2s",
+            "id": "dcinside-1779707424095-0trct9",
             "title": "[한갤] 김수현 BBC입갤 ㄷㄷ",
             "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=431540",
-            "score": 10217.3
+            "score": 10218.3
           },
           {
-            "id": "dcinside-1779705651290-2hl8ac",
+            "id": "dcinside-1779707424094-tqumv4",
             "title": "[코갤] 스타벅스 불매운동 근황.JPG",
             "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=431855",
-            "score": 9611.4
+            "score": 9634.9
           },
           {
-            "id": "dcinside-1779705651290-blmbpp",
+            "id": "dcinside-1779707424095-xx5dgj",
             "title": "[중갤] 대한민국의 주적에 대한 후보별 답변.JPG",
             "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=431615",
-            "score": 9525.4
+            "score": 9528.6
           },
           {
-            "id": "dcinside-1779705651290-lv8je6",
+            "id": "dcinside-1779707424095-zukhe8",
             "title": "[싱갤] \"얘들아 남자는 절대 믿지말고 경계해ㅠㅠㅠ\"",
             "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=431474",
-            "score": 9357.7
+            "score": 9359.400000000001
           },
           {
-            "id": "dcinside-1779705651291-4pahre",
-            "title": "[싱갤] 싱글벙글 스타벅스 탱크데이 사건 근황(블라인드)",
-            "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=431295",
-            "score": 8808.4
-          },
-          {
-            "id": "dcinside-1779705651290-trkgsg",
+            "id": "dcinside-1779707424094-9ce906",
             "title": "[싱갤] 오늘자 창팝 유튜버 미성년자 성범죄 ㄷㄷㄷㄷ",
             "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=431927",
-            "score": 8771.6
+            "score": 8861.7
+          },
+          {
+            "id": "dcinside-1779707424095-je30vc",
+            "title": "[싱갤] 싱글벙글 스타벅스 탱크데이 사건 근황(블라인드)",
+            "url": "https://gall.dcinside.com/board/view/?id=dcbest&no=431295",
+            "score": 8813.9
           }
         ],
         "peakHours": [
@@ -2260,11 +2260,11 @@
         "description": "커뮤니티 정보",
         "category": "종합",
         "primaryTopics": [],
-        "postCount": 528,
-        "avgViewCount": 1830,
+        "postCount": 527,
+        "avgViewCount": 1836,
         "avgCommentCount": 3,
         "avgLikeCount": 0,
-        "activityScore": 1481,
+        "activityScore": 1479.9999999999998,
         "topPosts": [
           {
             "id": "extmovie-1779610239089-611w3k",
@@ -2321,16 +2321,16 @@
             "score": 896.9000000000001
           },
           {
-            "id": "extmovie-1779705618327-xecan1",
+            "id": "extmovie-1779707390018-p8sn9i",
             "title": "79회 칸 영화제 수상작 리스트",
             "url": "https://extmovie.com/movietalk/94053049",
-            "score": 889.1
+            "score": 890.6
           }
         ],
         "peakHours": [
-          19,
+          20,
           23,
-          14
+          19
         ]
       },
       {
@@ -2346,7 +2346,7 @@
         "activityScore": 0.9999999999999999,
         "topPosts": [
           {
-            "id": "dealbada-1779705630741-il2lgm",
+            "id": "dealbada-1779707402685-xsbq29",
             "title": "[G마켓] 로보락 H60 Hub Ultra 무선청소기 (399,000원/무료)",
             "url": "http://www.dealbada.com/bbs/board.php?bo_table=deal_domestic&wr_id=569504",
             "score": 304
@@ -2364,13 +2364,13 @@
             "score": 265.90000000000003
           },
           {
-            "id": "dealbada-1779705630741-3gb227",
+            "id": "dealbada-1779707402685-xsow7h",
             "title": "[지마켓] 5/18 14시 BSD 3천만 돌파 라이브 구매인증 1만명 커피 증정 (0원/무료)",
             "url": "http://www.dealbada.com/bbs/board.php?bo_table=deal_domestic&wr_id=569469",
             "score": 229.70000000000002
           },
           {
-            "id": "dealbada-1779705630741-r0wv9x",
+            "id": "dealbada-1779707402685-86h4tz",
             "title": "[네이버]로트벡쉔 이뮨샷+그로우업 바이탈+메노-밸런스 바이탈 버라이어티팩 (234,000원/무료)",
             "url": "http://www.dealbada.com/bbs/board.php?bo_table=deal_domestic&wr_id=569574",
             "score": 222.4
@@ -2382,25 +2382,25 @@
             "score": 221.4
           },
           {
-            "id": "dealbada-1779705630741-bw84lk",
+            "id": "dealbada-1779707402685-ie3tbt",
             "title": "[패션플러스] 바쏘옴므 썸머 베이직 스탠다드 정장 세트 (89,800원/무료)",
             "url": "http://www.dealbada.com/bbs/board.php?bo_table=deal_domestic&wr_id=569561",
             "score": 220.70000000000002
           },
           {
-            "id": "dealbada-1779705630741-c0humh",
+            "id": "dealbada-1779707402685-ja2xti",
             "title": "[G마켓] 동일식품 어포튀각 오리지널,청양,먹태맛 12봉 (19,900원/무료)",
             "url": "http://www.dealbada.com/bbs/board.php?bo_table=deal_domestic&wr_id=569496",
-            "score": 218.5
+            "score": 218.60000000000002
           },
           {
-            "id": "dealbada-1779705630741-6a8eic",
+            "id": "dealbada-1779707402685-3ck22c",
             "title": "[네이버] 순수식품 rTG 오메가3 360캡슐 (53,960원 / 무료)",
             "url": "http://www.dealbada.com/bbs/board.php?bo_table=deal_domestic&wr_id=569519",
             "score": 215.8
           },
           {
-            "id": "dealbada-1779705630741-p84aw8",
+            "id": "dealbada-1779707402685-chcje4",
             "title": "[지마켓] 숨 순수 소프트 3겹 30m 30롤 2팩 (카드 14,720원/무료)",
             "url": "http://www.dealbada.com/bbs/board.php?bo_table=deal_domestic&wr_id=569503",
             "score": 215.20000000000002
@@ -2428,10 +2428,10 @@
           "밈"
         ],
         "postCount": 528,
-        "avgViewCount": 34283,
-        "avgCommentCount": 27,
+        "avgViewCount": 34399,
+        "avgCommentCount": 28,
         "avgLikeCount": 125,
-        "activityScore": 80391,
+        "activityScore": 80432,
         "topPosts": [
           {
             "id": "ilbe-1779651812142-g4js9h",
@@ -2440,10 +2440,10 @@
             "score": 14387.6
           },
           {
-            "id": "ilbe-1779705622234-53dgso",
+            "id": "ilbe-1779707392889-1htmra",
             "title": "남친이랑 헤어진후 헬스장.gif",
             "url": "https://www.ilbe.com/view/11614888304",
-            "score": 13962.2
+            "score": 14036.6
           },
           {
             "id": "ilbe-1779698535779-b2jtap",
@@ -2458,10 +2458,10 @@
             "score": 11638.1
           },
           {
-            "id": "ilbe-1779705622234-ttoh55",
+            "id": "ilbe-1779707392889-jxwygq",
             "title": "19)연대 하얼빈 미녀",
             "url": "https://www.ilbe.com/view/11614808592",
-            "score": 11526
+            "score": 11547.6
           },
           {
             "id": "ilbe-1779672967822-rdo91m",
@@ -2470,22 +2470,22 @@
             "score": 11294.1
           },
           {
+            "id": "ilbe-1779707392889-i8mf77",
+            "title": "스타벅스 하나로 덮은 사건들..ㄷㄷㄷㄷ",
+            "url": "https://www.ilbe.com/view/11614857813",
+            "score": 11111.800000000001
+          },
+          {
             "id": "ilbe-1779663818295-s2h57a",
             "title": "19) 배우 문가영",
             "url": "https://www.ilbe.com/view/11614791745",
             "score": 10950.1
           },
           {
-            "id": "ilbe-1779705622234-mtnrs7",
-            "title": "스타벅스 하나로 덮은 사건들..ㄷㄷㄷㄷ",
-            "url": "https://www.ilbe.com/view/11614857813",
-            "score": 10810.1
-          },
-          {
-            "id": "ilbe-1779705622234-2oiqfr",
+            "id": "ilbe-1779707392889-nw0cuk",
             "title": "19) 발육잘된 본인에 만족하는 18세 양녀",
             "url": "https://www.ilbe.com/view/11614894667",
-            "score": 10709.2
+            "score": 10851.6
           },
           {
             "id": "ilbe-1779684341692-22rdo2",
@@ -2515,11 +2515,11 @@
           "정비",
           "자동차뉴스"
         ],
-        "postCount": 345,
-        "avgViewCount": 10070,
+        "postCount": 348,
+        "avgViewCount": 10220,
         "avgCommentCount": 21,
-        "avgLikeCount": 128,
-        "activityScore": 51205,
+        "avgLikeCount": 130,
+        "activityScore": 52379,
         "topPosts": [
           {
             "id": "bobaedream-1779199986270-o15flr",
@@ -2534,10 +2534,10 @@
             "score": 9125
           },
           {
-            "id": "bobaedream-1779705618469-1ety5f",
+            "id": "bobaedream-1779707389372-t81l1u",
             "title": "美 뉴욕에서 차량 폭발로 불타던 일본 반응",
             "url": "https://www.bobaedream.co.kr/view?code=best&No=992548",
-            "score": 8115.200000000001
+            "score": 8331.5
           },
           {
             "id": "bobaedream-1779359958074-9imfwv",
@@ -2552,10 +2552,10 @@
             "score": 7333
           },
           {
-            "id": "bobaedream-1779705618469-zy833u",
+            "id": "bobaedream-1779707389372-g1vgfr",
             "title": "아내 체면 살려주기 성공했습니다",
             "url": "https://www.bobaedream.co.kr/view?code=best&No=992659",
-            "score": 6858.2
+            "score": 7184.900000000001
           },
           {
             "id": "bobaedream-1779368903504-qdaf2s",
@@ -2570,10 +2570,10 @@
             "score": 6328
           },
           {
-            "id": "bobaedream-1779705618469-1iqapp",
+            "id": "bobaedream-1779707389372-you8rf",
             "title": "철마산 조난 신고 외국인 여성...귀가 했는데 안 알려",
             "url": "https://www.bobaedream.co.kr/view?code=best&No=992553",
-            "score": 5979.3
+            "score": 6170
           },
           {
             "id": "bobaedream-1779458390878-yei15f",
@@ -2604,16 +2604,16 @@
           "금융"
         ],
         "postCount": 528,
-        "avgViewCount": 4577,
+        "avgViewCount": 4552,
         "avgCommentCount": 25,
-        "avgLikeCount": 50,
-        "activityScore": 39244,
+        "avgLikeCount": 49,
+        "activityScore": 38977,
         "topPosts": [
           {
-            "id": "etoland-1779705623325-g6iysq",
+            "id": "etoland-1779707396222-k8y7mo",
             "title": "약후 )) 뜬금없이 노모가 나왔네요...",
             "url": "https://www.etoland.co.kr/b/etohumor07/view/약후-뜬금없이-노모가-나왔네요-9064533",
-            "score": 3151
+            "score": 3179.5
           },
           {
             "id": "etoland-1779680047207-74shvu",
@@ -2622,22 +2622,16 @@
             "score": 2761.8
           },
           {
-            "id": "etoland-1779705623325-9whi55",
+            "id": "etoland-1779707396222-c62kmo",
             "title": "새로운 맘의 탄생",
             "url": "https://www.etoland.co.kr/b/etohumor07/view/새로운-맘의-탄생-9064344",
-            "score": 2633
+            "score": 2643.9
           },
           {
-            "id": "etoland-1779627985274-8f3e64",
-            "title": "요즘 처참히 망해가는 5대 취미",
-            "url": "https://www.etoland.co.kr/b/etohumor07/view/요즘-처참히-망해가는-5대-취미-9062083",
-            "score": 2572.6000000000004
-          },
-          {
-            "id": "etoland-1779705623325-oxf627",
+            "id": "etoland-1779707396222-2f0ks6",
             "title": "49평 아파트 내부에 페인트칠을 한 세입자.",
             "url": "https://www.etoland.co.kr/b/etohumor07/view/49평-아파트-내부에-페인트칠을-한-세입자-9064742",
-            "score": 2473
+            "score": 2518
           },
           {
             "id": "etoland-1779640562105-88rvnt",
@@ -2658,22 +2652,28 @@
             "score": 2258
           },
           {
-            "id": "etoland-1779705623325-gk0y5a",
+            "id": "etoland-1779707396222-fk3ggq",
             "title": "중국 실제 게이 클럽 보고 자아분열중인 여자들",
             "url": "https://www.etoland.co.kr/b/etohumor07/view/중국-실제-게이-클럽-보고-자아분열중인-여자들-9064098",
-            "score": 2165.8
+            "score": 2187.9
           },
           {
             "id": "etoland-1779691443949-xj5vzx",
             "title": "MBC) '김수현 목소리' 조작 드러나자.. \"원본이라 한 적 없다\"",
             "url": "https://www.etoland.co.kr/b/etohumor07/view/mbc-39김수현-목소리39-조작-드러나자-34원본이라-한-적-없다34-9063767",
             "score": 2070.6000000000004
+          },
+          {
+            "id": "etoland-1779707396222-k86cpw",
+            "title": "완벽한 몸매",
+            "url": "https://www.etoland.co.kr/b/etohumor07/view/완벽한-몸매-9063796",
+            "score": 2013.7
           }
         ],
         "peakHours": [
           22,
           21,
-          18
+          17
         ]
       }
     ],
@@ -2691,71 +2691,71 @@
           "방송",
           "K-POP"
         ],
-        "postCount": 80,
-        "avgViewCount": 46153,
-        "avgCommentCount": 352,
+        "postCount": 81,
+        "avgViewCount": 47090,
+        "avgCommentCount": 361,
         "avgLikeCount": 0,
-        "activityScore": 28120,
+        "activityScore": 29278.999999999996,
         "topPosts": [
           {
-            "id": "theqoo-1779705614022-nt4ovk",
+            "id": "theqoo-1779707384199-tco2tb",
             "title": "멤버들이랑 찐친이 되긴 힘든거 같다는 아이돌들",
             "url": "https://theqoo.net/hot/4216082124",
-            "score": 15920.6
+            "score": 15925.6
           },
           {
-            "id": "theqoo-1779705614022-pgblo1",
+            "id": "theqoo-1779707384199-hl6a5r",
             "title": "진짜 미친놈 오는 신상과자.jpg",
             "url": "https://theqoo.net/hot/4216030069",
             "score": 13688.7
           },
           {
-            "id": "theqoo-1779705614022-otkhxb",
+            "id": "theqoo-1779707384199-o7dlhn",
             "title": "반반 결혼 이게 맞아..?",
             "url": "https://theqoo.net/hot/4216122887",
-            "score": 13111.300000000001
+            "score": 13145.300000000001
           },
           {
-            "id": "theqoo-1779705614021-3vnlf2",
+            "id": "theqoo-1779707384199-f5w1xv",
             "title": "천연 위고비로 또 시작된 \"그 감성\"",
             "url": "https://theqoo.net/hot/4216308158",
-            "score": 12627.2
+            "score": 12764.300000000001
           },
           {
-            "id": "theqoo-1779705614021-336x8u",
+            "id": "theqoo-1779707384199-nrr38a",
             "title": "식탐도 지능이라는 주우재.jpg",
             "url": "https://theqoo.net/hot/4216281948",
-            "score": 12094
+            "score": 12222.9
           },
           {
-            "id": "theqoo-1779705614021-3i7gjq",
+            "id": "theqoo-1779707384199-m5w06q",
             "title": "핫게 간 결혼식 복장 현재 판매중인 기성복 원피스임.jpg",
             "url": "https://theqoo.net/hot/4216184503",
             "score": 11944.7
           },
           {
-            "id": "theqoo-1779705614022-7jjkvt",
+            "id": "theqoo-1779707384199-1dqrsz",
             "title": "결혼식장에 옷이 이게 맞나요?",
             "url": "https://theqoo.net/hot/4216166422",
-            "score": 11593.2
+            "score": 11624.9
           },
           {
-            "id": "theqoo-1779705614021-3s5pwv",
+            "id": "theqoo-1779707384199-pwoocn",
             "title": "다영 “우주소녀 시절 몸까지 밝게 화장, 폼클렌저 2주에 1통 써”(전참시)",
             "url": "https://theqoo.net/hot/4216321699",
-            "score": 11182.3
+            "score": 11281.2
           },
           {
-            "id": "theqoo-1779705614021-xgfgf9",
+            "id": "theqoo-1779707384199-d5mozs",
             "title": "온실 속에서 자란 사람이 첫 직장 들어가서 겪는 감정",
             "url": "https://theqoo.net/hot/4216191089",
-            "score": 10848.2
+            "score": 10889.8
           },
           {
-            "id": "theqoo-1779705614022-hcwcri",
+            "id": "theqoo-1779707384199-gpxubb",
             "title": "오늘자 반응 안좋은 막방 드라마",
             "url": "https://theqoo.net/hot/4216008728",
-            "score": 10793.2
+            "score": 10841.6
           }
         ],
         "peakHours": [
@@ -2780,10 +2780,10 @@
           "FPS"
         ],
         "postCount": 528,
-        "avgViewCount": 1792,
-        "avgCommentCount": 30,
+        "avgViewCount": 1819,
+        "avgCommentCount": 31,
         "avgLikeCount": 20,
-        "activityScore": 26773,
+        "activityScore": 26981,
         "topPosts": [
           {
             "id": "inven-1779705604395-4376zn",
@@ -2792,10 +2792,10 @@
             "score": 2053.4
           },
           {
-            "id": "inven-1779705604395-932c9r",
+            "id": "inven-1779707374952-dxptbw",
             "title": "햄부기 + 배민 상품권 이벤트 제논 장갑 추옵 수배합니다.",
             "url": "https://www.inven.co.kr/board/maple/5974/6602401",
-            "score": 1827.2
+            "score": 1832
           },
           {
             "id": "inven-1779691420042-32np8w",
@@ -2810,16 +2810,16 @@
             "score": 1726.2
           },
           {
+            "id": "inven-1779707374952-utsslu",
+            "title": "카데나 입장에서 본 가장 웃기는 말",
+            "url": "https://www.inven.co.kr/board/maple/5974/6603288",
+            "score": 1720.4
+          },
+          {
             "id": "inven-1779617496278-613azz",
             "title": "몬스터 컬렉션 올컬렉 완료+부기 뿌림",
             "url": "https://www.inven.co.kr/board/maple/5974/6598768",
             "score": 1693.5
-          },
-          {
-            "id": "inven-1779705604395-tlhrwo",
-            "title": "카데나 입장에서 본 가장 웃기는 말",
-            "url": "https://www.inven.co.kr/board/maple/5974/6603288",
-            "score": 1677.8000000000002
           },
           {
             "id": "inven-1779672949251-3rg12v",
@@ -2828,10 +2828,10 @@
             "score": 1648.2
           },
           {
-            "id": "inven-1779705604395-1u1d7b",
+            "id": "inven-1779707374952-5qpn5o",
             "title": "9.83 카데나 데티카링 클",
             "url": "https://www.inven.co.kr/board/maple/5974/6602719",
-            "score": 1600.4
+            "score": 1625.3000000000002
           },
           {
             "id": "inven-1779608443756-1aa6lp",
@@ -2840,10 +2840,10 @@
             "score": 1491.8
           },
           {
-            "id": "inven-1779705604395-9ow6ag",
+            "id": "inven-1779707374952-kv33fb",
             "title": "나라 공산화 다 된거야?",
             "url": "https://www.inven.co.kr/board/maple/5974/6602925",
-            "score": 1403.2
+            "score": 1410.2
           }
         ],
         "peakHours": [
@@ -2867,11 +2867,11 @@
           "노트북",
           "스마트폰"
         ],
-        "postCount": 529,
-        "avgViewCount": 2058,
+        "postCount": 528,
+        "avgViewCount": 2059,
         "avgCommentCount": 8,
         "avgLikeCount": 3,
-        "activityScore": 5983,
+        "activityScore": 6025,
         "topPosts": [
           {
             "id": "clien-1779582799024-43mq5h",
@@ -2936,8 +2936,8 @@
         ],
         "peakHours": [
           18,
-          10,
-          19
+          19,
+          10
         ]
       }
     ],
@@ -2956,16 +2956,22 @@
           "학부모"
         ],
         "postCount": 528,
-        "avgViewCount": 1355,
-        "avgCommentCount": 10,
+        "avgViewCount": 1246,
+        "avgCommentCount": 9,
         "avgLikeCount": 0,
-        "activityScore": 5243,
+        "activityScore": 4876,
         "topPosts": [
           {
-            "id": "cook82-1779705616183-1075ya",
-            "title": "모자무싸 배종옥씨 목에 주름이 자글자글한데",
-            "url": "https://www.82cook.com/entiz/read.php?bn=15&num=4192660&page=6",
-            "score": 690.6
+            "id": "cook82-1779707387106-ywr97f",
+            "title": "태혜지 중 한가인이 젤 결혼 잘한것 같아요",
+            "url": "https://www.82cook.com/entiz/read.php?bn=15&num=4192714&page=5",
+            "score": 698.3000000000001
+          },
+          {
+            "id": "cook82-1779707387106-3v1eel",
+            "title": "너 늙었다 할때 뭐라 답해야되나요?",
+            "url": "https://www.82cook.com/entiz/read.php?bn=15&num=4192676&page=6",
+            "score": 686.9000000000001
           },
           {
             "id": "cook82-1779705616183-6dyoeo",
@@ -2974,34 +2980,16 @@
             "score": 684
           },
           {
-            "id": "cook82-1779705616183-nodbxb",
-            "title": "너 늙었다 할때 뭐라 답해야되나요?",
-            "url": "https://www.82cook.com/entiz/read.php?bn=15&num=4192676&page=6",
-            "score": 677.9000000000001
-          },
-          {
-            "id": "cook82-1779702070263-hwh4eg",
-            "title": "모자무싸 배종옥씨 목에 주름이 자글자글한데",
-            "url": "https://www.82cook.com/entiz/read.php?bn=15&num=4192660&page=5",
-            "score": 672.2
-          },
-          {
             "id": "cook82-1779703847609-egydi0",
             "title": "너 늙었다 할때 뭐라 답해야되나요?",
             "url": "https://www.82cook.com/entiz/read.php?bn=15&num=4192676&page=5",
             "score": 671.2
           },
           {
-            "id": "cook82-1779705616183-vr3kwi",
+            "id": "cook82-1779707387106-ixw0h9",
             "title": "지방사는 사람들 부러워요",
             "url": "https://www.82cook.com/entiz/read.php?bn=15&num=4192673&page=6",
-            "score": 648.2
-          },
-          {
-            "id": "cook82-1779698528981-2lkkcz",
-            "title": "모자무싸 배종옥씨 목에 주름이 자글자글한데",
-            "url": "https://www.82cook.com/entiz/read.php?bn=15&num=4192660&page=4",
-            "score": 641.8000000000001
+            "score": 657
           },
           {
             "id": "cook82-1779700300800-n5tdwm",
@@ -3010,22 +2998,34 @@
             "score": 640.2
           },
           {
-            "id": "cook82-1779705616183-ulfvxk",
-            "title": "조선이  터뜨린 이유",
-            "url": "https://www.82cook.com/entiz/read.php?bn=15&num=4192659&page=6",
-            "score": 639.2
-          },
-          {
             "id": "cook82-1779703847609-38mu3m",
             "title": "지방사는 사람들 부러워요",
             "url": "https://www.82cook.com/entiz/read.php?bn=15&num=4192673&page=5",
             "score": 634.4000000000001
+          },
+          {
+            "id": "cook82-1779702070263-7fe0ht",
+            "title": "태혜지 중 한가인이 젤 결혼 잘한것 같아요",
+            "url": "https://www.82cook.com/entiz/read.php?bn=15&num=4192714&page=3",
+            "score": 623.9000000000001
+          },
+          {
+            "id": "cook82-1779700300800-6g5qmo",
+            "title": "지방사는 사람들 부러워요",
+            "url": "https://www.82cook.com/entiz/read.php?bn=15&num=4192673&page=4",
+            "score": 602.7
+          },
+          {
+            "id": "cook82-1779707387106-sr6w5k",
+            "title": "내일 삼전닉스 어떻게 될까요?",
+            "url": "https://www.82cook.com/entiz/read.php?bn=15&num=4192728&page=4",
+            "score": 597.9
           }
         ],
         "peakHours": [
-          14,
           15,
-          16
+          16,
+          14
         ]
       }
     ],
@@ -3043,23 +3043,17 @@
           "챔스",
           "월드컵"
         ],
-        "postCount": 528,
-        "avgViewCount": 200,
+        "postCount": 527,
+        "avgViewCount": 191,
         "avgCommentCount": 3,
-        "avgLikeCount": 5,
-        "activityScore": 4341,
+        "avgLikeCount": 6,
+        "activityScore": 4559,
         "topPosts": [
           {
-            "id": "hygall-1779705615054-q5gmaw",
-            "title": "ㅃ요즘 사람들 재력과시 심하다더니 ㄹㅇ 선을 넘는구나",
-            "url": "https://hygall.com/index.php?page=8&document_srl=659457309",
-            "score": 521
-          },
-          {
-            "id": "hygall-1779703846563-ixe78l",
-            "title": "ㅃ요즘 사람들 재력과시 심하다더니 ㄹㅇ 선을 넘는구나",
-            "url": "https://hygall.com/index.php?page=7&document_srl=659457309",
-            "score": 448.3
+            "id": "hygall-1779707386486-lhgxul",
+            "title": "ㅃ '이 별에 잘못 떨어진 외계인.'이라는 표현이 있거든",
+            "url": "https://hygall.com/index.php?page=10&document_srl=659458180",
+            "score": 404
           },
           {
             "id": "hygall-1779705615054-qhro8d",
@@ -3068,10 +3062,10 @@
             "score": 341
           },
           {
-            "id": "hygall-1779702069130-ebd16h",
-            "title": "ㅃ요즘 사람들 재력과시 심하다더니 ㄹㅇ 선을 넘는구나",
-            "url": "https://hygall.com/index.php?page=5&document_srl=659457309",
-            "score": 314.1
+            "id": "hygall-1779707386485-75sjvj",
+            "title": "오스카 암저슷켄 이장면 괜히 더 야해보이는 게",
+            "url": "https://hygall.com/index.php?page=6&document_srl=659460509",
+            "score": 281.4
           },
           {
             "id": "hygall-1779703846563-r2qce8",
@@ -3080,10 +3074,10 @@
             "score": 239
           },
           {
-            "id": "hygall-1779700299961-1gx6no",
-            "title": "ㅃ요즘 사람들 재력과시 심하다더니 ㄹㅇ 선을 넘는구나",
-            "url": "https://hygall.com/index.php?page=2&document_srl=659457309",
-            "score": 231.4
+            "id": "hygall-1779707386486-6av6zh",
+            "title": "잠깐만, 피츠버그 병원에서 연애 대상을 찾으라고? 6",
+            "url": "https://hygall.com/index.php?page=9&document_srl=659458545",
+            "score": 210
           },
           {
             "id": "hygall-1779705615054-j9zjzj",
@@ -3092,28 +3086,34 @@
             "score": 192.9
           },
           {
-            "id": "hygall-1779705615054-hmsqsd",
-            "title": "ㅃ 고곰아케이크 싫어하는 사람들이 있어?!",
-            "url": "https://hygall.com/index.php?page=8&document_srl=659457574",
-            "score": 170.3
+            "id": "hygall-1779707386485-lw7tni",
+            "title": "ㅃ 좋은 여자를 연기하는 것도 쉽지는 않아",
+            "url": "https://hygall.com/index.php?page=4&document_srl=659462479",
+            "score": 173.10000000000002
           },
           {
-            "id": "hygall-1779703846563-abatad",
-            "title": "ㅃ 고곰아케이크 싫어하는 사람들이 있어?!",
-            "url": "https://hygall.com/index.php?page=6&document_srl=659457574",
-            "score": 168.7
+            "id": "hygall-1779707386486-arxapm",
+            "title": "[고슬고슬2] 닐그레이스, <나사 우주 과학실험 방송 송출중>",
+            "url": "https://hygall.com/index.php?page=8&document_srl=659459555",
+            "score": 161.7
           },
           {
-            "id": "hygall-1779702069130-c5x9in",
-            "title": "ㅃ 고곰아케이크 싫어하는 사람들이 있어?!",
-            "url": "https://hygall.com/index.php?page=4&document_srl=659457574",
-            "score": 165.2
+            "id": "hygall-1779707386486-1mg3s5",
+            "title": "가슴에 점 찍어놓고 섹스어필 하는 거 이젠 좀 진부하지",
+            "url": "https://hygall.com/index.php?page=8&document_srl=659458869",
+            "score": 156
+          },
+          {
+            "id": "hygall-1779702069130-dflw67",
+            "title": "ㅃ '이 별에 잘못 떨어진 외계인.'이라는 표현이 있거든",
+            "url": "https://hygall.com/index.php?page=3&document_srl=659458180",
+            "score": 153.9
           }
         ],
         "peakHours": [
           18,
-          17,
-          19
+          19,
+          17
         ]
       }
     ],
@@ -3131,11 +3131,11 @@
           "PC게임",
           "모바일게임"
         ],
-        "postCount": 529,
-        "avgViewCount": 624,
+        "postCount": 528,
+        "avgViewCount": 577,
         "avgCommentCount": 0,
-        "avgLikeCount": 8,
-        "activityScore": 3968,
+        "avgLikeCount": 7,
+        "activityScore": 3748,
         "topPosts": [
           {
             "id": "ruliweb-1779705615443-m0t0be",
@@ -3144,16 +3144,16 @@
             "score": 1007.3000000000001
           },
           {
+            "id": "ruliweb-1779707385751-iqcmgg",
+            "title": "위구르 수용소 폭로하고 미국으로 망명갔던 중국인 따거                                                                                 (24)",
+            "url": "https://bbs.ruliweb.com/community/board/300143/read/75315484?page=10",
+            "score": 976.4000000000001
+          },
+          {
             "id": "ruliweb-1779705615443-3ay95p",
             "title": "\"작가의 처녀작이라고 봐주자는 말이 무슨소리냐\"                                                                                 (16)",
             "url": "https://bbs.ruliweb.com/community/board/300143/read/75314873?page=10",
             "score": 939.5
-          },
-          {
-            "id": "ruliweb-1779703846881-tg4jqr",
-            "title": "윤.남.노가 진짜인 이유                                                                                 (21)",
-            "url": "https://bbs.ruliweb.com/community/board/300143/read/75314496?page=10",
-            "score": 922.9000000000001
           },
           {
             "id": "ruliweb-1779705615443-3wqwh6",
@@ -3162,22 +3162,22 @@
             "score": 876.8000000000001
           },
           {
-            "id": "ruliweb-1779703846881-6f74te",
-            "title": "이제 음주측정 거부하면 무조건 면허 취소                                                                                 (26)",
-            "url": "https://bbs.ruliweb.com/community/board/300143/read/75314557?page=8",
-            "score": 842.2
-          },
-          {
-            "id": "ruliweb-1779703846880-qzurz2",
-            "title": "하루 3시간만 자도 멀쩡한 수면법 도전해본 대학원생                                                                                 (26)",
-            "url": "https://bbs.ruliweb.com/community/board/300143/read/75314589?page=7",
-            "score": 829.9000000000001
-          },
-          {
             "id": "ruliweb-1779705615443-6mj4f3",
             "title": "대만 여행 중 중국인 인줄 의심받은 여행 유튜버                                                                                 (44)",
             "url": "https://bbs.ruliweb.com/community/board/300143/read/75314907?page=9",
             "score": 829.1
+          },
+          {
+            "id": "ruliweb-1779707385751-ambqfa",
+            "title": "지금 용진이가 이뻐 죽을것같은 사람들                                                                                 (21)",
+            "url": "https://bbs.ruliweb.com/community/board/300143/read/75315546?page=8",
+            "score": 804
+          },
+          {
+            "id": "ruliweb-1779707385751-0x8r1y",
+            "title": "내장지방 자가진단법.jpg                                                                                 (27)",
+            "url": "https://bbs.ruliweb.com/community/board/300143/read/75315523?page=9",
+            "score": 796.9000000000001
           },
           {
             "id": "ruliweb-1779705615443-vrog8i",
@@ -3192,16 +3192,16 @@
             "score": 764.6
           },
           {
-            "id": "ruliweb-1779703846880-1qa6yr",
-            "title": "각자의 직업병을 말해보자.jpg                                                                                 (39)",
-            "url": "https://bbs.ruliweb.com/community/board/300143/read/75314587?page=7",
-            "score": 738.8000000000001
+            "id": "ruliweb-1779707385751-lea3or",
+            "title": "\"일본 여행 갈건데 일본의 911은 뭐지?\"                                                                                 (35)",
+            "url": "https://bbs.ruliweb.com/community/board/300143/read/75315596?page=6",
+            "score": 708.2
           }
         ],
         "peakHours": [
           19,
-          18,
-          0
+          20,
+          18
         ]
       }
     ],
@@ -3220,10 +3220,10 @@
           "인물사진"
         ],
         "postCount": 528,
-        "avgViewCount": 361,
+        "avgViewCount": 343,
         "avgCommentCount": 5,
         "avgLikeCount": 1,
-        "activityScore": 2846,
+        "activityScore": 2840,
         "topPosts": [
           {
             "id": "slrclub-1779702061775-y2hp0y",
@@ -3280,10 +3280,10 @@
             "score": 281.3
           },
           {
-            "id": "slrclub-1779655442217-byfi88",
-            "title": "미쳤네 ㄷㄷㄷ 스페이스x",
-            "url": "https://www.slrclub.com/bbs/vx2.php?id=free&no=41632596",
-            "score": 280.1
+            "id": "slrclub-1779694974071-8dfhhs",
+            "title": "저는 스벅만 가네요ㅜㅜ",
+            "url": "https://www.slrclub.com/bbs/vx2.php?id=free&no=41633042",
+            "score": 279.4
           }
         ],
         "peakHours": [
@@ -3308,11 +3308,17 @@
           "가격비교"
         ],
         "postCount": 528,
-        "avgViewCount": 1138,
+        "avgViewCount": 1217,
         "avgCommentCount": 0,
-        "avgLikeCount": 4,
-        "activityScore": 1867,
+        "avgLikeCount": 5,
+        "activityScore": 2475,
         "topPosts": [
+          {
+            "id": "ppomppu-1779707402050-25ph08",
+            "title": "민주당 망했네요",
+            "url": "https://www.ppomppu.co.kr/zboard/view.php?id=freeboard&page=6&divpage=1858&no=9949683",
+            "score": 2437.6
+          },
           {
             "id": "ppomppu-1779705631482-hg54au",
             "title": "민주당 망했네요",
@@ -3332,16 +3338,16 @@
             "score": 1995.9
           },
           {
-            "id": "ppomppu-1779705631482-3coh5z",
-            "title": "헤어드라이기 켜둔채 외출한 투숙객.jpg",
-            "url": "https://www.ppomppu.co.kr/zboard/view.php?id=freeboard&page=6&divpage=1858&no=9949664",
-            "score": 1830.7
+            "id": "ppomppu-1779707402050-xs7l70",
+            "title": "충격적인) 성인 사이트 차단 150만개 ㄷㄷ.jpg",
+            "url": "https://www.ppomppu.co.kr/zboard/view.php?id=freeboard&page=4&divpage=1858&no=9949746",
+            "score": 1730.2
           },
           {
-            "id": "ppomppu-1779703862434-ng9id6",
-            "title": "헤어드라이기 켜둔채 외출한 투숙객.jpg",
-            "url": "https://www.ppomppu.co.kr/zboard/view.php?id=freeboard&page=5&divpage=1858&no=9949664",
-            "score": 1697.4
+            "id": "ppomppu-1779707402050-e6krk1",
+            "title": "조국 대표 경찰청 공문 공개",
+            "url": "https://www.ppomppu.co.kr/zboard/view.php?id=freeboard&page=6&divpage=1858&no=9949696",
+            "score": 1556.8000000000002
           },
           {
             "id": "ppomppu-1779700316023-m1lr10",
@@ -3350,28 +3356,22 @@
             "score": 1536.3000000000002
           },
           {
-            "id": "ppomppu-1779702085732-tl6u3o",
-            "title": "헤어드라이기 켜둔채 외출한 투숙객.jpg",
-            "url": "https://www.ppomppu.co.kr/zboard/view.php?id=freeboard&page=4&divpage=1858&no=9949664",
-            "score": 1519.1000000000001
-          },
-          {
             "id": "ppomppu-1779705631482-73un3h",
             "title": "조국 대표 경찰청 공문 공개",
             "url": "https://www.ppomppu.co.kr/zboard/view.php?id=freeboard&page=5&divpage=1858&no=9949696",
             "score": 1463.1000000000001
           },
           {
+            "id": "ppomppu-1779707402050-mum5a4",
+            "title": "조국 유세 분위기 장난 아니네요 ㅋㅋ",
+            "url": "https://www.ppomppu.co.kr/zboard/view.php?id=freeboard&page=4&divpage=1858&no=9949755",
+            "score": 1334.2
+          },
+          {
             "id": "ppomppu-1779703862434-ex20of",
             "title": "조국 대표 경찰청 공문 공개",
             "url": "https://www.ppomppu.co.kr/zboard/view.php?id=freeboard&page=4&divpage=1858&no=9949696",
             "score": 1331.2
-          },
-          {
-            "id": "ppomppu-1779705631482-x1yaec",
-            "title": "충격적인) 성인 사이트 차단 150만개 ㄷㄷ.jpg",
-            "url": "https://www.ppomppu.co.kr/zboard/view.php?id=freeboard&page=3&divpage=1858&no=9949746",
-            "score": 1290.3000000000002
           }
         ],
         "peakHours": [
@@ -3399,16 +3399,16 @@
         "avgViewCount": 484,
         "avgCommentCount": 2,
         "avgLikeCount": 0,
-        "activityScore": 1165,
+        "activityScore": 1186,
         "topPosts": [
           {
-            "id": "gasengi-1779705618313-ergmdl",
+            "id": "gasengi-1779707390069-592769",
             "title": "[속보] 李대통령 \"일베 등 혐오 방치 사이트 폐쇄·과징금 실제 검토\"",
             "url": "https://www.gasengi.com/main/board.php?bo_table=commu08&wr_id=1997238&page=2",
             "score": 250.9
           },
           {
-            "id": "gasengi-1779705618313-qkknfs",
+            "id": "gasengi-1779707390069-cpk1qh",
             "title": "중국막으면 일본처들어오고 일본막으면 중국처들어오고 진짜 우리조상들 대단함 ?",
             "url": "https://www.gasengi.com/main/board.php?bo_table=commu08&wr_id=1996739&page=7",
             "score": 235.2
@@ -3420,7 +3420,7 @@
             "score": 234.9
           },
           {
-            "id": "gasengi-1779705618313-zcqqo4",
+            "id": "gasengi-1779707390069-0k0lqs",
             "title": "한국으로부터 미국이 배울 수 있는 점(해외)",
             "url": "https://www.gasengi.com/main/board.php?bo_table=commu08&wr_id=1997020&page=4",
             "score": 224.10000000000002
@@ -3444,13 +3444,13 @@
             "score": 202
           },
           {
-            "id": "gasengi-1779705618313-mf7uhc",
+            "id": "gasengi-1779707390069-lntkr8",
             "title": "2026년 국가별 1분기 GDP 성장률 순위(해외)",
             "url": "https://www.gasengi.com/main/board.php?bo_table=commu08&wr_id=1997231&page=2",
-            "score": 197.4
+            "score": 197.5
           },
           {
-            "id": "gasengi-1779705618313-aakup1",
+            "id": "gasengi-1779707390069-f87rn4",
             "title": "최근 이재명의 대이스라엘 강경 발언은",
             "url": "https://www.gasengi.com/main/board.php?bo_table=commu08&wr_id=1997034&page=4",
             "score": 197.20000000000002
@@ -3472,14 +3472,14 @@
   },
   "overallStats": {
     "totalPosts": 7000,
-    "totalViews": 41611360,
-    "totalComments": 235610,
-    "totalLikes": 219288,
-    "avgViewsPerPost": 5944,
+    "totalViews": 41859005,
+    "totalComments": 237039,
+    "totalLikes": 221259,
+    "avgViewsPerPost": 5980,
     "avgCommentsPerPost": 34,
-    "avgLikesPerPost": 31,
+    "avgLikesPerPost": 32,
     "mostActiveSite": "clien",
     "mostActiveHour": 0,
-    "engagementRate": 0.010932062782855452
+    "engagementRate": 0.010948611893665413
   }
 }
