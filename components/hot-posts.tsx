@@ -17,7 +17,6 @@ const SITE_THEME: Record<string, { color: string; domain: string }> = {
   ppomppu:    { color: '#a16207', domain: 'ppomppu.co.kr' },
   mlbpark:    { color: '#0b3b5c', domain: 'mlbpark.donga.com' },
   natepann:   { color: '#c92b2b', domain: 'pann.nate.com' },
-  ilbe:       { color: '#455a64', domain: 'ilbe.com' },
   bobaedream: { color: '#1e3a8a', domain: 'bobaedream.co.kr' },
   etoland:    { color: '#1f6b2a', domain: 'etoland.co.kr' },
   humoruniv:  { color: '#1b4a9e', domain: 'web.humoruniv.com' },

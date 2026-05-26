@@ -6,7 +6,6 @@ import { InvenCrawler } from './inven-crawler';
 import { PpomppuCrawler } from './ppomppu-crawler';
 import { MlbparkCrawler } from './mlbpark-crawler';
 import { NatepannCrawler } from './natepann-crawler';
-import { IlbeCrawler } from './ilbe-crawler';
 import { BobaedreamCrawler } from './bobaedream-crawler';
 import { EtolandCrawler } from './etoland-crawler';
 import { HumorunivCrawler } from './humoruniv-crawler';
@@ -32,7 +31,6 @@ export const crawlers: Record<string, ICrawler> = {
   ppomppu: new PpomppuCrawler(),
   mlbpark: new MlbparkCrawler(),
   natepann: new NatepannCrawler(),
-  ilbe: new IlbeCrawler(),
   bobaedream: new BobaedreamCrawler(),
   etoland: new EtolandCrawler(),
   humoruniv: new HumorunivCrawler(),
@@ -48,6 +46,8 @@ export const crawlers: Record<string, ICrawler> = {
   coolenjoy: new CoolenjoyCrawler(),
 };
 
+// 비활성화 사이트:
+// - ilbe: 정책적 제외
 // 차단/접근불가 사이트 (향후 재활성화 가능):
 // - fmkorea: HTTP 430 레이트리밋
 // - arca: HTTP 403 Cloudflare 차단

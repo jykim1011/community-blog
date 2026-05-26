@@ -25,7 +25,6 @@ const getSiteDomain = (siteName: string): string => {
     ppomppu: 'ppomppu.co.kr',
     mlbpark: 'mlbpark.donga.com',
     natepann: 'pann.nate.com',
-    ilbe: 'ilbe.com',
     bobaedream: 'bobaedream.co.kr',
     etoland: 'etoland.co.kr',
     humoruniv: 'web.humoruniv.com',

@@ -73,14 +73,6 @@ export const siteColors: Record<string, SiteColorTheme> = {
     darkText: 'dark:text-cyan-300',
     darkBorder: 'dark:border-cyan-800',
   },
-  ilbe: {
-    bg: 'bg-yellow-100',
-    text: 'text-yellow-700',
-    border: 'border-yellow-200',
-    darkBg: 'dark:bg-yellow-900',
-    darkText: 'dark:text-yellow-300',
-    darkBorder: 'dark:border-yellow-800',
-  },
   bobaedream: {
     bg: 'bg-indigo-100',
     text: 'text-indigo-700',

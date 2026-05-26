@@ -16,7 +16,7 @@ const communityCategories = [
   },
   {
     category: '유머 / 엔터테인먼트',
-    sites: ['humoruniv', 'todayhumor', 'ilbe', 'dcinside', 'hygall'],
+    sites: ['humoruniv', 'todayhumor', 'dcinside', 'hygall'],
     description: '웃긴대학, 오늘의유머, 디시인사이드 등 유머와 엔터 소식',
   },
   {

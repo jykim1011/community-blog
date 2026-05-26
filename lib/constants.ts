@@ -16,7 +16,6 @@ export const siteConfigs: Record<string, { displayName: string; url: string; cat
   ppomppu: { displayName: '뽐뿌', url: 'https://www.ppomppu.co.kr', category: 'hotdeal' },
   mlbpark: { displayName: '엠팍', url: 'https://mlbpark.donga.com', category: 'community' },
   natepann: { displayName: '네이트판', url: 'https://pann.nate.com', category: 'community' },
-  ilbe: { displayName: '일베', url: 'https://www.ilbe.com', category: 'community' },
   instiz: { displayName: '인스티즈', url: 'https://www.instiz.net', category: 'community' },
   bobaedream: { displayName: '보배드림', url: 'https://www.bobaedream.co.kr', category: 'community' },
   etoland: { displayName: '이토랜드', url: 'https://www.etoland.co.kr', category: 'community' },

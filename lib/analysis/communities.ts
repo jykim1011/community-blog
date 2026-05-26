@@ -62,11 +62,6 @@ const COMMUNITY_META: Record<string, { description: string; category: string; to
     category: '종합',
     topics: ['연예', '일상', '썰', '고민', '관계', '직장'],
   },
-  ilbe: {
-    description: '일간베스트 저장소, 극우 성향 커뮤니티',
-    category: '정치/유머',
-    topics: ['정치', '유머', '시사', '사진', '짤방', '밈'],
-  },
   bobaedream: {
     description: '자동차 전문 커뮤니티 및 중고차 거래',
     category: '자동차',

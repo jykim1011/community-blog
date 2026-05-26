@@ -16,7 +16,7 @@ interface Props {
 const SITE_COLORS: Record<string, string> = {
   clien: '#475569', theqoo: '#d6006c', ruliweb: '#c81e1e', dcinside: '#d1410c',
   inven: '#b4530b', ppomppu: '#a16207', mlbpark: '#0b3b5c', natepann: '#c92b2b',
-  ilbe: '#455a64', bobaedream: '#1e3a8a', etoland: '#1f6b2a', humoruniv: '#1b4a9e',
+  bobaedream: '#1e3a8a', etoland: '#1f6b2a', humoruniv: '#1b4a9e',
   cook82: '#b02727', slrclub: '#2d3a4a', gasengi: '#1e6b31', hygall: '#7a2a94',
   todayhumor: '#5e6b10', quasarzone: '#c2410c', dealbada: '#854d0e',
   dvdprime: '#4338ca', coolenjoy: '#0f766e', extmovie: '#7e22ce',
