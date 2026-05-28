@@ -58,7 +58,3 @@ jobs:
             -d '{}'
           echo "✅ 데이터 변경 감지 - Cloudflare Pages 배포 트리거 완료"
 
-      - name: Trigger next crawl cycle (28min later)
-        env:
-          GH_TOKEN: ${{ secrets.WORKFLOW_TRIGGER_TOKEN }}
-        run: gh workflow run crawl-trigger.yml --repo ${{ github.repository }} --ref master || true
