@@ -91,7 +91,6 @@ function SearchContent() {
                   commentCount={post.commentCount}
                   likeCount={post.likeCount}
                   createdAt={new Date(post.createdAt)}
-                  thumbnail={post.thumbnail}
                   category={post.category}
                 />
               ))}
