@@ -144,6 +144,14 @@ export class TodayhumorCrawler extends BaseCrawler {
       return date;
     }
 
+    // YY/MM/DD HH:MM 형식 (예: "26/06/07 15:56")
+    if (timeText.match(/^\d{2}\/\d{2}\/\d{2} \d{2}:\d{2}$/)) {
+      const [datePart, timePart] = timeText.split(' ');
+      const [yy, mm, dd] = datePart.split('/').map(Number);
+      const [hours, minutes] = timePart.split(':').map(Number);
+      return new Date(2000 + yy, mm - 1, dd, hours, minutes, 0, 0);
+    }
+
     if (timeText.match(/^\d{2}\/\d{2}$/)) {
       const [month, day] = timeText.split('/').map(Number);
       return new Date(now.getFullYear(), month - 1, day);

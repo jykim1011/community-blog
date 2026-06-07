@@ -10,6 +10,10 @@ export class DvdprimeCrawler extends BaseCrawler {
   private readonly boardUrl = 'https://dvdprime.com/g2/bbs/board.php?bo_table=comm';
 
   async crawl(): Promise<Post[]> {
+    // 메인 URL부터 429 반환 — 완전 봇 차단 상태
+    console.log(`[${this.siteName}] Disabled: 429 bot blocking`);
+    return [];
+
     const allPosts: Post[] = [];
     const PAGES_TO_CRAWL = 10;
     const MAX_RATE_LIMIT_RETRIES = 2;
@@ -26,7 +30,7 @@ export class DvdprimeCrawler extends BaseCrawler {
         });
         const setCookie = mainRes.headers['set-cookie'];
         if (setCookie) {
-          sessionCookies = setCookie.map((c: string) => c.split(';')[0]).join('; ');
+          sessionCookies = (setCookie as string[]).map((c: string) => c.split(';')[0]).join('; ');
         }
       } catch {
         // continue without cookies

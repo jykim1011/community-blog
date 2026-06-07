@@ -11,6 +11,10 @@ export class HumorunivCrawler extends BaseCrawler {
   private readonly boardUrl = 'http://web.humoruniv.com/board/humor/list.html?table=pds&st=day';
 
   async crawl(): Promise<Post[]> {
+    // 사이트가 로그인 또는 JS 렌더링 없이는 게시글 목록을 반환하지 않음
+    console.log(`[${this.siteName}] Disabled: requires login or JS rendering`);
+    return [];
+
     const allPosts: Post[] = [];
     const PAGES_TO_CRAWL = 10;
 

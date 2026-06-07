@@ -132,8 +132,9 @@ export class CoolenjoyCrawler extends BaseCrawler {
         // 좋아요 (쿨엔조이 목록 페이지에는 좋아요 표시 안 됨)
         const likeCount = 0;
 
-        // 날짜 (여러 위치에 있을 수 있음)
-        const timeText = $el.find('.d-md-table-cell').last().text().trim() ||
+        // 날짜: <span class="sr-only">등록일</span> 을 포함한 셀에서 추출
+        const dateCell = $el.find('span.sr-only').filter((_, el) => $(el).text().trim() === '등록일').parent();
+        const timeText = dateCell.text().replace('등록일', '').trim() ||
                         $el.find('.text-muted').last().text().trim();
         const createdAt = this.parseDate(timeText);
 

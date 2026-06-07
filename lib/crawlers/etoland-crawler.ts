@@ -6,7 +6,7 @@ export class EtolandCrawler extends BaseCrawler {
   siteName = 'etoland';
   protected readonly baseUrl = 'https://www.etoland.co.kr';
   private readonly cdnBase = 'https://btcdn.etoland.co.kr';
-  private readonly listUrl = 'https://www.etoland.co.kr/hit/list';
+  private readonly listUrl = 'https://www.etoland.co.kr/hit/list?filter=latest';
   private readonly PAGES_TO_CRAWL = 10;
 
   async crawl(): Promise<Post[]> {
@@ -15,7 +15,7 @@ export class EtolandCrawler extends BaseCrawler {
 
     for (let page = 1; page <= this.PAGES_TO_CRAWL; page++) {
       try {
-        const url = page === 1 ? this.listUrl : `${this.listUrl}?page=${page}`;
+        const url = page === 1 ? this.listUrl : `${this.listUrl}&page=${page}`;
         const posts = await this.crawlPage(url);
 
         if (posts.length === 0) {
