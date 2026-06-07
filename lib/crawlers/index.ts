@@ -56,6 +56,7 @@ export const crawlers: Record<string, ICrawler> = {
 // - instiz: SSL/TLS 호환 문제
 // - dvdprime: 메인 URL부터 429 반환 (완전 봇 차단) — crawl() 즉시 반환
 // - humoruniv: 로그인 또는 JS 렌더링 필요, 게시글 목록 없음 — crawl() 즉시 반환
+// - coolenjoy: 자유게시판은 viewCount/likeCount 미제공 + 댓글 적어 인기 필터 전량 탈락 — crawl() 즉시 반환
 
 // 특정 사이트의 크롤러 가져오기
 export function getCrawler(siteName: string): ICrawler | undefined {

@@ -10,6 +10,10 @@ export class CoolenjoyCrawler extends BaseCrawler {
   private readonly boardUrl = 'https://coolenjoy.net/bbs/freeboard2';
 
   async crawl(): Promise<Post[]> {
+    // 자유게시판 특성상 viewCount/likeCount 미제공, 댓글 수도 적어 인기 필터 전량 탈락
+    console.log(`[${this.siteName}] Disabled: low engagement content fails popularity filter`);
+    return [];
+
     const allPosts: Post[] = [];
     const PAGES_TO_CRAWL = 10;
 
@@ -44,7 +48,7 @@ export class CoolenjoyCrawler extends BaseCrawler {
 
           // 페이지 간 딜레이 (robots.txt Crawl-Delay 또는 기본 1초)
           if (page < PAGES_TO_CRAWL) {
-            const delayMs = crawlDelay ? crawlDelay * 1000 : 1000;
+            const delayMs = crawlDelay ? (crawlDelay as number) * 1000 : 1000;
             await this.delay(delayMs);
           }
         } catch (error) {
