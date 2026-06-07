@@ -39,7 +39,7 @@ const ICONS = {
   home:     ['M3 10.5L12 3l9 7.5', 'M5 9.5V21h14V9.5'],
   trend:    ['M3 17l6-6 4 4 8-8', 'M14 7h7v7'],
   hot:      ['M13 2L3 14h9l-1 8 10-12h-9l1-8z'],
-  settings: ['M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2', 'M12 8v4', 'M12 16h.01'],
+  settings: ['M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z', 'M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z'],
   guide:    ['M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253'],
   search:   ['M21 21l-4.35-4.35', 'M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0'],
   bell:     ['M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9', 'M13.73 21a2 2 0 0 1-3.46 0'],
@@ -287,45 +287,6 @@ function TopBar({ title, sub }: { title: string; sub: string }) {
   );
 }
 
-// ── Mobile bottom nav ──────────────────────────────────────────
-function MobileNav({ pathname, isApp, isAdLoaded }: { pathname: string; isApp: boolean; isAdLoaded: boolean }) {
-  const router = useRouter();
-  const items = [
-    { href: '/', label: '홈', icon: ICONS.home },
-    { href: '/hot', label: '인기글', icon: ICONS.hot },
-    { href: '/settings', label: '설정', icon: ICONS.settings },
-  ];
-  return (
-    <nav
-      className="sm:hidden fixed left-0 right-0 flex items-center justify-around z-50"
-      style={{
-        bottom: isApp && isAdLoaded
-          ? 'calc(60px + max(env(safe-area-inset-bottom), 0px))'
-          : '0',
-        height: 56,
-        background: 'var(--surface)',
-        borderTop: '1px solid var(--border)',
-        paddingBottom: isApp && isAdLoaded ? '0' : 'max(env(safe-area-inset-bottom), 0px)',
-      }}
-    >
-      {items.map(item => {
-        const isActive = pathname === item.href;
-        return (
-          <button
-            key={item.href}
-            onClick={() => router.push(item.href)}
-            className="flex flex-col items-center justify-center flex-1 h-full gap-1 border-0 bg-transparent cursor-pointer transition-colors"
-            style={{ color: isActive ? 'var(--accent)' : 'var(--fg-3)' }}
-          >
-            <Icon d={item.icon} size={20} />
-            <span className="text-[10px] font-medium">{item.label}</span>
-          </button>
-        );
-      })}
-    </nav>
-  );
-}
-
 // ── Main DashboardHome ─────────────────────────────────────────
 export function DashboardHome({ initialPosts, initialSites, keywords = [] }: Props) {
   const router = useRouter();
@@ -478,8 +439,8 @@ export function DashboardHome({ initialPosts, initialSites, keywords = [] }: Pro
         className="sm:hidden"
         style={{
           paddingBottom: isApp && isAdLoaded
-            ? 'calc(120px + max(env(safe-area-inset-bottom), 0px))'
-            : 'calc(72px + max(env(safe-area-inset-bottom), 0px))',
+            ? 'calc(64px + max(env(safe-area-inset-bottom), 0px))'
+            : 'max(env(safe-area-inset-bottom), 16px)',
         }}
       >
         {/* Mobile top bar */}
@@ -531,6 +492,18 @@ export function DashboardHome({ initialPosts, initialSites, keywords = [] }: Pro
               aria-label="검색"
             >
               <Icon d={mobileSearchOpen ? ICONS.close : ICONS.search} size={21} />
+            </button>
+
+            {/* Settings button */}
+            <button
+              onClick={() => router.push('/settings')}
+              style={{
+                background: 'none', border: 'none', padding: 7, cursor: 'pointer',
+                color: 'var(--fg-2)', display: 'inline-flex',
+              }}
+              aria-label="설정"
+            >
+              <Icon d={ICONS.settings} size={21} />
             </button>
           </div>
 
@@ -591,8 +564,6 @@ export function DashboardHome({ initialPosts, initialSites, keywords = [] }: Pro
         </div>
       </div>
 
-      {/* Mobile bottom nav */}
-      <MobileNav pathname={pathname} isApp={isApp} isAdLoaded={isAdLoaded} />
     </div>
   );
 }

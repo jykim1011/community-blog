@@ -5,7 +5,6 @@ import { useRouter } from 'next/navigation';
 import { useSubscriptions } from '@/lib/hooks/use-subscriptions';
 import { siteConfigs, categoryLabels, type SiteCategory } from '@/lib/constants';
 import { SiteHeader } from '@/components/site-header';
-import { adStateManager } from '@/lib/ad-state';
 
 interface SiteWithCount {
   name: string;
@@ -47,60 +46,28 @@ export default function SettingsPage() {
   const { subscriptions, isLoaded, toggleSubscription, isSubscribed } = useSubscriptions();
   const [sitesData, setSitesData] = useState<SiteWithCount[]>([]);
   const [loading, setLoading] = useState(true);
-  const [isApp, setIsApp] = useState(false);
-  const [isAdLoaded, setIsAdLoaded] = useState(false);
-
-  const mobilePadBottom =
-    isApp && isAdLoaded
-      ? 'calc(120px + max(env(safe-area-inset-bottom), 0px))'
-      : 'calc(72px + max(env(safe-area-inset-bottom), 0px))';
 
   useEffect(() => {
-    const isCapacitor =
-      typeof window !== 'undefined' &&
-      (window.location.protocol === 'capacitor:' || (window as unknown as { Capacitor?: unknown }).Capacitor !== undefined);
-    setIsApp(!!isCapacitor);
-    return adStateManager.subscribe(setIsAdLoaded);
-  }, []);
-
-  useEffect(() => {
-    // 모든 사이트 정보 로드 (dynamic import 사용)
     const loadSitesData = async () => {
-      const sites: SiteWithCount[] = [];
+      const entries = Object.entries(siteConfigs);
+      const results = await Promise.all(
+        entries.map(async ([name, config]) => {
+          try {
+            const siteData = await import(`@/data/sites/${name}.json`);
+            const data = siteData.default || siteData;
+            return { name, displayName: config.displayName, category: config.category, totalCount: data.totalCount || 0 };
+          } catch {
+            return { name, displayName: config.displayName, category: config.category, totalCount: 0 };
+          }
+        })
+      );
 
-      for (const [name, config] of Object.entries(siteConfigs)) {
-        try {
-          // dynamic import로 JSON 파일 로드
-          const siteData = await import(`@/data/sites/${name}.json`);
-          const data = siteData.default || siteData;
-
-          sites.push({
-            name,
-            displayName: config.displayName,
-            category: config.category,
-            totalCount: data.totalCount || 0,
-          });
-        } catch (error) {
-          // 파일이 없으면 기본값으로 추가
-          sites.push({
-            name,
-            displayName: config.displayName,
-            category: config.category,
-            totalCount: 0,
-          });
-          console.warn(`No data for ${name}:`, error);
-        }
-      }
-
-      // 카테고리별, 이름순 정렬
-      sites.sort((a, b) => {
-        if (a.category !== b.category) {
-          return a.category.localeCompare(b.category);
-        }
+      results.sort((a, b) => {
+        if (a.category !== b.category) return a.category.localeCompare(b.category);
         return a.displayName.localeCompare(b.displayName);
       });
 
-      setSitesData(sites);
+      setSitesData(results);
       setLoading(false);
     };
 
@@ -120,10 +87,7 @@ export default function SettingsPage() {
 
   if (!isLoaded || loading) {
     return (
-      <div
-        className="min-h-screen bg-gray-50 dark:bg-gray-950 max-sm:pb-[var(--settings-mobile-pb)]"
-        style={{ ['--settings-mobile-pb' as string]: mobilePadBottom } as React.CSSProperties}
-      >
+      <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
         <SiteHeader />
         <div className="flex items-center justify-center h-96">
           <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-blue-600"></div>
@@ -133,10 +97,7 @@ export default function SettingsPage() {
   }
 
   return (
-    <div
-      className="min-h-screen bg-gray-50 dark:bg-gray-950 max-sm:pb-[var(--settings-mobile-pb)]"
-      style={{ ['--settings-mobile-pb' as string]: mobilePadBottom } as React.CSSProperties}
-    >
+    <div className="min-h-screen bg-gray-50 dark:bg-gray-950">
       <SiteHeader />
 
       <main className="container mx-auto px-4 pt-8 max-w-4xl max-sm:pb-0 sm:pb-8">

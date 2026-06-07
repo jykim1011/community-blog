@@ -39,7 +39,7 @@ export default function BookmarksPage() {
   }
 
   return (
-    <div className="min-h-screen px-4 py-8 pb-32">
+    <div className="min-h-screen px-4 py-8">
       <div className="max-w-4xl mx-auto">
         {/* 헤더 */}
         <div className="flex items-center justify-between mb-6">

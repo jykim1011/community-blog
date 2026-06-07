@@ -354,8 +354,8 @@ export function HotPosts({ posts }: Props) {
 
   const mobilePadBottom =
     isApp && isAdLoaded
-      ? 'calc(120px + max(env(safe-area-inset-bottom), 0px))'
-      : 'calc(72px + max(env(safe-area-inset-bottom), 0px))';
+      ? 'calc(64px + max(env(safe-area-inset-bottom), 0px))'
+      : 'max(env(safe-area-inset-bottom), 16px)';
 
   return (
     <div

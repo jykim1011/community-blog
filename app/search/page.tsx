@@ -33,7 +33,7 @@ function SearchContent() {
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">
       <SiteHeader />
 
-      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 pb-32 sm:pb-8">
+      <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-6 sm:py-8 pb-8">
         {/* 검색 입력 폼 */}
         <div className="mb-6">
           <form action="/search" method="get" className="mb-4">
