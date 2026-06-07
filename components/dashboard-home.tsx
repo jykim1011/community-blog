@@ -3,6 +3,7 @@
 import { useEffect, useState, useMemo } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { PostList } from '@/components/post-list';
+import { TrendStrip } from '@/components/trend-strip';
 import { useSubscriptions } from '@/lib/hooks/use-subscriptions';
 import { adStateManager } from '@/lib/ad-state';
 import { SITE_NAME } from '@/lib/constants';
@@ -11,6 +12,7 @@ import type { StaticPost, StaticSite } from '@/lib/types';
 interface Props {
   initialPosts: StaticPost[];
   initialSites: StaticSite[];
+  keywords?: { word: string }[];
 }
 
 const SITE_COLORS: Record<string, string> = {
@@ -40,7 +42,8 @@ const ICONS = {
   settings: ['M12 2a10 10 0 1 0 0 20A10 10 0 0 0 12 2', 'M12 8v4', 'M12 16h.01'],
   guide:    ['M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253'],
   search:   ['M21 21l-4.35-4.35', 'M17 11A6 6 0 1 1 5 11a6 6 0 0 1 12 0'],
-  bell:     ['M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9', 'M13.7 21a2 2 0 0 1-3.4 0'],
+  bell:     ['M18 8A6 6 0 0 0 6 8c0 7-3 9-3 9h18s-3-2-3-9', 'M13.73 21a2 2 0 0 1-3.46 0'],
+  close:    ['M18 6L6 18', 'M6 6l12 12'],
 };
 
 // ── Rail (desktop icon column) ────────────────────────────────
@@ -324,7 +327,7 @@ function MobileNav({ pathname, isApp, isAdLoaded }: { pathname: string; isApp: b
 }
 
 // ── Main DashboardHome ─────────────────────────────────────────
-export function DashboardHome({ initialPosts, initialSites }: Props) {
+export function DashboardHome({ initialPosts, initialSites, keywords = [] }: Props) {
   const router = useRouter();
   const pathname = usePathname();
   const { subscriptions, isLoaded } = useSubscriptions();
@@ -333,6 +336,8 @@ export function DashboardHome({ initialPosts, initialSites }: Props) {
   const [isApp, setIsApp] = useState(false);
   const [isAdLoaded, setIsAdLoaded] = useState(false);
   const [activeSite, setActiveSite] = useState<string | null>(null);
+  const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
+  const [activeKeyword, setActiveKeyword] = useState<string | null>(null);
 
   useEffect(() => {
     const isCapacitor = typeof window !== 'undefined' && (
@@ -454,7 +459,14 @@ export function DashboardHome({ initialPosts, initialSites }: Props) {
                   <h3 className="text-sm font-semibold" style={{ color: 'var(--fg)', margin: 0 }}>🔥 실시간 인기 게시글</h3>
                   <span className="text-[11px]" style={{ color: 'var(--fg-3)' }}>자동 갱신 · {new Date().toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' })}</span>
                 </div>
-                <PostList posts={displayPosts} sites={filteredSites} selectedSite={activeSite} />
+                {keywords.length > 0 && (
+                  <TrendStrip
+                    keywords={keywords}
+                    activeKeyword={activeKeyword}
+                    onPick={setActiveKeyword}
+                  />
+                )}
+                <PostList posts={displayPosts} selectedSite={activeSite} searchQuery={activeKeyword} />
               </section>
             )}
           </div>
@@ -471,11 +483,87 @@ export function DashboardHome({ initialPosts, initialSites }: Props) {
         }}
       >
         {/* Mobile top bar */}
-        <div className="flex items-center justify-between px-4 py-3 sticky z-10"
-          style={{ top: 'env(safe-area-inset-top, 0px)', background: 'var(--surface)', borderBottom: '1px solid var(--border)' }}>
-          <span className="text-base font-bold" style={{ color: 'var(--fg)' }}>{SITE_NAME}</span>
-          <span className="w-2 h-2 rounded-full animate-pulse" style={{ background: 'var(--pos)' }} />
+        <div style={{
+          position: 'sticky', top: 'env(safe-area-inset-top, 0px)', zIndex: 30,
+          background: 'var(--surface)', borderBottom: '1px solid var(--border)',
+        }}>
+          <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '11px 16px' }}>
+
+            {/* Logo + title */}
+            <div style={{ display: 'flex', alignItems: 'center', gap: 9, flex: 1, minWidth: 0 }}>
+              <span style={{
+                display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                width: 32, height: 32, borderRadius: 9, background: 'var(--accent)',
+                color: '#fff', fontWeight: 800, fontSize: 16, letterSpacing: '-0.05em',
+                flexShrink: 0,
+              }}>통</span>
+              <div style={{ display: 'flex', alignItems: 'center', gap: 6, minWidth: 0 }}>
+                <span style={{
+                  fontWeight: 800, fontSize: 16, color: 'var(--fg)',
+                  letterSpacing: '-0.02em', whiteSpace: 'nowrap',
+                }}>
+                  통합 커뮤니티
+                </span>
+                <span style={{
+                  display: 'inline-flex', alignItems: 'center', gap: 4,
+                  fontSize: 10, fontWeight: 700,
+                  color: 'var(--pos)',
+                  background: 'rgba(16,185,129,.12)',
+                  padding: '2px 6px', borderRadius: 999, flexShrink: 0,
+                }}>
+                  <span style={{
+                    width: 5, height: 5, borderRadius: 999, background: 'var(--pos)',
+                    animation: 'pulse 1.6s ease-in-out infinite',
+                  }} />
+                  LIVE
+                </span>
+              </div>
+            </div>
+
+            {/* Search button */}
+            <button
+              onClick={() => setMobileSearchOpen(s => !s)}
+              style={{
+                background: 'none', border: 'none', padding: 7, cursor: 'pointer',
+                color: mobileSearchOpen ? 'var(--accent)' : 'var(--fg-2)',
+                display: 'inline-flex',
+              }}
+              aria-label="검색"
+            >
+              <Icon d={mobileSearchOpen ? ICONS.close : ICONS.search} size={21} />
+            </button>
+          </div>
+
+          {/* Expandable search bar */}
+          {mobileSearchOpen && (
+            <div style={{ padding: '0 16px 12px' }}>
+              <div style={{
+                display: 'flex', alignItems: 'center', gap: 9,
+                padding: '10px 14px', borderRadius: 12,
+                background: 'var(--surface-2)', border: '1px solid var(--border)',
+              }}>
+                <Icon d={ICONS.search} size={17} />
+                <input
+                  autoFocus
+                  placeholder="제목·커뮤니티 검색…"
+                  style={{
+                    flex: 1, border: 'none', background: 'none', outline: 'none',
+                    fontSize: 15, color: 'var(--fg-1)', fontFamily: 'inherit',
+                  }}
+                />
+              </div>
+            </div>
+          )}
         </div>
+
+        {/* 키워드 트렌드 스트립 */}
+        {keywords.length > 0 && !loading && (
+          <TrendStrip
+            keywords={keywords}
+            activeKeyword={activeKeyword}
+            onPick={setActiveKeyword}
+          />
+        )}
 
         <div className="px-4 py-3">
           {isLoaded && subscriptions.length === 0 && (
@@ -497,7 +585,7 @@ export function DashboardHome({ initialPosts, initialSites }: Props) {
             </div>
           ) : (
             <div className="rounded-xl overflow-hidden" style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}>
-              <PostList posts={displayPosts} sites={filteredSites} />
+              <PostList posts={displayPosts} searchQuery={activeKeyword} />
             </div>
           )}
         </div>

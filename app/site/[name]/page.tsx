@@ -202,7 +202,7 @@ export default function SitePage({
 
       {/* 메인 컨텐츠 */}
       <main className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-3 sm:py-4">
-        <PostList posts={sitePosts} sites={allSites} />
+        <PostList posts={sitePosts} />
       </main>
 
       {/* 푸터 */}

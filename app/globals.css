@@ -35,6 +35,8 @@
   --radius-lg: 14px;
   --radius-xl: 20px;
 
+  --hot-tint:  #fef2f2;
+
   --shadow-sm: 0 1px 2px rgba(9,9,11,.04);
   --shadow:    0 1px 3px rgba(9,9,11,.06), 0 1px 2px rgba(9,9,11,.04);
   --shadow-lg: 0 10px 30px -10px rgba(9,9,11,.12), 0 4px 10px -4px rgba(9,9,11,.08);
@@ -56,6 +58,7 @@
     --fg-2:      #a1a1aa;
     --fg-3:      #71717a;
     --fg-4:      #52525b;
+    --hot-tint:  rgba(239,68,68,.14);
     --accent-tint: rgba(79,70,229,.15);
     --shadow:    0 1px 3px rgba(0,0,0,.5), 0 1px 2px rgba(0,0,0,.3);
     --shadow-lg: 0 10px 30px -10px rgba(0,0,0,.5);

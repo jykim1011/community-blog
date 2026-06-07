@@ -148,7 +148,7 @@ export default function FeedPage() {
 
         {/* 게시글 목록 */}
         {allPosts.length > 0 ? (
-          <PostList posts={allPosts} sites={[]} />
+          <PostList posts={allPosts} />
         ) : (
           <div className="text-center py-20">
             <p className="text-gray-500 dark:text-gray-400 mb-4">

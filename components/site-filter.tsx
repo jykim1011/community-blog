@@ -2,115 +2,70 @@
 
 import { SiteCategory, categoryLabels } from '@/lib/constants';
 
-interface Site {
-  id: string;
-  displayName: string;
-  name: string;
-  category: SiteCategory;
-}
+export type FeedCategory = SiteCategory | 'hot';
 
 interface SiteFilterProps {
-  sites: Site[];
-  currentSite: string | null;
-  currentCategory: SiteCategory | null;
-  onSiteChange: (site: string | null) => void;
-  onCategoryChange: (category: SiteCategory | null) => void;
+  currentCategory: FeedCategory | null;
+  onCategoryChange: (category: FeedCategory | null) => void;
 }
 
-const catEmoji: Record<string, string> = {
-  community: '💬',
-  hotdeal: '🛍',
-  movie: '🎬',
-  game: '🎮',
+const ALL_CATEGORIES: FeedCategory[] = ['hot', 'community', 'hotdeal', 'movie', 'game'];
+
+const catLabel: Record<FeedCategory, string> = {
+  hot:       '🔥 인기',
+  community: '커뮤니티',
+  hotdeal:   '핫딜',
+  movie:     '영화',
+  game:      '게임',
 };
 
-function FilterChip({
-  children,
-  active,
-  onClick,
-  activeColor,
-}: {
-  children: React.ReactNode;
-  active: boolean;
-  onClick: () => void;
-  activeColor: string;
-}) {
+export function SiteFilter({ currentCategory, onCategoryChange }: SiteFilterProps) {
   return (
-    <button
-      onClick={onClick}
-      className="flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-medium border-0 cursor-pointer transition-colors"
-      style={
-        active
-          ? { background: activeColor, color: '#fff' }
-          : { background: 'var(--surface-2)', color: 'var(--fg-2)' }
-      }
+    <div
+      className="overflow-x-auto scrollbar-hide touch-pan-x overscroll-x-contain"
+      style={{ borderBottom: '1px solid var(--border)' }}
     >
-      {children}
-    </button>
-  );
-}
+      <div style={{ display: 'flex', gap: 8, padding: '10px 18px', width: 'max-content' }}>
 
-export function SiteFilter({
-  sites,
-  currentSite,
-  currentCategory,
-  onSiteChange,
-  onCategoryChange,
-}: SiteFilterProps) {
-  const filteredSites = currentCategory
-    ? sites.filter((site) => site.category === currentCategory)
-    : sites;
+        {/* 전체 */}
+        <button
+          onClick={() => onCategoryChange(null)}
+          style={{
+            display: 'inline-flex', alignItems: 'center', gap: 6,
+            fontSize: 13, fontWeight: 600, whiteSpace: 'nowrap',
+            padding: '8px 14px', borderRadius: 999, cursor: 'pointer',
+            transition: 'all .15s ease',
+            border: '1px solid',
+            borderColor: !currentCategory ? 'transparent' : 'var(--border)',
+            background: !currentCategory ? 'var(--accent)' : 'var(--surface)',
+            color: !currentCategory ? '#fff' : 'var(--fg-2)',
+          }}
+        >
+          전체
+        </button>
 
-  const availableCategories = Array.from(new Set(sites.map((site) => site.category)));
-  const allCategories: SiteCategory[] = ['community', 'hotdeal', 'movie', 'game'];
-  const categories = allCategories.filter((cat) => availableCategories.includes(cat));
-
-  return (
-    <div className="space-y-1.5 px-3 pt-3">
-      {/* 카테고리 필터 */}
-      <div className="overflow-x-auto scrollbar-hide touch-pan-x overscroll-x-contain">
-        <div className="flex gap-1.5 w-max py-0.5">
-          <FilterChip
-            active={!currentCategory}
-            onClick={() => { onCategoryChange(null); onSiteChange(null); }}
-            activeColor="var(--accent)"
-          >
-            전체
-          </FilterChip>
-          {categories.map((cat) => (
-            <FilterChip
+        {ALL_CATEGORIES.map((cat) => {
+          const active = currentCategory === cat;
+          const isHot = cat === 'hot';
+          return (
+            <button
               key={cat}
-              active={currentCategory === cat}
-              onClick={() => { onCategoryChange(cat); onSiteChange(null); }}
-              activeColor="var(--accent)"
+              onClick={() => onCategoryChange(active ? null : cat)}
+              style={{
+                display: 'inline-flex', alignItems: 'center', gap: 6,
+                fontSize: 13, fontWeight: 600, whiteSpace: 'nowrap',
+                padding: '8px 14px', borderRadius: 999, cursor: 'pointer',
+                transition: 'all .15s ease',
+                border: '1px solid',
+                borderColor: active ? 'transparent' : 'var(--border)',
+                background: active ? (isHot ? 'var(--hot)' : 'var(--accent)') : 'var(--surface)',
+                color: active ? '#fff' : 'var(--fg-2)',
+              }}
             >
-              {catEmoji[cat]} {categoryLabels[cat]}
-            </FilterChip>
-          ))}
-        </div>
-      </div>
-
-      {/* 사이트 필터 */}
-      <div className="overflow-x-auto scrollbar-hide pb-1 touch-pan-x overscroll-x-contain">
-        <div className="flex gap-1.5 w-max py-0.5">
-          <FilterChip
-            active={!currentSite}
-            onClick={() => onSiteChange(null)}
-            activeColor="var(--pos)"
-          >
-            전체
-          </FilterChip>
-          {filteredSites.map((site) => (
-            <FilterChip
-              key={site.id}
-              active={currentSite === site.name}
-              onClick={() => onSiteChange(site.name)}
-              activeColor="var(--pos)"
-            >
-              {site.displayName}
-            </FilterChip>
-          ))}
-        </div>
+              {catLabel[cat]}
+            </button>
+          );
+        })}
       </div>
     </div>
   );

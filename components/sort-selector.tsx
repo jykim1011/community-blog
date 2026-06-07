@@ -7,34 +7,35 @@ interface SortSelectorProps {
   onSortChange: (sort: SortOption) => void;
 }
 
-const sortOptions: { value: SortOption; label: string; icon: string }[] = [
-  { value: 'recent', label: '최신순', icon: '⏰' },
-  { value: 'popular', label: '인기순', icon: '🔥' },
-  { value: 'comments', label: '댓글순', icon: '💬' },
+const sortOptions: { value: SortOption; label: string }[] = [
+  { value: 'recent',   label: '최신순' },
+  { value: 'popular',  label: '인기순' },
+  { value: 'comments', label: '댓글순' },
 ];
 
 export function SortSelector({ currentSort, onSortChange }: SortSelectorProps) {
   return (
-    <div className="flex items-center gap-2.5 px-3">
-      <span className="text-[11px] font-semibold flex-shrink-0 uppercase tracking-wide" style={{ color: 'var(--fg-3)' }}>
-        정렬
-      </span>
-      <div className="flex gap-1.5">
-        {sortOptions.map((option) => (
-          <button
-            key={option.value}
-            onClick={() => onSortChange(option.value)}
-            className="flex-shrink-0 px-3 py-1.5 rounded-full text-xs font-medium border-0 cursor-pointer transition-colors"
-            style={
-              currentSort === option.value
-                ? { background: 'var(--accent)', color: '#fff' }
-                : { background: 'var(--surface-2)', color: 'var(--fg-2)' }
-            }
-          >
-            {option.icon} {option.label}
-          </button>
-        ))}
-      </div>
+    <div style={{
+      display: 'flex', gap: 2, padding: 3, borderRadius: 10,
+      background: 'var(--surface-2)',
+    }}>
+      {sortOptions.map((o) => (
+        <button
+          key={o.value}
+          onClick={() => onSortChange(o.value)}
+          style={{
+            border: 'none', borderRadius: 7, padding: '5px 12px',
+            fontSize: 12.5, whiteSpace: 'nowrap', fontFamily: 'inherit',
+            fontWeight: 600, cursor: 'pointer',
+            background: currentSort === o.value ? 'var(--surface)' : 'transparent',
+            color: currentSort === o.value ? 'var(--fg)' : 'var(--fg-3)',
+            boxShadow: currentSort === o.value ? 'var(--shadow-sm)' : 'none',
+            transition: 'all .15s ease',
+          }}
+        >
+          {o.label}
+        </button>
+      ))}
     </div>
   );
 }
