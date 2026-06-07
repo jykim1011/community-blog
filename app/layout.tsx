@@ -6,6 +6,7 @@ import { AdMobBanner } from '@/components/admob-banner';
 import { BottomAdContainer } from '@/components/bottom-ad-container';
 import { ViewerProvider } from '@/lib/contexts/viewer-context';
 import { ViewerOverlay } from '@/components/viewer-overlay';
+import { ScrollToTop } from '@/components/scroll-to-top';
 import "./globals.css";
 
 const geistSans = Geist({
@@ -78,6 +79,7 @@ export default function RootLayout({
           <AdMobBanner position="bottom" />
           <BottomAdContainer />
           {children}
+          <ScrollToTop />
           <ViewerOverlay />
         </ViewerProvider>
       </body>
