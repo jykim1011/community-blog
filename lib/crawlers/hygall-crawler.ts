@@ -2,6 +2,7 @@ import axios from 'axios';
 import * as cheerio from 'cheerio';
 import { BaseCrawler } from './base-crawler';
 import { type Post } from '../types';
+import { isValidPostThumbnail } from '../utils/thumbnail-validator';
 
 import { normalizeUrl, toAbsoluteUrl } from '../utils/url-normalizer';
 export class HygallCrawler extends BaseCrawler {
@@ -98,11 +99,12 @@ export class HygallCrawler extends BaseCrawler {
         // 썸네일 이미지
         const thumbnailElement = $el.find('img').first();
         const thumbnailSrc = thumbnailElement.attr('data-src') || thumbnailElement.attr('src');
-        const thumbnail = thumbnailSrc && thumbnailSrc.startsWith('http')
+        const rawThumb = thumbnailSrc && thumbnailSrc.startsWith('http')
           ? thumbnailSrc
           : thumbnailSrc
           ? `${this.baseUrl}${thumbnailSrc}`
           : undefined;
+        const thumbnail = isValidPostThumbnail(rawThumb) ? rawThumb : undefined;
 
         posts.push({
           id: '',
