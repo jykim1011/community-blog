@@ -49,7 +49,7 @@ export default function SettingsPage() {
 
   useEffect(() => {
     const loadSitesData = async () => {
-      const entries = Object.entries(siteConfigs);
+      const entries = Object.entries(siteConfigs).filter(([, config]) => !config.disabled);
       const results = await Promise.all(
         entries.map(async ([name, config]) => {
           try {
