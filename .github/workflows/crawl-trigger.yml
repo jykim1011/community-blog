@@ -1,0 +1,21 @@
+name: Crawl Chain Trigger
+
+on:
+  workflow_dispatch:
+
+concurrency:
+  group: crawl-trigger
+  cancel-in-progress: true
+
+jobs:
+  wait-and-trigger:
+    runs-on: ubuntu-latest
+    timeout-minutes: 35
+    steps:
+      - name: Wait 28 minutes
+        run: sleep 1680
+
+      - name: Trigger crawl
+        env:
+          GH_TOKEN: ${{ secrets.WORKFLOW_TRIGGER_TOKEN }}
+        run: gh workflow run crawl.yml --repo ${{ github.repository }} --ref master
