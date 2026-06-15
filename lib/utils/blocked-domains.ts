@@ -6,6 +6,9 @@ export const BLOCKED_DOMAINS = new Set([
   'orbi.kr',
   'arca.live',
   'damoang.net',
+  'slrclub.com',
+  'dealbada.com',
+  'bobaedream.co.kr',
 ]);
 
 export function isDomainBlocked(url: string): boolean {

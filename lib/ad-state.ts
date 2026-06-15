@@ -1,9 +1,9 @@
-/**
- * 광고 로드 상태 관리
- * 웹/앱에서 광고 로드 성공 여부를 추적하여 레이아웃 조정에 사용
- */
-
 type AdStateListener = (isLoaded: boolean) => void;
+
+// 하단 광고 높이 — 이 값을 기준으로 버튼/레이아웃 오프셋 계산
+// BottomAdContainer 실제 높이: min-h-[60px] + py-2 = 76px
+export const AD_HEIGHT_NATIVE = 64; // AdMob 배너
+export const AD_HEIGHT_WEB = 76;    // AdSense 컨테이너
 
 class AdStateManager {
   private isAdLoaded = false;

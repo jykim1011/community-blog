@@ -6,6 +6,7 @@ import { siteConfigs } from '@/lib/constants';
 import { formatRelativeTime } from '@/lib/utils';
 import { Capacitor } from '@capacitor/core';
 import { InAppBrowser } from '@capgo/inappbrowser';
+import { isDomainBlocked } from '@/lib/utils/blocked-domains';
 
 export default function BookmarksPage() {
   const { bookmarks, isLoaded, removeBookmark, clearBookmarks } = useBookmarks();
@@ -14,6 +15,10 @@ export default function BookmarksPage() {
   const handleLinkClick = async (e: React.MouseEvent | React.KeyboardEvent, url: string) => {
     if (Capacitor.isNativePlatform()) {
       e.preventDefault();
+      if (isDomainBlocked(url)) {
+        window.open(url, '_blank', 'noopener,noreferrer');
+        return;
+      }
       try {
         const el = document.createElement('div');
         el.style.paddingBottom = 'env(safe-area-inset-bottom, 0px)';
