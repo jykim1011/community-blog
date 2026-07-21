@@ -251,7 +251,12 @@ function StatsBar({ posts }: { posts: StaticPost[] }) {
 }
 
 // ── Top bar (inside main) ──────────────────────────────────────
-function TopBar({ title, sub }: { title: string; sub: string }) {
+function TopBar({ title, sub, searchValue, onSearchChange }: {
+  title: string;
+  sub: string;
+  searchValue: string;
+  onSearchChange: (value: string) => void;
+}) {
   return (
     <div
       className="flex items-center justify-between gap-4 px-6 py-3 sticky top-0 z-10"
@@ -279,6 +284,8 @@ function TopBar({ title, sub }: { title: string; sub: string }) {
             color: 'var(--fg-1)', fontSize: 13,
           }}
           placeholder="키워드 · 커뮤니티 검색…"
+          value={searchValue}
+          onChange={e => onSearchChange(e.target.value)}
           onFocus={e => e.target.style.borderColor = 'var(--accent)'}
           onBlur={e => e.target.style.borderColor = 'var(--border)'}
         />
@@ -362,7 +369,12 @@ export function DashboardHome({ initialPosts, initialSites, keywords = [] }: Pro
 
         {/* Main content area */}
         <div className="flex-1 flex flex-col min-w-0 overflow-auto">
-          <TopBar title="지금 한국 커뮤니티는" sub={subtitle} />
+          <TopBar
+            title="지금 한국 커뮤니티는"
+            sub={subtitle}
+            searchValue={activeKeyword ?? ''}
+            onSearchChange={value => setActiveKeyword(value || null)}
+          />
 
           <div className="flex-1 p-6 pb-10 overflow-auto">
             {/* Settings banner */}
@@ -523,6 +535,8 @@ export function DashboardHome({ initialPosts, initialSites, keywords = [] }: Pro
                     flex: 1, border: 'none', background: 'none', outline: 'none',
                     fontSize: 15, color: 'var(--fg-1)', fontFamily: 'inherit',
                   }}
+                  value={activeKeyword ?? ''}
+                  onChange={e => setActiveKeyword(e.target.value || null)}
                 />
               </div>
             </div>
