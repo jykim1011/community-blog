@@ -5,6 +5,7 @@ import { usePathname, useRouter } from 'next/navigation';
 import { PostList } from '@/components/post-list';
 import { TrendStrip } from '@/components/trend-strip';
 import { useSubscriptions } from '@/lib/hooks/use-subscriptions';
+import { usePosts } from '@/lib/hooks/use-posts';
 import { adStateManager } from '@/lib/ad-state';
 import { SITE_NAME } from '@/lib/constants';
 import type { StaticPost, StaticSite } from '@/lib/types';
@@ -82,6 +83,8 @@ function Rail({ pathname }: { pathname: string }) {
             key={item.href}
             onClick={() => router.push(item.href)}
             title={item.label}
+            aria-label={item.label}
+            aria-current={isActive ? 'page' : undefined}
             className="flex items-center justify-center w-11 h-11 rounded-xl border-0 cursor-pointer transition-colors relative"
             style={{
               background: isActive ? 'var(--accent-tint)' : 'transparent',
@@ -299,6 +302,8 @@ export function DashboardHome({ initialPosts, initialSites, keywords = [] }: Pro
   const router = useRouter();
   const pathname = usePathname();
   const { subscriptions, isLoaded } = useSubscriptions();
+  // initialPosts 는 SSR 로 인라인된 최신 60건. 마운트 직후 전체 목록으로 교체된다.
+  const { posts: allPosts } = usePosts({ initial: initialPosts });
   const [displayPosts, setDisplayPosts] = useState<StaticPost[]>(initialPosts);
   const [loading, setLoading] = useState(false);
   const [isApp, setIsApp] = useState(false);
@@ -306,12 +311,21 @@ export function DashboardHome({ initialPosts, initialSites, keywords = [] }: Pro
   const [activeSite, setActiveSite] = useState<string | null>(null);
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
   const [activeKeyword, setActiveKeyword] = useState<string | null>(null);
+  const [updatedAt, setUpdatedAt] = useState<string | null>(null);
 
   useEffect(() => {
     const isCapacitor = typeof window !== 'undefined' && (
       window.location.protocol === 'capacitor:' || (window as any).Capacitor !== undefined
     );
     setIsApp(isCapacitor);
+
+    const now = new Date();
+    setUpdatedAt(
+      `${now.getFullYear()}.${String(now.getMonth() + 1).padStart(2, '0')}.` +
+      `${String(now.getDate()).padStart(2, '0')} ${now.getHours() < 12 ? '오전' : '오후'} ` +
+      `${String(now.getHours() % 12 || 12).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`
+    );
+
     const unsub = adStateManager.subscribe(setIsAdLoaded);
     return unsub;
   }, []);
@@ -335,15 +349,17 @@ export function DashboardHome({ initialPosts, initialSites, keywords = [] }: Pro
       ).then(results => {
         const posts = results.flat().sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
         setDisplayPosts(posts);
-      }).catch(() => setDisplayPosts(initialPosts)).finally(() => setLoading(false));
+      }).catch(() => setDisplayPosts(allPosts)).finally(() => setLoading(false));
     } else {
-      setDisplayPosts(initialPosts);
+      setDisplayPosts(allPosts);
     }
-  }, [subscriptions, isLoaded, initialPosts]);
+  }, [subscriptions, isLoaded, allPosts]);
 
-  const now = new Date();
-  const timeStr = `${now.getFullYear()}.${String(now.getMonth()+1).padStart(2,'0')}.${String(now.getDate()).padStart(2,'0')} ${now.getHours() < 12 ? '오전' : '오후'} ${String(now.getHours() % 12 || 12).padStart(2,'0')}:${String(now.getMinutes()).padStart(2,'0')}`;
-  const subtitle = `${new Set(displayPosts.map(p => p.site)).size}개 커뮤니티 · 방금 갱신됨 · ${timeStr}`;
+  // 렌더 중 new Date() 를 쓰면 서버/클라이언트 결과가 달라 하이드레이션 경고가 난다.
+  const siteCount = new Set(displayPosts.map(p => p.site)).size;
+  const subtitle = updatedAt
+    ? `${siteCount}개 커뮤니티 · 방금 갱신됨 · ${updatedAt}`
+    : `${siteCount}개 커뮤니티`;
 
   // ── Loading state ──
   if (!isLoaded) {

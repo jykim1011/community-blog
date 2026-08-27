@@ -54,3 +54,8 @@ prisma/*.db-journal
 *.aab
 *.jks
 *.keystore
+
+# 빌드 시 생성되는 파생 데이터 (scripts/prepare-data.ts)
+/data/posts-initial.json
+/data/posts-hot.json
+/public/data/

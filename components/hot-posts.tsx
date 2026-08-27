@@ -1,8 +1,9 @@
 'use client';
 
-import { useState, useRef, useEffect } from 'react';
+import { useState, useRef, useEffect, useMemo } from 'react';
 import { formatRelativeTime } from '@/lib/utils';
 import { useReadPosts } from '@/lib/hooks/use-read-posts';
+import { usePosts } from '@/lib/hooks/use-posts';
 import { useBookmarks } from '@/lib/hooks/use-bookmarks';
 import { adStateManager } from '@/lib/ad-state';
 import { isDomainBlocked } from '@/lib/utils/blocked-domains';
@@ -99,10 +100,16 @@ function SiteIcon({ siteName, color, badge, size = 32, dim = false }: {
 }
 
 interface Props {
-  posts: StaticPost[];
+  /** SSR 로 인라인된 인기 점수 상위 슬라이스 */
+  initialPosts: StaticPost[];
 }
 
 const PAGE_SIZE = 20;
+/** 인기글 랭킹으로 노출할 최대 건수 */
+const HOT_LIMIT = 300;
+
+const hotScore = (p: StaticPost) =>
+  (p.viewCount || 0) * 0.1 + (p.commentCount || 0) * 5 + (p.likeCount || 0) * 2;
 
 function HotPostItem({ post, rank }: { post: StaticPost; rank: number }) {
   const { openViewer, preloadViewer, cancelPreload } = useViewer();
@@ -318,7 +325,12 @@ function HotPostItem({ post, rank }: { post: StaticPost; rank: number }) {
   );
 }
 
-export function HotPosts({ posts }: Props) {
+export function HotPosts({ initialPosts }: Props) {
+  const { posts: allPosts, isComplete } = usePosts({ initial: initialPosts });
+  const posts = useMemo(
+    () => (isComplete ? [...allPosts].sort((a, b) => hotScore(b) - hotScore(a)).slice(0, HOT_LIMIT) : initialPosts),
+    [allPosts, isComplete, initialPosts]
+  );
   const [shown, setShown] = useState(PAGE_SIZE);
   const [isLoading, setIsLoading] = useState(false);
   const [isApp, setIsApp] = useState(false);
@@ -349,8 +361,15 @@ export function HotPosts({ posts }: Props) {
     return () => observer.disconnect();
   }, [hasMore, isLoading, posts.length]);
 
-  const now = new Date();
-  const timeStr = `${now.getHours() < 12 ? '오전' : '오후'} ${String(now.getHours() % 12 || 12).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')} 기준`;
+  // 렌더 중 new Date() 는 하이드레이션 불일치를 만들므로 마운트 후에 계산한다.
+  const [timeStr, setTimeStr] = useState('');
+  useEffect(() => {
+    const now = new Date();
+    setTimeStr(
+      `${now.getHours() < 12 ? '오전' : '오후'} ` +
+      `${String(now.getHours() % 12 || 12).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')} 기준`
+    );
+  }, []);
 
   const mobilePadBottom =
     isApp && isAdLoaded

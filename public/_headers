@@ -1,0 +1,18 @@
+# Cloudflare Pages 캐시 정책
+
+# 해시가 붙은 빌드 산출물 — 영구 캐시
+/_next/static/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# 게시글 페이로드 — 30분마다 갱신되므로 5분 캐시 + 재검증
+/data/posts.json
+  Cache-Control: public, max-age=300, stale-while-revalidate=1800
+
+/data/*
+  Cache-Control: public, max-age=300, stale-while-revalidate=1800
+
+# HTML — 항상 재검증 (배포 직후 최신 글이 보이도록)
+/*
+  Cache-Control: public, max-age=0, must-revalidate
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin

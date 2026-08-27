@@ -3,11 +3,15 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
+    "predev": "npm run prepare-data",
     "dev": "next dev",
+    "prebuild": "npm run prepare-data",
     "build": "next build",
+    "postbuild": "tsx scripts/postbuild-rsc-aliases.ts",
     "start": "next start",
     "lint": "eslint",
-    "crawl": "npx tsx scripts/crawl.ts"
+    "crawl": "npx tsx scripts/crawl.ts",
+    "prepare-data": "tsx scripts/prepare-data.ts"
   },
   "dependencies": {
     "@capacitor-community/admob": "^8.0.0",

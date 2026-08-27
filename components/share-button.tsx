@@ -51,6 +51,7 @@ export function ShareButton({ title, url, className = '' }: ShareButtonProps) {
           : 'bg-gray-100 text-gray-700 hover:bg-gray-200 dark:bg-gray-700 dark:text-gray-300 dark:hover:bg-gray-600'
       } ${className}`}
       title="공유하기"
+      aria-label="공유하기"
     >
       {copied ? (
         <>
