@@ -1,4 +1,6 @@
-export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://community-blog.pages.dev';
+// 실제 배포 도메인. community-blog.pages.dev 는 더 이상 이 프로젝트가 아니며
+// 무관한 사이트로 301 리다이렉트되므로 canonical/OG/sitemap 에 쓰면 안 된다.
+export const SITE_URL = process.env.NEXT_PUBLIC_SITE_URL || 'https://community-blog-eoc.pages.dev';
 
 export const SITE_NAME = '통합 커뮤니티';
 export const SITE_DESCRIPTION = '클리앙, 더쿠, 루리웹 등 한국 인기 커뮤니티 게시글을 한곳에서 모아보세요.';
