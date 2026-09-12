@@ -1,273 +1,428 @@
 {
   "site": "clien",
-  "totalCount": 970,
-  "lastUpdated": "2026-09-12T13:15:59.957Z",
+  "totalCount": 972,
+  "lastUpdated": "2026-09-12T13:45:56.742Z",
   "posts": [
     {
-      "id": "clien-1789218972127-80dn2j",
+      "id": "clien-1789220768089-gmqa2c",
+      "title": "애플 임원 그렉 조스위악 과 존 터너스의 인터뷰가 좀 괘씸하다고 생각하는 점.",
+      "author": "올챙이다요",
+      "url": "https://www.clien.net/service/board/park/19262732?od=T31&category=0&groupCd=",
+      "site": "clien",
+      "siteDisplayName": "클리앙",
+      "siteCategory": "community",
+      "viewCount": 141,
+      "commentCount": 0,
+      "likeCount": 1,
+      "createdAt": "2026-09-12T13:42:13.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
+    },
+    {
+      "id": "clien-1789220768089-g7h6on",
+      "title": "뉴이재명은 자꾸 이재명 이야기하면 노무현 언급하네요.",
+      "author": "칙칙초코",
+      "url": "https://www.clien.net/service/board/park/19262730?od=T31&category=0&groupCd=",
+      "site": "clien",
+      "siteDisplayName": "클리앙",
+      "siteCategory": "community",
+      "viewCount": 195,
+      "commentCount": 6,
+      "likeCount": 4,
+      "createdAt": "2026-09-12T13:37:22.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
+    },
+    {
+      "id": "clien-1789220768089-kga0cr",
+      "title": "아이폰 자급제 하이마트가 제일 나은것같죠?",
+      "author": "익명",
+      "url": "https://www.clien.net/service/board/park/19262729?od=T31&category=0&groupCd=",
+      "site": "clien",
+      "siteDisplayName": "클리앙",
+      "siteCategory": "community",
+      "thumbnail": "https://edgio.clien.net/F94/1085452/c05bde6653e94281be1.gif",
+      "viewCount": 319,
+      "commentCount": 0,
+      "likeCount": 0,
+      "createdAt": "2026-09-12T13:35:43.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
+    },
+    {
+      "id": "clien-1789220768089-a5goqo",
+      "title": "민주당 용혜인 포기했나보군요",
+      "author": "빈댓글쇄빙선",
+      "url": "https://www.clien.net/service/board/park/19262728?od=T31&category=0&groupCd=",
+      "site": "clien",
+      "siteDisplayName": "클리앙",
+      "siteCategory": "community",
+      "viewCount": 944,
+      "commentCount": 4,
+      "likeCount": 0,
+      "createdAt": "2026-09-12T13:32:32.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
+    },
+    {
+      "id": "clien-1789220768089-xceehz",
+      "title": "예전에 올렸던 「너 친구 없지?」를 영상으로 만들어봤습니다",
+      "author": "Oros",
+      "url": "https://www.clien.net/service/board/park/19262727?od=T31&category=0&groupCd=",
+      "site": "clien",
+      "siteDisplayName": "클리앙",
+      "siteCategory": "community",
+      "viewCount": 207,
+      "commentCount": 0,
+      "likeCount": 1,
+      "createdAt": "2026-09-12T13:31:43.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
+    },
+    {
+      "id": "clien-1789220768089-6ajrns",
+      "title": "방송사 메인 뉴스 TOP 4 - 2026년 9월 12일(260912)",
+      "author": "번쩍번쩍아콘",
+      "url": "https://www.clien.net/service/board/park/19262726?od=T31&category=0&groupCd=",
+      "site": "clien",
+      "siteDisplayName": "클리앙",
+      "siteCategory": "community",
+      "viewCount": 82,
+      "commentCount": 0,
+      "likeCount": 0,
+      "createdAt": "2026-09-12T13:28:54.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
+    },
+    {
+      "id": "clien-1789220768089-3ucked",
+      "title": "폴드 형태에서 무게가 중요한 거는...",
+      "author": "HakeC",
+      "url": "https://www.clien.net/service/board/park/19262725?od=T31&category=0&groupCd=",
+      "site": "clien",
+      "siteDisplayName": "클리앙",
+      "siteCategory": "community",
+      "viewCount": 436,
+      "commentCount": 1,
+      "likeCount": 1,
+      "createdAt": "2026-09-12T13:28:30.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
+    },
+    {
+      "id": "clien-1789220768089-t3h9ix",
+      "title": "김민석 '진보 개혁과 중도 보수까지 포괄하는 큰 들판 만들자'",
+      "author": "키보드유비",
+      "url": "https://www.clien.net/service/board/park/19262724?od=T31&category=0&groupCd=",
+      "site": "clien",
+      "siteDisplayName": "클리앙",
+      "siteCategory": "community",
+      "viewCount": 548,
+      "commentCount": 14,
+      "likeCount": 1,
+      "createdAt": "2026-09-12T13:25:44.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
+    },
+    {
+      "id": "clien-1789220768089-wl7f5b",
+      "title": "[여론조사 3사 비교] 집권 2년차 동기간 지지율, 윤석열 vs 이재명 성적표",
+      "author": "연구원A",
+      "url": "https://www.clien.net/service/board/park/19262723?od=T31&category=0&groupCd=",
+      "site": "clien",
+      "siteDisplayName": "클리앙",
+      "siteCategory": "community",
+      "viewCount": 549,
+      "commentCount": 5,
+      "likeCount": 2,
+      "createdAt": "2026-09-12T13:23:01.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
+    },
+    {
+      "id": "clien-1789220768089-4ntgwt",
+      "title": "띵샵이 혜택 좋은데 품절이네요",
+      "author": "nameless_0000",
+      "url": "https://www.clien.net/service/board/park/19262719?od=T31&category=0&groupCd=",
+      "site": "clien",
+      "siteDisplayName": "클리앙",
+      "siteCategory": "community",
+      "viewCount": 895,
+      "commentCount": 7,
+      "likeCount": 0,
+      "createdAt": "2026-09-12T13:15:51.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
+    },
+    {
+      "id": "clien-1789220768089-f6amo5",
+      "title": "iOS 27 개빠르네요.",
+      "author": "젤리즈",
+      "url": "https://www.clien.net/service/board/park/19262718?od=T31&category=0&groupCd=",
+      "site": "clien",
+      "siteDisplayName": "클리앙",
+      "siteCategory": "community",
+      "viewCount": 1665,
+      "commentCount": 2,
+      "likeCount": 0,
+      "createdAt": "2026-09-12T13:15:19.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
+    },
+    {
+      "id": "clien-1789220768090-2ycdiq",
       "title": "자동차 낚시줄 얼라이먼트라는게 있네요?",
       "author": "love114",
       "url": "https://www.clien.net/service/board/park/19262717?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 229,
-      "commentCount": 0,
+      "viewCount": 621,
+      "commentCount": 3,
       "likeCount": 0,
       "createdAt": "2026-09-12T13:06:49.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-m4zyq4",
+      "id": "clien-1789220768090-ig5zff",
       "title": "iPhone 18 Pro Max VS Galaxy Z Fold 8",
       "author": "Min's",
       "url": "https://www.clien.net/service/board/park/19262716?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 480,
+      "viewCount": 1322,
       "commentCount": 8,
       "likeCount": 0,
       "createdAt": "2026-09-12T13:06:13.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-98e9un",
+      "id": "clien-1789220768090-2k31wm",
       "title": "오늘은 대통령 sns짜증이 팍 나네요",
       "author": "얼리어답떠",
       "url": "https://www.clien.net/service/board/park/19262715?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 1089,
-      "commentCount": 11,
-      "likeCount": 7,
+      "viewCount": 2695,
+      "commentCount": 35,
+      "likeCount": 11,
       "createdAt": "2026-09-12T13:02:02.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-donav4",
+      "id": "clien-1789220768090-solp20",
       "title": "아이폰 듀오 사실분들 계신가요",
       "author": "망고주스바나나",
       "url": "https://www.clien.net/service/board/park/19262714?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 560,
-      "commentCount": 4,
+      "viewCount": 1318,
+      "commentCount": 12,
       "likeCount": 0,
       "createdAt": "2026-09-12T13:01:16.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-u27ba1",
+      "id": "clien-1789220768090-3u95fw",
       "title": "요새 만년필에 손이 덜갑니다",
       "author": "개미상어곰탕",
       "url": "https://www.clien.net/service/board/park/19262713?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 256,
+      "viewCount": 540,
       "commentCount": 1,
       "likeCount": 1,
       "createdAt": "2026-09-12T13:00:14.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-k2dhre",
+      "id": "clien-1789220768090-b9o7he",
       "title": "[ABC] 프랑스 전세계에 라팔 전개 훈련 시작. 한국도 방문 예정.",
       "author": "파이어폭스",
       "url": "https://www.clien.net/service/board/park/19262712?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 632,
+      "viewCount": 1088,
       "commentCount": 1,
       "likeCount": 0,
       "createdAt": "2026-09-12T12:57:02.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-uk8a50",
+      "id": "clien-1789220768090-d3gzkx",
       "title": "이재명 X 최신 글은 난 개혁하기 싫다. 이말이네요. 글 하나하나 논박하겠습니다.",
       "author": "칙칙초코",
       "url": "https://www.clien.net/service/board/park/19262709?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 1075,
-      "commentCount": 1,
-      "likeCount": 6,
+      "viewCount": 1906,
+      "commentCount": 6,
+      "likeCount": 11,
       "createdAt": "2026-09-12T12:53:14.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-g5crm0",
+      "id": "clien-1789220768090-jmu4pi",
       "title": "이번 아이폰 예약구매는 역대로 널널 한거 같네요",
       "author": "망고주스바나나",
       "url": "https://www.clien.net/service/board/park/19262708?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 775,
-      "commentCount": 8,
+      "viewCount": 1368,
+      "commentCount": 13,
       "likeCount": 0,
       "createdAt": "2026-09-12T12:52:55.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-gdfrru",
+      "id": "clien-1789220768090-llf08f",
       "title": "물고기",
       "author": "클리앙아저씨",
       "url": "https://www.clien.net/service/board/park/19262706?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 182,
-      "commentCount": 2,
+      "viewCount": 272,
+      "commentCount": 6,
       "likeCount": 0,
       "createdAt": "2026-09-12T12:48:09.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-b1qg8i",
+      "id": "clien-1789220768090-ab32hw",
       "title": "팀 쿡, 갤럭시로 갈아타다",
       "author": "꼬복이2000",
       "url": "https://www.clien.net/service/board/park/19262704?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 1587,
-      "commentCount": 3,
-      "likeCount": 1,
+      "viewCount": 2331,
+      "commentCount": 7,
+      "likeCount": 2,
       "createdAt": "2026-09-12T12:46:50.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-70y35c",
+      "id": "clien-1789220768090-29sm41",
       "title": "아이폰 12 프맥에서 18 프맥으로 업글하네요",
       "author": "Tenebre",
       "url": "https://www.clien.net/service/board/park/19262702?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 1109,
-      "commentCount": 5,
+      "viewCount": 1352,
+      "commentCount": 6,
       "likeCount": 2,
       "createdAt": "2026-09-12T12:38:22.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-3dylcr",
+      "id": "clien-1789220768090-bu2nm4",
       "title": "역사적인 북극 항로 첫 길‥험난한 북극해 넘어 영국 도착",
       "author": "사자와같이",
       "url": "https://www.clien.net/service/board/park/19262700?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 787,
+      "viewCount": 978,
       "commentCount": 3,
-      "likeCount": 8,
+      "likeCount": 9,
       "createdAt": "2026-09-12T12:34:55.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-s4eu9a",
+      "id": "clien-1789220768090-xwufop",
       "title": "[속보] 추미애, 이대통령 향해 '왜 내란세력에 전전긍긍하나' 작심 발언",
       "author": "applemacos",
       "url": "https://www.clien.net/service/board/park/19262698?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 3330,
-      "commentCount": 32,
-      "likeCount": 18,
+      "viewCount": 4261,
+      "commentCount": 39,
+      "likeCount": 23,
       "createdAt": "2026-09-12T12:23:48.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-waeprr",
+      "id": "clien-1789220768090-zkl14x",
       "title": "이분이 영화감독 이였군요 ㅋ",
       "author": "날아라병아리~",
       "url": "https://www.clien.net/service/board/park/19262697?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 1611,
+      "viewCount": 1921,
       "commentCount": 3,
       "likeCount": 0,
       "createdAt": "2026-09-12T12:22:24.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-qckh2i",
+      "id": "clien-1789220768090-vrum6l",
       "title": "아이폰 18 프로 시리즈는 작년보다 훨씬 널널하네요.",
       "author": "applemacos",
       "url": "https://www.clien.net/service/board/park/19262696?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 1831,
+      "viewCount": 2091,
       "commentCount": 8,
       "likeCount": 0,
       "createdAt": "2026-09-12T12:21:06.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-vmriig",
+      "id": "clien-1789220768090-vjvexo",
       "title": "꽃게철 되니 다시 기승하는 중국 불법어선들",
       "author": "루다나리에",
       "url": "https://www.clien.net/service/board/park/19262693?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 775,
-      "commentCount": 2,
+      "viewCount": 920,
+      "commentCount": 3,
       "likeCount": 0,
       "createdAt": "2026-09-12T12:14:28.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-girdex",
+      "id": "clien-1789220768090-kbw1qk",
       "title": "gpt 리셋된김에 또 뭘만들어보로있어요..",
       "author": "푸른한별",
       "url": "https://www.clien.net/service/board/park/19262690?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 1213,
+      "viewCount": 1382,
       "commentCount": 5,
       "likeCount": 2,
       "createdAt": "2026-09-12T12:09:41.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-jrtoba",
+      "id": "clien-1789220768090-z6460x",
       "title": "아이폰 18 프로 예약구매 완료",
       "author": "최씨",
       "url": "https://www.clien.net/service/board/park/19262689?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 1890,
+      "viewCount": 2106,
       "commentCount": 4,
       "likeCount": 0,
       "createdAt": "2026-09-12T12:09:21.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-9yvlqb",
+      "id": "clien-1789220768090-f3sqoq",
       "title": "보완수사권이 폐지 되겠지만, 연간 12만 명을 모른척 하지는 맙시다.",
       "author": "이제고만",
       "url": "https://www.clien.net/service/board/park/19262686?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 1350,
-      "commentCount": 20,
-      "likeCount": 0,
+      "viewCount": 1581,
+      "commentCount": 22,
+      "likeCount": 1,
       "createdAt": "2026-09-12T12:04:09.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
       "id": "clien-1789218972127-xsrg7z",
@@ -8335,49 +8490,49 @@
       "fetchedAt": "2026-09-10T16:56:31.447Z"
     },
     {
-      "id": "clien-1789059403484-sp8oip",
+      "id": "clien-1789220768090-hyry74",
       "title": "(특이점) 영국 초지능 인공지능 개발금지 법안제출",
       "author": "정도가자",
       "url": "https://www.clien.net/service/board/park/19261791?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 1780,
-      "commentCount": 6,
+      "viewCount": 2850,
+      "commentCount": 8,
       "likeCount": 0,
       "createdAt": "2026-09-10T13:55:31.000Z",
-      "fetchedAt": "2026-09-10T16:56:31.447Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789059403484-rit23t",
+      "id": "clien-1789220768090-2ddj77",
       "title": ".'금리 오르면 더 못 버텨'…주담대.영끌족 '비명'",
       "author": "종.삼",
       "url": "https://www.clien.net/service/board/park/19261790?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 2642,
-      "commentCount": 23,
+      "viewCount": 4264,
+      "commentCount": 25,
       "likeCount": 0,
       "createdAt": "2026-09-10T13:49:37.000Z",
-      "fetchedAt": "2026-09-10T16:56:31.447Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789055797238-wswwyx",
+      "id": "clien-1789220768090-zdpv59",
       "title": "결국 문재인을 뛰어넘은 이재명 대통령",
       "author": "Ddd34",
       "url": "https://www.clien.net/service/board/park/19261788?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 3068,
-      "commentCount": 9,
-      "likeCount": 2,
+      "viewCount": 5659,
+      "commentCount": 14,
+      "likeCount": 4,
       "createdAt": "2026-09-10T13:44:46.000Z",
-      "fetchedAt": "2026-09-10T15:56:25.060Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789055797238-8s8mz9",
+      "id": "clien-1789220768090-7j3yv3",
       "title": "듀오와 폴드 아이폰과 갤럭시...",
       "author": "익명",
       "url": "https://www.clien.net/service/board/park/19261787?od=T31&category=0&groupCd=",
@@ -8385,266 +8540,266 @@
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
       "thumbnail": "https://edgio.clien.net/F94/1090617/75851856e793434aa28.gif",
-      "viewCount": 1686,
-      "commentCount": 4,
-      "likeCount": 4,
+      "viewCount": 2984,
+      "commentCount": 6,
+      "likeCount": 5,
       "createdAt": "2026-09-10T13:43:02.000Z",
-      "fetchedAt": "2026-09-10T15:56:25.060Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789053996824-tygpo4",
+      "id": "clien-1789220768090-v7fg5w",
       "title": "트럼프가 아직 전쟁을 놓지 못하는 이유는요",
       "author": "gohome",
       "url": "https://www.clien.net/service/board/park/19261785?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 1134,
+      "viewCount": 1858,
       "commentCount": 0,
-      "likeCount": 1,
+      "likeCount": 2,
       "createdAt": "2026-09-10T13:38:18.000Z",
-      "fetchedAt": "2026-09-10T15:26:25.211Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789053996824-nwr7ri",
+      "id": "clien-1789220768090-uo3hq9",
       "title": "촉법이라 감옥 안 가'?‥결국 촉법 '최고형'",
       "author": "루다나리에",
       "url": "https://www.clien.net/service/board/park/19261784?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 1660,
+      "viewCount": 2847,
       "commentCount": 3,
       "likeCount": 1,
       "createdAt": "2026-09-10T13:37:07.000Z",
-      "fetchedAt": "2026-09-10T15:26:25.211Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789053996824-ag5who",
+      "id": "clien-1789220768090-cqup6v",
       "title": "gpt 밀레니엄 문제 해결이 주는 진짜 공포",
       "author": "코히어런스",
       "url": "https://www.clien.net/service/board/park/19261783?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 1118,
+      "viewCount": 1796,
       "commentCount": 1,
       "likeCount": 1,
       "createdAt": "2026-09-10T13:36:45.000Z",
-      "fetchedAt": "2026-09-10T15:26:25.211Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789052188231-189qug",
+      "id": "clien-1789220768090-g8dne6",
       "title": "아이폰듀오는 1년 지켜본후 구입해야 겠습니다.",
       "author": "불리언",
       "url": "https://www.clien.net/service/board/park/19261782?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 1260,
-      "commentCount": 3,
+      "viewCount": 2288,
+      "commentCount": 4,
       "likeCount": 0,
       "createdAt": "2026-09-10T13:36:04.000Z",
-      "fetchedAt": "2026-09-10T14:56:16.829Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789052188231-2j17pe",
+      "id": "clien-1789220768090-0jpj8q",
       "title": "트럼프 “공화당 이기면 5000달러”.재원·법안 없다",
       "author": "종.삼",
       "url": "https://www.clien.net/service/board/park/19261781?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 657,
-      "commentCount": 1,
+      "viewCount": 1171,
+      "commentCount": 2,
       "likeCount": 0,
       "createdAt": "2026-09-10T13:33:50.000Z",
-      "fetchedAt": "2026-09-10T14:56:16.829Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-bv2l2f",
+      "id": "clien-1789220768090-jfq1eg",
       "title": "오우 며칠만에 날씨가 가을이네요",
       "author": "타용기타",
       "url": "https://www.clien.net/service/board/park/19261780?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 1107,
+      "viewCount": 1108,
       "commentCount": 7,
       "likeCount": 0,
       "createdAt": "2026-09-10T13:30:57.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-2wdtrq",
+      "id": "clien-1789220768090-3kdz6j",
       "title": "폴드8 안사길 잘한듯(아이폰 듀오보고..)",
       "author": "하하소사이어티",
       "url": "https://www.clien.net/service/board/park/19261779?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 5711,
+      "viewCount": 5714,
       "commentCount": 27,
       "likeCount": 0,
       "createdAt": "2026-09-10T13:26:08.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-qzsmp7",
+      "id": "clien-1789220768090-sdkkxi",
       "title": "아이폰 듀오는 독아이콘을 오른쪽으로 옮긴게 대단한 것 같습니다",
       "author": "SimplyK",
       "url": "https://www.clien.net/service/board/park/19261777?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 3221,
+      "viewCount": 3223,
       "commentCount": 12,
       "likeCount": 1,
       "createdAt": "2026-09-10T13:21:06.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-vacxx8",
+      "id": "clien-1789220768090-josdxf",
       "title": "폴더폰 디자인이 안이뻐서 별로라고 생각했는데 아이폰 듀오는 이쁜 것 같네요.",
       "author": "e찍밥오",
       "url": "https://www.clien.net/service/board/park/19261776?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 2260,
+      "viewCount": 2264,
       "commentCount": 5,
       "likeCount": 5,
       "createdAt": "2026-09-10T13:20:43.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-s5iitc",
+      "id": "clien-1789220768090-2oquhf",
       "title": "텍사스주 상원 여론조사 민주당 제임스 탈라리코 48% 공화당 켄 팩스턴 43%",
       "author": "마카로니아",
       "url": "https://www.clien.net/service/board/park/19261775?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 1424,
+      "viewCount": 1426,
       "commentCount": 2,
       "likeCount": 1,
       "createdAt": "2026-09-10T13:19:29.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-zsm8zo",
+      "id": "clien-1789220768090-p8zuqn",
       "title": "매크로 지표가 매우 좋지 못하군요.",
       "author": "콩쓰v",
       "url": "https://www.clien.net/service/board/park/19261774?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 3392,
+      "viewCount": 3394,
       "commentCount": 9,
       "likeCount": 0,
       "createdAt": "2026-09-10T13:18:22.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-agd98u",
+      "id": "clien-1789220768090-77rox4",
       "title": "폴드 8 에서 아이폰 듀오 열고 닫는 효과 흉내내는 게 가능하군요.",
       "author": "woogler",
       "url": "https://www.clien.net/service/board/park/19261773?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 4002,
+      "viewCount": 4009,
       "commentCount": 15,
       "likeCount": 0,
       "createdAt": "2026-09-10T13:15:30.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-7rqrt8",
+      "id": "clien-1789220768090-4vx5t0",
       "title": "트럼프는 역시 신입니다",
       "author": "AParty!",
       "url": "https://www.clien.net/service/board/park/19261772?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 4081,
+      "viewCount": 4084,
       "commentCount": 7,
       "likeCount": 3,
       "createdAt": "2026-09-10T13:15:21.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-g6ctuv",
+      "id": "clien-1789220768090-gr9m3c",
       "title": "델타포스 출신 4성 장군 씁쓸한 퇴역..트럼프.입김..",
       "author": "종.삼",
       "url": "https://www.clien.net/service/board/park/19261771?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 2755,
+      "viewCount": 2757,
       "commentCount": 2,
       "likeCount": 0,
       "createdAt": "2026-09-10T13:14:25.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-qktw7y",
+      "id": "clien-1789220768090-jag3v6",
       "title": "똥이나 쳐 드세요..",
       "author": "불리언",
       "url": "https://www.clien.net/service/board/park/19261770?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 3541,
+      "viewCount": 3543,
       "commentCount": 9,
       "likeCount": 1,
       "createdAt": "2026-09-10T13:12:48.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-pcpo18",
+      "id": "clien-1789220768090-f42l02",
       "title": "국무총리실 과장의, 국회에서의 일반인 코스프레?",
       "author": "Buddys",
       "url": "https://www.clien.net/service/board/park/19261769?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 3155,
+      "viewCount": 3161,
       "commentCount": 8,
       "likeCount": 0,
       "createdAt": "2026-09-10T13:10:55.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-vjdmsp",
+      "id": "clien-1789220768090-ev7nuf",
       "title": "아이폰 듀오 카메라가 프로에 비해서 2세대 전 카메라라고 봐야하네요",
       "author": "호비브라운",
       "url": "https://www.clien.net/service/board/park/19261768?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 2468,
+      "viewCount": 2469,
       "commentCount": 5,
       "likeCount": 0,
       "createdAt": "2026-09-10T13:07:18.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-ikfsfr",
+      "id": "clien-1789220768090-v1ylbt",
       "title": "[PD수첩] 정답만 고르는 수능은 끝났다.",
       "author": "basin",
       "url": "https://www.clien.net/service/board/park/19261767?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 2585,
+      "viewCount": 2586,
       "commentCount": 18,
       "likeCount": 0,
       "createdAt": "2026-09-10T13:05:16.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-2w1ndh",
+      "id": "clien-1789220768090-5fpvei",
       "title": "DGX Spark를 구입할까..싶은데요",
       "author": "카르톨",
       "url": "https://www.clien.net/service/board/park/19261766?od=T31&category=0&groupCd=",
@@ -8655,38 +8810,38 @@
       "commentCount": 20,
       "likeCount": 0,
       "createdAt": "2026-09-10T13:04:43.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-twlvym",
+      "id": "clien-1789220768090-3yw5un",
       "title": "이야 저기서 병살이...",
       "author": "클턍2",
       "url": "https://www.clien.net/service/board/park/19261765?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 783,
+      "viewCount": 784,
       "commentCount": 0,
       "likeCount": 0,
       "createdAt": "2026-09-10T13:02:40.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-9fgcbi",
+      "id": "clien-1789220768090-t3ikdh",
       "title": "법률이 허용하는거, 국민들이 몰라서 그런다고 생각하나요?",
       "author": "vidovit",
       "url": "https://www.clien.net/service/board/park/19261764?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 761,
+      "viewCount": 762,
       "commentCount": 1,
       "likeCount": 1,
       "createdAt": "2026-09-10T13:01:39.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-w3sdra",
+      "id": "clien-1789220768090-1tq1fy",
       "title": "미국 국채 10년물 4.9 돌파...",
       "author": "박계현",
       "url": "https://www.clien.net/service/board/park/19261763?od=T31&category=0&groupCd=",
@@ -8697,7 +8852,7 @@
       "commentCount": 1,
       "likeCount": 0,
       "createdAt": "2026-09-10T12:59:27.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
       "id": "clien-1789049012116-lgdwwv",
@@ -8714,46 +8869,46 @@
       "fetchedAt": "2026-09-10T14:03:20.086Z"
     },
     {
-      "id": "clien-1789218972127-09ezhs",
+      "id": "clien-1789220768090-3j1qvq",
       "title": "아이폰듀오 내부화면 텍스쳐 필름 처리한 거 괜찮나요?",
       "author": "풀로야",
       "url": "https://www.clien.net/service/board/park/19261761?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 1967,
+      "viewCount": 1972,
       "commentCount": 5,
       "likeCount": 0,
       "createdAt": "2026-09-10T12:53:02.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-849cz5",
+      "id": "clien-1789220768090-zat15s",
       "title": "딸램 취직 했답니다",
       "author": "HarveySpector",
       "url": "https://www.clien.net/service/board/park/19261760?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 4110,
+      "viewCount": 4111,
       "commentCount": 15,
       "likeCount": 25,
       "createdAt": "2026-09-10T12:52:41.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-3gr3za",
+      "id": "clien-1789220768090-uucvhh",
       "title": "폴드6유저가 아이폰 듀오 보고 느낀 점.(뻘글)",
       "author": "크림슨크루세이더",
       "url": "https://www.clien.net/service/board/park/19261759?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 3174,
+      "viewCount": 3175,
       "commentCount": 8,
       "likeCount": 0,
       "createdAt": "2026-09-10T12:47:11.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
       "id": "clien-1789218972127-bnwsaa",
@@ -10194,189 +10349,175 @@
       "fetchedAt": "2026-09-12T06:04:49.129Z"
     },
     {
-      "id": "clien-1789193100399-ryz4fr",
-      "title": "탐김민석 정청래 서울시장 후보 되는거 반대해야 하는거 아닙니까?",
-      "author": "jj34",
-      "url": "https://www.clien.net/service/board/park/19261588?od=T31&category=0&groupCd=",
+      "id": "clien-1789220768090-o83125",
+      "title": "이제는 서울시장 후보군 이름만 적어도 쌍욕이군요.",
+      "author": "랭글러라이프",
+      "url": "https://www.clien.net/service/board/park/19260916?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 1322,
-      "commentCount": 8,
-      "likeCount": 1,
-      "createdAt": "2026-09-10T06:59:57.000Z",
-      "fetchedAt": "2026-09-12T06:04:49.129Z"
+      "viewCount": 2944,
+      "commentCount": 15,
+      "likeCount": 3,
+      "createdAt": "2026-09-09T08:22:58.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789193100399-bupkzg",
-      "title": "맨날 속으면서 또 속는 맛집TV",
-      "author": "BlueX",
-      "url": "https://www.clien.net/service/board/park/19261587?od=T31&category=0&groupCd=",
+      "id": "clien-1789220768090-w6b7nh",
+      "title": "민주당은 점점 밉상이 되어가고 있죠.",
+      "author": "쿠브릭",
+      "url": "https://www.clien.net/service/board/park/19260914?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 3114,
-      "commentCount": 17,
-      "likeCount": 2,
-      "createdAt": "2026-09-10T06:58:05.000Z",
-      "fetchedAt": "2026-09-12T06:04:49.129Z"
+      "viewCount": 2817,
+      "commentCount": 15,
+      "likeCount": 6,
+      "createdAt": "2026-09-09T08:21:01.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789193100399-3t0nsh",
-      "title": "서용주는 참 재밌는 사람이네요.",
-      "author": "빈찻잔",
-      "url": "https://www.clien.net/service/board/park/19261586?od=T31&category=0&groupCd=",
+      "id": "clien-1789220768090-xn50or",
+      "title": "한화오션, 태국 차세대 호위함 우선협상대상자 선정... “본계약 위한 세부 협상 착수”",
+      "author": "_딘_",
+      "url": "https://www.clien.net/service/board/park/19260912?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 2268,
-      "commentCount": 9,
-      "likeCount": 4,
-      "createdAt": "2026-09-10T06:57:50.000Z",
-      "fetchedAt": "2026-09-12T06:04:49.129Z"
+      "viewCount": 1231,
+      "commentCount": 0,
+      "likeCount": 0,
+      "createdAt": "2026-09-09T08:16:55.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789193100399-uhwjr7",
-      "title": "듀오가 보여주는 격차",
-      "author": "코히어런스",
-      "url": "https://www.clien.net/service/board/park/19261584?od=T31&category=0&groupCd=",
+      "id": "clien-1789220768090-mvuv6r",
+      "title": "전 아스트라 이제 하루 이틀정도 써보고 있는데 (당연한 얘기지만) 좋긴 좋네요",
+      "author": "호러아니",
+      "url": "https://www.clien.net/service/board/park/19260909?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 5525,
-      "commentCount": 13,
-      "likeCount": 1,
-      "createdAt": "2026-09-10T06:56:19.000Z",
-      "fetchedAt": "2026-09-12T06:04:49.129Z"
+      "viewCount": 2298,
+      "commentCount": 0,
+      "likeCount": 0,
+      "createdAt": "2026-09-09T08:10:47.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789191288891-e96hnd",
-      "title": "부산 돌려차기 피해자의 발언들이 언론플레이?",
-      "author": "hhj",
-      "url": "https://www.clien.net/service/board/park/19261583?od=T31&category=0&groupCd=",
-      "site": "clien",
-      "siteDisplayName": "클리앙",
-      "siteCategory": "community",
-      "viewCount": 1942,
-      "commentCount": 6,
-      "likeCount": 1,
-      "createdAt": "2026-09-10T06:55:14.000Z",
-      "fetchedAt": "2026-09-12T05:34:36.883Z"
-    },
-    {
-      "id": "clien-1789191288891-cvllp2",
-      "title": "네팔 구조대 수색 중단에 실종자 가족들 강력 항의",
+      "id": "clien-1789220768090-pldxtb",
+      "title": "동탄에 있는 이해안되는 민주당 현수막",
       "author": "루다나리에",
-      "url": "https://www.clien.net/service/board/park/19261580?od=T31&category=0&groupCd=",
+      "url": "https://www.clien.net/service/board/park/19260908?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 3506,
-      "commentCount": 2,
-      "likeCount": 0,
-      "createdAt": "2026-09-10T06:40:05.000Z",
-      "fetchedAt": "2026-09-12T05:34:36.883Z"
+      "viewCount": 5127,
+      "commentCount": 23,
+      "likeCount": 7,
+      "createdAt": "2026-09-09T08:10:01.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789191288891-s8pjy1",
-      "title": "아이폰 듀오 사용상 기대되는 것 하나..",
-      "author": "apnetwork",
-      "url": "https://www.clien.net/service/board/park/19261579?od=T31&category=0&groupCd=",
+      "id": "clien-1789220768090-m0actd",
+      "title": "[단독] 김민석 “겸공·매불쇼 나가시라”… 민주·진보진영 내 통합 시그널",
+      "author": "샹크스",
+      "url": "https://www.clien.net/service/board/park/19260907?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 2983,
-      "commentCount": 5,
-      "likeCount": 0,
-      "createdAt": "2026-09-10T06:37:24.000Z",
-      "fetchedAt": "2026-09-12T05:34:36.883Z"
+      "viewCount": 2907,
+      "commentCount": 14,
+      "likeCount": 7,
+      "createdAt": "2026-09-09T08:07:35.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789191288891-c68axf",
-      "title": "일단 아이폰 듀오 시작은 좋네요(?)",
-      "author": "McWin",
-      "url": "https://www.clien.net/service/board/park/19261578?od=T31&category=0&groupCd=",
+      "id": "clien-1789220768090-qv713d",
+      "title": "이 여자 영상이 AI 영상인지 아닌지 구분이 되시나요??",
+      "author": "마이야이",
+      "url": "https://www.clien.net/service/board/park/19260906?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 4485,
+      "viewCount": 4353,
+      "commentCount": 17,
+      "likeCount": 1,
+      "createdAt": "2026-09-09T08:06:26.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
+    },
+    {
+      "id": "clien-1789220768090-ohrom8",
+      "title": "서울시장 하니까 드는 생각인데",
+      "author": "타용기타",
+      "url": "https://www.clien.net/service/board/park/19260904?od=T31&category=0&groupCd=",
+      "site": "clien",
+      "siteDisplayName": "클리앙",
+      "siteCategory": "community",
+      "viewCount": 1706,
       "commentCount": 11,
-      "likeCount": 0,
-      "createdAt": "2026-09-10T06:36:55.000Z",
-      "fetchedAt": "2026-09-12T05:34:36.883Z"
+      "likeCount": 2,
+      "createdAt": "2026-09-09T08:03:11.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789191288891-eqrh0v",
-      "title": "혜인아!!!!!!!!",
-      "author": "호야9",
-      "url": "https://www.clien.net/service/board/park/19261577?od=T31&category=0&groupCd=",
+      "id": "clien-1789220768090-au3aoh",
+      "title": "김용민씨는 정권바뀌고 총선대패하면.",
+      "author": "쿠브릭",
+      "url": "https://www.clien.net/service/board/park/19260903?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 4904,
-      "commentCount": 6,
+      "viewCount": 1989,
+      "commentCount": 14,
       "likeCount": 0,
-      "createdAt": "2026-09-10T06:35:05.000Z",
-      "fetchedAt": "2026-09-12T05:34:36.883Z"
+      "createdAt": "2026-09-09T08:02:47.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789191288891-tki171",
-      "title": "아이폰듀오에 대처하는 삼성의 전략",
-      "author": "메탈버스",
-      "url": "https://www.clien.net/service/board/park/19261576?od=T31&category=0&groupCd=",
-      "site": "clien",
-      "siteDisplayName": "클리앙",
-      "siteCategory": "community",
-      "viewCount": 3330,
-      "commentCount": 2,
-      "likeCount": 0,
-      "createdAt": "2026-09-10T06:32:46.000Z",
-      "fetchedAt": "2026-09-12T05:34:36.883Z"
-    },
-    {
-      "id": "clien-1789218972127-pdgxnh",
+      "id": "clien-1789220768090-hcayok",
       "title": "검찰개혁 더 강도 높게 해야 지지율이 오릅니다.",
       "author": "applemacos",
       "url": "https://www.clien.net/service/board/park/19260902?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 2205,
+      "viewCount": 2206,
       "commentCount": 16,
       "likeCount": 13,
       "createdAt": "2026-09-09T07:59:15.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-8ytydp",
+      "id": "clien-1789220768090-lkg5hr",
       "title": "용혜인 남편 최고위원 당선은 선넘었네요...txt",
       "author": "레드핏클",
       "url": "https://www.clien.net/service/board/park/19260901?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 3947,
+      "viewCount": 3948,
       "commentCount": 7,
       "likeCount": 8,
       "createdAt": "2026-09-09T07:59:13.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-jaqvxl",
+      "id": "clien-1789220768090-tb7fnx",
       "title": "김승원 음주운전 전력.",
       "author": "쿠브릭",
       "url": "https://www.clien.net/service/board/park/19260900?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 3182,
+      "viewCount": 3183,
       "commentCount": 4,
       "likeCount": 3,
       "createdAt": "2026-09-09T07:56:45.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-1uljam",
+      "id": "clien-1789220768090-gdim5t",
       "title": "요즘 AI 영상 퀄리티가 점점 더 좋아지는군요.",
       "author": "드로아크",
       "url": "https://www.clien.net/service/board/park/19260898?od=T31&category=0&groupCd=",
@@ -10387,10 +10528,10 @@
       "commentCount": 2,
       "likeCount": 1,
       "createdAt": "2026-09-09T07:55:16.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-izdi3z",
+      "id": "clien-1789220768090-8e5vel",
       "title": "음주운전 걸린 이혁재",
       "author": "루다나리에",
       "url": "https://www.clien.net/service/board/park/19260897?od=T31&category=0&groupCd=",
@@ -10401,24 +10542,24 @@
       "commentCount": 12,
       "likeCount": 2,
       "createdAt": "2026-09-09T07:53:30.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-9qroaf",
+      "id": "clien-1789220768090-tx34j2",
       "title": "서울시장 후보 예측해봅니다(?)",
       "author": "아띠팡",
       "url": "https://www.clien.net/service/board/park/19260896?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 3367,
+      "viewCount": 3368,
       "commentCount": 27,
       "likeCount": 0,
       "createdAt": "2026-09-09T07:53:04.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-lecf3u",
+      "id": "clien-1789220768090-hxouqj",
       "title": "최태원이 이혼소송 재산분할액 9440억 중 7000억은 수용했네요",
       "author": "90까지갑시다",
       "url": "https://www.clien.net/service/board/park/19260894?od=T31&category=0&groupCd=",
@@ -10429,10 +10570,10 @@
       "commentCount": 3,
       "likeCount": 0,
       "createdAt": "2026-09-09T07:52:48.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-zqfwnm",
+      "id": "clien-1789220768090-5hhgs1",
       "title": "검찰개혁은 어떻게하든 어차피 정권바뀌면 롤백입니다.",
       "author": "하이타이거",
       "url": "https://www.clien.net/service/board/park/19260893?od=T31&category=0&groupCd=",
@@ -10443,24 +10584,24 @@
       "commentCount": 39,
       "likeCount": 0,
       "createdAt": "2026-09-09T07:51:10.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-1wxjud",
+      "id": "clien-1789220768090-gzcen7",
       "title": "AGI님으로 인하여 막연하게 영화 세 편이 떠오르고 걱정이 됩니다....",
       "author": "Juzis",
       "url": "https://www.clien.net/service/board/park/19260891?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 1073,
+      "viewCount": 1074,
       "commentCount": 0,
       "likeCount": 0,
       "createdAt": "2026-09-09T07:47:40.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-ilq2uk",
+      "id": "clien-1789220768090-6859xj",
       "title": "AI, AGI가 ' 대통령 ' 할수 있나요??",
       "author": "마이야이",
       "url": "https://www.clien.net/service/board/park/19260888?od=T31&category=0&groupCd=",
@@ -10471,10 +10612,10 @@
       "commentCount": 11,
       "likeCount": 0,
       "createdAt": "2026-09-09T07:40:34.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-1tczfy",
+      "id": "clien-1789220768090-66mmx7",
       "title": "반명 분열주의 신천지 3자연합이 서울시장 후보로 나오면 망하죠.",
       "author": "jj34",
       "url": "https://www.clien.net/service/board/park/19260887?od=T31&category=0&groupCd=",
@@ -10485,10 +10626,10 @@
       "commentCount": 11,
       "likeCount": 3,
       "createdAt": "2026-09-09T07:37:54.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-wa90za",
+      "id": "clien-1789220768090-p8q18w",
       "title": "베레타 500주년 기념 92FS.jpg",
       "author": "R.A.T.M",
       "url": "https://www.clien.net/service/board/park/19260886?od=T31&category=0&groupCd=",
@@ -10499,38 +10640,38 @@
       "commentCount": 12,
       "likeCount": 0,
       "createdAt": "2026-09-09T07:37:40.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-pr6152",
+      "id": "clien-1789220768090-99lflg",
       "title": "절대로 서울 시장 후보로 정청래 의원 반대 합니다",
       "author": "love114",
       "url": "https://www.clien.net/service/board/park/19260884?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 3427,
+      "viewCount": 3428,
       "commentCount": 18,
       "likeCount": 25,
       "createdAt": "2026-09-09T07:32:55.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-btkzw4",
+      "id": "clien-1789220768090-1wr6at",
       "title": "국토부에서 FSD허가 로드맵이라도 발표 했으면 좋겠습니다",
       "author": "mericrius",
       "url": "https://www.clien.net/service/board/park/19260883?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 2290,
+      "viewCount": 2293,
       "commentCount": 31,
       "likeCount": 2,
       "createdAt": "2026-09-09T07:31:00.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-hk2iu8",
+      "id": "clien-1789220768090-3wcg7s",
       "title": "비바람을 막아줄 든든한 진영의 소중함(feat 유작가)",
       "author": "웬화",
       "url": "https://www.clien.net/service/board/park/19260882?od=T31&category=0&groupCd=",
@@ -10541,24 +10682,24 @@
       "commentCount": 5,
       "likeCount": 3,
       "createdAt": "2026-09-09T07:28:04.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-b04m41",
+      "id": "clien-1789220768090-n1p0bw",
       "title": "한성숙 '한동훈 공개 자료, 유출 경위·위법 여부 확인 지시'",
       "author": "우딘",
       "url": "https://www.clien.net/service/board/park/19260881?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 4061,
+      "viewCount": 4064,
       "commentCount": 17,
       "likeCount": 16,
       "createdAt": "2026-09-09T07:26:23.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-6yqu4h",
+      "id": "clien-1789220768090-8nvdz5",
       "title": "수도이전하면 부동산 과열 문제가 해결 될까요?",
       "author": "익명",
       "url": "https://www.clien.net/service/board/park/19260880?od=T31&category=0&groupCd=",
@@ -10570,10 +10711,10 @@
       "commentCount": 29,
       "likeCount": 0,
       "createdAt": "2026-09-09T07:26:00.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-vd8358",
+      "id": "clien-1789220768090-wuhrs0",
       "title": "AI) 솔직히 저는 운이 좋았습니다.",
       "author": "익명",
       "url": "https://www.clien.net/service/board/park/19260875?od=T31&category=0&groupCd=",
@@ -10585,164 +10726,164 @@
       "commentCount": 17,
       "likeCount": 9,
       "createdAt": "2026-09-09T07:14:57.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-dfrshc",
+      "id": "clien-1789220768090-5628cy",
       "title": "아;; 비싼데 싼데 비싸요..",
       "author": "개미상어곰탕",
       "url": "https://www.clien.net/service/board/park/19260871?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 5179,
+      "viewCount": 5181,
       "commentCount": 9,
       "likeCount": 1,
       "createdAt": "2026-09-09T07:08:55.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-w0nyym",
+      "id": "clien-1789220768090-93jj37",
       "title": "마소, Xbox 클라우드 종량제 도입.",
       "author": "LG모니터",
       "url": "https://www.clien.net/service/board/park/19260870?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 1833,
+      "viewCount": 1834,
       "commentCount": 2,
       "likeCount": 0,
       "createdAt": "2026-09-09T07:08:12.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-d707wm",
-      "title": "김세의 아파트 강제 집행",
-      "author": "위대한발자",
-      "url": "https://www.clien.net/service/board/park/19260869?od=T31&category=0&groupCd=",
-      "site": "clien",
-      "siteDisplayName": "클리앙",
-      "siteCategory": "community",
-      "viewCount": 5904,
-      "commentCount": 17,
-      "likeCount": 12,
-      "createdAt": "2026-09-09T07:06:53.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
-    },
-    {
-      "id": "clien-1789218972127-s4ybcs",
-      "title": "AI가 직접적 타격을 주는건 초급 개발자(컴공 졸업 후 신입) 시장일 겁니다.",
-      "author": "Magnuz",
-      "url": "https://www.clien.net/service/board/park/19260867?od=T31&category=0&groupCd=",
-      "site": "clien",
-      "siteDisplayName": "클리앙",
-      "siteCategory": "community",
-      "viewCount": 3068,
-      "commentCount": 36,
-      "likeCount": 2,
-      "createdAt": "2026-09-09T07:03:39.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
-    },
-    {
-      "id": "clien-1789218972127-261j74",
-      "title": "박제: mgate79",
-      "author": "_딘_",
-      "url": "https://www.clien.net/service/board/park/19260866?od=T31&category=0&groupCd=",
-      "site": "clien",
-      "siteDisplayName": "클리앙",
-      "siteCategory": "community",
-      "viewCount": 1129,
-      "commentCount": 12,
-      "likeCount": 10,
-      "createdAt": "2026-09-09T07:01:34.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
-    },
-    {
-      "id": "clien-1789218972127-9yjnzy",
-      "title": "아 제발 음주관련 글 안쓰면 안돼요??",
-      "author": "부우우웅우웅",
-      "url": "https://www.clien.net/service/board/park/19260865?od=T31&category=0&groupCd=",
-      "site": "clien",
-      "siteDisplayName": "클리앙",
-      "siteCategory": "community",
-      "viewCount": 2802,
-      "commentCount": 11,
-      "likeCount": 0,
-      "createdAt": "2026-09-09T07:00:17.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
-    },
-    {
-      "id": "clien-1789218972127-fqsebk",
-      "title": "김민석 수첩에 적힌 '서울시장 후보 정청래'",
-      "author": "루다나리에",
-      "url": "https://www.clien.net/service/board/park/19260864?od=T31&category=0&groupCd=",
-      "site": "clien",
-      "siteDisplayName": "클리앙",
-      "siteCategory": "community",
-      "viewCount": 5358,
-      "commentCount": 49,
-      "likeCount": 2,
-      "createdAt": "2026-09-09T06:59:05.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
-    },
-    {
-      "id": "clien-1789218972127-zexukx",
-      "title": "쫄려 아무말 막던지는 한동훈과 그걸 지켜보는 ...",
+      "id": "clien-1789220768090-1dg7kg",
+      "title": "한국 · 프랑스 뤼미에르 파트너십 출범 합의",
       "author": "우딘",
-      "url": "https://www.clien.net/service/board/park/19260863?od=T31&category=0&groupCd=",
+      "url": "https://www.clien.net/service/board/park/19259954?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 1801,
-      "commentCount": 1,
-      "likeCount": 3,
-      "createdAt": "2026-09-09T06:58:52.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "viewCount": 2791,
+      "commentCount": 28,
+      "likeCount": 1,
+      "createdAt": "2026-09-07T12:55:27.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-39f0qf",
-      "title": "김승원은 운이 좋은 편인건지 뭔지 모르겠네요",
-      "author": "Riverside",
-      "url": "https://www.clien.net/service/board/park/19260862?od=T31&category=0&groupCd=",
+      "id": "clien-1789220768090-0nk6as",
+      "title": "용혜인 논란에 대한 기본소득당의 입장",
+      "author": "루다나리에",
+      "url": "https://www.clien.net/service/board/park/19259953?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 2763,
-      "commentCount": 5,
-      "likeCount": 0,
-      "createdAt": "2026-09-09T06:50:05.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "viewCount": 7079,
+      "commentCount": 28,
+      "likeCount": 4,
+      "createdAt": "2026-09-07T12:47:21.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-saagak",
-      "title": "두피가 간질간질 하다가 얼굴 전체가 간질간질하네요.",
-      "author": "MIKE_OXMAUL",
-      "url": "https://www.clien.net/service/board/park/19260860?od=T31&category=0&groupCd=",
+      "id": "clien-1789220768090-x035uc",
+      "title": "자소득층 천만원 대출지원이 핫한데 예전에",
+      "author": "zenka21",
+      "url": "https://www.clien.net/service/board/park/19259952?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 1531,
-      "commentCount": 13,
-      "likeCount": 0,
-      "createdAt": "2026-09-09T06:45:30.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "viewCount": 2934,
+      "commentCount": 20,
+      "likeCount": 2,
+      "createdAt": "2026-09-07T12:47:06.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-i456qc",
-      "title": "[루머]'아이폰18 …아이폰 에어2로 보급형 대체'",
+      "id": "clien-1789220768090-cxosup",
+      "title": "이재명 대통령, 영화인과의 대화",
       "author": "_딘_",
-      "url": "https://www.clien.net/service/board/park/19260859?od=T31&category=0&groupCd=",
+      "url": "https://www.clien.net/service/board/park/19259949?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 3136,
-      "commentCount": 3,
-      "likeCount": 0,
-      "createdAt": "2026-09-09T06:44:47.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "viewCount": 3580,
+      "commentCount": 13,
+      "likeCount": 8,
+      "createdAt": "2026-09-07T12:36:24.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-1yvov3",
+      "id": "clien-1789220768090-da9lol",
+      "title": "최저생계가 아니라 그럭저럭 버는 저소득층 분들도 있죠.",
+      "author": "Nabesna",
+      "url": "https://www.clien.net/service/board/park/19259948?od=T31&category=0&groupCd=",
+      "site": "clien",
+      "siteDisplayName": "클리앙",
+      "siteCategory": "community",
+      "viewCount": 3958,
+      "commentCount": 43,
+      "likeCount": 6,
+      "createdAt": "2026-09-07T12:35:25.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
+    },
+    {
+      "id": "clien-1789220768090-b7r91h",
+      "title": "용혜인 진짜 극폐미니스트인데 성평등가족부 장관이라는게 ;;;",
+      "author": "야그니앙",
+      "url": "https://www.clien.net/service/board/park/19259947?od=T31&category=0&groupCd=",
+      "site": "clien",
+      "siteDisplayName": "클리앙",
+      "siteCategory": "community",
+      "viewCount": 3878,
+      "commentCount": 5,
+      "likeCount": 4,
+      "createdAt": "2026-09-07T12:29:00.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
+    },
+    {
+      "id": "clien-1789220768090-q8f1te",
+      "title": "미국이 파병을 요청하는 것을 익명으로 공개하는 게 흔할까요",
+      "author": "하늘아래우리",
+      "url": "https://www.clien.net/service/board/park/19259946?od=T31&category=0&groupCd=",
+      "site": "clien",
+      "siteDisplayName": "클리앙",
+      "siteCategory": "community",
+      "viewCount": 2327,
+      "commentCount": 1,
+      "likeCount": 1,
+      "createdAt": "2026-09-07T12:28:42.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
+    },
+    {
+      "id": "clien-1789220768090-uh9gqi",
+      "title": "오딧세이 1100만 가즈아",
+      "author": "그란데",
+      "url": "https://www.clien.net/service/board/park/19259944?od=T31&category=0&groupCd=",
+      "site": "clien",
+      "siteDisplayName": "클리앙",
+      "siteCategory": "community",
+      "viewCount": 2403,
+      "commentCount": 4,
+      "likeCount": 1,
+      "createdAt": "2026-09-07T12:26:00.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
+    },
+    {
+      "id": "clien-1789220768090-cbau87",
+      "title": "다이소 꿀템.jpg",
+      "author": "쿠엔틴포체티노",
+      "url": "https://www.clien.net/service/board/park/19259943?od=T31&category=0&groupCd=",
+      "site": "clien",
+      "siteDisplayName": "클리앙",
+      "siteCategory": "community",
+      "viewCount": 8868,
+      "commentCount": 9,
+      "likeCount": 5,
+      "createdAt": "2026-09-07T12:25:08.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
+    },
+    {
+      "id": "clien-1789220768090-cdx6s9",
       "title": "[오늘의 우주이야기] 사진 귀퉁이에 찍힌 점 하나가, 사실은 별 하나가 혼자 만든 우주",
       "author": "익명",
       "url": "https://www.clien.net/service/board/park/19259941?od=T31&category=0&groupCd=",
@@ -10754,10 +10895,10 @@
       "commentCount": 4,
       "likeCount": 3,
       "createdAt": "2026-09-07T12:21:27.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-hei1d6",
+      "id": "clien-1789220768090-a6vwqs",
       "title": "곽튜브는 진짜 찐이네요 ㄷ",
       "author": "백반이",
       "url": "https://www.clien.net/service/board/park/19259940?od=T31&category=0&groupCd=",
@@ -10768,10 +10909,10 @@
       "commentCount": 10,
       "likeCount": 0,
       "createdAt": "2026-09-07T12:20:46.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-mz7hx6",
+      "id": "clien-1789220768090-pnnjv0",
       "title": "중국 국영 금융사 70조원대 자본 확충…경기 부양 돕는다",
       "author": "TigerWoods",
       "url": "https://www.clien.net/service/board/park/19259937?od=T31&category=0&groupCd=",
@@ -10782,10 +10923,10 @@
       "commentCount": 16,
       "likeCount": 0,
       "createdAt": "2026-09-07T12:11:38.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-vnlatg",
+      "id": "clien-1789220768090-izei8s",
       "title": "천년여왕을 보기 시작했습니다.",
       "author": "Camille",
       "url": "https://www.clien.net/service/board/park/19259936?od=T31&category=0&groupCd=",
@@ -10796,10 +10937,10 @@
       "commentCount": 29,
       "likeCount": 3,
       "createdAt": "2026-09-07T12:11:17.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-7rmyn9",
+      "id": "clien-1789220768090-nl9ipm",
       "title": "갑자기 파병 찬성 글이 올라오는데 논리가 똑같아요",
       "author": "제주의푸른밤",
       "url": "https://www.clien.net/service/board/park/19259935?od=T31&category=0&groupCd=",
@@ -10810,10 +10951,10 @@
       "commentCount": 5,
       "likeCount": 22,
       "createdAt": "2026-09-07T12:11:17.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-vw5qql",
+      "id": "clien-1789220768090-m4whsv",
       "title": "'젊은 여성' 의원이라는 교묘한 약자 코스프레를 하는 기본소득당",
       "author": "혼란한데",
       "url": "https://www.clien.net/service/board/park/19259932?od=T31&category=0&groupCd=",
@@ -10824,10 +10965,10 @@
       "commentCount": 12,
       "likeCount": 6,
       "createdAt": "2026-09-07T11:57:38.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-6f5c2i",
+      "id": "clien-1789220768090-dst6vd",
       "title": "주말까진 무대응 한다더니, 이제와서 한동운 대응을 한다고요? ㅋㅋㅋㅋ",
       "author": "익명",
       "url": "https://www.clien.net/service/board/park/19259931?od=T31&category=0&groupCd=",
@@ -10835,14 +10976,14 @@
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
       "thumbnail": "https://edgio.clien.net/F94/1091495/03b7bf1e17664fb58a1.gif",
-      "viewCount": 2974,
+      "viewCount": 2975,
       "commentCount": 7,
       "likeCount": 1,
       "createdAt": "2026-09-07T11:56:52.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-4zyl8l",
+      "id": "clien-1789220768090-hka24g",
       "title": "일시적 초과세수인데요..",
       "author": "mericrius",
       "url": "https://www.clien.net/service/board/park/19259930?od=T31&category=0&groupCd=",
@@ -10853,10 +10994,10 @@
       "commentCount": 10,
       "likeCount": 11,
       "createdAt": "2026-09-07T11:56:24.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-34bee8",
+      "id": "clien-1789220768090-x9eta2",
       "title": "임산부석 양보 안하는 노인",
       "author": "오차원고양이",
       "url": "https://www.clien.net/service/board/park/19259929?od=T31&category=0&groupCd=",
@@ -10867,10 +11008,10 @@
       "commentCount": 33,
       "likeCount": 7,
       "createdAt": "2026-09-07T11:55:05.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-j0vpul",
+      "id": "clien-1789220768090-ppkd5m",
       "title": "레볼루숑의 나라에서 열린 빛의 정상회의 기념 사진",
       "author": "_딘_",
       "url": "https://www.clien.net/service/board/park/19259928?od=T31&category=0&groupCd=",
@@ -10881,10 +11022,10 @@
       "commentCount": 0,
       "likeCount": 0,
       "createdAt": "2026-09-07T11:53:18.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-unkx6x",
+      "id": "clien-1789220768090-p6tjwp",
       "title": "공대생이라면 중간에 끊을 수 없는 영상",
       "author": "올데포",
       "url": "https://www.clien.net/service/board/park/19259927?od=T31&category=0&groupCd=",
@@ -10895,10 +11036,10 @@
       "commentCount": 6,
       "likeCount": 1,
       "createdAt": "2026-09-07T11:52:02.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-4c7564",
+      "id": "clien-1789220768090-ehxym7",
       "title": "역시 덕중에 덕은 양덕",
       "author": "R.A.T.M",
       "url": "https://www.clien.net/service/board/park/19259926?od=T31&category=0&groupCd=",
@@ -10909,24 +11050,24 @@
       "commentCount": 1,
       "likeCount": 0,
       "createdAt": "2026-09-07T11:51:56.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-2hxd0l",
+      "id": "clien-1789220768090-p0gk93",
       "title": "예언) 이번 아이폰18Pro에 대한 가격 예측...",
       "author": "독립운동가",
       "url": "https://www.clien.net/service/board/park/19259925?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 3768,
+      "viewCount": 3769,
       "commentCount": 7,
       "likeCount": 0,
       "createdAt": "2026-09-07T11:51:01.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-k6qj6x",
+      "id": "clien-1789220768090-a6urq1",
       "title": "러시아 '독일, 다시 전쟁 시작'‥양국 관계 2차 대전 당시로 후퇴하나?",
       "author": "루다나리에",
       "url": "https://www.clien.net/service/board/park/19259924?od=T31&category=0&groupCd=",
@@ -10937,10 +11078,10 @@
       "commentCount": 5,
       "likeCount": 0,
       "createdAt": "2026-09-07T11:48:51.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-lcnzzm",
+      "id": "clien-1789220768090-90k4rg",
       "title": "소방청 예산안 전년 대비 10.3% 증가한 3,713억",
       "author": "우딘",
       "url": "https://www.clien.net/service/board/park/19259921?od=T31&category=0&groupCd=",
@@ -10951,10 +11092,10 @@
       "commentCount": 7,
       "likeCount": 3,
       "createdAt": "2026-09-07T11:42:11.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-4sr4kb",
+      "id": "clien-1789220768090-s93hgw",
       "title": "김민석, 정무조정실장에 강위원 임명…4년 만에 원외 인사 발탁",
       "author": "Darkjedi",
       "url": "https://www.clien.net/service/board/park/19259919?od=T31&category=0&groupCd=",
@@ -10965,10 +11106,10 @@
       "commentCount": 5,
       "likeCount": 0,
       "createdAt": "2026-09-07T11:36:05.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-dbgime",
+      "id": "clien-1789220768090-21beoa",
       "title": "유튜브) 천재 해커분께서 'AI모델이 허깅*** 보안을 뚫게된 상황'을 설명해주시네요",
       "author": "Juzis",
       "url": "https://www.clien.net/service/board/park/19259917?od=T31&category=0&groupCd=",
@@ -10979,10 +11120,10 @@
       "commentCount": 2,
       "likeCount": 0,
       "createdAt": "2026-09-07T11:26:37.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-4dljue",
+      "id": "clien-1789220768090-jkw986",
       "title": "한동훈 ‘김승원 폭로전’에 국힘 내부 엇갈린 시선…당권파 “민주당 특급 도우미”, 친한",
       "author": "쿠쿠루쿠",
       "url": "https://www.clien.net/service/board/park/19259914?od=T31&category=0&groupCd=",
@@ -10993,10 +11134,10 @@
       "commentCount": 2,
       "likeCount": 0,
       "createdAt": "2026-09-07T11:24:30.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-zl3wza",
+      "id": "clien-1789220768090-99a8q3",
       "title": "환율 급락으로 인한 해외투자 환손실 심리적 고통 줄이기. txt",
       "author": "혼자걷는다",
       "url": "https://www.clien.net/service/board/park/19259913?od=T31&category=0&groupCd=",
@@ -11007,10 +11148,10 @@
       "commentCount": 3,
       "likeCount": 0,
       "createdAt": "2026-09-07T11:23:34.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-1xmskl",
+      "id": "clien-1789220768090-5rw2gh",
       "title": "왜 정부 또는 산하기관 빚을 먼저 갚지 않고, 확장재정을 하나요?",
       "author": "다음에요",
       "url": "https://www.clien.net/service/board/park/19259912?od=T31&category=0&groupCd=",
@@ -11021,150 +11162,150 @@
       "commentCount": 31,
       "likeCount": 1,
       "createdAt": "2026-09-07T11:22:38.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-2k4380",
+      "id": "clien-1789220768090-qx6y2c",
       "title": "안녕하세요 이대남입니다.",
       "author": "고뇌와범민",
       "url": "https://www.clien.net/service/board/park/19259910?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 2546,
+      "viewCount": 2547,
       "commentCount": 26,
       "likeCount": 0,
       "createdAt": "2026-09-07T11:21:30.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-idjqpl",
-      "title": "실제 펀딩하다 망한 김정은 게임이라네요",
-      "author": "쥬바리",
-      "url": "https://www.clien.net/service/board/park/19259909?od=T31&category=0&groupCd=",
+      "id": "clien-1789220768090-6i6bg0",
+      "title": "GPT-6 아스트라... 2005년에 개봉한 영화 '아일랜드' 가 생각나는군요.",
+      "author": "리트리셈",
+      "url": "https://www.clien.net/service/board/park/19259062?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 3069,
-      "commentCount": 2,
+      "viewCount": 4327,
+      "commentCount": 4,
       "likeCount": 0,
-      "createdAt": "2026-09-07T11:10:31.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "createdAt": "2026-09-05T13:22:53.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-wwiuon",
-      "title": "저소득층에 1천만원 대출해주는 것보다 차라리",
-      "author": "90까지갑시다",
-      "url": "https://www.clien.net/service/board/park/19259908?od=T31&category=0&groupCd=",
+      "id": "clien-1789220768090-wopoqa",
+      "title": "공공기관 이전.... 지방 활성화....?",
+      "author": "Mitis",
+      "url": "https://www.clien.net/service/board/park/19259059?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 5819,
-      "commentCount": 85,
-      "likeCount": 3,
-      "createdAt": "2026-09-07T11:01:27.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "viewCount": 5311,
+      "commentCount": 55,
+      "likeCount": 0,
+      "createdAt": "2026-09-05T13:10:15.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-64jotw",
-      "title": "삼성 주거비 부정수급자들은.. 성과급 못받고 퇴사당하는건가요??",
-      "author": "하늘풀",
-      "url": "https://www.clien.net/service/board/park/19259907?od=T31&category=0&groupCd=",
+      "id": "clien-1789220768090-uq0epk",
+      "title": "정말 죄송합니다. 한 달 전에, 물의를 일으켜서.",
+      "author": "집에서 자고싶다",
+      "url": "https://www.clien.net/service/board/park/19259058?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 6256,
-      "commentCount": 45,
+      "viewCount": 3530,
+      "commentCount": 3,
       "likeCount": 2,
-      "createdAt": "2026-09-07T10:57:10.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "createdAt": "2026-09-05T13:09:01.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-mekpo0",
-      "title": "파주 카페 냉동창고서 여성 시신‥수백억대 위조 상품권도 발견",
-      "author": "루다나리에",
-      "url": "https://www.clien.net/service/board/park/19259906?od=T31&category=0&groupCd=",
+      "id": "clien-1789220768090-z8652s",
+      "title": "유승민 전 의원…11시간 조사 후 입건 ㄷㄷㄷ.gisa",
+      "author": "레드핏클",
+      "url": "https://www.clien.net/service/board/park/19259055?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 6343,
-      "commentCount": 10,
-      "likeCount": 1,
-      "createdAt": "2026-09-07T10:55:46.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
-    },
-    {
-      "id": "clien-1789218972127-j0f7ha",
-      "title": "AI와 과학 사이에 묘한 역설이 있다는군요.",
-      "author": "dsl",
-      "url": "https://www.clien.net/service/board/park/19259904?od=T31&category=0&groupCd=",
-      "site": "clien",
-      "siteDisplayName": "클리앙",
-      "siteCategory": "community",
-      "viewCount": 3112,
+      "viewCount": 9061,
       "commentCount": 13,
-      "likeCount": 1,
-      "createdAt": "2026-09-07T10:53:07.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "likeCount": 16,
+      "createdAt": "2026-09-05T13:01:14.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-il5yuz",
-      "title": "다음에 국힘이 정권 잡으면 계엄, 검찰도 필요 없어요.",
-      "author": "코히어런스",
-      "url": "https://www.clien.net/service/board/park/19259903?od=T31&category=0&groupCd=",
+      "id": "clien-1789220768090-bd5yz6",
+      "title": "삼성 라이온즈의 수호신 김재윤이 오늘도 한몫 했군요",
+      "author": "클턍2",
+      "url": "https://www.clien.net/service/board/park/19259054?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 3641,
-      "commentCount": 10,
-      "likeCount": 7,
-      "createdAt": "2026-09-07T10:51:13.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
-    },
-    {
-      "id": "clien-1789218972127-ab9mcl",
-      "title": "[단독] 장관 후보자들 서울 아파트 李정부 1년만에 27% 뛰었다",
-      "author": "가습기야",
-      "url": "https://www.clien.net/service/board/park/19259902?od=T31&category=0&groupCd=",
-      "site": "clien",
-      "siteDisplayName": "클리앙",
-      "siteCategory": "community",
-      "viewCount": 2970,
-      "commentCount": 1,
-      "likeCount": 1,
-      "createdAt": "2026-09-07T10:48:52.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
-    },
-    {
-      "id": "clien-1789218972127-j1rj9c",
-      "title": "유튜브, 페이크 케이크) AI한테 이거 뭐냐고 물으면 뭐라고 답하게요",
-      "author": "Juzis",
-      "url": "https://www.clien.net/service/board/park/19259901?od=T31&category=0&groupCd=",
-      "site": "clien",
-      "siteDisplayName": "클리앙",
-      "siteCategory": "community",
-      "viewCount": 1074,
-      "commentCount": 0,
+      "viewCount": 2026,
+      "commentCount": 12,
       "likeCount": 0,
-      "createdAt": "2026-09-07T10:46:54.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "createdAt": "2026-09-05T12:57:19.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-p1qe6p",
-      "title": "한동훈의원 공익제보 받았다고 밝혔잖아요.",
-      "author": "나에스트라",
-      "url": "https://www.clien.net/service/board/park/19259900?od=T31&category=0&groupCd=",
+      "id": "clien-1789220768090-82ehsy",
+      "title": "지원함 빼고 50명 파병안 검토…정치적 부담 커",
+      "author": "루다나리에",
+      "url": "https://www.clien.net/service/board/park/19259053?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 3874,
-      "commentCount": 30,
-      "likeCount": 2,
-      "createdAt": "2026-09-07T10:46:24.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "viewCount": 3643,
+      "commentCount": 3,
+      "likeCount": 0,
+      "createdAt": "2026-09-05T12:57:01.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-rrm0jq",
+      "id": "clien-1789220768090-yli0ia",
+      "title": "동네서 찍은 불꽃 몇장",
+      "author": "매일한가한",
+      "url": "https://www.clien.net/service/board/park/19259052?od=T31&category=0&groupCd=",
+      "site": "clien",
+      "siteDisplayName": "클리앙",
+      "siteCategory": "community",
+      "viewCount": 4823,
+      "commentCount": 4,
+      "likeCount": 1,
+      "createdAt": "2026-09-05T12:55:55.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
+    },
+    {
+      "id": "clien-1789220768090-yre68p",
+      "title": "요즘 SPC그룹도 SPC 브랜드를 숨기는군요.",
+      "author": "E320",
+      "url": "https://www.clien.net/service/board/park/19259050?od=T31&category=0&groupCd=",
+      "site": "clien",
+      "siteDisplayName": "클리앙",
+      "siteCategory": "community",
+      "viewCount": 5060,
+      "commentCount": 5,
+      "likeCount": 3,
+      "createdAt": "2026-09-05T12:52:35.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
+    },
+    {
+      "id": "clien-1789220768090-lcexbx",
+      "title": "광화문에 트럼프 모형",
+      "author": "오소리감투",
+      "url": "https://www.clien.net/service/board/park/19259049?od=T31&category=0&groupCd=",
+      "site": "clien",
+      "siteDisplayName": "클리앙",
+      "siteCategory": "community",
+      "viewCount": 3269,
+      "commentCount": 3,
+      "likeCount": 0,
+      "createdAt": "2026-09-05T12:48:59.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
+    },
+    {
+      "id": "clien-1789220768090-4vhfyn",
       "title": "방송사 메인 뉴스 TOP 4 - 2026년 9월 5일(260905)",
       "author": "번쩍번쩍아콘",
       "url": "https://www.clien.net/service/board/park/19259048?od=T31&category=0&groupCd=",
@@ -11175,10 +11316,10 @@
       "commentCount": 0,
       "likeCount": 0,
       "createdAt": "2026-09-05T12:38:17.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-r5ljxc",
+      "id": "clien-1789220768090-ifspj8",
       "title": "방미통위,아시안게임 비인기종목 확대 편성과 인기종목 중복중계 피하라 권고",
       "author": "루다나리에",
       "url": "https://www.clien.net/service/board/park/19259047?od=T31&category=0&groupCd=",
@@ -11189,10 +11330,10 @@
       "commentCount": 8,
       "likeCount": 1,
       "createdAt": "2026-09-05T12:36:11.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-igpmc0",
+      "id": "clien-1789220768090-7kevid",
       "title": "하나는 알고 둘은 모르는 분들이 많네요. 아이폰 비번??",
       "author": "깨진분",
       "url": "https://www.clien.net/service/board/park/19259046?od=T31&category=0&groupCd=",
@@ -11203,10 +11344,10 @@
       "commentCount": 38,
       "likeCount": 1,
       "createdAt": "2026-09-05T12:33:19.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-tbsde1",
+      "id": "clien-1789220768090-ebpt03",
       "title": "집말고 자신을 반길 곳을 찾지 못했다면",
       "author": "오소리감투",
       "url": "https://www.clien.net/service/board/park/19259045?od=T31&category=0&groupCd=",
@@ -11217,10 +11358,10 @@
       "commentCount": 5,
       "likeCount": 0,
       "createdAt": "2026-09-05T12:32:29.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-hkh4jl",
+      "id": "clien-1789220768090-txz9tf",
       "title": "약학대학 전망 어떻게 보시나요",
       "author": "기립근",
       "url": "https://www.clien.net/service/board/park/19259042?od=T31&category=0&groupCd=",
@@ -11231,10 +11372,10 @@
       "commentCount": 35,
       "likeCount": 0,
       "createdAt": "2026-09-05T12:24:51.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-shr4nj",
+      "id": "clien-1789220768090-6m8vkp",
       "title": "아스트라, 그림을 그려줘 (이미지 생성 말고)",
       "author": "알리앙",
       "url": "https://www.clien.net/service/board/park/19259037?od=T31&category=0&groupCd=",
@@ -11245,10 +11386,10 @@
       "commentCount": 1,
       "likeCount": 2,
       "createdAt": "2026-09-05T12:16:59.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-0johib",
+      "id": "clien-1789220768090-ly8lsn",
       "title": "순리를 의심하지 말라",
       "author": "Oros",
       "url": "https://www.clien.net/service/board/park/19259035?od=T31&category=0&groupCd=",
@@ -11259,24 +11400,24 @@
       "commentCount": 0,
       "likeCount": 0,
       "createdAt": "2026-09-05T12:12:55.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-31oaab",
+      "id": "clien-1789220768090-siqp41",
       "title": "나눠먹기식 공공기관 이전은 아무런 효과가 없습니다.",
       "author": "안전지킴이",
       "url": "https://www.clien.net/service/board/park/19259033?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 3549,
+      "viewCount": 3551,
       "commentCount": 67,
       "likeCount": 2,
       "createdAt": "2026-09-05T12:09:35.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-ksgscx",
+      "id": "clien-1789220768090-s9b0jr",
       "title": "유림면이 왜 그렇게 평을 잘받은데인지 모르겠습니다.",
       "author": "nameless_0000",
       "url": "https://www.clien.net/service/board/park/19259031?od=T31&category=0&groupCd=",
@@ -11287,10 +11428,10 @@
       "commentCount": 11,
       "likeCount": 0,
       "createdAt": "2026-09-05T12:08:25.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-dzfw9u",
+      "id": "clien-1789220768090-xts4gd",
       "title": "노트북 메모리를 데스크탑에 꼽았습니다",
       "author": "넌좋은친구네",
       "url": "https://www.clien.net/service/board/park/19259028?od=T31&category=0&groupCd=",
@@ -11301,10 +11442,10 @@
       "commentCount": 10,
       "likeCount": 0,
       "createdAt": "2026-09-05T11:53:11.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-wh5v0k",
+      "id": "clien-1789220768090-m9j8jz",
       "title": "그러고보니 전현무씨는 무계획 예능을 이미",
       "author": "그란데",
       "url": "https://www.clien.net/service/board/park/19259027?od=T31&category=0&groupCd=",
@@ -11315,10 +11456,10 @@
       "commentCount": 16,
       "likeCount": 0,
       "createdAt": "2026-09-05T11:52:59.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-fyq0og",
+      "id": "clien-1789220768090-dmyso5",
       "title": "AI영상쪽은 결국 CG처럼 갈 것 같습니다.",
       "author": "게으른별",
       "url": "https://www.clien.net/service/board/park/19259026?od=T31&category=0&groupCd=",
@@ -11329,10 +11470,10 @@
       "commentCount": 24,
       "likeCount": 0,
       "createdAt": "2026-09-05T11:47:57.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-it314l",
+      "id": "clien-1789220768090-5z06g0",
       "title": "與 '한동훈, 녹취 입수 경로 밝혀야'‥野 '김승원, 지명 철회해야'",
       "author": "루다나리에",
       "url": "https://www.clien.net/service/board/park/19259023?od=T31&category=0&groupCd=",
@@ -11343,10 +11484,10 @@
       "commentCount": 46,
       "likeCount": 6,
       "createdAt": "2026-09-05T11:36:30.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-x9hvu1",
+      "id": "clien-1789220768090-bb5hyu",
       "title": "EPL 경기 보면서 먹을거 고민 중입니다",
       "author": "자게잇힝",
       "url": "https://www.clien.net/service/board/park/19259021?od=T31&category=0&groupCd=",
@@ -11357,10 +11498,10 @@
       "commentCount": 1,
       "likeCount": 0,
       "createdAt": "2026-09-05T11:34:58.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-6o8qmh",
+      "id": "clien-1789220768090-006vz3",
       "title": "2009년 40미에 4천원 하던 새우... (feat. 루리웹)",
       "author": "eeeeee",
       "url": "https://www.clien.net/service/board/park/19259020?od=T31&category=0&groupCd=",
@@ -11371,10 +11512,10 @@
       "commentCount": 10,
       "likeCount": 2,
       "createdAt": "2026-09-05T11:33:17.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-l1ifqs",
+      "id": "clien-1789220768090-tg3eo5",
       "title": "뉴재명이라는 분들,",
       "author": "analogue_holic",
       "url": "https://www.clien.net/service/board/park/19259019?od=T31&category=0&groupCd=",
@@ -11385,10 +11526,10 @@
       "commentCount": 62,
       "likeCount": 4,
       "createdAt": "2026-09-05T11:31:48.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-tqeo4l",
+      "id": "clien-1789220768090-576nsz",
       "title": "여의도 불꽃축제.. 1차 영국팀 세계최초 화산불꽃 멋지네요",
       "author": "익명",
       "url": "https://www.clien.net/service/board/park/19259018?od=T31&category=0&groupCd=",
@@ -11400,10 +11541,10 @@
       "commentCount": 7,
       "likeCount": 3,
       "createdAt": "2026-09-05T11:28:15.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-ntjla8",
+      "id": "clien-1789220768090-ha46vl",
       "title": "휘발유 탱크에 경유 넣은 주유소 직원…부산서 차량 180대 피해",
       "author": "우딘",
       "url": "https://www.clien.net/service/board/park/19259017?od=T31&category=0&groupCd=",
@@ -11414,10 +11555,10 @@
       "commentCount": 10,
       "likeCount": 0,
       "createdAt": "2026-09-05T11:26:49.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-3q43ww",
+      "id": "clien-1789220768090-avmxvr",
       "title": "홍보 글이라고 차단됐네요 ㅠㅠ 아무튼 잘 다듬어볼게요.",
       "author": "시간을달라는사장",
       "url": "https://www.clien.net/service/board/park/19259016?od=T31&category=0&groupCd=",
@@ -11428,10 +11569,10 @@
       "commentCount": 2,
       "likeCount": 1,
       "createdAt": "2026-09-05T11:26:21.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-msssll",
+      "id": "clien-1789220768090-rznvbf",
       "title": "이 시국에 민주당은 조용한건가요?",
       "author": "남자의자격",
       "url": "https://www.clien.net/service/board/park/19259015?od=T31&category=0&groupCd=",
@@ -11442,10 +11583,10 @@
       "commentCount": 21,
       "likeCount": 5,
       "createdAt": "2026-09-05T11:24:51.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-crbp6o",
+      "id": "clien-1789220768090-9co2oa",
       "title": "유우머) 박근혜 임기 시절 서울 아파트 매수한 사람을 뭐라고 부르게요?",
       "author": "Mitis",
       "url": "https://www.clien.net/service/board/park/19259014?od=T31&category=0&groupCd=",
@@ -11456,138 +11597,136 @@
       "commentCount": 6,
       "likeCount": 0,
       "createdAt": "2026-09-05T11:22:39.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-s26z2t",
-      "title": "놀란 출세작 다크나이트 엔딩씬 인도반응",
-      "author": "오르테가",
-      "url": "https://www.clien.net/service/board/park/19259012?od=T31&category=0&groupCd=",
+      "id": "clien-1789220768090-c3xol1",
+      "title": "조국, 정청래, 최민희의 공통점.",
+      "author": "불량집사",
+      "url": "https://www.clien.net/service/board/park/19258207?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 3528,
-      "commentCount": 4,
-      "likeCount": 0,
-      "createdAt": "2026-09-05T11:20:22.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "viewCount": 2550,
+      "commentCount": 24,
+      "likeCount": 8,
+      "createdAt": "2026-09-03T23:51:25.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-4kmbz8",
-      "title": "강제로 불꽃놀이 직관중 ㅠㅠ",
-      "author": "익명",
-      "url": "https://www.clien.net/service/board/park/19259010?od=T31&category=0&groupCd=",
+      "id": "clien-1789220768090-6v0uwr",
+      "title": "국가들의 외교정세는 냉혹합니다.",
+      "author": "천안문",
+      "url": "https://www.clien.net/service/board/park/19258206?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "thumbnail": "https://edgio.clien.net/F94/1089255/88c2aa6e6d4d43e7b95.gif",
-      "viewCount": 6178,
-      "commentCount": 7,
-      "likeCount": 0,
-      "createdAt": "2026-09-05T11:13:24.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
-    },
-    {
-      "id": "clien-1789218972127-7cbrje",
-      "title": "한국 구조대가 구조한 생존자",
-      "author": "루다나리에",
-      "url": "https://www.clien.net/service/board/park/19259009?od=T31&category=0&groupCd=",
-      "site": "clien",
-      "siteDisplayName": "클리앙",
-      "siteCategory": "community",
-      "viewCount": 4395,
-      "commentCount": 3,
-      "likeCount": 10,
-      "createdAt": "2026-09-05T11:10:19.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
-    },
-    {
-      "id": "clien-1789218972127-wbnciy",
-      "title": "이란전쟁 한계..美.장성들.“중동.유지 어려워”",
-      "author": "종.삼",
-      "url": "https://www.clien.net/service/board/park/19259008?od=T31&category=0&groupCd=",
-      "site": "clien",
-      "siteDisplayName": "클리앙",
-      "siteCategory": "community",
-      "viewCount": 2497,
-      "commentCount": 4,
-      "likeCount": 0,
-      "createdAt": "2026-09-05T11:06:06.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
-    },
-    {
-      "id": "clien-1789218972127-wf6m5c",
-      "title": "호르무즈 파병 반대를 원한다면...",
-      "author": "끄또빠파파",
-      "url": "https://www.clien.net/service/board/park/19259007?od=T31&category=0&groupCd=",
-      "site": "clien",
-      "siteDisplayName": "클리앙",
-      "siteCategory": "community",
-      "viewCount": 2199,
-      "commentCount": 3,
-      "likeCount": 0,
-      "createdAt": "2026-09-05T11:04:42.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
-    },
-    {
-      "id": "clien-1789218972127-onpkq4",
-      "title": "파병은 일단 예비군이나 전역한지 오래된 사람을 충원해서....",
-      "author": "남자의자격",
-      "url": "https://www.clien.net/service/board/park/19259006?od=T31&category=0&groupCd=",
-      "site": "clien",
-      "siteDisplayName": "클리앙",
-      "siteCategory": "community",
-      "viewCount": 2563,
-      "commentCount": 10,
-      "likeCount": 3,
-      "createdAt": "2026-09-05T11:01:14.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
-    },
-    {
-      "id": "clien-1789218972127-t8t8fh",
-      "title": "전국 편먹기 구호 지도",
-      "author": "익명",
-      "url": "https://www.clien.net/service/board/park/19259005?od=T31&category=0&groupCd=",
-      "site": "clien",
-      "siteDisplayName": "클리앙",
-      "siteCategory": "community",
-      "thumbnail": "https://edgio.clien.net/F94/1088825/386f51d7685e4d9da0b.gif",
-      "viewCount": 2959,
-      "commentCount": 8,
+      "viewCount": 2631,
+      "commentCount": 35,
       "likeCount": 1,
-      "createdAt": "2026-09-05T10:56:57.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "createdAt": "2026-09-03T23:47:44.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-d2mg65",
-      "title": "LCK 플레이오프 한화생명과 젠지 두 팀 다 잘하네요.",
-      "author": "memories_",
-      "url": "https://www.clien.net/service/board/park/19259004?od=T31&category=0&groupCd=",
+      "id": "clien-1789220768090-2mifub",
+      "title": "'대출.하러 은행 갔다가.1억 빌린 직장인 '날벼락'",
+      "author": "종.삼",
+      "url": "https://www.clien.net/service/board/park/19258205?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 716,
-      "commentCount": 1,
+      "viewCount": 4918,
+      "commentCount": 6,
+      "likeCount": 2,
+      "createdAt": "2026-09-03T23:45:37.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
+    },
+    {
+      "id": "clien-1789220768090-ul8jb1",
+      "title": "구글은 지금 뭘 하고 있을까요",
+      "author": "liberal",
+      "url": "https://www.clien.net/service/board/park/19258203?od=T31&category=0&groupCd=",
+      "site": "clien",
+      "siteDisplayName": "클리앙",
+      "siteCategory": "community",
+      "viewCount": 2188,
+      "commentCount": 11,
       "likeCount": 0,
-      "createdAt": "2026-09-05T10:54:09.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "createdAt": "2026-09-03T23:45:24.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-vqhhoy",
-      "title": "설미 뉴님들은 파병에 찬성인건 아니죠?",
-      "author": "잣까는전문가",
-      "url": "https://www.clien.net/service/board/park/19259003?od=T31&category=0&groupCd=",
+      "id": "clien-1789220768090-i943kw",
+      "title": "듣보잡 후보를 송영길이 대하는 방법",
+      "author": "자낙2",
+      "url": "https://www.clien.net/service/board/park/19258202?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 1973,
-      "commentCount": 15,
-      "likeCount": 9,
-      "createdAt": "2026-09-05T10:53:04.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "viewCount": 1758,
+      "commentCount": 2,
+      "likeCount": 0,
+      "createdAt": "2026-09-03T23:41:34.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-bqflva",
+      "id": "clien-1789220768090-tzlfl2",
+      "title": "파병은 참전이 아닌 종전을 위한 움직임 아닐까요?",
+      "author": "꿈꾸는몽",
+      "url": "https://www.clien.net/service/board/park/19258201?od=T31&category=0&groupCd=",
+      "site": "clien",
+      "siteDisplayName": "클리앙",
+      "siteCategory": "community",
+      "viewCount": 1828,
+      "commentCount": 15,
+      "likeCount": 0,
+      "createdAt": "2026-09-03T23:38:02.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
+    },
+    {
+      "id": "clien-1789220768090-vvcl97",
+      "title": "요즘 언론사들 워딩이 너무 하네요",
+      "author": "굥찰정권아웃",
+      "url": "https://www.clien.net/service/board/park/19258200?od=T31&category=0&groupCd=",
+      "site": "clien",
+      "siteDisplayName": "클리앙",
+      "siteCategory": "community",
+      "viewCount": 2881,
+      "commentCount": 17,
+      "likeCount": 1,
+      "createdAt": "2026-09-03T23:36:43.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
+    },
+    {
+      "id": "clien-1789220768090-et18tq",
+      "title": ".美 영끌족 ‘비명’.주담대 금리 6.71%까지 치솟아",
+      "author": "종.삼",
+      "url": "https://www.clien.net/service/board/park/19258199?od=T31&category=0&groupCd=",
+      "site": "clien",
+      "siteDisplayName": "클리앙",
+      "siteCategory": "community",
+      "viewCount": 2341,
+      "commentCount": 6,
+      "likeCount": 0,
+      "createdAt": "2026-09-03T23:34:20.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
+    },
+    {
+      "id": "clien-1789220768090-omq7l1",
+      "title": "이재명 정부 성과",
+      "author": "크래쉬",
+      "url": "https://www.clien.net/service/board/park/19258198?od=T31&category=0&groupCd=",
+      "site": "clien",
+      "siteDisplayName": "클리앙",
+      "siteCategory": "community",
+      "viewCount": 5493,
+      "commentCount": 40,
+      "likeCount": 22,
+      "createdAt": "2026-09-03T23:29:29.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
+    },
+    {
+      "id": "clien-1789220768090-2lh3su",
       "title": "파병은 그냥 찬성해야 합니다.",
       "author": "applemacos",
       "url": "https://www.clien.net/service/board/park/19258197?od=T31&category=0&groupCd=",
@@ -11598,10 +11737,10 @@
       "commentCount": 28,
       "likeCount": 2,
       "createdAt": "2026-09-03T23:27:17.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-6ug9qx",
+      "id": "clien-1789220768090-skfcde",
       "title": "부산시 암남동 바닷속조개왕국.",
       "author": "익명",
       "url": "https://www.clien.net/service/board/park/19258195?od=T31&category=0&groupCd=",
@@ -11613,10 +11752,10 @@
       "commentCount": 5,
       "likeCount": 3,
       "createdAt": "2026-09-03T23:25:21.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-5civ2l",
+      "id": "clien-1789220768090-kxb8lj",
       "title": "“바이든이 공짜로 퍼줘”.트럼프, 유럽에.“수천억 달러 다 받아낼 것”",
       "author": "종.삼",
       "url": "https://www.clien.net/service/board/park/19258194?od=T31&category=0&groupCd=",
@@ -11627,38 +11766,38 @@
       "commentCount": 4,
       "likeCount": 0,
       "createdAt": "2026-09-03T23:25:14.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-rx0ots",
+      "id": "clien-1789220768090-jil1jy",
       "title": "OpenAI TIBO, GPT-6-Astra 이용 못하는 만큼 하루당 리셋권 1회 적립",
       "author": "언어분석",
       "url": "https://www.clien.net/service/board/park/19258193?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 1969,
+      "viewCount": 1973,
       "commentCount": 2,
       "likeCount": 1,
       "createdAt": "2026-09-03T23:25:04.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-3vmfhj",
+      "id": "clien-1789220768090-0kbt4u",
       "title": "[네팔] 기본에 충실한 것이 얼마나 중요한지 보여주는 사례",
       "author": "IloveDaughter",
       "url": "https://www.clien.net/service/board/park/19258191?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 1823,
+      "viewCount": 1824,
       "commentCount": 1,
       "likeCount": 0,
       "createdAt": "2026-09-03T23:24:38.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-abcx53",
+      "id": "clien-1789220768090-l06cy2",
       "title": "민주당 티비 강수영 변호사가 용역일까요? 아닐까요?",
       "author": "야쿠르트1",
       "url": "https://www.clien.net/service/board/park/19258190?od=T31&category=0&groupCd=",
@@ -11669,10 +11808,10 @@
       "commentCount": 3,
       "likeCount": 1,
       "createdAt": "2026-09-03T23:22:50.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-6hmwlz",
+      "id": "clien-1789220768090-ya90ey",
       "title": ".11∼12월 북미회담 가능..G20회의에 김정은 초청할 수도”",
       "author": "종.삼",
       "url": "https://www.clien.net/service/board/park/19258189?od=T31&category=0&groupCd=",
@@ -11683,10 +11822,10 @@
       "commentCount": 1,
       "likeCount": 2,
       "createdAt": "2026-09-03T23:22:00.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-hd9as3",
+      "id": "clien-1789220768090-5cvve9",
       "title": "용혜인, 6년전엔 '기생충 정당 양산, 국가보조금 폐지' 주장",
       "author": "90까지갑시다",
       "url": "https://www.clien.net/service/board/park/19258186?od=T31&category=0&groupCd=",
@@ -11697,10 +11836,10 @@
       "commentCount": 12,
       "likeCount": 1,
       "createdAt": "2026-09-03T23:20:25.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-ajpg93",
+      "id": "clien-1789220768090-6vzl2j",
       "title": "Astra 접근권이 아직 없는 유료 ChatGPT 사용자에게 보상으로 매일 Banked Reset 1개",
       "author": "막내딸병원비",
       "url": "https://www.clien.net/service/board/park/19258185?od=T31&category=0&groupCd=",
@@ -11711,10 +11850,10 @@
       "commentCount": 2,
       "likeCount": 0,
       "createdAt": "2026-09-03T23:18:31.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-215szo",
+      "id": "clien-1789220768090-kkvxvo",
       "title": "트럼프 '우크라.무기 비용, 유럽.에게 받아낼 것'",
       "author": "종.삼",
       "url": "https://www.clien.net/service/board/park/19258183?od=T31&category=0&groupCd=",
@@ -11725,10 +11864,10 @@
       "commentCount": 2,
       "likeCount": 0,
       "createdAt": "2026-09-03T23:18:07.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-mkmlf5",
+      "id": "clien-1789220768090-5hytvn",
       "title": "gpt 리셋",
       "author": "익명",
       "url": "https://www.clien.net/service/board/park/19258181?od=T31&category=0&groupCd=",
@@ -11740,10 +11879,10 @@
       "commentCount": 4,
       "likeCount": 0,
       "createdAt": "2026-09-03T23:06:59.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-3l7cek",
+      "id": "clien-1789220768090-oworim",
       "title": "OpenAI 아스트라는 왜 논란 중에 있는 것일까에 대해",
       "author": "천문공",
       "url": "https://www.clien.net/service/board/park/19258180?od=T31&category=0&groupCd=",
@@ -11754,10 +11893,10 @@
       "commentCount": 2,
       "likeCount": 0,
       "createdAt": "2026-09-03T23:05:05.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-qx2ex1",
+      "id": "clien-1789220768090-67de1y",
       "title": "버스 줄 대기중인 학생들.jpg",
       "author": "익명",
       "url": "https://www.clien.net/service/board/park/19258179?od=T31&category=0&groupCd=",
@@ -11769,10 +11908,10 @@
       "commentCount": 8,
       "likeCount": 2,
       "createdAt": "2026-09-03T23:04:06.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-76ytnn",
+      "id": "clien-1789220768090-bxidl2",
       "title": "금요일입니다 여러분 ㅎㅎ",
       "author": "qweras1",
       "url": "https://www.clien.net/service/board/park/19258178?od=T31&category=0&groupCd=",
@@ -11783,10 +11922,10 @@
       "commentCount": 0,
       "likeCount": 0,
       "createdAt": "2026-09-03T23:01:54.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-vf2az1",
+      "id": "clien-1789220768090-dt2vtf",
       "title": "김어준이 아무리 이재명인사 옹호해도 유시민작가가 나서지 않으면 해결이 안될 것 같",
       "author": "archon",
       "url": "https://www.clien.net/service/board/park/19258176?od=T31&category=0&groupCd=",
@@ -11797,10 +11936,10 @@
       "commentCount": 5,
       "likeCount": 1,
       "createdAt": "2026-09-03T22:52:35.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-hj7lz0",
+      "id": "clien-1789220768090-cg4c47",
       "title": "정치력은 송영길 의원이 짱이네요.",
       "author": "불량집사",
       "url": "https://www.clien.net/service/board/park/19258175?od=T31&category=0&groupCd=",
@@ -11811,10 +11950,10 @@
       "commentCount": 46,
       "likeCount": 5,
       "createdAt": "2026-09-03T22:45:49.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-vcd198",
+      "id": "clien-1789220768090-6lr4jf",
       "title": "파병에 대한 전후 맥락을 추정해 봅니다.",
       "author": "천문공",
       "url": "https://www.clien.net/service/board/park/19258173?od=T31&category=0&groupCd=",
@@ -11825,10 +11964,10 @@
       "commentCount": 4,
       "likeCount": 2,
       "createdAt": "2026-09-03T22:38:59.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-x4ea0m",
+      "id": "clien-1789220768090-91mxzr",
       "title": "악성코드 였던 캡챠 팝업 ㄷㄷㄷ",
       "author": "익명",
       "url": "https://www.clien.net/service/board/park/19258172?od=T31&category=0&groupCd=",
@@ -11840,10 +11979,10 @@
       "commentCount": 10,
       "likeCount": 3,
       "createdAt": "2026-09-03T22:24:51.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-0zincu",
+      "id": "clien-1789220768090-qvhjkf",
       "title": "OpenAI 아스트라, AI 최고 모델 등장입니다.",
       "author": "천문공",
       "url": "https://www.clien.net/service/board/park/19258167?od=T31&category=0&groupCd=",
@@ -11854,10 +11993,10 @@
       "commentCount": 8,
       "likeCount": 3,
       "createdAt": "2026-09-03T21:52:10.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-w3fzr3",
+      "id": "clien-1789220768090-8m8b0v",
       "title": "공소취소 정말 하려는건지.. 의아하네요",
       "author": "나에스트라",
       "url": "https://www.clien.net/service/board/park/19258166?od=T31&category=0&groupCd=",
@@ -11868,137 +12007,137 @@
       "commentCount": 12,
       "likeCount": 3,
       "createdAt": "2026-09-03T21:30:46.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-aylrca",
-      "title": "Gemini 현재 상황",
-      "author": "호러아니",
-      "url": "https://www.clien.net/service/board/park/19258165?od=T31&category=0&groupCd=",
+      "id": "clien-1789220768090-2iltcu",
+      "title": "조국 사면 이후 이재명 대통령 지지율 추이.",
+      "author": "하이타이거",
+      "url": "https://www.clien.net/service/board/park/19257299?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 11,
-      "commentCount": 8,
-      "likeCount": 0,
-      "createdAt": "2026-09-03T20:56:10.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "viewCount": 5665,
+      "commentCount": 58,
+      "likeCount": 6,
+      "createdAt": "2026-09-02T04:01:09.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-dnuob7",
-      "title": "이란전 파병을 강력히 반대합니다!",
-      "author": "낮은곳에",
-      "url": "https://www.clien.net/service/board/park/19258163?od=T31&category=0&groupCd=",
+      "id": "clien-1789220768090-a3z74c",
+      "title": "리센느 콘서트",
+      "author": "링링",
+      "url": "https://www.clien.net/service/board/park/19257297?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 5171,
-      "commentCount": 15,
-      "likeCount": 15,
-      "createdAt": "2026-09-03T20:34:54.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
-    },
-    {
-      "id": "clien-1789218972127-51muig",
-      "title": "파병 옹호는 사실 매국 행위입니다",
-      "author": "익명",
-      "url": "https://www.clien.net/service/board/park/19258162?od=T31&category=0&groupCd=",
-      "site": "clien",
-      "siteDisplayName": "클리앙",
-      "siteCategory": "community",
-      "thumbnail": "https://edgio.clien.net/F94/7161308/c66f3ac81c150.gif",
-      "viewCount": 5494,
-      "commentCount": 20,
-      "likeCount": 22,
-      "createdAt": "2026-09-03T20:34:40.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
-    },
-    {
-      "id": "clien-1789218972127-t6gdsg",
-      "title": "GPT-6 아스트라 vs. 페이블 5.1 성능 비교 요약 [feat. theo]",
-      "author": "언어분석",
-      "url": "https://www.clien.net/service/board/park/19258161?od=T31&category=0&groupCd=",
-      "site": "clien",
-      "siteDisplayName": "클리앙",
-      "siteCategory": "community",
-      "viewCount": 7342,
+      "viewCount": 2074,
       "commentCount": 1,
-      "likeCount": 0,
-      "createdAt": "2026-09-03T20:31:23.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
-    },
-    {
-      "id": "clien-1789218972127-62nak3",
-      "title": "[MSNBC] 항모 링컨 승조원 2명 태국경찰에 체포. 주취폭행관련.",
-      "author": "파이어폭스",
-      "url": "https://www.clien.net/service/board/park/19258158?od=T31&category=0&groupCd=",
-      "site": "clien",
-      "siteDisplayName": "클리앙",
-      "siteCategory": "community",
-      "viewCount": 4074,
-      "commentCount": 0,
-      "likeCount": 0,
-      "createdAt": "2026-09-03T19:40:45.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
-    },
-    {
-      "id": "clien-1789218972127-w96q9u",
-      "title": "중도가 없다? 구조적 다수는 허상이다?",
-      "author": "이제고만",
-      "url": "https://www.clien.net/service/board/park/19258156?od=T31&category=0&groupCd=",
-      "site": "clien",
-      "siteDisplayName": "클리앙",
-      "siteCategory": "community",
-      "viewCount": 2784,
-      "commentCount": 9,
-      "likeCount": 10,
-      "createdAt": "2026-09-03T19:04:51.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
-    },
-    {
-      "id": "clien-1789218972127-uvw9vu",
-      "title": "GPT-6 Astra 공개, Plus, Pro 사용자는 며칠 내에 순차 배포",
-      "author": "언어분석",
-      "url": "https://www.clien.net/service/board/park/19258155?od=T31&category=0&groupCd=",
-      "site": "clien",
-      "siteDisplayName": "클리앙",
-      "siteCategory": "community",
-      "viewCount": 5959,
-      "commentCount": 1,
-      "likeCount": 1,
-      "createdAt": "2026-09-03T19:01:10.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
-    },
-    {
-      "id": "clien-1789218972127-remfkl",
-      "title": "요즘 들쥐때문에 잠을못잣네요. 잼낫습니다.",
-      "author": "봄봄",
-      "url": "https://www.clien.net/service/board/park/19258154?od=T31&category=0&groupCd=",
-      "site": "clien",
-      "siteDisplayName": "클리앙",
-      "siteCategory": "community",
-      "viewCount": 5324,
-      "commentCount": 7,
       "likeCount": 2,
-      "createdAt": "2026-09-03T18:23:42.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "createdAt": "2026-09-02T03:57:52.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-kuq69o",
-      "title": "GPT-6-ASTRA 벤치마크 (제한적 출시)",
-      "author": "언어분석",
-      "url": "https://www.clien.net/service/board/park/19258153?od=T31&category=0&groupCd=",
+      "id": "clien-1789220768090-atgrwx",
+      "title": "응원팀이 운영을 잘하니 새삼 편안하네요.",
+      "author": "McWin",
+      "url": "https://www.clien.net/service/board/park/19257296?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 3892,
-      "commentCount": 1,
-      "likeCount": 1,
-      "createdAt": "2026-09-03T18:15:35.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "viewCount": 1154,
+      "commentCount": 2,
+      "likeCount": 0,
+      "createdAt": "2026-09-02T03:57:23.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-8kf5ws",
+      "id": "clien-1789220768090-uvzo6w",
+      "title": "하사웨이",
+      "author": "다복파파",
+      "url": "https://www.clien.net/service/board/park/19257294?od=T31&category=0&groupCd=",
+      "site": "clien",
+      "siteDisplayName": "클리앙",
+      "siteCategory": "community",
+      "viewCount": 1955,
+      "commentCount": 6,
+      "likeCount": 0,
+      "createdAt": "2026-09-02T03:53:02.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
+    },
+    {
+      "id": "clien-1789220768090-xtxjd6",
+      "title": "오늘 치폴레 오픈날인가 봅니다.",
+      "author": "익명",
+      "url": "https://www.clien.net/service/board/park/19257293?od=T31&category=0&groupCd=",
+      "site": "clien",
+      "siteDisplayName": "클리앙",
+      "siteCategory": "community",
+      "thumbnail": "https://edgio.clien.net/F94/2026/8/15804542/215c92949fcad.gif",
+      "viewCount": 2814,
+      "commentCount": 17,
+      "likeCount": 0,
+      "createdAt": "2026-09-02T03:52:25.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
+    },
+    {
+      "id": "clien-1789220768090-rwldmm",
+      "title": "용혜인, 의원직 사퇴 요구 질문에 “많은 걱정과 우려 있다는 거 알아…청문회 잘 준비하",
+      "author": "루다나리에",
+      "url": "https://www.clien.net/service/board/park/19257291?od=T31&category=0&groupCd=",
+      "site": "clien",
+      "siteDisplayName": "클리앙",
+      "siteCategory": "community",
+      "viewCount": 6085,
+      "commentCount": 24,
+      "likeCount": 0,
+      "createdAt": "2026-09-02T03:45:44.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
+    },
+    {
+      "id": "clien-1789220768090-3jm166",
+      "title": "차트는 친구처럼..",
+      "author": "오소리감투",
+      "url": "https://www.clien.net/service/board/park/19257288?od=T31&category=0&groupCd=",
+      "site": "clien",
+      "siteDisplayName": "클리앙",
+      "siteCategory": "community",
+      "viewCount": 1426,
+      "commentCount": 3,
+      "likeCount": 0,
+      "createdAt": "2026-09-02T03:40:15.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
+    },
+    {
+      "id": "clien-1789220768090-dhx46l",
+      "title": "[속보/교도] 오사카지법, 후쿠시마 이재민에게 배상판결. 국가책임은 기각.",
+      "author": "파이어폭스",
+      "url": "https://www.clien.net/service/board/park/19257287?od=T31&category=0&groupCd=",
+      "site": "clien",
+      "siteDisplayName": "클리앙",
+      "siteCategory": "community",
+      "viewCount": 2304,
+      "commentCount": 1,
+      "likeCount": 0,
+      "createdAt": "2026-09-02T03:40:06.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
+    },
+    {
+      "id": "clien-1789220768090-8lwmhu",
+      "title": "일촉즉발 미국과 이란",
+      "author": "루다나리에",
+      "url": "https://www.clien.net/service/board/park/19257283?od=T31&category=0&groupCd=",
+      "site": "clien",
+      "siteDisplayName": "클리앙",
+      "siteCategory": "community",
+      "viewCount": 4798,
+      "commentCount": 2,
+      "likeCount": 0,
+      "createdAt": "2026-09-02T03:30:24.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
+    },
+    {
+      "id": "clien-1789220768090-t0fpf0",
       "title": "오늘 안더운 날씨인데..",
       "author": "오소리감투",
       "url": "https://www.clien.net/service/board/park/19257282?od=T31&category=0&groupCd=",
@@ -12009,10 +12148,10 @@
       "commentCount": 7,
       "likeCount": 0,
       "createdAt": "2026-09-02T03:26:29.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-7tmakp",
+      "id": "clien-1789220768090-etzjv5",
       "title": "홍사훈, 이재명 정부에 분노폭발 '무슨놈의 청년'",
       "author": "익명",
       "url": "https://www.clien.net/service/board/park/19257281?od=T31&category=0&groupCd=",
@@ -12024,24 +12163,24 @@
       "commentCount": 29,
       "likeCount": 12,
       "createdAt": "2026-09-02T03:23:40.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-oe4c3q",
+      "id": "clien-1789220768090-i49qo8",
       "title": "서울 지하철 논슬립 보면 참…",
       "author": "오소리감투",
       "url": "https://www.clien.net/service/board/park/19257280?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 3322,
+      "viewCount": 3323,
       "commentCount": 0,
       "likeCount": 0,
       "createdAt": "2026-09-02T03:23:17.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-vvukjc",
+      "id": "clien-1789220768090-m2g7d1",
       "title": "국짐당).'용혜인은 '가족파괴부 장관'…안 돼'",
       "author": "종.삼",
       "url": "https://www.clien.net/service/board/park/19257278?od=T31&category=0&groupCd=",
@@ -12052,10 +12191,10 @@
       "commentCount": 12,
       "likeCount": 0,
       "createdAt": "2026-09-02T03:18:57.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-87dbn4",
+      "id": "clien-1789220768090-305g3f",
       "title": "정부·해운협회 '호르무즈 피격 유조선, 한국 국적 선박 아니다'",
       "author": "루다나리에",
       "url": "https://www.clien.net/service/board/park/19257277?od=T31&category=0&groupCd=",
@@ -12066,10 +12205,10 @@
       "commentCount": 3,
       "likeCount": 0,
       "createdAt": "2026-09-02T03:11:02.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-avj512",
+      "id": "clien-1789220768090-447d5g",
       "title": "잡담) 일본 PC 시장에 잔가보장형 할부 등장...",
       "author": "에일리언",
       "url": "https://www.clien.net/service/board/park/19257275?od=T31&category=0&groupCd=",
@@ -12080,10 +12219,10 @@
       "commentCount": 10,
       "likeCount": 0,
       "createdAt": "2026-09-02T03:06:57.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-r3owxu",
+      "id": "clien-1789220768090-59ti3l",
       "title": "국짐당)건진법사에 '공천 청탁' 1억.의원.징역 1년 확정",
       "author": "종.삼",
       "url": "https://www.clien.net/service/board/park/19257273?od=T31&category=0&groupCd=",
@@ -12094,10 +12233,10 @@
       "commentCount": 19,
       "likeCount": 0,
       "createdAt": "2026-09-02T03:06:19.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-im1i0y",
+      "id": "clien-1789220768090-3l94k5",
       "title": "그렇게 자기들이 민주당 코어면 따로 창당하면 되는 거 아닌가요?",
       "author": "불량집사",
       "url": "https://www.clien.net/service/board/park/19257271?od=T31&category=0&groupCd=",
@@ -12108,10 +12247,10 @@
       "commentCount": 56,
       "likeCount": 9,
       "createdAt": "2026-09-02T03:00:19.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-0nm1yr",
+      "id": "clien-1789220768090-yxtky3",
       "title": "李대통령 부정 평가 60% 첫 돌파…서울서 부정평가 70.2%",
       "author": "칼리프",
       "url": "https://www.clien.net/service/board/park/19257270?od=T31&category=0&groupCd=",
@@ -12122,10 +12261,10 @@
       "commentCount": 41,
       "likeCount": 16,
       "createdAt": "2026-09-02T02:59:45.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-kwxplr",
+      "id": "clien-1789220768090-5inhbw",
       "title": "정황상 용혜인은 이재명픽이 아닌것 같습니다.",
       "author": "dgpig",
       "url": "https://www.clien.net/service/board/park/19257268?od=T31&category=0&groupCd=",
@@ -12136,10 +12275,10 @@
       "commentCount": 21,
       "likeCount": 1,
       "createdAt": "2026-09-02T02:58:25.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-dlb8tv",
+      "id": "clien-1789220768090-a9o9vp",
       "title": "9월 1일부터 7일까지는 ‘양성평등주간’입니다.",
       "author": "하늘풀",
       "url": "https://www.clien.net/service/board/park/19257266?od=T31&category=0&groupCd=",
@@ -12150,10 +12289,10 @@
       "commentCount": 19,
       "likeCount": 0,
       "createdAt": "2026-09-02T02:54:33.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-uoropi",
+      "id": "clien-1789220768090-6ke9ea",
       "title": "힘드네여 ㅋㅋㅋ 이럴려고 잼통 응원한게 아닌데",
       "author": "힘내즈아",
       "url": "https://www.clien.net/service/board/park/19257265?od=T31&category=0&groupCd=",
@@ -12164,10 +12303,10 @@
       "commentCount": 13,
       "likeCount": 2,
       "createdAt": "2026-09-02T02:53:06.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-kubo08",
+      "id": "clien-1789220768090-ujvqoe",
       "title": "기준금리 인상과 예산 820조",
       "author": "분당킹",
       "url": "https://www.clien.net/service/board/park/19257262?od=T31&category=0&groupCd=",
@@ -12178,10 +12317,10 @@
       "commentCount": 7,
       "likeCount": 0,
       "createdAt": "2026-09-02T02:41:50.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-6m44c1",
+      "id": "clien-1789220768090-ytyhjn",
       "title": "미국, 또 이란 공습‥'국채금리·유가' 급등",
       "author": "종.삼",
       "url": "https://www.clien.net/service/board/park/19257260?od=T31&category=0&groupCd=",
@@ -12192,10 +12331,10 @@
       "commentCount": 6,
       "likeCount": 1,
       "createdAt": "2026-09-02T02:36:06.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-tlokmc",
+      "id": "clien-1789220768090-th6qrm",
       "title": "'공산주의 혁명' 반여성적 지하조직이 키운 정치인 용혜인",
       "author": "에필드",
       "url": "https://www.clien.net/service/board/park/19257259?od=T31&category=0&groupCd=",
@@ -12206,10 +12345,10 @@
       "commentCount": 20,
       "likeCount": 1,
       "createdAt": "2026-09-02T02:35:43.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-zbnt11",
+      "id": "clien-1789220768090-1m5qnc",
       "title": "조국혁신당은 합당하지 않으면 0석 아닌가요?",
       "author": "불량집사",
       "url": "https://www.clien.net/service/board/park/19257258?od=T31&category=0&groupCd=",
@@ -12220,10 +12359,10 @@
       "commentCount": 34,
       "likeCount": 10,
       "createdAt": "2026-09-02T02:32:43.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-bcygh9",
+      "id": "clien-1789220768090-yneoem",
       "title": "안타깝지만 지금은 전 정권이 만든 성장 보릿고개",
       "author": "하늘풀",
       "url": "https://www.clien.net/service/board/park/19257256?od=T31&category=0&groupCd=",
@@ -12234,10 +12373,10 @@
       "commentCount": 34,
       "likeCount": 3,
       "createdAt": "2026-09-02T02:31:23.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-hkutmq",
+      "id": "clien-1789220768090-gxlyl6",
       "title": "국방예산 첫 70조 돌파… ‘자주국방’ 기조에 2027년 73.3조 책정",
       "author": "우딘",
       "url": "https://www.clien.net/service/board/park/19257255?od=T31&category=0&groupCd=",
@@ -12248,10 +12387,10 @@
       "commentCount": 2,
       "likeCount": 1,
       "createdAt": "2026-09-02T02:28:04.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-7nz9mm",
+      "id": "clien-1789220768090-hm8egt",
       "title": "비례 포기 안하는게 작전인가 싶은 생각까지 듭니다 ㄷㄷㄷㄷㄷㄷ",
       "author": "Epic_Max",
       "url": "https://www.clien.net/service/board/park/19257254?od=T31&category=0&groupCd=",
@@ -12262,10 +12401,10 @@
       "commentCount": 7,
       "likeCount": 0,
       "createdAt": "2026-09-02T02:27:29.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-c1v2ta",
+      "id": "clien-1789220768090-2hnegk",
       "title": "저금리 시대가 다신 안올것처럼 금리가 오르는군요",
       "author": "빈댓글쇄빙선",
       "url": "https://www.clien.net/service/board/park/19257253?od=T31&category=0&groupCd=",
@@ -12276,136 +12415,139 @@
       "commentCount": 10,
       "likeCount": 0,
       "createdAt": "2026-09-02T02:24:33.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-aoxxpv",
-      "title": "조혁당과의 합당이 새로운 분란이 될까봐 걱정스럽네요.",
-      "author": "에드리",
-      "url": "https://www.clien.net/service/board/park/19257252?od=T31&category=0&groupCd=",
+      "id": "clien-1789220768090-pp6zr4",
+      "title": "기본소득 사회에 대해 어떻게 생각하시는지요?",
+      "author": "마라탕",
+      "url": "https://www.clien.net/service/board/park/19256364?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 1352,
-      "commentCount": 22,
+      "viewCount": 3548,
+      "commentCount": 72,
       "likeCount": 1,
-      "createdAt": "2026-09-02T02:21:00.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "createdAt": "2026-08-31T06:22:04.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-y60p4y",
-      "title": "이번작전(?)은 초과세수 빚갚으라네요 ㅋㅋㅋㅋㅋ.txt",
-      "author": "레드핏클",
-      "url": "https://www.clien.net/service/board/park/19257251?od=T31&category=0&groupCd=",
+      "id": "clien-1789220768090-r52hw1",
+      "title": "이대통령의 상황인식.. '우리편이라 다 이해해 줄줄 알았다'- 놀랍네요.",
+      "author": "모두의민주",
+      "url": "https://www.clien.net/service/board/park/19256362?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 5840,
-      "commentCount": 41,
-      "likeCount": 8,
-      "createdAt": "2026-09-02T02:12:30.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "viewCount": 6236,
+      "commentCount": 23,
+      "likeCount": 23,
+      "createdAt": "2026-08-31T06:20:17.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-2xbt3d",
-      "title": "다이슨 신상",
-      "author": "R.A.T.M",
-      "url": "https://www.clien.net/service/board/park/19257250?od=T31&category=0&groupCd=",
+      "id": "clien-1789220768090-rda2jw",
+      "title": "동네 작은(?) 병원도 CT, MRI 있는데 말이에요.GISA",
+      "author": "익명",
+      "url": "https://www.clien.net/service/board/park/19256359?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 5426,
-      "commentCount": 16,
+      "thumbnail": "https://edgio.clien.net/F94/7604984/83082c4863655.gif",
+      "viewCount": 2495,
+      "commentCount": 11,
       "likeCount": 0,
-      "createdAt": "2026-09-02T02:10:01.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "createdAt": "2026-08-31T06:16:30.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-9x9xkd",
-      "title": "서울 아파트 갭 투자.7000건.‘30대·성동·강동·마포구’ 많았다",
-      "author": "종.삼",
-      "url": "https://www.clien.net/service/board/park/19257249?od=T31&category=0&groupCd=",
+      "id": "clien-1789220768090-yxlt9w",
+      "title": "용혜인 사퇴 안하는건 결국 청와대에서 ok한거겠죠....",
+      "author": "익명",
+      "url": "https://www.clien.net/service/board/park/19256358?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 4020,
-      "commentCount": 22,
-      "likeCount": 1,
-      "createdAt": "2026-09-02T02:09:29.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
-    },
-    {
-      "id": "clien-1789218972127-5sop4z",
-      "title": "울란바토르에서",
-      "author": "대현아빠",
-      "url": "https://www.clien.net/service/board/park/19257248?od=T31&category=0&groupCd=",
-      "site": "clien",
-      "siteDisplayName": "클리앙",
-      "siteCategory": "community",
-      "viewCount": 3203,
+      "thumbnail": "https://edgio.clien.net/F94/1085452/c05bde6653e94281be1.gif",
+      "viewCount": 5374,
       "commentCount": 16,
-      "likeCount": 10,
-      "createdAt": "2026-09-02T02:09:15.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "likeCount": 7,
+      "createdAt": "2026-08-31T06:15:23.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972127-s8ygg1",
-      "title": "[속보] 李 대통령 '前 정권이 만든 보릿고개…복지 확대, 좀 더 시간 주시길'",
-      "author": "applemacos",
-      "url": "https://www.clien.net/service/board/park/19257246?od=T31&category=0&groupCd=",
+      "id": "clien-1789220768090-180iry",
+      "title": "(펌)이명수 기자가 전하는 시사타파 보도자료",
+      "author": "키보드유비",
+      "url": "https://www.clien.net/service/board/park/19256356?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 7297,
-      "commentCount": 31,
+      "viewCount": 3137,
+      "commentCount": 5,
+      "likeCount": 5,
+      "createdAt": "2026-08-31T06:12:30.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
+    },
+    {
+      "id": "clien-1789220768090-2omm80",
+      "title": "'2차 계엄이죠?' 정재인 증거 꺼내자, 법원 '발칵'... 계엄 해제 9분 뒤 무슨 일?",
+      "author": "익명",
+      "url": "https://www.clien.net/service/board/park/19256355?od=T31&category=0&groupCd=",
+      "site": "clien",
+      "siteDisplayName": "클리앙",
+      "siteCategory": "community",
+      "thumbnail": "https://edgio.clien.net/F94/2026/8/15806500/2f73dbddafb0a.gif",
+      "viewCount": 4426,
+      "commentCount": 10,
       "likeCount": 8,
-      "createdAt": "2026-09-02T02:04:07.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "createdAt": "2026-08-31T06:09:04.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-sn3jma",
-      "title": "국토부, 차량 자율 주행시 방향지시등 수동 조작 의무",
-      "author": "날아라국장",
-      "url": "https://www.clien.net/service/board/park/19257245?od=T31&category=0&groupCd=",
+      "id": "clien-1789220768090-zepa1k",
+      "title": "정교유착 의혹 정점’ 한학자 통일교 총재, 1심 징역 2년",
+      "author": "루다나리에",
+      "url": "https://www.clien.net/service/board/park/19256354?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 3817,
-      "commentCount": 46,
-      "likeCount": 0,
-      "createdAt": "2026-09-02T02:03:48.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
-    },
-    {
-      "id": "clien-1789218972128-a59qs9",
-      "title": "금리 오른다고 이자 부담 늘거라는데...",
-      "author": "분당킹",
-      "url": "https://www.clien.net/service/board/park/19257243?od=T31&category=0&groupCd=",
-      "site": "clien",
-      "siteDisplayName": "클리앙",
-      "siteCategory": "community",
-      "viewCount": 3960,
-      "commentCount": 30,
-      "likeCount": 2,
-      "createdAt": "2026-09-02T02:01:31.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
-    },
-    {
-      "id": "clien-1789218972128-qzn0x4",
-      "title": "펌]피마새 원시제와 치천제에 대한 법적인 고찰.jpg",
-      "author": "네리어드",
-      "url": "https://www.clien.net/service/board/park/19257242?od=T31&category=0&groupCd=",
-      "site": "clien",
-      "siteDisplayName": "클리앙",
-      "siteCategory": "community",
-      "viewCount": 1295,
+      "viewCount": 959,
       "commentCount": 2,
-      "likeCount": 0,
-      "createdAt": "2026-09-02T01:58:50.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "likeCount": 2,
+      "createdAt": "2026-08-31T06:08:33.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-6uz561",
+      "id": "clien-1789220768090-v46dfp",
+      "title": "저도 한국 레디컬 페미 극혐하지만",
+      "author": "우우자자",
+      "url": "https://www.clien.net/service/board/park/19256350?od=T31&category=0&groupCd=",
+      "site": "clien",
+      "siteDisplayName": "클리앙",
+      "siteCategory": "community",
+      "viewCount": 6467,
+      "commentCount": 56,
+      "likeCount": 18,
+      "createdAt": "2026-08-31T06:03:01.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
+    },
+    {
+      "id": "clien-1789220768090-zxmew7",
+      "title": "당대표와 대통령만 모르는 코어층 지금 빠지는 소리",
+      "author": "love114",
+      "url": "https://www.clien.net/service/board/park/19256349?od=T31&category=0&groupCd=",
+      "site": "clien",
+      "siteDisplayName": "클리앙",
+      "siteCategory": "community",
+      "viewCount": 3002,
+      "commentCount": 16,
+      "likeCount": 7,
+      "createdAt": "2026-08-31T06:02:23.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
+    },
+    {
+      "id": "clien-1789220768090-9t7ls2",
       "title": "이상하네요",
       "author": "aayy1177",
       "url": "https://www.clien.net/service/board/park/19256347?od=T31&category=0&groupCd=",
@@ -12416,10 +12558,10 @@
       "commentCount": 16,
       "likeCount": 0,
       "createdAt": "2026-08-31T05:58:01.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-c5gymt",
+      "id": "clien-1789220768090-wgqygr",
       "title": "신기한게 영양제 안먹다가 먹으니 확 체감이 되네요",
       "author": "행운이온다",
       "url": "https://www.clien.net/service/board/park/19256345?od=T31&category=0&groupCd=",
@@ -12430,10 +12572,10 @@
       "commentCount": 18,
       "likeCount": 1,
       "createdAt": "2026-08-31T05:52:35.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-pd3rh4",
+      "id": "clien-1789220768090-ie1xyw",
       "title": "[속보] ‘尹정부 정교유착’.통일교 총재.징역 2년",
       "author": "종.삼",
       "url": "https://www.clien.net/service/board/park/19256344?od=T31&category=0&groupCd=",
@@ -12444,10 +12586,10 @@
       "commentCount": 10,
       "likeCount": 4,
       "createdAt": "2026-08-31T05:52:22.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-i7k5xf",
+      "id": "clien-1789220768090-oaf148",
       "title": "이해해줄 줄 알았는데... 라구요?",
       "author": "gonzalo이과2",
       "url": "https://www.clien.net/service/board/park/19256343?od=T31&category=0&groupCd=",
@@ -12458,10 +12600,10 @@
       "commentCount": 1,
       "likeCount": 2,
       "createdAt": "2026-08-31T05:51:27.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-tk6din",
+      "id": "clien-1789220768090-ozbmw2",
       "title": "용혜인은 워낙 무관심이였는데요",
       "author": "가딩",
       "url": "https://www.clien.net/service/board/park/19256341?od=T31&category=0&groupCd=",
@@ -12472,10 +12614,10 @@
       "commentCount": 16,
       "likeCount": 3,
       "createdAt": "2026-08-31T05:49:56.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-xegymv",
+      "id": "clien-1789220768090-znfpes",
       "title": "이재영 민주연구원장 사의 표명했네요",
       "author": "90까지갑시다",
       "url": "https://www.clien.net/service/board/park/19256340?od=T31&category=0&groupCd=",
@@ -12486,10 +12628,10 @@
       "commentCount": 3,
       "likeCount": 0,
       "createdAt": "2026-08-31T05:49:04.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-brutg3",
+      "id": "clien-1789220768090-ug47ca",
       "title": "회사원들은 아시겟지만.. 무슨 위원회, TFT 많으면 회사 망합니다",
       "author": "회천의 결단",
       "url": "https://www.clien.net/service/board/park/19256339?od=T31&category=0&groupCd=",
@@ -12500,10 +12642,10 @@
       "commentCount": 8,
       "likeCount": 2,
       "createdAt": "2026-08-31T05:48:29.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-55lpme",
+      "id": "clien-1789220768090-wlq8fa",
       "title": "리얼미터 여론조사 개인적인 분석 (심리적 분당 상황이네요)",
       "author": "Riverside",
       "url": "https://www.clien.net/service/board/park/19256336?od=T31&category=0&groupCd=",
@@ -12514,10 +12656,10 @@
       "commentCount": 9,
       "likeCount": 1,
       "createdAt": "2026-08-31T05:43:35.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-86f2f4",
+      "id": "clien-1789220768090-4r6cu5",
       "title": "경험적으로 보면.. 운동권들 특히 NL은 괘미 우습게 봅니다...",
       "author": "회천의 결단",
       "url": "https://www.clien.net/service/board/park/19256335?od=T31&category=0&groupCd=",
@@ -12528,10 +12670,10 @@
       "commentCount": 9,
       "likeCount": 0,
       "createdAt": "2026-08-31T05:42:24.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-xz1bxn",
+      "id": "clien-1789220768090-rivdzn",
       "title": "국민권익위원회를 부패보호위원회라고 불러야겠습니다.",
       "author": "법불아귀",
       "url": "https://www.clien.net/service/board/park/19256334?od=T31&category=0&groupCd=",
@@ -12542,10 +12684,10 @@
       "commentCount": 2,
       "likeCount": 0,
       "createdAt": "2026-08-31T05:41:04.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-0oxflm",
+      "id": "clien-1789220768090-u9otve",
       "title": "용혜인 장관직 지명은 유시민 달래기 인사 입니다.",
       "author": "주주아노",
       "url": "https://www.clien.net/service/board/park/19256333?od=T31&category=0&groupCd=",
@@ -12556,10 +12698,10 @@
       "commentCount": 43,
       "likeCount": 0,
       "createdAt": "2026-08-31T05:38:40.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-fq0u3c",
+      "id": "clien-1789220768090-3qlpkb",
       "title": "선거민주주의에 대한 회의감이 이해가 됩니다...",
       "author": "회천의 결단",
       "url": "https://www.clien.net/service/board/park/19256332?od=T31&category=0&groupCd=",
@@ -12570,10 +12712,10 @@
       "commentCount": 6,
       "likeCount": 3,
       "createdAt": "2026-08-31T05:36:45.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-2wh27m",
+      "id": "clien-1789220768090-5myq9b",
       "title": "요즘은 로그인을 자주 하게 되네요.",
       "author": "시뮬레이션",
       "url": "https://www.clien.net/service/board/park/19256331?od=T31&category=0&groupCd=",
@@ -12584,10 +12726,10 @@
       "commentCount": 2,
       "likeCount": 3,
       "createdAt": "2026-08-31T05:34:28.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-2igtpz",
+      "id": "clien-1789220768090-iworis",
       "title": "페미 묻으면 망하는 이유.",
       "author": "크로아츠",
       "url": "https://www.clien.net/service/board/park/19256330?od=T31&category=0&groupCd=",
@@ -12598,10 +12740,10 @@
       "commentCount": 15,
       "likeCount": 9,
       "createdAt": "2026-08-31T05:31:02.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-04skm0",
+      "id": "clien-1789220768090-6vgc18",
       "title": "[단독] 용혜인 '육아휴직한 남편, 경력 단절 걱정' … 알고 보니 남편은 기본소득당 당",
       "author": "잼민이",
       "url": "https://www.clien.net/service/board/park/19256328?od=T31&category=0&groupCd=",
@@ -12612,10 +12754,10 @@
       "commentCount": 37,
       "likeCount": 11,
       "createdAt": "2026-08-31T05:20:16.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-o3jpgp",
+      "id": "clien-1789220768090-p64v4k",
       "title": "청와대 인사가 개판이긴 하네요",
       "author": "가딩",
       "url": "https://www.clien.net/service/board/park/19256327?od=T31&category=0&groupCd=",
@@ -12626,10 +12768,10 @@
       "commentCount": 43,
       "likeCount": 5,
       "createdAt": "2026-08-31T05:19:48.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-j62tj9",
+      "id": "clien-1789220768090-1pavin",
       "title": "오늘 주식 대반전이네요",
       "author": "이지라이프",
       "url": "https://www.clien.net/service/board/park/19256325?od=T31&category=0&groupCd=",
@@ -12640,24 +12782,24 @@
       "commentCount": 8,
       "likeCount": 1,
       "createdAt": "2026-08-31T05:11:21.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-ods06m",
+      "id": "clien-1789220768090-mjp33r",
       "title": "여가부는 아예 가족부로 이름 바꿔서 가족 관련 업무에 집중하는게 베스트",
       "author": "회천의 결단",
       "url": "https://www.clien.net/service/board/park/19256324?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 1960,
+      "viewCount": 1961,
       "commentCount": 10,
       "likeCount": 1,
       "createdAt": "2026-08-31T05:07:37.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-ibf481",
+      "id": "clien-1789220768090-q1viqh",
       "title": "어도비 포토샵(라이트룸) 숨겨진 13000원 플랜",
       "author": "memories_",
       "url": "https://www.clien.net/service/board/park/19256323?od=T31&category=0&groupCd=",
@@ -12668,10 +12810,10 @@
       "commentCount": 10,
       "likeCount": 0,
       "createdAt": "2026-08-31T05:06:50.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-jdq20g",
+      "id": "clien-1789220768090-tr6kc3",
       "title": "진짜 지지율",
       "author": "tjfwogns",
       "url": "https://www.clien.net/service/board/park/19256322?od=T31&category=0&groupCd=",
@@ -12682,10 +12824,10 @@
       "commentCount": 12,
       "likeCount": 11,
       "createdAt": "2026-08-31T05:03:29.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-6uifza",
+      "id": "clien-1789220768090-8wbqan",
       "title": "“무주택자면 누구든 입주” 홍지선 국토부장관 후보자, 주택공급 숙원 이룰까",
       "author": "하늘풀",
       "url": "https://www.clien.net/service/board/park/19256321?od=T31&category=0&groupCd=",
@@ -12696,123 +12838,137 @@
       "commentCount": 12,
       "likeCount": 0,
       "createdAt": "2026-08-31T05:03:03.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-xk3ez3",
-      "title": "성평등가족부 공식 여성폭력 보도지침 및 행동강령",
-      "author": "양자광학",
-      "url": "https://www.clien.net/service/board/park/19256319?od=T31&category=0&groupCd=",
+      "id": "clien-1789220768090-kj17kb",
+      "title": "반도체 향후 전망에 대해..",
+      "author": "컴구조",
+      "url": "https://www.clien.net/service/board/park/19255529?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 3121,
-      "commentCount": 19,
-      "likeCount": 3,
-      "createdAt": "2026-08-31T05:00:26.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
-    },
-    {
-      "id": "clien-1789218972128-58vzi0",
-      "title": "박재홍씨 짤렸나요?",
-      "author": "하타타타",
-      "url": "https://www.clien.net/service/board/park/19256318?od=T31&category=0&groupCd=",
-      "site": "clien",
-      "siteDisplayName": "클리앙",
-      "siteCategory": "community",
-      "viewCount": 2825,
-      "commentCount": 4,
-      "likeCount": 0,
-      "createdAt": "2026-08-31T05:00:16.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
-    },
-    {
-      "id": "clien-1789218972128-r460as",
-      "title": "용혜인 '의원직 사퇴 시 원외 전락…소수정당 어려움 양해 부탁'",
-      "author": "90까지갑시다",
-      "url": "https://www.clien.net/service/board/park/19256317?od=T31&category=0&groupCd=",
-      "site": "clien",
-      "siteDisplayName": "클리앙",
-      "siteCategory": "community",
-      "viewCount": 5371,
-      "commentCount": 39,
-      "likeCount": 0,
-      "createdAt": "2026-08-31T04:58:36.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
-    },
-    {
-      "id": "clien-1789218972128-kufdeq",
-      "title": "이성윤 최고의원 보좌관 갑질 사건은 왜 조용할까요?",
-      "author": "yujjing",
-      "url": "https://www.clien.net/service/board/park/19256315?od=T31&category=0&groupCd=",
-      "site": "clien",
-      "siteDisplayName": "클리앙",
-      "siteCategory": "community",
-      "viewCount": 1206,
-      "commentCount": 2,
-      "likeCount": 3,
-      "createdAt": "2026-08-31T04:57:02.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
-    },
-    {
-      "id": "clien-1789218972128-gwze7a",
-      "title": "빠니보틀 결혼하네요 ㄷ ㄷ ㄷ",
-      "author": "누가기침소리",
-      "url": "https://www.clien.net/service/board/park/19256311?od=T31&category=0&groupCd=",
-      "site": "clien",
-      "siteDisplayName": "클리앙",
-      "siteCategory": "community",
-      "viewCount": 7492,
-      "commentCount": 9,
+      "viewCount": 9520,
+      "commentCount": 37,
       "likeCount": 1,
-      "createdAt": "2026-08-31T04:50:07.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "createdAt": "2026-08-29T16:21:11.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-o693q9",
-      "title": "이참에 국회의원의 총리/장관 겸직허용 규정은 개정되었으면 좋겠습니다.",
+      "id": "clien-1789220768090-xy46yf",
+      "title": "임대는 본질적으로 공급을 막는 이유",
+      "author": "Fjnekwkd",
+      "url": "https://www.clien.net/service/board/park/19255527?od=T31&category=0&groupCd=",
+      "site": "clien",
+      "siteDisplayName": "클리앙",
+      "siteCategory": "community",
+      "viewCount": 5756,
+      "commentCount": 28,
+      "likeCount": 8,
+      "createdAt": "2026-08-29T16:09:35.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
+    },
+    {
+      "id": "clien-1789220768090-0i2ry8",
+      "title": "남자피겨 최하빈 주니어그랑프리2차 우승",
+      "author": "OKComputer",
+      "url": "https://www.clien.net/service/board/park/19255521?od=T31&category=0&groupCd=",
+      "site": "clien",
+      "siteDisplayName": "클리앙",
+      "siteCategory": "community",
+      "viewCount": 1912,
+      "commentCount": 3,
+      "likeCount": 4,
+      "createdAt": "2026-08-29T15:36:12.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
+    },
+    {
+      "id": "clien-1789220768090-4wyr1c",
+      "title": "다음 주 부터는 최고기온 30도 이하로 내려가고 열대야도 끝나는군요.",
       "author": "익명",
-      "url": "https://www.clien.net/service/board/park/19256310?od=T31&category=0&groupCd=",
+      "url": "https://www.clien.net/service/board/park/19255519?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "thumbnail": "https://edgio.clien.net/F94/1087151/0770a9313e3d45efa3a.gif",
-      "viewCount": 1646,
+      "thumbnail": "https://edgio.clien.net/F94/14023204/d32f878510894.gif",
+      "viewCount": 6134,
       "commentCount": 7,
-      "likeCount": 10,
-      "createdAt": "2026-08-31T04:48:44.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "likeCount": 1,
+      "createdAt": "2026-08-29T15:33:16.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-osjkxn",
-      "title": "네팔 홍수로 인한 중국과 네팔간의 신경전/히말라야 등반이 부추기는 재난",
-      "author": "루다나리에",
-      "url": "https://www.clien.net/service/board/park/19256309?od=T31&category=0&groupCd=",
+      "id": "clien-1789220768090-7mubyo",
+      "title": "🌌 [러블리즈] 예인 예란하나 권은비 편 / 배텐, 미주 공포특집 / 웅장한 아이돌 / 신",
+      "author": "224-rainbow",
+      "url": "https://www.clien.net/service/board/park/19255510?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 2441,
-      "commentCount": 1,
+      "viewCount": 1916,
+      "commentCount": 2,
+      "likeCount": 2,
+      "createdAt": "2026-08-29T15:00:00.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
+    },
+    {
+      "id": "clien-1789220768090-8imsn9",
+      "title": "진짜 레이니75는 역대급 키보드는 맞네요",
+      "author": "love114",
+      "url": "https://www.clien.net/service/board/park/19255509?od=T31&category=0&groupCd=",
+      "site": "clien",
+      "siteDisplayName": "클리앙",
+      "siteCategory": "community",
+      "viewCount": 6188,
+      "commentCount": 10,
       "likeCount": 0,
-      "createdAt": "2026-08-31T04:46:10.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "createdAt": "2026-08-29T14:52:14.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-0jbgnn",
-      "title": "아직도 남녀 임금격차를 주장하는 모자란 시각이 있네요.",
-      "author": "경원",
-      "url": "https://www.clien.net/service/board/park/19256308?od=T31&category=0&groupCd=",
+      "id": "clien-1789220768090-575kt0",
+      "title": "김민석이 조희대 대법관 내란을 막으리라 믿습니다.",
+      "author": "jj34",
+      "url": "https://www.clien.net/service/board/park/19255508?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 5997,
-      "commentCount": 80,
-      "likeCount": 16,
-      "createdAt": "2026-08-31T04:43:55.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "viewCount": 4361,
+      "commentCount": 10,
+      "likeCount": 1,
+      "createdAt": "2026-08-29T14:50:45.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-a899ad",
+      "id": "clien-1789220768090-usu9ry",
+      "title": "이젠 무안공항 참사도 이재명 탓을 하고 싶으신분이 있네요..",
+      "author": "yujjing",
+      "url": "https://www.clien.net/service/board/park/19255506?od=T31&category=0&groupCd=",
+      "site": "clien",
+      "siteDisplayName": "클리앙",
+      "siteCategory": "community",
+      "viewCount": 4237,
+      "commentCount": 20,
+      "likeCount": 11,
+      "createdAt": "2026-08-29T14:48:53.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
+    },
+    {
+      "id": "clien-1789220768090-wasvbk",
+      "title": "조희대 다음 주...",
+      "author": "wildwaves",
+      "url": "https://www.clien.net/service/board/park/19255504?od=T31&category=0&groupCd=",
+      "site": "clien",
+      "siteDisplayName": "클리앙",
+      "siteCategory": "community",
+      "viewCount": 4037,
+      "commentCount": 4,
+      "likeCount": 6,
+      "createdAt": "2026-08-29T14:41:17.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
+    },
+    {
+      "id": "clien-1789220768090-rejv9n",
       "title": "나이 40이 다 되어 샤프를 사봅니다..",
       "author": "개미상어곰탕",
       "url": "https://www.clien.net/service/board/park/19255503?od=T31&category=0&groupCd=",
@@ -12823,10 +12979,10 @@
       "commentCount": 10,
       "likeCount": 1,
       "createdAt": "2026-08-29T14:33:24.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-9dd0xs",
+      "id": "clien-1789220768090-d9319g",
       "title": "이 분도 젊은 나이에 심장마비로 돌아가셔서 안타까웠죠.",
       "author": "익명",
       "url": "https://www.clien.net/service/board/park/19255502?od=T31&category=0&groupCd=",
@@ -12838,10 +12994,10 @@
       "commentCount": 9,
       "likeCount": 1,
       "createdAt": "2026-08-29T14:31:58.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-5871r0",
+      "id": "clien-1789220768090-3jd6vo",
       "title": "늦은밤 오디세이 보고 나왔습니다",
       "author": "자게잇힝",
       "url": "https://www.clien.net/service/board/park/19255501?od=T31&category=0&groupCd=",
@@ -12852,10 +13008,10 @@
       "commentCount": 1,
       "likeCount": 1,
       "createdAt": "2026-08-29T14:31:52.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-fn9z6u",
+      "id": "clien-1789220768090-uadsr9",
       "title": "ai들이 우기는건 왜 그런걸까요?",
       "author": "익명",
       "url": "https://www.clien.net/service/board/park/19255499?od=T31&category=0&groupCd=",
@@ -12867,10 +13023,10 @@
       "commentCount": 13,
       "likeCount": 1,
       "createdAt": "2026-08-29T14:27:58.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-niepls",
+      "id": "clien-1789220768090-wfw0d9",
       "title": "수입멸균우유 가격 엄청 올라서 이젠 가성비가 아니네요",
       "author": "racoooon",
       "url": "https://www.clien.net/service/board/park/19255498?od=T31&category=0&groupCd=",
@@ -12881,10 +13037,10 @@
       "commentCount": 9,
       "likeCount": 0,
       "createdAt": "2026-08-29T14:20:53.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-yisn9z",
+      "id": "clien-1789220768090-kimpeh",
       "title": "뉴재명들 벌써 내년 서울보궐판으로 김용 국회의원 만들려고 하나봅니다.",
       "author": "칙칙초코",
       "url": "https://www.clien.net/service/board/park/19255497?od=T31&category=0&groupCd=",
@@ -12895,10 +13051,10 @@
       "commentCount": 15,
       "likeCount": 3,
       "createdAt": "2026-08-29T14:18:54.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-pglrlv",
+      "id": "clien-1789220768090-8ogn6y",
       "title": "정수리 탈모끼가 있는걸까요? 사진 있습니다 봐주세요ㅠ",
       "author": "룰러팬",
       "url": "https://www.clien.net/service/board/park/19255496?od=T31&category=0&groupCd=",
@@ -12909,10 +13065,10 @@
       "commentCount": 18,
       "likeCount": 2,
       "createdAt": "2026-08-29T14:18:45.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-jktgt8",
+      "id": "clien-1789220768090-jxchzr",
       "title": "네이버 지도의 세계화...?",
       "author": "익명",
       "url": "https://www.clien.net/service/board/park/19255495?od=T31&category=0&groupCd=",
@@ -12924,10 +13080,10 @@
       "commentCount": 12,
       "likeCount": 2,
       "createdAt": "2026-08-29T14:14:28.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-2puiv1",
+      "id": "clien-1789220768090-z0bii2",
       "title": "아무리 생각해도 이정부의 최대 리스크는 김민석",
       "author": "참교육자곽슨생",
       "url": "https://www.clien.net/service/board/park/19255493?od=T31&category=0&groupCd=",
@@ -12938,10 +13094,10 @@
       "commentCount": 14,
       "likeCount": 15,
       "createdAt": "2026-08-29T14:01:13.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-8gbik7",
+      "id": "clien-1789220768090-i4qa3t",
       "title": "유튜브, 과학) 한국 고등학생들이 이정도 논문도 쓴다니 대단합니다 ㅠ_ㅠ!",
       "author": "Juzis",
       "url": "https://www.clien.net/service/board/park/19255492?od=T31&category=0&groupCd=",
@@ -12952,10 +13108,10 @@
       "commentCount": 4,
       "likeCount": 2,
       "createdAt": "2026-08-29T13:48:01.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-ynxpba",
+      "id": "clien-1789220768090-cd13r1",
       "title": "한우 가격 조사하다가 살짝 멍해졌습니다. ㄷㄷㄷ",
       "author": "익명",
       "url": "https://www.clien.net/service/board/park/19255491?od=T31&category=0&groupCd=",
@@ -12967,10 +13123,10 @@
       "commentCount": 20,
       "likeCount": 0,
       "createdAt": "2026-08-29T13:44:42.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-vw6ar1",
+      "id": "clien-1789220768090-jpcvrc",
       "title": "이용주 배우 푸른거탑에서 그 어리버리한 신병 연기를",
       "author": "클턍2",
       "url": "https://www.clien.net/service/board/park/19255490?od=T31&category=0&groupCd=",
@@ -12981,10 +13137,10 @@
       "commentCount": 3,
       "likeCount": 2,
       "createdAt": "2026-08-29T13:41:12.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-vwhrz8",
+      "id": "clien-1789220768090-ghp65v",
       "title": "총력전이 끝나기 어려운 이유",
       "author": "lcoy",
       "url": "https://www.clien.net/service/board/park/19255489?od=T31&category=0&groupCd=",
@@ -12995,10 +13151,10 @@
       "commentCount": 4,
       "likeCount": 0,
       "createdAt": "2026-08-29T13:40:57.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-7ytmwg",
+      "id": "clien-1789220768090-ka1wf5",
       "title": "구글 검색창에 5/3 해보세유",
       "author": "R.A.T.M",
       "url": "https://www.clien.net/service/board/park/19255488?od=T31&category=0&groupCd=",
@@ -13009,10 +13165,10 @@
       "commentCount": 6,
       "likeCount": 0,
       "createdAt": "2026-08-29T13:39:57.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-pztas6",
+      "id": "clien-1789220768090-2bwwng",
       "title": "이케아 대구점이 대구 신세계에 개장했군요.",
       "author": "익명",
       "url": "https://www.clien.net/service/board/park/19255487?od=T31&category=0&groupCd=",
@@ -13024,24 +13180,24 @@
       "commentCount": 9,
       "likeCount": 0,
       "createdAt": "2026-08-29T13:39:12.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-6v4frj",
+      "id": "clien-1789220768090-yc63mv",
       "title": "광주 반도체대비 동복댐 증설",
       "author": "플레이아데스",
       "url": "https://www.clien.net/service/board/park/19255486?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 3534,
+      "viewCount": 3535,
       "commentCount": 18,
       "likeCount": 1,
       "createdAt": "2026-08-29T13:33:11.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-7exhxd",
+      "id": "clien-1789220768090-66iv8c",
       "title": "일본 자우림 공연장",
       "author": "memorobot",
       "url": "https://www.clien.net/service/board/park/19255485?od=T31&category=0&groupCd=",
@@ -13052,24 +13208,24 @@
       "commentCount": 0,
       "likeCount": 2,
       "createdAt": "2026-08-29T13:20:39.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-91azk7",
+      "id": "clien-1789220768090-31nuus",
       "title": "아직도 푸른거탑 유튭에서 보구 있는데",
       "author": "소담나수",
       "url": "https://www.clien.net/service/board/park/19255484?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 1992,
+      "viewCount": 1993,
       "commentCount": 0,
       "likeCount": 1,
       "createdAt": "2026-08-29T13:14:53.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-5z6flu",
+      "id": "clien-1789220768090-yv2tqo",
       "title": "대법관 증원법은 위험한거아닌가요",
       "author": "도로뇨뇨뇽",
       "url": "https://www.clien.net/service/board/park/19255483?od=T31&category=0&groupCd=",
@@ -13080,24 +13236,24 @@
       "commentCount": 24,
       "likeCount": 0,
       "createdAt": "2026-08-29T13:03:52.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-uttbsb",
+      "id": "clien-1789220768090-7y1hvw",
       "title": "새천년nhk 김ㅇ석씨. 라고 이진숙이 조롱한 것 같네요.",
       "author": "네로넘볼",
       "url": "https://www.clien.net/service/board/park/19255482?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 4864,
+      "viewCount": 4866,
       "commentCount": 26,
       "likeCount": 5,
       "createdAt": "2026-08-29T12:59:05.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-ovyl3o",
+      "id": "clien-1789220768090-wt5qri",
       "title": "늦은 밤 '치킨'을 주문했다면!‥야식증후군 피할 방법은?",
       "author": "루다나리에",
       "url": "https://www.clien.net/service/board/park/19255481?od=T31&category=0&groupCd=",
@@ -13108,137 +13264,136 @@
       "commentCount": 2,
       "likeCount": 1,
       "createdAt": "2026-08-29T12:54:45.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-lhgg69",
-      "title": "저도 페이블 5.1, 아스트라 모델 스텔스로 받은 거 같네요 ㄷㄷ",
-      "author": "언어분석",
-      "url": "https://www.clien.net/service/board/park/19255480?od=T31&category=0&groupCd=",
+      "id": "clien-1789220768090-nrueb1",
+      "title": "이재오 '장동혁 그만두는 게 국.힘 가장 큰 쇄신'",
+      "author": "종.삼",
+      "url": "https://www.clien.net/service/board/park/19254643?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 3342,
-      "commentCount": 4,
-      "likeCount": 0,
-      "createdAt": "2026-08-29T12:41:36.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
-    },
-    {
-      "id": "clien-1789218972128-qk19za",
-      "title": "배우 이용주 별세 (향년44세)",
-      "author": "낭만자연인",
-      "url": "https://www.clien.net/service/board/park/19255478?od=T31&category=0&groupCd=",
-      "site": "clien",
-      "siteDisplayName": "클리앙",
-      "siteCategory": "community",
-      "viewCount": 9158,
-      "commentCount": 18,
-      "likeCount": 0,
-      "createdAt": "2026-08-29T12:30:43.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
-    },
-    {
-      "id": "clien-1789218972128-skm6qs",
-      "title": "방송사 메인 뉴스 TOP 4 - 2026년 8월 29일(260829)",
-      "author": "번쩍번쩍아콘",
-      "url": "https://www.clien.net/service/board/park/19255477?od=T31&category=0&groupCd=",
-      "site": "clien",
-      "siteDisplayName": "클리앙",
-      "siteCategory": "community",
-      "viewCount": 732,
-      "commentCount": 1,
-      "likeCount": 1,
-      "createdAt": "2026-08-29T12:27:36.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
-    },
-    {
-      "id": "clien-1789218972128-zjced2",
-      "title": "(서울, 경기 시군구별) '신축' 아파트 매매 실거래가 (평균) [26년 5월~7월]",
-      "author": "언어분석",
-      "url": "https://www.clien.net/service/board/park/19255475?od=T31&category=0&groupCd=",
-      "site": "clien",
-      "siteDisplayName": "클리앙",
-      "siteCategory": "community",
-      "viewCount": 3358,
-      "commentCount": 2,
-      "likeCount": 0,
-      "createdAt": "2026-08-29T12:24:54.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
-    },
-    {
-      "id": "clien-1789218972128-d2kt53",
-      "title": "네이버 지도 갈수록 너무 무거워지는거 같아요",
-      "author": "아쿠아루비",
-      "url": "https://www.clien.net/service/board/park/19255474?od=T31&category=0&groupCd=",
-      "site": "clien",
-      "siteDisplayName": "클리앙",
-      "siteCategory": "community",
-      "viewCount": 4901,
-      "commentCount": 10,
-      "likeCount": 3,
-      "createdAt": "2026-08-29T12:22:57.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
-    },
-    {
-      "id": "clien-1789218972128-0fv4pu",
-      "title": "한국이 기후 바뀌니 기존 냉방시설이 정신을 못차리네요",
-      "author": "가라피그",
-      "url": "https://www.clien.net/service/board/park/19255473?od=T31&category=0&groupCd=",
-      "site": "clien",
-      "siteDisplayName": "클리앙",
-      "siteCategory": "community",
-      "viewCount": 4568,
-      "commentCount": 0,
-      "likeCount": 1,
-      "createdAt": "2026-08-29T12:20:39.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
-    },
-    {
-      "id": "clien-1789218972128-99e3y9",
-      "title": "인생의 힘든 시간을 보낼 때 도움될 음악 들고 왔어요",
-      "author": "데이스타777",
-      "url": "https://www.clien.net/service/board/park/19255471?od=T31&category=0&groupCd=",
-      "site": "clien",
-      "siteDisplayName": "클리앙",
-      "siteCategory": "community",
-      "viewCount": 1753,
-      "commentCount": 2,
-      "likeCount": 2,
-      "createdAt": "2026-08-29T12:10:25.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
-    },
-    {
-      "id": "clien-1789218972128-1jtjga",
-      "title": "GTA6 방치 플레이가 될 것 같은데요?",
-      "author": "천문공",
-      "url": "https://www.clien.net/service/board/park/19255470?od=T31&category=0&groupCd=",
-      "site": "clien",
-      "siteDisplayName": "클리앙",
-      "siteCategory": "community",
-      "viewCount": 4853,
+      "viewCount": 941,
       "commentCount": 3,
       "likeCount": 0,
-      "createdAt": "2026-08-29T12:00:04.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "createdAt": "2026-08-27T22:23:26.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-0357nk",
-      "title": "동학수당으로 한번 뚫리니",
-      "author": "익명",
-      "url": "https://www.clien.net/service/board/park/19255469?od=T31&category=0&groupCd=",
+      "id": "clien-1789220768090-1wefn7",
+      "title": "김민석 열받게 하네요",
+      "author": "야쿠르트1",
+      "url": "https://www.clien.net/service/board/park/19254642?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "thumbnail": "https://edgio.clien.net/F94/1090608/9695cadd03974159b5d.gif",
-      "viewCount": 7034,
-      "commentCount": 21,
-      "likeCount": 16,
-      "createdAt": "2026-08-29T11:56:34.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "viewCount": 7965,
+      "commentCount": 29,
+      "likeCount": 43,
+      "createdAt": "2026-08-27T22:11:47.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-49sz1d",
+      "id": "clien-1789220768090-wc2o0e",
+      "title": "정청래 욕하던 프레임 김승현님 이 잘 설명하시네요",
+      "author": "늬나",
+      "url": "https://www.clien.net/service/board/park/19254641?od=T31&category=0&groupCd=",
+      "site": "clien",
+      "siteDisplayName": "클리앙",
+      "siteCategory": "community",
+      "viewCount": 3426,
+      "commentCount": 22,
+      "likeCount": 20,
+      "createdAt": "2026-08-27T22:10:48.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
+    },
+    {
+      "id": "clien-1789220768090-1cdp3f",
+      "title": "디젤 기관차 국산화 성공을 보고",
+      "author": "브람슈만",
+      "url": "https://www.clien.net/service/board/park/19254639?od=T31&category=0&groupCd=",
+      "site": "clien",
+      "siteDisplayName": "클리앙",
+      "siteCategory": "community",
+      "viewCount": 3755,
+      "commentCount": 11,
+      "likeCount": 0,
+      "createdAt": "2026-08-27T22:05:58.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
+    },
+    {
+      "id": "clien-1789220768090-l1kqny",
+      "title": "주식이 지지율 하락에 젤 원인이 크지 않을까요",
+      "author": "한량같은사람",
+      "url": "https://www.clien.net/service/board/park/19254638?od=T31&category=0&groupCd=",
+      "site": "clien",
+      "siteDisplayName": "클리앙",
+      "siteCategory": "community",
+      "viewCount": 4236,
+      "commentCount": 18,
+      "likeCount": 0,
+      "createdAt": "2026-08-27T22:05:46.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
+    },
+    {
+      "id": "clien-1789220768090-ok1wvv",
+      "title": "반명? 진영에서 가지는 현 상황의 문제점",
+      "author": "제로윙",
+      "url": "https://www.clien.net/service/board/park/19254637?od=T31&category=0&groupCd=",
+      "site": "clien",
+      "siteDisplayName": "클리앙",
+      "siteCategory": "community",
+      "viewCount": 803,
+      "commentCount": 2,
+      "likeCount": 0,
+      "createdAt": "2026-08-27T22:01:56.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
+    },
+    {
+      "id": "clien-1789220768090-arnzyf",
+      "title": "골판지 일본, 이번엔 자위대 드론이다",
+      "author": "꼬복이2000",
+      "url": "https://www.clien.net/service/board/park/19254636?od=T31&category=0&groupCd=",
+      "site": "clien",
+      "siteDisplayName": "클리앙",
+      "siteCategory": "community",
+      "viewCount": 3714,
+      "commentCount": 11,
+      "likeCount": 1,
+      "createdAt": "2026-08-27T21:58:19.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
+    },
+    {
+      "id": "clien-1789220768090-ojbiu0",
+      "title": "사내답지 못한 이동형,",
+      "author": "analogue_holic",
+      "url": "https://www.clien.net/service/board/park/19254635?od=T31&category=0&groupCd=",
+      "site": "clien",
+      "siteDisplayName": "클리앙",
+      "siteCategory": "community",
+      "viewCount": 7586,
+      "commentCount": 75,
+      "likeCount": 12,
+      "createdAt": "2026-08-27T21:41:15.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
+    },
+    {
+      "id": "clien-1789220768090-c36mgp",
+      "title": "삼성전자, ‘갤럭시 S26 FE’ 공개",
+      "author": "_딘_",
+      "url": "https://www.clien.net/service/board/park/19254634?od=T31&category=0&groupCd=",
+      "site": "clien",
+      "siteDisplayName": "클리앙",
+      "siteCategory": "community",
+      "viewCount": 6150,
+      "commentCount": 10,
+      "likeCount": 0,
+      "createdAt": "2026-08-27T21:30:22.000Z",
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
+    },
+    {
+      "id": "clien-1789220768090-kj5oxi",
       "title": "구글 검색에 제 클리앙 회원정보를 검색해 보았습니다.",
       "author": "4fifty5",
       "url": "https://www.clien.net/service/board/park/19254633?od=T31&category=0&groupCd=",
@@ -13249,10 +13404,10 @@
       "commentCount": 2,
       "likeCount": 1,
       "createdAt": "2026-08-27T21:26:49.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-6sazy0",
+      "id": "clien-1789220768090-6ljmlw",
       "title": "[방산뉴스] 미국, 핵잠수함 있으면 뭐하나. 정비도 못해 날리는 돈 천문학적.",
       "author": "파이어폭스",
       "url": "https://www.clien.net/service/board/park/19254631?od=T31&category=0&groupCd=",
@@ -13263,10 +13418,10 @@
       "commentCount": 2,
       "likeCount": 1,
       "createdAt": "2026-08-27T21:17:05.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-j6j3ap",
+      "id": "clien-1789220768090-pashxw",
       "title": "타임 표지 근황",
       "author": "몸튼튼맘튼튼",
       "url": "https://www.clien.net/service/board/park/19254630?od=T31&category=0&groupCd=",
@@ -13277,10 +13432,10 @@
       "commentCount": 2,
       "likeCount": 2,
       "createdAt": "2026-08-27T21:09:06.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-fv0ru2",
+      "id": "clien-1789220768090-7qhr0i",
       "title": "로만시스, 신형 디젤전기기관차 1호차 출고",
       "author": "_딘_",
       "url": "https://www.clien.net/service/board/park/19254628?od=T31&category=0&groupCd=",
@@ -13291,10 +13446,10 @@
       "commentCount": 3,
       "likeCount": 0,
       "createdAt": "2026-08-27T20:52:14.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-pjebki",
+      "id": "clien-1789220768090-4fx1vm",
       "title": "신형 기관단총 K17 언박싱과 실사격 자료",
       "author": "_딘_",
       "url": "https://www.clien.net/service/board/park/19254627?od=T31&category=0&groupCd=",
@@ -13305,10 +13460,10 @@
       "commentCount": 3,
       "likeCount": 0,
       "createdAt": "2026-08-27T20:44:31.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-qggzcl",
+      "id": "clien-1789220768090-belxak",
       "title": "카자흐 알마티 “전현무 촬영 지원”…나혼산 “조작 아냐, 즉흥여행 협찬 없었다” ???",
       "author": "익명",
       "url": "https://www.clien.net/service/board/park/19254626?od=T31&category=0&groupCd=",
@@ -13320,10 +13475,10 @@
       "commentCount": 19,
       "likeCount": 3,
       "createdAt": "2026-08-27T20:40:22.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-e2ef3t",
+      "id": "clien-1789220768090-mroc4p",
       "title": "웨이모와 테슬라 로보택시",
       "author": "몸튼튼맘튼튼",
       "url": "https://www.clien.net/service/board/park/19254625?od=T31&category=0&groupCd=",
@@ -13334,10 +13489,10 @@
       "commentCount": 5,
       "likeCount": 1,
       "createdAt": "2026-08-27T20:27:51.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-oyhimi",
+      "id": "clien-1789220768090-n8fip9",
       "title": "정봉주가 먹는 독사과",
       "author": "야쿠르트1",
       "url": "https://www.clien.net/service/board/park/19254623?od=T31&category=0&groupCd=",
@@ -13348,10 +13503,10 @@
       "commentCount": 12,
       "likeCount": 3,
       "createdAt": "2026-08-27T20:16:16.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-wmwq1n",
+      "id": "clien-1789220768090-9ndm80",
       "title": "SK가 일 잘 하네요. '한국 지킨 美노병에 기립박수…SK, 일자리로 한미동맹 잇는다'",
       "author": "airpenny3",
       "url": "https://www.clien.net/service/board/park/19254621?od=T31&category=0&groupCd=",
@@ -13362,10 +13517,10 @@
       "commentCount": 4,
       "likeCount": 7,
       "createdAt": "2026-08-27T19:37:47.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-1772t0",
+      "id": "clien-1789220768090-ik90ha",
       "title": "[방산뉴스] 미 해병대, PEQ-16 무게 확 줄인다. 신형 표적지시기 도입시작.",
       "author": "파이어폭스",
       "url": "https://www.clien.net/service/board/park/19254619?od=T31&category=0&groupCd=",
@@ -13376,10 +13531,10 @@
       "commentCount": 1,
       "likeCount": 0,
       "createdAt": "2026-08-27T19:32:33.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-zgyjl9",
+      "id": "clien-1789220768090-x1d3cy",
       "title": "현실판 글로리. 장사의 신 응원합니다.",
       "author": "SoSo_soberman",
       "url": "https://www.clien.net/service/board/park/19254617?od=T31&category=0&groupCd=",
@@ -13390,10 +13545,10 @@
       "commentCount": 3,
       "likeCount": 8,
       "createdAt": "2026-08-27T18:58:00.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-v3t639",
+      "id": "clien-1789220768090-xv35hy",
       "title": "제주도 협재해수욕장 부근 커플의 낙서(?)",
       "author": "그러등가말등가",
       "url": "https://www.clien.net/service/board/park/19254616?od=T31&category=0&groupCd=",
@@ -13404,10 +13559,10 @@
       "commentCount": 16,
       "likeCount": 1,
       "createdAt": "2026-08-27T18:19:11.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-d6jwrj",
+      "id": "clien-1789220768090-s28iv4",
       "title": "[속보/백악관] 트럼프, 행정명령 14420 발동. - 온타리오 호수 개명 선언.",
       "author": "파이어폭스",
       "url": "https://www.clien.net/service/board/park/19254615?od=T31&category=0&groupCd=",
@@ -13418,10 +13573,10 @@
       "commentCount": 6,
       "likeCount": 1,
       "createdAt": "2026-08-27T18:17:24.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-ildaft",
+      "id": "clien-1789220768090-0f64te",
       "title": "맥락을 제거하여 공격하는 언론과 유튜브",
       "author": "제로윙",
       "url": "https://www.clien.net/service/board/park/19254613?od=T31&category=0&groupCd=",
@@ -13432,10 +13587,10 @@
       "commentCount": 4,
       "likeCount": 10,
       "createdAt": "2026-08-27T17:16:24.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-9rdxjz",
+      "id": "clien-1789220768090-5ukxeb",
       "title": "어라. 지피티 리셋~",
       "author": "익명",
       "url": "https://www.clien.net/service/board/park/19254612?od=T31&category=0&groupCd=",
@@ -13447,24 +13602,24 @@
       "commentCount": 5,
       "likeCount": 1,
       "createdAt": "2026-08-27T17:06:41.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-ngbfn6",
+      "id": "clien-1789220768090-tzguac",
       "title": "해남, 2주 새 83번 '흔들'‥'대지진 전조?' 불안에 기상청 '잦아들 것'",
       "author": "루다나리에",
       "url": "https://www.clien.net/service/board/park/19254611?od=T31&category=0&groupCd=",
       "site": "clien",
       "siteDisplayName": "클리앙",
       "siteCategory": "community",
-      "viewCount": 3140,
+      "viewCount": 3141,
       "commentCount": 6,
       "likeCount": 0,
       "createdAt": "2026-08-27T16:37:58.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-5t9w27",
+      "id": "clien-1789220768090-xm6tl0",
       "title": "징사의신 김세의랑 아직도 싸우네요",
       "author": "위대한발자",
       "url": "https://www.clien.net/service/board/park/19254610?od=T31&category=0&groupCd=",
@@ -13475,10 +13630,10 @@
       "commentCount": 7,
       "likeCount": 6,
       "createdAt": "2026-08-27T16:20:38.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-zu9ahu",
+      "id": "clien-1789220768090-0qglq7",
       "title": "로컬 LLM으로 뭘 할 수 있는지에 대해서라고 하면...",
       "author": "외국인노동자2025",
       "url": "https://www.clien.net/service/board/park/19254609?od=T31&category=0&groupCd=",
@@ -13489,10 +13644,10 @@
       "commentCount": 18,
       "likeCount": 0,
       "createdAt": "2026-08-27T16:18:20.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-idxcf8",
+      "id": "clien-1789220768090-6y6ooa",
       "title": "[단독] 구글, ‘완전한 기능’의 지도 서비스 위해 한국 전담팀 구축",
       "author": "익명",
       "url": "https://www.clien.net/service/board/park/19254608?od=T31&category=0&groupCd=",
@@ -13504,10 +13659,10 @@
       "commentCount": 4,
       "likeCount": 3,
       "createdAt": "2026-08-27T16:03:54.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-5h3mdm",
+      "id": "clien-1789220768090-o30cuv",
       "title": "[로이터] 보잉 F-15EX 1312억달러 무제한 공급계약. 한국군 F-15K도 포함.",
       "author": "파이어폭스",
       "url": "https://www.clien.net/service/board/park/19254607?od=T31&category=0&groupCd=",
@@ -13518,10 +13673,10 @@
       "commentCount": 2,
       "likeCount": 0,
       "createdAt": "2026-08-27T15:53:00.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     },
     {
-      "id": "clien-1789218972128-iqklo0",
+      "id": "clien-1789220768090-gbz51p",
       "title": "맥 스튜디오 신형 사서 로컬 llm 굴리고 싶네요",
       "author": "타용기타",
       "url": "https://www.clien.net/service/board/park/19254606?od=T31&category=0&groupCd=",
@@ -13532,133 +13687,7 @@
       "commentCount": 10,
       "likeCount": 0,
       "createdAt": "2026-08-27T15:48:17.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
-    },
-    {
-      "id": "clien-1789218972128-xukdvl",
-      "title": "퍼스트 건담 극장판 3편 보고 왔습니다.",
-      "author": "Camille",
-      "url": "https://www.clien.net/service/board/park/19254605?od=T31&category=0&groupCd=",
-      "site": "clien",
-      "siteDisplayName": "클리앙",
-      "siteCategory": "community",
-      "viewCount": 1623,
-      "commentCount": 4,
-      "likeCount": 1,
-      "createdAt": "2026-08-27T15:43:02.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
-    },
-    {
-      "id": "clien-1789218972128-cnjzj6",
-      "title": "KBO 하위 5위 플라잉 체어 ㄷㄷ",
-      "author": "닥흐나이트",
-      "url": "https://www.clien.net/service/board/park/19254604?od=T31&category=0&groupCd=",
-      "site": "clien",
-      "siteDisplayName": "클리앙",
-      "siteCategory": "community",
-      "viewCount": 4144,
-      "commentCount": 2,
-      "likeCount": 0,
-      "createdAt": "2026-08-27T15:36:09.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
-    },
-    {
-      "id": "clien-1789218972128-ep9ut0",
-      "title": "이 노래 틀 계절이 오네요",
-      "author": "원료약품및",
-      "url": "https://www.clien.net/service/board/park/19254603?od=T31&category=0&groupCd=",
-      "site": "clien",
-      "siteDisplayName": "클리앙",
-      "siteCategory": "community",
-      "viewCount": 1595,
-      "commentCount": 0,
-      "likeCount": 1,
-      "createdAt": "2026-08-27T15:36:04.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
-    },
-    {
-      "id": "clien-1789218972128-cozqvs",
-      "title": "[속보/로이터] 노르웨이 국왕 하랄5세 위독. 왕궁앞 군중집결중.",
-      "author": "파이어폭스",
-      "url": "https://www.clien.net/service/board/park/19254601?od=T31&category=0&groupCd=",
-      "site": "clien",
-      "siteDisplayName": "클리앙",
-      "siteCategory": "community",
-      "viewCount": 4455,
-      "commentCount": 4,
-      "likeCount": 0,
-      "createdAt": "2026-08-27T15:23:06.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
-    },
-    {
-      "id": "clien-1789218972128-581w3m",
-      "title": "이창용과 금리 관련해서, 이래서 쳐맞는 사람만 기억하구나 싶습니다",
-      "author": "eeeeee",
-      "url": "https://www.clien.net/service/board/park/19254599?od=T31&category=0&groupCd=",
-      "site": "clien",
-      "siteDisplayName": "클리앙",
-      "siteCategory": "community",
-      "viewCount": 4179,
-      "commentCount": 45,
-      "likeCount": 4,
-      "createdAt": "2026-08-27T15:19:21.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
-    },
-    {
-      "id": "clien-1789218972128-u860xr",
-      "title": "쓸데없는 법안 못 만드는 법좀요..",
-      "author": "양자광학",
-      "url": "https://www.clien.net/service/board/park/19254596?od=T31&category=0&groupCd=",
-      "site": "clien",
-      "siteDisplayName": "클리앙",
-      "siteCategory": "community",
-      "viewCount": 3320,
-      "commentCount": 20,
-      "likeCount": 3,
-      "createdAt": "2026-08-27T15:11:01.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
-    },
-    {
-      "id": "clien-1789218972128-iw59oi",
-      "title": "고유가지원금 5만원있는데 뭐하면 좋을까요?",
-      "author": "로로로러",
-      "url": "https://www.clien.net/service/board/park/19254590?od=T31&category=0&groupCd=",
-      "site": "clien",
-      "siteDisplayName": "클리앙",
-      "siteCategory": "community",
-      "viewCount": 2131,
-      "commentCount": 5,
-      "likeCount": 0,
-      "createdAt": "2026-08-27T14:44:29.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
-    },
-    {
-      "id": "clien-1789218972128-8qbkqm",
-      "title": "여대생 사망,유기 중국인 대학강사/아내 살해 전직 경찰 모두 구속",
-      "author": "루다나리에",
-      "url": "https://www.clien.net/service/board/park/19254586?od=T31&category=0&groupCd=",
-      "site": "clien",
-      "siteDisplayName": "클리앙",
-      "siteCategory": "community",
-      "viewCount": 6050,
-      "commentCount": 2,
-      "likeCount": 2,
-      "createdAt": "2026-08-27T14:32:31.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
-    },
-    {
-      "id": "clien-1789218972128-mdvum5",
-      "title": "등굣길 7세 아이 덮친 이삿짐 사다리차…처참한 현장",
-      "author": "M-Razr",
-      "url": "https://www.clien.net/service/board/park/19254585?od=T31&category=0&groupCd=",
-      "site": "clien",
-      "siteDisplayName": "클리앙",
-      "siteCategory": "community",
-      "viewCount": 6183,
-      "commentCount": 12,
-      "likeCount": 1,
-      "createdAt": "2026-08-27T14:28:29.000Z",
-      "fetchedAt": "2026-09-12T13:15:59.957Z"
+      "fetchedAt": "2026-09-12T13:45:56.742Z"
     }
   ]
 }
