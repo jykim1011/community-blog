@@ -1,12 +1,17 @@
-name: Auto Crawl
+name: Auto Crawl (KR)
+
+# 한국 IP(셀프호스티드 러너, 라벨 korea)에서 크롤링한다.
+# 뽐뿌·오늘의유머·퀘이사존·익스트림무비 등은 GitHub 서버(해외 데이터센터 IP)를 403 으로 차단한다.
+# 러너 PC 가 꺼져 있으면 이 잡은 대기만 하고, crawl.yml(ubuntu)이 대신 크롤링한다.
+# 셀프호스티드 러너가 붙은 공개 저장소이므로 pull_request 트리거를 절대 추가하지 말 것.
 
 on:
   schedule:
-    - cron: '17,47 * * * *'
+    - cron: '7,37 * * * *'
   workflow_dispatch:
 
 concurrency:
-  group: crawl
+  group: crawl-kr
   cancel-in-progress: false
 
 permissions:
@@ -14,45 +19,31 @@ permissions:
 
 jobs:
   crawl:
-    runs-on: ubuntu-latest
+    runs-on: [self-hosted, korea]
     timeout-minutes: 25
-    env:
-      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
+    defaults:
+      run:
+        # Windows 러너: WSL bash 가 잡히지 않도록 Git Bash 를 명시
+        shell: '"C:\Program Files\Git\bin\bash.exe" --noprofile --norc -eo pipefail {0}'
     steps:
       - uses: actions/checkout@v4
         with:
-          fetch-depth: 30
-
-      # 한국 IP 러너(crawl-kr.yml)가 최근에 크롤링했으면 건너뛴다. 러너 PC 가 꺼져 있을 때만 여기서 크롤링.
-      - name: Check KR crawler
-        id: kr
-        run: |
-          recent=$(git log --since="50 minutes ago" --grep="(kr)" --format=%H -1)
-          if [ -n "$recent" ]; then
-            echo "한국 IP 크롤러가 최근 실행됨 ($recent) — 건너뜀"
-            echo "skip=true" >> $GITHUB_OUTPUT
-          else
-            echo "skip=false" >> $GITHUB_OUTPUT
-          fi
+          fetch-depth: 1
 
       - uses: actions/setup-node@v4
-        if: steps.kr.outputs.skip != 'true'
         with:
           node-version: '22'
           cache: npm
 
       - run: npm ci
-        if: steps.kr.outputs.skip != 'true'
 
       - name: Run crawler
-        if: steps.kr.outputs.skip != 'true'
         env:
           TZ: Asia/Seoul
         run: npx tsx scripts/crawl.ts
 
       - name: Commit and push
         id: commit
-        if: steps.kr.outputs.skip != 'true'
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "github-actions[bot]@users.noreply.github.com"
@@ -61,7 +52,8 @@ jobs:
             echo "No changes to commit"
             echo "changed=false" >> $GITHUB_OUTPUT
           else
-            git commit -m "chore: update crawled data [skip ci]"
+            # "(kr)" 표시는 crawl.yml 이 한국 IP 크롤링이 살아있는지 판단하는 데 쓴다
+            git commit -m "chore: update crawled data (kr) [skip ci]"
             git pull --rebase -X theirs origin master
             git push
             echo "changed=true" >> $GITHUB_OUTPUT
@@ -77,8 +69,3 @@ jobs:
           CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           CLOUDFLARE_ACCOUNT_ID: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
         run: npx wrangler pages deploy out/ --project-name community-blog --commit-dirty=true
-
-      - name: Trigger next crawl cycle (28min later)
-        env:
-          GH_TOKEN: ${{ secrets.WORKFLOW_TRIGGER_TOKEN }}
-        run: gh workflow run crawl-trigger.yml --repo ${{ github.repository }} --ref master || true
