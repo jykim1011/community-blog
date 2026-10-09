@@ -8,12 +8,16 @@ import { PullToRefresh } from '@/components/pull-to-refresh';
 import { useLocalStorage } from '@/lib/hooks/use-local-storage';
 import { useViewerQueue } from '@/lib/hooks/use-viewer-queue';
 import { rankTrending } from '@/lib/utils/ranking';
+import { useFeedPrefs, isMuted } from '@/lib/hooks/use-feed-prefs';
+import { useReadPosts } from '@/lib/hooks/use-read-posts';
 import type { StaticPost } from '@/lib/types';
 
 const POSTS_PER_PAGE = 20;
 const INITIAL_COUNT  = 20;
 
 const HOT_THRESHOLD = { views: 5000, comments: 100 };
+// 댓글순은 최근 글만 — 기간 제한이 없으면 일주일 묵은 글이 늘 맨 위를 차지한다.
+const COMMENTS_WINDOW_MS = 24 * 60 * 60 * 1000;
 
 interface PostListProps {
   posts: StaticPost[];
@@ -23,9 +27,22 @@ interface PostListProps {
   registerViewerQueue?: boolean;
   /** 카테고리 탭을 sticky 로 고정할 top 값 (모바일 헤더 아래) */
   stickyFilterTop?: string;
+  /** 당겨서 새로고침 시 데이터만 다시 받는다. 새 글 수를 돌려준다. 없으면 페이지를 reload 한다. */
+  onRefresh?: () => Promise<number>;
 }
 
-export function PostList({ posts, selectedSite, searchQuery, registerViewerQueue = true, stickyFilterTop }: PostListProps) {
+export function PostList({ posts, selectedSite, searchQuery, registerViewerQueue = true, stickyFilterTop, onRefresh }: PostListProps) {
+  const { mutedKeywords, hideRead } = useFeedPrefs();
+  const { isRead, isLoaded: readLoaded } = useReadPosts();
+  const [toast, setToast] = useState<string | null>(null);
+
+  // 읽은 글 숨기기: 읽는 즉시 목록에서 빠지면 뷰어의 이전/다음 순서가 어긋나므로
+  // 목록이 바뀔 때(새로고침·설정 변경) 시점의 읽음 목록으로만 거른다.
+  const [hiddenRead, setHiddenRead] = useState<ReadonlySet<string>>(new Set());
+  useEffect(() => {
+    if (!hideRead || !readLoaded) { setHiddenRead(new Set()); return; }
+    setHiddenRead(new Set(posts.filter(p => isRead(p.url)).map(p => p.url)));
+  }, [posts, hideRead, readLoaded]);
   const [currentSite, setCurrentSite] = useState<string | null>(null);
   const [currentCategory, setCurrentCategory] = useLocalStorage<FeedCategory | null>('feed-category', null);
   const [currentSort, setCurrentSort] = useLocalStorage<SortOption>('feed-sort-v2', 'trending');
@@ -63,6 +80,13 @@ export function PostList({ posts, selectedSite, searchQuery, registerViewerQueue
       filtered = filtered.filter(p => p.site === currentSite);
     }
 
+    if (mutedKeywords.length > 0) {
+      filtered = filtered.filter(p => !isMuted(p.title, mutedKeywords));
+    }
+    if (hiddenRead.size > 0) {
+      filtered = filtered.filter(p => !hiddenRead.has(p.url));
+    }
+
     // 키워드 검색 필터링
     if (searchQuery) {
       const q = searchQuery.toLowerCase();
@@ -70,12 +94,15 @@ export function PostList({ posts, selectedSite, searchQuery, registerViewerQueue
     }
 
     if (currentSort === 'trending') return rankTrending(filtered);
-    return [...filtered].sort((a, b) =>
-      currentSort === 'comments'
-        ? (b.commentCount || 0) - (a.commentCount || 0)
-        : new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-    );
-  }, [posts, currentSite, currentCategory, currentSort, searchQuery]);
+    if (currentSort === 'comments') {
+      // 기준 시각은 가장 최근 글 — 서버/클라이언트 렌더 결과가 같아야 한다.
+      const newest = filtered.reduce((m, p) => Math.max(m, new Date(p.createdAt).getTime()), 0);
+      return filtered
+        .filter(p => newest - new Date(p.createdAt).getTime() <= COMMENTS_WINDOW_MS)
+        .sort((a, b) => (b.commentCount || 0) - (a.commentCount || 0));
+    }
+    return [...filtered].sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
+  }, [posts, currentSite, currentCategory, currentSort, searchQuery, mutedKeywords, hiddenRead]);
 
   const displayedPosts = useMemo(
     () => filteredPosts.slice(0, displayedCount),
@@ -119,13 +146,40 @@ export function PostList({ posts, selectedSite, searchQuery, registerViewerQueue
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  useEffect(() => {
+    if (!toast) return;
+    const t = setTimeout(() => setToast(null), 2200);
+    return () => clearTimeout(t);
+  }, [toast]);
+
   const handleRefresh = async () => {
-    await new Promise(resolve => setTimeout(resolve, 500));
-    window.location.reload();
+    if (!onRefresh) {
+      await new Promise(resolve => setTimeout(resolve, 500));
+      window.location.reload();
+      return;
+    }
+    try {
+      const added = await onRefresh();
+      setDisplayedCount(INITIAL_COUNT);
+      setToast(added > 0 ? `새 글 ${added.toLocaleString('ko-KR')}개를 불러왔어요` : '이미 최신 글이에요');
+    } catch {
+      setToast('새로고침에 실패했어요. 잠시 후 다시 시도해주세요');
+    }
   };
 
   return (
     <PullToRefresh onRefresh={handleRefresh}>
+      {toast && (
+        <div role="status" style={{
+          position: 'fixed', left: '50%', transform: 'translateX(-50%)',
+          bottom: 'calc(env(safe-area-inset-bottom, 0px) + 96px)', zIndex: 40,
+          padding: '10px 16px', borderRadius: 999, fontSize: 13.5, fontWeight: 600,
+          background: 'rgba(24,24,27,.92)', color: '#fff', whiteSpace: 'nowrap',
+          boxShadow: '0 4px 16px rgba(0,0,0,.18)',
+        }}>
+          {toast}
+        </div>
+      )}
 
       {/* 카테고리 필터 */}
       <SiteFilter currentCategory={currentCategory} onCategoryChange={handleCategoryChange} stickyTop={stickyFilterTop} />
@@ -147,7 +201,9 @@ export function PostList({ posts, selectedSite, searchQuery, registerViewerQueue
         <div style={{ textAlign: 'center', padding: '48px 24px' }}>
           <p style={{ color: 'var(--fg-2)', fontSize: 16, margin: '0 0 8px' }}>게시글이 없습니다.</p>
           <p style={{ color: 'var(--fg-3)', fontSize: 13, margin: 0 }}>
-            아직 크롤링된 게시글이 없습니다. 잠시 후 다시 확인해주세요.
+            {mutedKeywords.length > 0 || hiddenRead.size > 0
+              ? '차단 키워드나 읽은 글 숨기기 때문에 가려졌을 수 있어요. 설정에서 확인해보세요.'
+              : '아직 크롤링된 게시글이 없습니다. 잠시 후 다시 확인해주세요.'}
           </p>
         </div>
       ) : (

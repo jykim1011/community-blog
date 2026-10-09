@@ -16,6 +16,9 @@ class RobotsChecker {
   private parseRobotsTxt(content: string): RobotsRule[] {
     const rules: RobotsRule[] = [];
     let currentRule: RobotsRule | null = null;
+    // 연속된 User-agent 줄은 하나의 그룹으로 같은 규칙을 공유한다.
+    let group: RobotsRule[] = [];
+    let lastWasUserAgent = false;
 
     const lines = content.split('\n');
     for (const line of lines) {
@@ -33,27 +36,23 @@ class RobotsChecker {
       const lowerKey = key.toLowerCase().trim();
 
       if (lowerKey === 'user-agent') {
-        if (currentRule) {
-          rules.push(currentRule);
-        }
-        currentRule = {
-          userAgent: value,
-          disallow: [],
-          allow: [],
-        };
+        if (!lastWasUserAgent) group = [];
+        currentRule = { userAgent: value, disallow: [], allow: [] };
+        group.push(currentRule);
+        rules.push(currentRule);
+        lastWasUserAgent = true;
       } else if (currentRule) {
-        if (lowerKey === 'disallow') {
-          currentRule.disallow.push(value);
-        } else if (lowerKey === 'allow') {
-          currentRule.allow.push(value);
-        } else if (lowerKey === 'crawl-delay') {
-          currentRule.crawlDelay = parseInt(value);
+        lastWasUserAgent = false;
+        for (const rule of group) {
+          if (lowerKey === 'disallow') {
+            rule.disallow.push(value);
+          } else if (lowerKey === 'allow') {
+            rule.allow.push(value);
+          } else if (lowerKey === 'crawl-delay') {
+            rule.crawlDelay = parseInt(value);
+          }
         }
       }
-    }
-
-    if (currentRule) {
-      rules.push(currentRule);
     }
 
     return rules;
@@ -121,7 +120,8 @@ class RobotsChecker {
       const rules = await this.getRobotsTxt(baseUrl);
 
       // 해당 User-Agent 규칙 찾기 (우선순위: 특정 UA > *)
-      let applicableRule = rules.find((r) => r.userAgent.toLowerCase() === userAgent.toLowerCase());
+      const token = userAgent.split('/')[0].toLowerCase();
+      let applicableRule = rules.find((r) => r.userAgent.toLowerCase() === token);
       if (!applicableRule) {
         applicableRule = rules.find((r) => r.userAgent === '*');
       }
@@ -131,25 +131,22 @@ class RobotsChecker {
         return true;
       }
 
-      // Allow 규칙 확인 (우선순위 높음)
-      for (const allowPattern of applicableRule.allow) {
-        if (this.matchesPattern(path, allowPattern)) {
-          return true;
+      // RFC 9309: 가장 길게(구체적으로) 일치하는 규칙이 이기고, 길이가 같으면 Allow 가 이긴다.
+      // 예전 코드는 'Disallow: /' 를 건너뛰어, 모든 봇을 막은 사이트도 허용으로 판정했다.
+      let bestLen = -1;
+      let bestAllow = true;
+      const consider = (pattern: string, allow: boolean) => {
+        if (!this.matchesPattern(path, pattern)) return;
+        if (pattern.length > bestLen || (pattern.length === bestLen && allow)) {
+          bestLen = pattern.length;
+          bestAllow = allow;
         }
-      }
+      };
+      applicableRule.allow.forEach((p) => consider(p, true));
+      applicableRule.disallow.forEach((p) => consider(p, false));
+      if (bestLen >= 0) return bestAllow;
 
-      // Disallow 규칙 확인
-      for (const disallowPattern of applicableRule.disallow) {
-        if (disallowPattern === '' || disallowPattern === '/') {
-          // 빈 문자열이면 허용, '/'는 전체 차단
-          continue;
-        }
-        if (this.matchesPattern(path, disallowPattern)) {
-          return false;
-        }
-      }
-
-      // 기본값: 허용
+      // 일치하는 규칙 없음: 허용
       return true;
     } catch (error) {
       console.warn(`[RobotsChecker] Error checking ${url}:`, (error as Error).message);
@@ -166,12 +163,14 @@ class RobotsChecker {
     if (pattern === '/') return path.startsWith('/');
 
     // 와일드카드를 정규식으로 변환
-    const regexPattern = pattern
+    // 끝의 $ 는 경로 끝 앵커
+    const anchored = pattern.endsWith('$');
+    const body = anchored ? pattern.slice(0, -1) : pattern;
+    const regexPattern = body
       .replace(/[.+?^${}()|[\]\\]/g, '\\$&') // 정규식 특수문자 이스케이프
-      .replace(/\*/g, '.*') // * -> .*
-      .replace(/\$/g, '$'); // $ 는 끝을 의미
+      .replace(/\*/g, '.*'); // * -> .*
 
-    const regex = new RegExp('^' + regexPattern);
+    const regex = new RegExp('^' + regexPattern + (anchored ? '$' : ''));
     return regex.test(path);
   }
 
@@ -181,7 +180,8 @@ class RobotsChecker {
   async getCrawlDelay(baseUrl: string, userAgent: string = '*'): Promise<number | undefined> {
     const rules = await this.getRobotsTxt(baseUrl);
 
-    let applicableRule = rules.find((r) => r.userAgent.toLowerCase() === userAgent.toLowerCase());
+    const token = userAgent.split('/')[0].toLowerCase();
+    let applicableRule = rules.find((r) => r.userAgent.toLowerCase() === token);
     if (!applicableRule) {
       applicableRule = rules.find((r) => r.userAgent === '*');
     }

@@ -2,6 +2,7 @@ import * as fs from 'fs';
 import * as path from 'path';
 import { crawlers } from '../lib/crawlers';
 import { siteConfigs } from '../lib/constants';
+import { cleanPost } from '../lib/utils/clean-post';
 import type { StaticPost, StaticSite } from '../lib/types';
 import { analyzeKeywords } from '../lib/analysis/keywords';
 import { analyzeDailyTrends, analyzeHourlyTrends, analyzeSiteTrends, calculateOverallStats } from '../lib/analysis/trends';
@@ -91,9 +92,11 @@ async function main() {
   const targetSite = process.argv[2];
 
   // 크롤링할 사이트 결정
+  // siteConfigs 에서 disabled 인 사이트(robots.txt 차단 등)는 크롤링하지 않는다.
+  const isEnabled = (site: string) => !siteConfigs[site]?.disabled;
   const sitesToCrawl = targetSite
     ? { [targetSite]: crawlers[targetSite] }
-    : crawlers;
+    : Object.fromEntries(Object.entries(crawlers).filter(([site]) => isEnabled(site)));
 
   if (targetSite && !crawlers[targetSite]) {
     console.error(`알 수 없는 사이트: ${targetSite}`);
@@ -162,11 +165,16 @@ async function main() {
   const urlSet = new Set<string>();
   const merged: StaticPost[] = [];
 
-  for (const post of [...newPosts, ...existingPosts]) {
-    if (!urlSet.has(post.url)) {
-      urlSet.add(post.url);
-      merged.push(post);
-    }
+  // 목록에 작성 시각이 없는 사이트(네이트판 랭킹 등)는 크롤 시각을 createdAt 으로 쓰므로,
+  // 같은 글이 다시 크롤링될 때마다 "방금 올라온 글"이 되지 않도록 처음 본 시각을 유지한다.
+  const existingCreatedAt = new Map(existingPosts.map((p) => [p.url, p.createdAt]));
+
+  for (const raw of [...newPosts, ...existingPosts]) {
+    if (urlSet.has(raw.url) || !isEnabled(raw.site)) continue;
+    urlSet.add(raw.url);
+    const post = cleanPost(raw);
+    const prev = existingCreatedAt.get(post.url);
+    merged.push(prev && prev < post.createdAt ? { ...post, createdAt: prev } : post);
   }
 
   // fetchedAt 기준: 크롤링된 지 MAX_AGE_HOURS 초과 삭제
@@ -177,10 +185,13 @@ async function main() {
   });
 
   // createdAt 기준: 30일 초과 오래된 게시글 및 미래 날짜 게시글 제거
+  // `now` 는 크롤링 시작 전에 잡은 값이라, 크롤 시각을 createdAt 으로 쓰는 사이트는 몇십 초 "미래"가 된다.
+  // 그대로 비교하면 해당 사이트 글이 전부 버려지므로(네이트판·MLB파크가 이렇게 사라졌었다) 여유를 둔다.
   const createdAtCutoff = new Date(now.getTime() - MAX_CREATED_AGE_DAYS * 24 * 60 * 60 * 1000);
+  const futureLimit = new Date(Date.now() + 10 * 60 * 1000);
   const createdAtFiltered = ageFiltered.filter((post) => {
     const createdDate = new Date(post.createdAt);
-    return createdDate > createdAtCutoff && createdDate <= now;
+    return createdDate > createdAtCutoff && createdDate <= futureLimit;
   });
 
   // 인기 게시글 필터링 적용

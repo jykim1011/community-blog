@@ -304,7 +304,7 @@ export function DashboardHome({ initialPosts, initialSites, keywords = [] }: Pro
   const pathname = usePathname();
   const { subscriptions, isLoaded } = useSubscriptions();
   // initialPosts 는 SSR 로 인라인된 최신 60건. 마운트 직후 전체 목록으로 교체된다.
-  const { posts: allPosts } = usePosts({ initial: initialPosts });
+  const { posts: allPosts, refresh: refreshPosts } = usePosts({ initial: initialPosts });
   const [displayPosts, setDisplayPosts] = useState<StaticPost[]>(initialPosts);
   const [loading, setLoading] = useState(false);
   const [isApp, setIsApp] = useState(false);
@@ -473,6 +473,7 @@ export function DashboardHome({ initialPosts, initialSites, keywords = [] }: Pro
                   selectedSite={activeSite}
                   searchQuery={activeKeyword}
                   registerViewerQueue={isDesktopLayout}
+                  onRefresh={refreshPosts}
                 />
               </section>
             )}
@@ -626,6 +627,7 @@ export function DashboardHome({ initialPosts, initialSites, keywords = [] }: Pro
             posts={displayPosts}
             searchQuery={activeKeyword}
             registerViewerQueue={!isDesktopLayout}
+            onRefresh={refreshPosts}
             stickyFilterTop={`calc(env(safe-area-inset-top, 0px) + ${mobileHeaderH}px)`}
           />
         )}

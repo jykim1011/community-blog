@@ -37,7 +37,7 @@ const communityCategories = [
 ];
 
 export default function AboutPage() {
-  const totalSites = Object.keys(siteConfigs).length;
+  const totalSites = Object.values(siteConfigs).filter(c => !c.disabled).length;
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">

@@ -85,10 +85,19 @@ export class RuliwebCrawler extends BaseCrawler {
 
         // 제목과 URL
         const titleLink = $el.find('.subject_link');
-        const title = titleLink.text().trim();
         const url = titleLink.attr('href');
+        // 목록 상단에 다른 게시판(게임 질문 등) 베스트 글이 섞여 나온다 — 유머 게시판 글만 받는다.
+        if (!url || !url.includes(this.boardUrl.replace(this.baseUrl, ''))) return;
 
-        if (!title || !url) return;
+        // 댓글 수는 제목 링크 안(.num_reply) 또는 바로 뒤에 "(27)" 형태로 붙는다
+        const replyText = $el.find('.num_reply').first().text();
+        titleLink.find('.num_reply').remove();
+        const rawTitle = titleLink.text().replace(/\s+/g, ' ').trim();
+        const trailing = rawTitle.match(/\s*\((\d+)\)$/);
+        const title = trailing ? rawTitle.slice(0, trailing.index).trim() : rawTitle;
+        const commentCount = parseInt(replyText.replace(/\D/g, '')) || (trailing ? Number(trailing[1]) : 0);
+
+        if (!title) return;
 
         // 작성자
         const author = $el.find('td.writer a').text().trim() || '익명';
@@ -124,7 +133,7 @@ export class RuliwebCrawler extends BaseCrawler {
           site: this.siteName,
           url,
           viewCount,
-          commentCount: 0,
+          commentCount,
           likeCount,
           createdAt,
           fetchedAt: new Date(),

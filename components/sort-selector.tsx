@@ -10,7 +10,7 @@ interface SortSelectorProps {
 const sortOptions: { value: SortOption; label: string }[] = [
   { value: 'trending', label: '실시간' },
   { value: 'recent',   label: '최신순' },
-  { value: 'comments', label: '댓글순' },
+  { value: 'comments', label: '댓글순' }, // 최근 24시간
 ];
 
 export function SortSelector({ currentSort, onSortChange }: SortSelectorProps) {

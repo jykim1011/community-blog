@@ -1,6 +1,6 @@
 'use client';
 
-import { useEffect, useState } from 'react';
+import { useCallback, useEffect, useState } from 'react';
 import {
   decodePostsPayload,
   POSTS_PAYLOAD_URL,
@@ -65,5 +65,20 @@ export function usePosts({ initial = [] }: Options = {}) {
     };
   }, []);
 
-  return { posts, isComplete, error };
+  /**
+   * 최신 데이터를 다시 받아 목록을 교체한다. 앱 전체를 reload 하지 않으므로
+   * 스크롤·탭·뷰어 상태가 유지된다. 새로 생긴 글 수를 돌려준다.
+   */
+  const refresh = useCallback(async (): Promise<number> => {
+    const before = new Set((cache ?? posts).map((p) => p.url));
+    const res = await fetch(`${POSTS_PAYLOAD_URL}?t=${Date.now()}`, { cache: 'no-store' });
+    if (!res.ok) throw new Error(`posts payload ${res.status}`);
+    const next = decodePostsPayload((await res.json()) as PostsPayload);
+    cache = next;
+    setPosts(next);
+    setIsComplete(true);
+    return next.reduce((n, p) => (before.has(p.url) ? n : n + 1), 0);
+  }, [posts]);
+
+  return { posts, isComplete, error, refresh };
 }
