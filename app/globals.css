@@ -36,6 +36,7 @@
   --radius-xl: 20px;
 
   --hot-tint:  #fef2f2;
+  --comment:   #ea580c;
 
   --shadow-sm: 0 1px 2px rgba(9,9,11,.04);
   --shadow:    0 1px 3px rgba(9,9,11,.06), 0 1px 2px rgba(9,9,11,.04);
@@ -59,6 +60,7 @@
     --fg-3:      #71717a;
     --fg-4:      #52525b;
     --hot-tint:  rgba(239,68,68,.14);
+    --comment:   #fb923c;
     --accent-tint: rgba(79,70,229,.15);
     --shadow:    0 1px 3px rgba(0,0,0,.5), 0 1px 2px rgba(0,0,0,.3);
     --shadow-lg: 0 10px 30px -10px rgba(0,0,0,.5);
@@ -91,7 +93,17 @@ button { font-family: inherit; }
   .tabular-nums { font-variant-numeric: tabular-nums; }
 }
 
+/* ─── Post card ─────────────────────────────────── */
+.post-card { transition: background-color .12s ease; -webkit-tap-highlight-color: transparent; }
+@media (hover: hover) { .post-card:hover { background: var(--hover); } }
+.post-card:active { background: var(--hover); }
+
 /* ─── In-App Viewer ─────────────────────────────── */
+@keyframes viewer-progress {
+  0%   { transform: translateX(-100%); }
+  100% { transform: translateX(250%); }
+}
+
 @keyframes slide-in-right {
   from { transform: translateX(100%); }
   to   { transform: translateX(0); }

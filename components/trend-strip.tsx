@@ -12,78 +12,71 @@ interface TrendStripProps {
 
 export function TrendStrip({ keywords, activeKeyword, onPick }: TrendStripProps) {
   return (
-    <div style={{ borderBottom: '1px solid var(--border)', padding: '10px 0 4px' }}>
-
-      {/* 헤더 */}
-      <div style={{
-        display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        padding: '0 18px 8px',
-      }}>
-        <div style={{ display: 'flex', alignItems: 'center', gap: 5 }}>
-          <svg width={14} height={14} viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" strokeWidth="2.2"
-            strokeLinecap="round" strokeLinejoin="round"
-            style={{ color: 'var(--accent)', flexShrink: 0 }}>
+    <div
+      className="overflow-x-auto scrollbar-hide touch-pan-x"
+      style={{ borderBottom: '1px solid var(--border)' }}
+    >
+      <div style={{ display: 'flex', alignItems: 'center', gap: 6, padding: '10px 16px', width: 'max-content' }}>
+        <span style={{
+          display: 'inline-flex', alignItems: 'center', gap: 4, marginRight: 2,
+          fontSize: 12, fontWeight: 700, color: 'var(--accent)', whiteSpace: 'nowrap',
+        }}>
+          <svg width={13} height={13} viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" strokeWidth="2.4" strokeLinecap="round" strokeLinejoin="round">
             <path d="M3 17l6-6 4 4 8-8" />
             <path d="M14 7h7v7" />
           </svg>
-          <span style={{ fontWeight: 700, fontSize: 13, color: 'var(--fg-1)', whiteSpace: 'nowrap' }}>
-            지금 뜨는 키워드
-          </span>
-        </div>
+          급상승
+        </span>
 
-        {activeKeyword && (
-          <button
-            onClick={() => onPick(null)}
-            style={{
-              background: 'none', border: 'none', cursor: 'pointer',
-              fontSize: 12, fontWeight: 600, color: 'var(--accent)',
-              padding: '2px 0', flexShrink: 0,
-            }}
-          >
-            전체 보기 ×
-          </button>
+        {activeKeyword && !keywords.some(k => k.word === activeKeyword) && (
+          <Chip label={activeKeyword} active onClick={() => onPick(null)} />
         )}
-      </div>
 
-      {/* 키워드 pills */}
-      <div
-        className="overflow-x-auto scrollbar-hide touch-pan-x"
-        style={{ display: 'flex', gap: 8, padding: '0 18px 4px' }}
-      >
         {keywords.slice(0, 8).map((kw, i) => {
           const active = activeKeyword === kw.word;
           return (
-            <button
+            <Chip
               key={kw.word}
+              rank={i + 1}
+              label={kw.word}
+              active={active}
               onClick={() => onPick(active ? null : kw.word)}
-              style={{
-                display: 'inline-flex', alignItems: 'center', gap: 5,
-                fontSize: 13, fontWeight: 600, whiteSpace: 'nowrap',
-                padding: '7px 13px 7px 10px', borderRadius: 999, cursor: 'pointer',
-                border: '1px solid',
-                borderColor: active ? 'transparent' : 'var(--border)',
-                background: active ? 'var(--accent)' : 'var(--surface)',
-                color: active ? '#fff' : 'var(--fg-2)',
-                transition: 'all .15s ease',
-                flexShrink: 0,
-              }}
-            >
-              <span style={{
-                fontVariantNumeric: 'tabular-nums',
-                fontWeight: 700,
-                fontSize: 11.5,
-                color: active
-                  ? 'rgba(255,255,255,.75)'
-                  : i < 3 ? 'var(--hot)' : 'var(--fg-4)',
-              }}>
-                {i + 1}
-              </span>
-              {kw.word}
-            </button>
+            />
           );
         })}
       </div>
     </div>
+  );
+}
+
+function Chip({ label, rank, active, onClick }: {
+  label: string; rank?: number; active: boolean; onClick: () => void;
+}) {
+  return (
+    <button
+      onClick={onClick}
+      style={{
+        display: 'inline-flex', alignItems: 'center', gap: 4,
+        fontSize: 13, fontWeight: 600, whiteSpace: 'nowrap',
+        padding: '5px 10px', borderRadius: 999, cursor: 'pointer', border: 'none',
+        background: active ? 'var(--fg)' : 'var(--surface-2)',
+        color: active ? 'var(--surface)' : 'var(--fg-2)',
+        transition: 'background .15s ease, color .15s ease',
+        flexShrink: 0,
+      }}
+    >
+      {rank !== undefined && (
+        <span style={{
+          fontVariantNumeric: 'tabular-nums', fontWeight: 700, fontSize: 11.5,
+          color: active ? 'inherit' : rank <= 3 ? 'var(--hot)' : 'var(--fg-4)',
+          opacity: active ? 0.7 : 1,
+        }}>
+          {rank}
+        </span>
+      )}
+      {label}
+      {active && <span aria-hidden style={{ marginLeft: 1, opacity: 0.7 }}>✕</span>}
+    </button>
   );
 }

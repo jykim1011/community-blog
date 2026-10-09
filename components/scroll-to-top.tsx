@@ -3,11 +3,13 @@
 import { useEffect, useState } from 'react';
 import { Capacitor } from '@capacitor/core';
 import { adStateManager, AD_HEIGHT_NATIVE, AD_HEIGHT_WEB } from '@/lib/ad-state';
+import { useViewer } from '@/lib/contexts/viewer-context';
 
 export function ScrollToTop() {
   const [visible, setVisible] = useState(false);
   const [isAdLoaded, setIsAdLoaded] = useState(() => adStateManager.getAdLoaded());
   const isNative = Capacitor.isNativePlatform();
+  const { viewer } = useViewer();
 
   useEffect(() => {
     const onScroll = () => setVisible(window.scrollY > 300);
@@ -21,7 +23,8 @@ export function ScrollToTop() {
     };
   }, []);
 
-  if (!visible) return null;
+  // 인앱 뷰어가 열려 있으면 하단 목록과 겹치므로 숨김
+  if (!visible || viewer) return null;
 
   const adHeight = isAdLoaded ? (isNative ? AD_HEIGHT_NATIVE : AD_HEIGHT_WEB) : 0;
 

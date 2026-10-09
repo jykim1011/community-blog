@@ -6,6 +6,7 @@ import { PostCard } from '@/components/post-card';
 import { SiteHeader } from '@/components/site-header';
 import { SiteFooter } from '@/components/site-footer';
 import { usePosts } from '@/lib/hooks/use-posts';
+import { useViewerQueue } from '@/lib/hooks/use-viewer-queue';
 import type { StaticPost } from '@/lib/types';
 
 const MAX_RESULTS = 200;
@@ -72,6 +73,9 @@ function SearchContent() {
 
     return scored.slice(0, MAX_RESULTS).map((r) => r.post);
   }, [posts, query, sort]);
+
+  // 인앱 뷰어에서도 검색 결과 목록이 계속 보이도록 등록
+  useViewerQueue(results);
 
   return (
     <div className="min-h-screen bg-gray-50 dark:bg-gray-900">

@@ -6,6 +6,7 @@ import { SiteFilter, FeedCategory } from '@/components/site-filter';
 import { SortSelector, SortOption } from '@/components/sort-selector';
 import { PullToRefresh } from '@/components/pull-to-refresh';
 import { useLocalStorage } from '@/lib/hooks/use-local-storage';
+import { useViewerQueue } from '@/lib/hooks/use-viewer-queue';
 import type { StaticPost } from '@/lib/types';
 
 const POSTS_PER_PAGE = 20;
@@ -17,9 +18,13 @@ interface PostListProps {
   posts: StaticPost[];
   selectedSite?: string | null;
   searchQuery?: string | null;
+  /** 인앱 뷰어 큐에 이 목록을 등록할지. 같은 페이지에 목록이 둘 이상 마운트될 때 끄면 된다. */
+  registerViewerQueue?: boolean;
+  /** 카테고리 탭을 sticky 로 고정할 top 값 (모바일 헤더 아래) */
+  stickyFilterTop?: string;
 }
 
-export function PostList({ posts, selectedSite, searchQuery }: PostListProps) {
+export function PostList({ posts, selectedSite, searchQuery, registerViewerQueue = true, stickyFilterTop }: PostListProps) {
   const [currentSite, setCurrentSite] = useState<string | null>(null);
   const [currentCategory, setCurrentCategory] = useLocalStorage<FeedCategory | null>('feed-category', null);
   const [currentSort, setCurrentSort] = useLocalStorage<SortOption>('feed-sort', 'recent');
@@ -83,6 +88,9 @@ export function PostList({ posts, selectedSite, searchQuery }: PostListProps) {
     [filteredPosts, displayedCount]
   );
 
+  // 인앱 뷰어에서도 이 목록이 계속 보이도록 등록
+  useViewerQueue(filteredPosts, registerViewerQueue);
+
   const hasMore = displayedCount < filteredPosts.length;
   const loadMoreRef = useRef<HTMLDivElement>(null);
 
@@ -126,14 +134,14 @@ export function PostList({ posts, selectedSite, searchQuery }: PostListProps) {
     <PullToRefresh onRefresh={handleRefresh}>
 
       {/* 카테고리 필터 */}
-      <SiteFilter currentCategory={currentCategory} onCategoryChange={handleCategoryChange} />
+      <SiteFilter currentCategory={currentCategory} onCategoryChange={handleCategoryChange} stickyTop={stickyFilterTop} />
 
       {/* 정렬 + 게시글 수 */}
       <div style={{
         display: 'flex', alignItems: 'center', justifyContent: 'space-between',
-        padding: '6px 18px 8px', borderBottom: '1px solid var(--border)',
+        padding: '4px 8px 4px 16px', borderBottom: '1px solid var(--border)',
       }}>
-        <span style={{ fontSize: 12.5, color: 'var(--fg-3)' }}>
+        <span style={{ fontSize: 13, color: 'var(--fg-3)' }}>
           <b style={{ color: 'var(--fg-1)', fontWeight: 700, fontVariantNumeric: 'tabular-nums' }}>
             {filteredPosts.length.toLocaleString('ko-KR')}
           </b>개 게시글

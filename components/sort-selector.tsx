@@ -15,27 +15,28 @@ const sortOptions: { value: SortOption; label: string }[] = [
 
 export function SortSelector({ currentSort, onSortChange }: SortSelectorProps) {
   return (
-    <div style={{
-      display: 'flex', gap: 2, padding: 3, borderRadius: 10,
-      background: 'var(--surface-2)',
-    }}>
-      {sortOptions.map((o) => (
-        <button
-          key={o.value}
-          onClick={() => onSortChange(o.value)}
-          style={{
-            border: 'none', borderRadius: 7, padding: '5px 12px',
-            fontSize: 12.5, whiteSpace: 'nowrap', fontFamily: 'inherit',
-            fontWeight: 600, cursor: 'pointer',
-            background: currentSort === o.value ? 'var(--surface)' : 'transparent',
-            color: currentSort === o.value ? 'var(--fg)' : 'var(--fg-3)',
-            boxShadow: currentSort === o.value ? 'var(--shadow-sm)' : 'none',
-            transition: 'all .15s ease',
-          }}
-        >
-          {o.label}
-        </button>
-      ))}
+    <div style={{ display: 'flex', alignItems: 'center' }}>
+      {sortOptions.map((o, i) => {
+        const active = currentSort === o.value;
+        return (
+          <span key={o.value} style={{ display: 'inline-flex', alignItems: 'center' }}>
+            {i > 0 && <span style={{ width: 1, height: 10, background: 'var(--border-hv)' }} />}
+            <button
+              onClick={() => onSortChange(o.value)}
+              aria-pressed={active}
+              style={{
+                border: 'none', background: 'none', padding: '6px 8px',
+                fontSize: 13, whiteSpace: 'nowrap', fontFamily: 'inherit',
+                fontWeight: active ? 700 : 500, cursor: 'pointer',
+                color: active ? 'var(--fg)' : 'var(--fg-4)',
+                transition: 'color .15s ease',
+              }}
+            >
+              {o.label}
+            </button>
+          </span>
+        );
+      })}
     </div>
   );
 }

@@ -1,11 +1,12 @@
 'use client';
 
-import { useEffect, useState, useMemo } from 'react';
+import { useEffect, useLayoutEffect, useRef, useState, useMemo } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { PostList } from '@/components/post-list';
 import { TrendStrip } from '@/components/trend-strip';
 import { useSubscriptions } from '@/lib/hooks/use-subscriptions';
 import { usePosts } from '@/lib/hooks/use-posts';
+import { useMediaQuery } from '@/lib/hooks/use-media-query';
 import { adStateManager } from '@/lib/ad-state';
 import { SITE_NAME } from '@/lib/constants';
 import type { StaticPost, StaticSite } from '@/lib/types';
@@ -312,6 +313,30 @@ export function DashboardHome({ initialPosts, initialSites, keywords = [] }: Pro
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
   const [activeKeyword, setActiveKeyword] = useState<string | null>(null);
   const [updatedAt, setUpdatedAt] = useState<string | null>(null);
+  // 데스크톱/모바일 레이아웃이 CSS로만 전환되고 둘 다 마운트되므로,
+  // 인앱 뷰어 큐는 실제로 보이는 쪽 PostList 하나만 등록한다. (Tailwind sm = 640px)
+  const isDesktopLayout = useMediaQuery('(min-width: 640px)');
+
+  // 모바일 카테고리 탭은 헤더 바로 아래에 붙어야 하므로 헤더 높이(검색창 펼침 포함)를 추적한다.
+  const mobileHeaderRef = useRef<HTMLDivElement>(null);
+  const [mobileHeaderH, setMobileHeaderH] = useState(52);
+  useLayoutEffect(() => {
+    const el = mobileHeaderRef.current;
+    if (!el) return;
+    const ro = new ResizeObserver(() => setMobileHeaderH(el.offsetHeight));
+    ro.observe(el);
+    return () => ro.disconnect();
+  }, [isLoaded]);
+
+  // 맞춤 피드 안내 배너는 한 번 닫으면 다시 띄우지 않는다.
+  const [tipDismissed, setTipDismissed] = useState(true);
+  useEffect(() => {
+    try { setTipDismissed(localStorage.getItem('feed-tip-dismissed') === '1'); } catch { setTipDismissed(false); }
+  }, []);
+  const dismissTip = () => {
+    setTipDismissed(true);
+    try { localStorage.setItem('feed-tip-dismissed', '1'); } catch { /* ignore */ }
+  };
 
   useEffect(() => {
     const isCapacitor = typeof window !== 'undefined' && (
@@ -455,7 +480,12 @@ export function DashboardHome({ initialPosts, initialSites, keywords = [] }: Pro
                     onPick={setActiveKeyword}
                   />
                 )}
-                <PostList posts={displayPosts} selectedSite={activeSite} searchQuery={activeKeyword} />
+                <PostList
+                  posts={displayPosts}
+                  selectedSite={activeSite}
+                  searchQuery={activeKeyword}
+                  registerViewerQueue={isDesktopLayout}
+                />
               </section>
             )}
           </div>
@@ -466,90 +496,85 @@ export function DashboardHome({ initialPosts, initialSites, keywords = [] }: Pro
       <div
         className="sm:hidden"
         style={{
+          background: 'var(--surface)',
+          minHeight: '100vh',
           paddingBottom: isApp && isAdLoaded
             ? 'calc(64px + max(env(safe-area-inset-bottom), 0px))'
             : 'max(env(safe-area-inset-bottom), 16px)',
         }}
       >
         {/* Mobile top bar */}
-        <div style={{
-          position: 'sticky', top: 'env(safe-area-inset-top, 0px)', zIndex: 30,
-          background: 'var(--surface)', borderBottom: '1px solid var(--border)',
-        }}>
-          <div style={{ display: 'flex', alignItems: 'center', gap: 10, padding: '11px 16px' }}>
-
-            {/* Logo + title */}
-            <div style={{ display: 'flex', alignItems: 'center', gap: 9, flex: 1, minWidth: 0 }}>
+        <div
+          ref={mobileHeaderRef}
+          style={{
+            position: 'sticky', top: 'env(safe-area-inset-top, 0px)', zIndex: 30,
+            background: 'var(--surface)',
+          }}
+        >
+          <div style={{ display: 'flex', alignItems: 'center', gap: 2, height: 52, padding: '0 8px 0 16px' }}>
+            <div style={{ display: 'flex', alignItems: 'center', gap: 8, flex: 1, minWidth: 0 }}>
               <span style={{
                 display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-                width: 32, height: 32, borderRadius: 9, background: 'var(--accent)',
-                color: '#fff', fontWeight: 800, fontSize: 16, letterSpacing: '-0.05em',
+                width: 26, height: 26, borderRadius: 7, background: 'var(--accent)',
+                color: '#fff', fontWeight: 800, fontSize: 14, letterSpacing: '-0.05em',
                 flexShrink: 0,
               }}>통</span>
-              <div style={{ display: 'flex', alignItems: 'center', gap: 6, minWidth: 0 }}>
-                <span style={{
-                  fontWeight: 800, fontSize: 16, color: 'var(--fg)',
-                  letterSpacing: '-0.02em', whiteSpace: 'nowrap',
-                }}>
-                  통합 커뮤니티
-                </span>
-                <span style={{
-                  display: 'inline-flex', alignItems: 'center', gap: 4,
-                  fontSize: 10, fontWeight: 700,
-                  color: 'var(--pos)',
-                  background: 'rgba(16,185,129,.12)',
-                  padding: '2px 6px', borderRadius: 999, flexShrink: 0,
-                }}>
-                  <span style={{
-                    width: 5, height: 5, borderRadius: 999, background: 'var(--pos)',
-                    animation: 'pulse 1.6s ease-in-out infinite',
-                  }} />
-                  LIVE
-                </span>
-              </div>
+              <span style={{
+                fontWeight: 800, fontSize: 18, color: 'var(--fg)',
+                letterSpacing: '-0.035em', whiteSpace: 'nowrap',
+              }}>
+                통합 커뮤니티
+              </span>
+              <span
+                title="30분마다 자동 갱신"
+                style={{
+                  width: 6, height: 6, borderRadius: 999, background: 'var(--pos)', flexShrink: 0,
+                  animation: 'pulse 1.6s ease-in-out infinite',
+                }}
+              />
             </div>
 
-            {/* Search button */}
             <button
               onClick={() => setMobileSearchOpen(s => !s)}
               style={{
-                background: 'none', border: 'none', padding: 7, cursor: 'pointer',
-                color: mobileSearchOpen ? 'var(--accent)' : 'var(--fg-2)',
-                display: 'inline-flex',
+                background: 'none', border: 'none', width: 40, height: 40, cursor: 'pointer',
+                color: mobileSearchOpen ? 'var(--accent)' : 'var(--fg-1)',
+                display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
               }}
               aria-label="검색"
             >
-              <Icon d={mobileSearchOpen ? ICONS.close : ICONS.search} size={21} />
+              <Icon d={mobileSearchOpen ? ICONS.close : ICONS.search} size={22} />
             </button>
 
-            {/* Settings button */}
             <button
               onClick={() => router.push('/settings')}
               style={{
-                background: 'none', border: 'none', padding: 7, cursor: 'pointer',
-                color: 'var(--fg-2)', display: 'inline-flex',
+                background: 'none', border: 'none', width: 40, height: 40, cursor: 'pointer',
+                color: 'var(--fg-1)',
+                display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
               }}
               aria-label="설정"
             >
-              <Icon d={ICONS.settings} size={21} />
+              <Icon d={ICONS.settings} size={22} />
             </button>
           </div>
 
-          {/* Expandable search bar */}
           {mobileSearchOpen && (
-            <div style={{ padding: '0 16px 12px' }}>
+            <div style={{ padding: '0 16px 10px' }}>
               <div style={{
-                display: 'flex', alignItems: 'center', gap: 9,
-                padding: '10px 14px', borderRadius: 12,
-                background: 'var(--surface-2)', border: '1px solid var(--border)',
+                display: 'flex', alignItems: 'center', gap: 8,
+                height: 40, padding: '0 12px', borderRadius: 10,
+                background: 'var(--surface-2)', color: 'var(--fg-3)',
               }}>
-                <Icon d={ICONS.search} size={17} />
+                <Icon d={ICONS.search} size={16} />
                 <input
                   autoFocus
-                  placeholder="제목·커뮤니티 검색…"
+                  type="search"
+                  enterKeyHint="search"
+                  placeholder="제목으로 검색"
                   style={{
-                    flex: 1, border: 'none', background: 'none', outline: 'none',
-                    fontSize: 15, color: 'var(--fg-1)', fontFamily: 'inherit',
+                    flex: 1, minWidth: 0, border: 'none', background: 'none', outline: 'none',
+                    fontSize: 15, color: 'var(--fg)', fontFamily: 'inherit',
                   }}
                   value={activeKeyword ?? ''}
                   onChange={e => setActiveKeyword(e.target.value || null)}
@@ -559,7 +584,40 @@ export function DashboardHome({ initialPosts, initialSites, keywords = [] }: Pro
           )}
         </div>
 
-        {/* 키워드 트렌드 스트립 */}
+        {/* 맞춤 피드 안내 — 닫으면 다시 뜨지 않는다 */}
+        {isLoaded && subscriptions.length === 0 && !tipDismissed && (
+          <div style={{
+            display: 'flex', alignItems: 'center', gap: 10,
+            margin: '4px 16px 8px', padding: '8px 6px 8px 14px', borderRadius: 12,
+            background: 'var(--accent-tint)',
+          }}>
+            <span style={{ flex: 1, minWidth: 0, fontSize: 13, lineHeight: 1.4, color: 'var(--fg-1)' }}>
+              보고 싶은 커뮤니티만 골라보세요
+            </span>
+            <button
+              onClick={() => router.push('/settings')}
+              style={{
+                flexShrink: 0, border: 'none', cursor: 'pointer', borderRadius: 8,
+                padding: '6px 10px', fontSize: 12.5, fontWeight: 700,
+                background: 'var(--accent)', color: '#fff',
+              }}
+            >
+              선택하기
+            </button>
+            <button
+              onClick={dismissTip}
+              aria-label="안내 닫기"
+              style={{
+                flexShrink: 0, border: 'none', background: 'none', cursor: 'pointer',
+                width: 28, height: 28, display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                color: 'var(--fg-3)',
+              }}
+            >
+              <Icon d={ICONS.close} size={16} />
+            </button>
+          </div>
+        )}
+
         {keywords.length > 0 && !loading && (
           <TrendStrip
             keywords={keywords}
@@ -568,30 +626,21 @@ export function DashboardHome({ initialPosts, initialSites, keywords = [] }: Pro
           />
         )}
 
-        <div className="px-4 py-3">
-          {isLoaded && subscriptions.length === 0 && (
-            <div className="mb-3 flex items-center justify-between gap-3 px-3 py-2.5 rounded-xl text-xs"
-              style={{ background: 'var(--accent-tint)', border: '1px solid rgba(79,70,229,.2)' }}>
-              <span style={{ color: 'var(--accent)' }}>💡 커뮤니티를 선택해서 맞춤 피드를 만들어보세요</span>
-              <button onClick={() => router.push('/settings')} className="flex-shrink-0 px-2.5 py-1.5 rounded-lg border-0 cursor-pointer font-semibold" style={{ background: 'var(--accent)', color: '#fff', fontSize: 11 }}>
-                설정
-              </button>
-            </div>
-          )}
-
-          {loading ? (
-            <div className="flex justify-center py-10">
-              <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24" fill="none" style={{ color: 'var(--accent)' }}>
-                <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
-                <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
-              </svg>
-            </div>
-          ) : (
-            <div className="rounded-xl overflow-hidden" style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}>
-              <PostList posts={displayPosts} searchQuery={activeKeyword} />
-            </div>
-          )}
-        </div>
+        {loading ? (
+          <div className="flex justify-center py-10">
+            <svg className="animate-spin h-5 w-5" viewBox="0 0 24 24" fill="none" style={{ color: 'var(--accent)' }}>
+              <circle className="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" strokeWidth="4" />
+              <path className="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z" />
+            </svg>
+          </div>
+        ) : (
+          <PostList
+            posts={displayPosts}
+            searchQuery={activeKeyword}
+            registerViewerQueue={!isDesktopLayout}
+            stickyFilterTop={`calc(env(safe-area-inset-top, 0px) + ${mobileHeaderH}px)`}
+          />
+        )}
       </div>
 
     </div>

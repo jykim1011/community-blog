@@ -8,6 +8,7 @@ import { useBookmarks } from '@/lib/hooks/use-bookmarks';
 import { adStateManager } from '@/lib/ad-state';
 import { isDomainBlocked } from '@/lib/utils/blocked-domains';
 import { useViewer } from '@/lib/contexts/viewer-context';
+import { useViewerQueue } from '@/lib/hooks/use-viewer-queue';
 import type { StaticPost } from '@/lib/types';
 
 const SITE_THEME: Record<string, { color: string; badge: string; domain: string }> = {
@@ -164,7 +165,13 @@ function HotPostItem({ post, rank }: { post: StaticPost; rank: number }) {
       window.open(post.url, '_blank', 'noopener,noreferrer');
       return;
     }
-    openViewer({ url: post.url, site: post.siteDisplayName, color: theme.color });
+    openViewer({
+      url: post.url,
+      site: post.siteDisplayName,
+      siteName: post.site,
+      title: post.title,
+      color: theme.color,
+    });
   };
 
   return (
@@ -337,6 +344,9 @@ export function HotPosts({ initialPosts }: Props) {
   const [isAdLoaded, setIsAdLoaded] = useState(false);
   const loadRef = useRef<HTMLDivElement>(null);
   const hasMore = shown < posts.length;
+
+  // 인앱 뷰어에서도 인기글 목록이 계속 보이도록 등록
+  useViewerQueue(posts);
 
   useEffect(() => {
     const isCapacitor =

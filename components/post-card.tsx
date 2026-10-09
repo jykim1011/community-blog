@@ -6,6 +6,7 @@ import { useReadPosts } from '@/lib/hooks/use-read-posts';
 import { useBookmarks } from '@/lib/hooks/use-bookmarks';
 import { isDomainBlocked } from '@/lib/utils/blocked-domains';
 import { useViewer } from '@/lib/contexts/viewer-context';
+import { SITE_THEME, SITE_DOMAIN } from '@/lib/site-theme';
 interface PostCardProps {
   id: string;
   title: string;
@@ -19,63 +20,6 @@ interface PostCardProps {
   category?: string;
 }
 
-const SITE_THEME: Record<string, { color: string; badge: string }> = {
-  clien:      { color: '#475569', badge: '클' },
-  theqoo:     { color: '#d6006c', badge: '더' },
-  ruliweb:    { color: '#c81e1e', badge: '루' },
-  dcinside:   { color: '#d1410c', badge: 'DC' },
-  fmkorea:    { color: '#d97706', badge: 'FM' },
-  inven:      { color: '#b4530b', badge: '인' },
-  arca:       { color: '#ea580c', badge: '아카' },
-  ppomppu:    { color: '#a16207', badge: '뽐' },
-  mlbpark:    { color: '#0b3b5c', badge: 'MP' },
-  natepann:   { color: '#c92b2b', badge: '네' },
-  instiz:     { color: '#7c3aed', badge: '인스' },
-  bobaedream: { color: '#1e3a8a', badge: '보' },
-  etoland:    { color: '#1f6b2a', badge: '에' },
-  humoruniv:  { color: '#1b4a9e', badge: '유' },
-  cook82:     { color: '#b02727', badge: '82' },
-  slrclub:    { color: '#2d3a4a', badge: 'SLR' },
-  damoang:    { color: '#0f766e', badge: '다' },
-  orbi:       { color: '#1d4ed8', badge: '오' },
-  gasengi:    { color: '#1e6b31', badge: '가' },
-  hygall:     { color: '#7a2a94', badge: '혜' },
-  todayhumor: { color: '#5e6b10', badge: '투' },
-  quasarzone: { color: '#c2410c', badge: 'Q' },
-  dealbada:   { color: '#854d0e', badge: '딜' },
-  dvdprime:   { color: '#4338ca', badge: 'DV' },
-  coolenjoy:  { color: '#0f766e', badge: '쿨' },
-  extmovie:   { color: '#7e22ce', badge: 'EX' },
-};
-
-const SITE_DOMAIN: Record<string, string> = {
-  clien:      'clien.net',
-  theqoo:     'theqoo.net',
-  ruliweb:    'ruliweb.com',
-  dcinside:   'dcinside.com',
-  fmkorea:    'fmkorea.com',
-  inven:      'inven.co.kr',
-  arca:       'arca.live',
-  ppomppu:    'ppomppu.co.kr',
-  mlbpark:    'mlbpark.donga.com',
-  natepann:   'pann.nate.com',
-  instiz:     'instiz.net',
-  bobaedream: 'bobaedream.co.kr',
-  etoland:    'etoland.co.kr',
-  humoruniv:  'web.humoruniv.com',
-  cook82:     '82cook.com',
-  slrclub:    'slrclub.com',
-  damoang:    'damoang.com',
-  orbi:       'orbi.kr',
-  gasengi:    'gasengi.com',
-  hygall:     'gall.dcinside.com',
-  todayhumor: 'todayhumor.co.kr',
-  quasarzone: 'quasarzone.com',
-  dealbada:   'dealbada.com',
-  dvdprime:   'dvdprime.com',
-  coolenjoy:  'coolenjoy.net',
-  extmovie:   'extmovie.com',
-};
 
 const ICON_PATHS = {
   eye:      ['M1.5 12S5 5 12 5s10.5 7 10.5 7-3.5 7-10.5 7S1.5 12 1.5 12z', 'M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z'],
@@ -113,7 +57,7 @@ function SiteIcon({ siteName, color, badge, size = 32, dim = false }: { siteName
         onError={() => setError(true)}
         style={{
           width: size, height: size, flexShrink: 0,
-          borderRadius: 8, objectFit: 'contain',
+          borderRadius: Math.round(size * 0.25), objectFit: 'contain',
           opacity: dim ? 0.4 : 1,
         }}
         loading="lazy"
@@ -122,11 +66,11 @@ function SiteIcon({ siteName, color, badge, size = 32, dim = false }: { siteName
   }
 
   const len = badge.length;
-  const fs = size * 0.42 * (len > 2 ? 0.62 : len > 1 ? 0.82 : 1);
+  const fs = size * 0.55 * (len > 2 ? 0.62 : len > 1 ? 0.82 : 1);
   return (
     <span style={{
       display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
-      flexShrink: 0, width: size, height: size, borderRadius: 9,
+      flexShrink: 0, width: size, height: size, borderRadius: Math.round(size * 0.25),
       background: dim ? 'var(--fg-4)' : color, color: '#fff',
       fontWeight: 800, fontSize: fs, letterSpacing: '-0.04em', lineHeight: 1,
     }}>
@@ -180,7 +124,13 @@ export function PostCard({
       window.open(url, '_blank', 'noopener,noreferrer');
       return;
     }
-    openViewer({ url, site: site.displayName, color: SITE_THEME[site.name]?.color ?? '#71717a' });
+    openViewer({
+      url,
+      site: site.displayName,
+      siteName: site.name,
+      title,
+      color: SITE_THEME[site.name]?.color ?? '#71717a',
+    });
   };
 
   const isReadPost = isLoaded && isRead(url);
@@ -188,10 +138,10 @@ export function PostCard({
   const isHot = (commentCount ?? 0) >= 150 || (viewCount ?? 0) >= 20000;
   const bookmarked = isBookmarked(url);
 
-  const hasViews    = viewCount != null;
-  const hasComments = commentCount != null;
-  const hasLikes    = likeCount != null && likeCount > 0;
-  const hasStats    = hasViews || hasComments || hasLikes;
+  const comments = commentCount ?? 0;
+  const hasViews = viewCount != null && viewCount > 0;
+  const hasLikes = likeCount != null && likeCount > 0;
+  const metaColor = isReadPost ? 'var(--fg-4)' : 'var(--fg-3)';
 
   return (
     <a
@@ -201,143 +151,103 @@ export function PostCard({
       onTouchStart={handleTouchStart}
       onTouchMove={handleTouchMove}
       onTouchCancel={handleTouchCancel}
-      className="block transition-colors cursor-pointer"
-      style={{
-        borderBottom: '1px solid var(--border)',
-        backgroundColor: isReadPost ? 'var(--surface-2)' : 'transparent',
-      }}
-      onMouseEnter={e => { if (!isReadPost) e.currentTarget.style.backgroundColor = 'var(--hover)'; }}
-      onMouseLeave={e => { e.currentTarget.style.backgroundColor = isReadPost ? 'var(--surface-2)' : 'transparent'; }}
+      className="post-card block cursor-pointer"
+      style={{ borderBottom: '1px solid var(--border)' }}
     >
-      <div style={{ display: 'flex', gap: 12, padding: '15px 18px', alignItems: 'flex-start' }}>
-
-        {/* Left: site icon */}
-        <div style={{ paddingTop: 1, flexShrink: 0 }}>
-          <SiteIcon
-            siteName={site.name}
-            color={theme.color}
-            badge={theme.badge}
-            size={32}
-            dim={isReadPost}
-          />
-        </div>
-
-        {/* Right: content */}
+      <div style={{ display: 'flex', gap: 10, padding: '13px 16px 12px', alignItems: 'flex-start' }}>
         <div style={{ flex: 1, minWidth: 0 }}>
 
-          {/* Meta row: site · category chip · time · HOT */}
-          <div style={{
-            display: 'flex', alignItems: 'center', gap: 6, marginBottom: 5,
-            fontSize: 12, lineHeight: 1, whiteSpace: 'nowrap', overflow: 'hidden',
-          }}>
-            <span style={{
-              fontWeight: 700, whiteSpace: 'nowrap', flexShrink: 0,
-              color: isReadPost ? 'var(--fg-4)' : theme.color,
-            }}>
-              {site.displayName}
-            </span>
-            {category && (
-              <span style={{
-                display: 'inline-flex', alignItems: 'center',
-                fontSize: 11, fontWeight: 600, lineHeight: 1,
-                padding: '2px 6px', borderRadius: 5, flexShrink: 0,
-                background: 'var(--surface-2)', color: 'var(--fg-2)',
-              }}>
-                {category}
-              </span>
-            )}
-            <span style={{ color: 'var(--fg-4)', flexShrink: 0 }}>·</span>
-            <span style={{ color: 'var(--fg-3)', whiteSpace: 'nowrap', flexShrink: 0 }}>
-              {relativeTime || '방금 전'}
-            </span>
-            {isHot && !isReadPost && (
-              <span style={{
-                display: 'inline-flex', alignItems: 'center', gap: 2,
-                color: 'var(--hot)', fontWeight: 700, fontSize: 11,
-                flexShrink: 0, whiteSpace: 'nowrap',
-              }}>
-                🔥 HOT
-              </span>
-            )}
-          </div>
-
-          {/* Title */}
+          {/* Title + 댓글 수 (커뮤니티 관례대로 제목 옆에 표기) */}
           <h3
             style={{
               margin: 0,
-              fontSize: 15.5,
+              fontSize: 16,
               fontWeight: isReadPost ? 400 : 600,
-              lineHeight: 1.42,
-              color: isReadPost ? 'var(--fg-3)' : 'var(--fg)',
-              letterSpacing: '-0.015em',
+              lineHeight: 1.45,
+              color: isReadPost ? 'var(--fg-4)' : 'var(--fg)',
+              letterSpacing: '-0.02em',
               display: '-webkit-box',
               WebkitLineClamp: 2,
               WebkitBoxOrient: 'vertical',
               overflow: 'hidden',
             } as React.CSSProperties}
           >
+            {isHot && !isReadPost && (
+              <span style={{
+                display: 'inline-block', verticalAlign: '2px', marginRight: 5,
+                padding: '2px 5px', borderRadius: 4, lineHeight: 1,
+                fontSize: 10.5, fontWeight: 800, letterSpacing: '0.02em',
+                background: 'var(--hot-tint)', color: 'var(--hot)',
+              }}>
+                HOT
+              </span>
+            )}
             {title}
+            {comments > 0 && (
+              <span style={{
+                marginLeft: 5, fontSize: 13.5, fontWeight: 700,
+                fontVariantNumeric: 'tabular-nums',
+                color: isReadPost ? 'var(--fg-4)' : 'var(--comment)',
+              }}>
+                {fmtKo(comments)}
+              </span>
+            )}
           </h3>
 
-          {/* Stats + bookmark button */}
-          {hasStats && (
-            <div style={{
-              display: 'flex', alignItems: 'center',
-              justifyContent: 'space-between', marginTop: 9,
-            }}>
-              <div style={{
-                display: 'flex', alignItems: 'center', gap: 11,
-                fontSize: 12, color: isReadPost ? 'var(--fg-4)' : 'var(--fg-3)',
-              }}>
-                {hasViews && (
-                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: 3.5 }}>
-                    <StatIcon paths={ICON_PATHS.eye} size={13} />
-                    <span style={{ fontVariantNumeric: 'tabular-nums', fontSize: 11.5 }}>{fmtKo(viewCount!)}</span>
-                  </span>
-                )}
-                {hasComments && (
-                  <span style={{
-                    display: 'inline-flex', alignItems: 'center', gap: 3.5,
-                    color: isHot && !isReadPost ? 'var(--hot)' : undefined,
-                    fontWeight: isHot && !isReadPost ? 600 : undefined,
-                  }}>
-                    <StatIcon paths={ICON_PATHS.chat} size={13} />
-                    <span style={{ fontVariantNumeric: 'tabular-nums', fontSize: 11.5 }}>{fmtKo(commentCount!)}</span>
-                  </span>
-                )}
-                {hasLikes && (
-                  <span style={{ display: 'inline-flex', alignItems: 'center', gap: 3.5 }}>
-                    <StatIcon paths={ICON_PATHS.heart} size={13} />
-                    <span style={{ fontVariantNumeric: 'tabular-nums', fontSize: 11.5 }}>{fmtKo(likeCount!)}</span>
-                  </span>
-                )}
-              </div>
-
-              {/* Bookmark */}
-              <button
-                onClick={(e) => {
-                  e.preventDefault();
-                  e.stopPropagation();
-                  toggleBookmark(url, title, site.displayName);
-                }}
-                style={{
-                  background: 'none', border: 'none', padding: '3px 4px',
-                  margin: '-3px -4px', display: 'inline-flex', cursor: 'pointer',
-                  color: bookmarked ? 'var(--accent)' : 'var(--fg-4)',
-                  flexShrink: 0,
-                }}
-                aria-label={bookmarked ? '북마크 제거' : '북마크 저장'}
-              >
-                <svg width={15} height={15} viewBox="0 0 24 24"
-                  fill={bookmarked ? 'currentColor' : 'none'}
-                  stroke="currentColor" strokeWidth="2"
-                  strokeLinecap="round" strokeLinejoin="round">
-                  <path d={ICON_PATHS.bookmark[0]} />
-                </svg>
-              </button>
-            </div>
-          )}
+          {/* Meta: 사이트 · 카테고리 · 시간 · 조회 · 추천 */}
+          <div style={{
+            display: 'flex', alignItems: 'center', gap: 5, marginTop: 6,
+            fontSize: 12.5, lineHeight: 1, color: metaColor,
+            whiteSpace: 'nowrap', overflow: 'hidden',
+          }}>
+            <SiteIcon siteName={site.name} color={theme.color} badge={theme.badge} size={15} dim={isReadPost} />
+            <span style={{ fontWeight: 600, color: isReadPost ? 'var(--fg-4)' : 'var(--fg-2)', flexShrink: 0 }}>
+              {site.displayName}
+            </span>
+            {category && (
+              <span style={{ overflow: 'hidden', textOverflow: 'ellipsis', minWidth: 0 }}>
+                · {category}
+              </span>
+            )}
+            <span style={{ flexShrink: 0 }}>· {relativeTime || '방금 전'}</span>
+            {hasViews && (
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 3, marginLeft: 4, flexShrink: 0 }}>
+                <StatIcon paths={ICON_PATHS.eye} size={12} />
+                <span style={{ fontVariantNumeric: 'tabular-nums' }}>{fmtKo(viewCount!)}</span>
+              </span>
+            )}
+            {hasLikes && (
+              <span style={{ display: 'inline-flex', alignItems: 'center', gap: 3, marginLeft: 2, flexShrink: 0 }}>
+                <StatIcon paths={ICON_PATHS.heart} size={12} />
+                <span style={{ fontVariantNumeric: 'tabular-nums' }}>{fmtKo(likeCount!)}</span>
+              </span>
+            )}
+          </div>
         </div>
+
+        {/* Bookmark */}
+        <button
+          onClick={(e) => {
+            e.preventDefault();
+            e.stopPropagation();
+            toggleBookmark(url, title, site.displayName);
+          }}
+          onTouchStart={(e) => e.stopPropagation()}
+          style={{
+            background: 'none', border: 'none', padding: 8, margin: '-4px -8px 0 0',
+            display: 'inline-flex', cursor: 'pointer', flexShrink: 0,
+            color: bookmarked ? 'var(--accent)' : 'var(--fg-4)',
+            opacity: bookmarked ? 1 : 0.7,
+          }}
+          aria-label={bookmarked ? '북마크 제거' : '북마크 저장'}
+        >
+          <svg width={17} height={17} viewBox="0 0 24 24"
+            fill={bookmarked ? 'currentColor' : 'none'}
+            stroke="currentColor" strokeWidth="1.9"
+            strokeLinecap="round" strokeLinejoin="round">
+            <path d={ICON_PATHS.bookmark[0]} />
+          </svg>
+        </button>
       </div>
     </a>
   );
