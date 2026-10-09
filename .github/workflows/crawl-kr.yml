@@ -34,10 +34,11 @@ jobs:
         with:
           fetch-depth: 1
 
+      # cache: npm 은 쓰지 않는다 — Windows 러너에서 캐시 저장(post step)이 20분 넘게 멈췄다.
+      # 로컬 PC 라 npm 캐시가 디스크에 그대로 남아 있어 필요도 없다.
       - uses: actions/setup-node@v4
         with:
           node-version: '22'
-          cache: npm
 
       - run: npm ci
 
