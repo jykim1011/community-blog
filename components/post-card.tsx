@@ -7,6 +7,8 @@ import { useBookmarks } from '@/lib/hooks/use-bookmarks';
 import { isDomainBlocked } from '@/lib/utils/blocked-domains';
 import { useViewer } from '@/lib/contexts/viewer-context';
 import { SITE_THEME, SITE_DOMAIN } from '@/lib/site-theme';
+import { openExternal } from '@/lib/open-external';
+import { track } from '@/lib/analytics';
 interface PostCardProps {
   id: string;
   title: string;
@@ -120,8 +122,10 @@ export function PostCard({
   const handleClick = (e: React.MouseEvent | React.KeyboardEvent) => {
     e.preventDefault();
     markAsRead(url);
-    if (isDomainBlocked(url)) {
-      window.open(url, '_blank', 'noopener,noreferrer');
+    const blocked = isDomainBlocked(url);
+    track('post_open', { site: site.name, mode: blocked ? 'external' : 'viewer' });
+    if (blocked) {
+      openExternal(url, { title: site.displayName, color: SITE_THEME[site.name]?.color });
       return;
     }
     openViewer({

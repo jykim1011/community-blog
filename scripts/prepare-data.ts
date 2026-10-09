@@ -12,6 +12,7 @@
 import fs from 'fs';
 import path from 'path';
 import type { StaticPost } from '../lib/types';
+import { rankTrending } from '../lib/utils/ranking';
 
 const ROOT = process.cwd();
 const INITIAL_COUNT = 60;
@@ -25,9 +26,8 @@ function main() {
   ) as StaticPost[];
 
   // ── 1. 첫 화면용 슬라이스 ────────────────────────────────
-  const recent = [...posts].sort(
-    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
-  );
+  // 홈 기본 정렬(실시간)과 같은 순서여야 첫 화면이 하이드레이션 후 뒤바뀌지 않는다.
+  const recent = rankTrending(posts);
   const hot = [...posts].sort((a, b) => hotScore(b) - hotScore(a));
 
   writeJson('data/posts-initial.json', recent.slice(0, INITIAL_COUNT));

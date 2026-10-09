@@ -1,6 +1,6 @@
 'use client';
 
-export type SortOption = 'popular' | 'comments' | 'recent';
+export type SortOption = 'trending' | 'recent' | 'comments';
 
 interface SortSelectorProps {
   currentSort: SortOption;
@@ -8,8 +8,8 @@ interface SortSelectorProps {
 }
 
 const sortOptions: { value: SortOption; label: string }[] = [
+  { value: 'trending', label: '실시간' },
   { value: 'recent',   label: '최신순' },
-  { value: 'popular',  label: '인기순' },
   { value: 'comments', label: '댓글순' },
 ];
 

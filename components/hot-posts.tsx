@@ -7,6 +7,7 @@ import { usePosts } from '@/lib/hooks/use-posts';
 import { useBookmarks } from '@/lib/hooks/use-bookmarks';
 import { adStateManager } from '@/lib/ad-state';
 import { isDomainBlocked } from '@/lib/utils/blocked-domains';
+import { openExternal } from '@/lib/open-external';
 import { useViewer } from '@/lib/contexts/viewer-context';
 import { useViewerQueue } from '@/lib/hooks/use-viewer-queue';
 import type { StaticPost } from '@/lib/types';
@@ -162,7 +163,7 @@ function HotPostItem({ post, rank }: { post: StaticPost; rank: number }) {
     e.preventDefault();
     markAsRead(post.url);
     if (isDomainBlocked(post.url)) {
-      window.open(post.url, '_blank', 'noopener,noreferrer');
+      openExternal(post.url, { title: post.siteDisplayName, color: theme.color });
       return;
     }
     openViewer({

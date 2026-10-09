@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import { SITE_URL, SITE_NAME, SITE_DESCRIPTION } from "@/lib/constants";
 import Script from "next/script";
+import { GA_ID } from "@/lib/analytics";
 import { AdMobBanner } from '@/components/admob-banner';
 import { BottomAdContainer } from '@/components/bottom-ad-container';
 import { ViewerProvider } from '@/lib/contexts/viewer-context';
@@ -70,6 +71,16 @@ export default function RootLayout({
             crossOrigin="anonymous"
             strategy="afterInteractive"
           />
+        )}
+        {/* Google Analytics 4 — 리텐션/이탈 측정 */}
+        {GA_ID && (
+          <>
+            <Script src={`https://www.googletagmanager.com/gtag/js?id=${GA_ID}`} strategy="afterInteractive" />
+            <Script id="ga4-init" strategy="afterInteractive">
+              {`window.dataLayer=window.dataLayer||[];function gtag(){dataLayer.push(arguments);}gtag('js',new Date());` +
+                `gtag('config','${GA_ID}',{platform:(window.Capacitor&&window.Capacitor.isNativePlatform&&window.Capacitor.isNativePlatform())?'app':'web'});`}
+            </Script>
+          </>
         )}
       </head>
       <body

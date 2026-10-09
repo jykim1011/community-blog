@@ -5,6 +5,8 @@ import { Capacitor } from '@capacitor/core';
 import { useViewer } from '@/lib/contexts/viewer-context';
 import { ViewerToolbar } from '@/components/viewer-toolbar';
 import { ViewerQueueStrip } from '@/components/viewer-queue-strip';
+import { openExternal } from '@/lib/open-external';
+import { track } from '@/lib/analytics';
 
 const SIDE_LAYOUT_MIN_WIDTH = 900;
 
@@ -24,9 +26,11 @@ export function ViewerOverlay() {
   // 이펙트로 처리하면 paint 이후에 실행돼 빈 iframe 이 한 프레임 보인다.
   // 뷰어가 닫힐 때도 리셋해야 같은 글을 다시 열었을 때 스피너가 나온다.
   const currentUrl = viewer?.url ?? null;
+  const [slow, setSlow] = useState(false);
   if (currentUrl !== renderedUrl) {
     setRenderedUrl(currentUrl);
     setLoading(currentUrl !== null);
+    setSlow(false);
   }
 
   useEffect(() => {
@@ -82,17 +86,18 @@ export function ViewerOverlay() {
     return () => window.removeEventListener('keydown', onKey);
   }, [viewer, closeViewer, goNext, goPrev]);
 
-  // 미확인 차단 사이트 fallback: 10초 내 로드 없으면 외부 브라우저로
+  // 로딩이 길어지면(미확인 차단 사이트 등) 앱 브라우저로 여는 버튼을 보여준다.
+  // 예전엔 10초 뒤 자동으로 외부 브라우저로 튕겨냈는데, 그 자체가 앱 이탈로 이어졌다.
   useEffect(() => {
-    if (!viewer) return;
+    if (!viewer || !loading) return;
+    const site = viewer.siteName ?? viewer.site;
     const t = setTimeout(() => {
-      setLoading(prev => {
-        if (prev) window.open(viewer.url, '_blank', 'noopener,noreferrer');
-        return prev;
-      });
-    }, 10000);
+      setSlow(true);
+      track('viewer_slow', { site });
+    }, 5000);
     return () => clearTimeout(t);
-  }, [viewer?.url]);
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [viewer?.url, loading]);
 
   if (!viewer) {
     if (!preloadUrl) return null;
@@ -208,10 +213,31 @@ export function ViewerOverlay() {
                     background: 'var(--surface-2)',
                   }} />
                 ))}
-                <div className="animate-pulse" style={{
-                  width: '100%', aspectRatio: '16 / 10', borderRadius: 12, marginTop: 8,
-                  background: 'var(--surface-2)',
-                }} />
+                {slow ? (
+                  <div style={{ marginTop: 20, textAlign: 'center' }}>
+                    <p style={{ margin: '0 0 12px', fontSize: 14, color: 'var(--fg-3)' }}>
+                      페이지가 열리지 않나요?
+                    </p>
+                    <button
+                      onClick={() => {
+                        track('viewer_fallback', { site: viewer.siteName ?? viewer.site });
+                        openExternal(viewer.url, { title: viewer.site, color: viewer.color });
+                      }}
+                      style={{
+                        border: 'none', cursor: 'pointer', borderRadius: 10,
+                        padding: '11px 18px', fontSize: 14.5, fontWeight: 700,
+                        background: viewer.color, color: '#fff',
+                      }}
+                    >
+                      {viewer.site}에서 바로 보기
+                    </button>
+                  </div>
+                ) : (
+                  <div className="animate-pulse" style={{
+                    width: '100%', aspectRatio: '16 / 10', borderRadius: 12, marginTop: 8,
+                    background: 'var(--surface-2)',
+                  }} />
+                )}
               </div>
             </div>
           )}

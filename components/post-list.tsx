@@ -7,6 +7,7 @@ import { SortSelector, SortOption } from '@/components/sort-selector';
 import { PullToRefresh } from '@/components/pull-to-refresh';
 import { useLocalStorage } from '@/lib/hooks/use-local-storage';
 import { useViewerQueue } from '@/lib/hooks/use-viewer-queue';
+import { rankTrending } from '@/lib/utils/ranking';
 import type { StaticPost } from '@/lib/types';
 
 const POSTS_PER_PAGE = 20;
@@ -27,7 +28,7 @@ interface PostListProps {
 export function PostList({ posts, selectedSite, searchQuery, registerViewerQueue = true, stickyFilterTop }: PostListProps) {
   const [currentSite, setCurrentSite] = useState<string | null>(null);
   const [currentCategory, setCurrentCategory] = useLocalStorage<FeedCategory | null>('feed-category', null);
-  const [currentSort, setCurrentSort] = useLocalStorage<SortOption>('feed-sort', 'recent');
+  const [currentSort, setCurrentSort] = useLocalStorage<SortOption>('feed-sort-v2', 'trending');
   const [displayedCount, setDisplayedCount] = useState(INITIAL_COUNT);
   const [isLoading, setIsLoading] = useState(false);
 
@@ -68,19 +69,12 @@ export function PostList({ posts, selectedSite, searchQuery, registerViewerQueue
       filtered = filtered.filter(p => p.title.toLowerCase().includes(q));
     }
 
-    return [...filtered].sort((a, b) => {
-      switch (currentSort) {
-        case 'popular': {
-          const scoreA = (a.viewCount || 0) * 0.1 + (a.commentCount || 0) * 5 + (a.likeCount || 0) * 2;
-          const scoreB = (b.viewCount || 0) * 0.1 + (b.commentCount || 0) * 5 + (b.likeCount || 0) * 2;
-          return scoreB - scoreA;
-        }
-        case 'comments':
-          return (b.commentCount || 0) - (a.commentCount || 0);
-        default:
-          return new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime();
-      }
-    });
+    if (currentSort === 'trending') return rankTrending(filtered);
+    return [...filtered].sort((a, b) =>
+      currentSort === 'comments'
+        ? (b.commentCount || 0) - (a.commentCount || 0)
+        : new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    );
   }, [posts, currentSite, currentCategory, currentSort, searchQuery]);
 
   const displayedPosts = useMemo(

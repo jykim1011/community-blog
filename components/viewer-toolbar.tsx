@@ -2,6 +2,7 @@
 
 import { useState } from 'react';
 import { faviconUrl } from '@/lib/site-theme';
+import { openExternal } from '@/lib/open-external';
 
 interface ViewerToolbarProps {
   siteName: string;
@@ -104,7 +105,7 @@ export function ViewerToolbar({
         label="브라우저로 열기"
         paths={GLYPHS.external}
         size={19}
-        onClick={() => window.open(url, '_blank', 'noopener,noreferrer')}
+        onClick={() => openExternal(url, { title: siteName, color: siteColor })}
       />
     </div>
   );
