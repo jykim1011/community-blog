@@ -29,10 +29,10 @@ export const siteConfigs: Record<string, { displayName: string; url: string; cat
   gasengi: { displayName: '가생이', url: 'https://www.gasengi.com', category: 'community', disabled: true },
   hygall: { displayName: '해연갤', url: 'https://hygall.com', category: 'community' },
   todayhumor: { displayName: '오늘의유머', url: 'https://www.todayhumor.co.kr', category: 'community' },
-  quasarzone: { displayName: '쿼사존', url: 'https://quasarzone.com', category: 'hotdeal' },
+  quasarzone: { displayName: '쿼사존', url: 'https://quasarzone.com', category: 'hotdeal', disabled: true },
   extmovie: { displayName: '익스트림무비', url: 'https://extmovie.com', category: 'movie' },
   dvdprime: { displayName: 'DVDPrime', url: 'https://dvdprime.com', category: 'movie', disabled: true },
-  dealbada: { displayName: '딜바다', url: 'http://www.dealbada.com', category: 'hotdeal' },
+  dealbada: { displayName: '딜바다', url: 'http://www.dealbada.com', category: 'hotdeal', disabled: true },
   coolenjoy: { displayName: '쿨엔조이', url: 'https://coolenjoy.net', category: 'community', disabled: true },
 };
 
