@@ -23,9 +23,13 @@ jobs:
     timeout-minutes: 25
     defaults:
       run:
-        # Windows 러너: WSL bash 가 잡히지 않도록 Git Bash 를 명시
-        shell: '"C:\Program Files\Git\bin\bash.exe" --noprofile --norc -eo pipefail {0}'
+        shell: bash
     steps:
+      # Windows 러너: PATH 에서 WSL bash(System32) 보다 Git Bash 가 먼저 잡히게 한다
+      - name: Use Git Bash
+        shell: powershell
+        run: Add-Content -Path $env:GITHUB_PATH -Value 'C:\Program Files\Git\bin'
+
       - uses: actions/checkout@v4
         with:
           fetch-depth: 1
