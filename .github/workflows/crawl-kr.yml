@@ -26,9 +26,10 @@ jobs:
         shell: bash
     steps:
       # Windows 러너: PATH 에서 WSL bash(System32) 보다 Git Bash 가 먼저 잡히게 한다
+      # shell: powershell 은 실행 정책(Restricted)에 막혀 실패하므로 cmd 를 쓴다
       - name: Use Git Bash
-        shell: powershell
-        run: Add-Content -Path $env:GITHUB_PATH -Value 'C:\Program Files\Git\bin'
+        shell: cmd
+        run: echo C:\Program Files\Git\bin>>"%GITHUB_PATH%"
 
       - uses: actions/checkout@v4
         with:
