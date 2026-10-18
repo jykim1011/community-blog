@@ -3,6 +3,7 @@ import * as path from 'path';
 import { crawlers } from '../lib/crawlers';
 import { siteConfigs } from '../lib/constants';
 import { cleanPost } from '../lib/utils/clean-post';
+import { normalizeUrl } from '../lib/utils/url-normalizer';
 import type { StaticPost, StaticSite } from '../lib/types';
 import { analyzeKeywords } from '../lib/analysis/keywords';
 import { analyzeDailyTrends, analyzeHourlyTrends, analyzeSiteTrends, calculateOverallStats } from '../lib/analysis/trends';
@@ -167,9 +168,19 @@ async function main() {
 
   // 목록에 작성 시각이 없는 사이트(네이트판 랭킹 등)는 크롤 시각을 createdAt 으로 쓰므로,
   // 같은 글이 다시 크롤링될 때마다 "방금 올라온 글"이 되지 않도록 처음 본 시각을 유지한다.
-  const existingCreatedAt = new Map(existingPosts.map((p) => [p.url, p.createdAt]));
+  // 목록 URL 에 page 같은 파라미터가 붙어 오면 같은 글이 페이지가 밀릴 때마다 다른 URL 로 들어와
+  // 중복으로 쌓인다(루리웹·해연갤·82쿡·뽐뿌). 기존 글도 여기서 정규화해 이미 쌓인 중복까지 걷어낸다.
+  const withNormalizedUrl = (p: StaticPost): StaticPost => ({ ...p, url: normalizeUrl(p.url, p.site) });
+  const normalizedNew = newPosts.map(withNormalizedUrl);
+  const normalizedExisting = existingPosts.map(withNormalizedUrl);
 
-  for (const raw of [...newPosts, ...existingPosts]) {
+  const existingCreatedAt = new Map<string, string>();
+  for (const p of normalizedExisting) {
+    const prev = existingCreatedAt.get(p.url);
+    if (!prev || p.createdAt < prev) existingCreatedAt.set(p.url, p.createdAt);
+  }
+
+  for (const raw of [...normalizedNew, ...normalizedExisting]) {
     if (urlSet.has(raw.url) || !isEnabled(raw.site)) continue;
     urlSet.add(raw.url);
     const post = cleanPost(raw);

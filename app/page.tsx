@@ -1,5 +1,5 @@
 import { DashboardHome } from '@/components/dashboard-home';
-import { SITE_NAME, SITE_URL } from '@/lib/constants';
+import { SITE_NAME, SITE_URL, siteConfigs } from '@/lib/constants';
 import initialPostsData from '@/data/posts-initial.json';
 import sitesData from '@/data/sites.json';
 import analysisData from '@/data/analysis.json';
@@ -8,7 +8,8 @@ import type { StaticPost, StaticSite } from '@/lib/types';
 // 전체 목록(7000건)을 인라인하면 홈 HTML 이 4MB 가 된다.
 // 첫 화면 60건만 SSR 로 내려주고, 나머지는 usePosts 가 마운트 후 가져온다.
 const initialPosts: StaticPost[] = initialPostsData as StaticPost[];
-const sites: StaticSite[] = sitesData as StaticSite[];
+// 수집을 중단한 사이트(robots.txt 차단 등)는 글이 0건이라 사이드바에 죽은 항목으로만 보인다.
+const sites: StaticSite[] = (sitesData as StaticSite[]).filter(s => !siteConfigs[s.name]?.disabled);
 
 const topKeywords = (analysisData as { keywords: { word: string }[] })
   .keywords.slice(0, 8)

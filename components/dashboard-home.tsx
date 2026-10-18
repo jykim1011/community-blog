@@ -216,44 +216,6 @@ function Sidebar({ sites, posts, activeSite, onSiteClick }: {
   );
 }
 
-// ── Stats bar ─────────────────────────────────────────────────
-function StatsBar({ posts }: { posts: StaticPost[] }) {
-  const stats = useMemo(() => ({
-    posts: posts.length,
-    comments: posts.reduce((a, p) => a + (p.commentCount || 0), 0),
-    views: posts.reduce((a, p) => a + (p.viewCount || 0), 0),
-    sites: new Set(posts.map(p => p.site)).size,
-  }), [posts]);
-
-  const fmt = (n: number) => n >= 1000000 ? (n / 1000000).toFixed(1) + 'M' : n >= 1000 ? (n / 1000).toFixed(1) + 'k' : String(n);
-
-  const items = [
-    { emoji: '📰', label: '게시글', value: fmt(stats.posts) },
-    { emoji: '💬', label: '총 댓글', value: fmt(stats.comments) },
-    { emoji: '👁', label: '총 조회', value: fmt(stats.views) },
-    { emoji: '🏠', label: '커뮤니티', value: String(stats.sites) },
-  ];
-
-  return (
-    <div className="grid gap-3 mb-4" style={{ gridTemplateColumns: 'repeat(4, 1fr)' }}>
-      {items.map(item => (
-        <div
-          key={item.label}
-          className="rounded-xl px-4 py-3"
-          style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}
-        >
-          <div className="flex items-center gap-1.5 text-xs mb-1" style={{ color: 'var(--fg-3)' }}>
-            <span>{item.emoji}</span> {item.label}
-          </div>
-          <div className="text-2xl font-bold tracking-tight" style={{ color: 'var(--fg)', fontVariantNumeric: 'tabular-nums' }}>
-            {item.value}
-          </div>
-        </div>
-      ))}
-    </div>
-  );
-}
-
 // ── Top bar (inside main) ──────────────────────────────────────
 function TopBar({ title, sub, searchValue, onSearchChange }: {
   title: string;
@@ -440,9 +402,6 @@ export function DashboardHome({ initialPosts, initialSites, keywords = [] }: Pro
                 <button onClick={() => router.push('/settings')} className="text-xs border-0 bg-transparent cursor-pointer" style={{ color: 'var(--accent)' }}>변경</button>
               </div>
             )}
-
-            {/* Stats */}
-            {!loading && <StatsBar posts={displayPosts} />}
 
             {/* Loading */}
             {loading && (

@@ -21,9 +21,14 @@ const hotScore = (p: StaticPost) =>
   (p.viewCount || 0) * 0.1 + (p.commentCount || 0) * 5 + (p.likeCount || 0) * 2;
 
 function main() {
-  const posts = JSON.parse(
+  const raw = JSON.parse(
     fs.readFileSync(path.join(ROOT, 'data', 'posts.json'), 'utf-8')
   ) as StaticPost[];
+
+  // 크롤 워크플로우 두 개가 겹치면 git 이 posts.json 을 줄 단위로 합쳐 같은 글이 두 번 들어갈 수 있다.
+  // 다음 크롤에서 정리되지만, 그 사이 배포에 중복이 보이지 않도록 여기서도 걸러낸다.
+  const seen = new Set<string>();
+  const posts = raw.filter((p) => !seen.has(p.url) && !!seen.add(p.url));
 
   // ── 1. 첫 화면용 슬라이스 ────────────────────────────────
   // 홈 기본 정렬(실시간)과 같은 순서여야 첫 화면이 하이드레이션 후 뒤바뀌지 않는다.

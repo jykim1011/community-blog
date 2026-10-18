@@ -11,14 +11,14 @@ const SITE_ESSENTIAL_PARAMS: Record<string, string[]> = {
   clien: [], // URL 경로에 ID 포함 (/service/board/park/18969026)
   theqoo: ['bo_table', 'wr_id'], // 게시판 + 게시글 ID
   dcinside: ['id', 'no'], // 갤러리 ID + 게시글 번호
-  ruliweb: ['num'], // 게시글 번호
-  ppomppu: ['no'], // 게시글 번호
+  ruliweb: [], // URL 경로에 ID 포함 (/board/300143/read/77063436)
+  ppomppu: ['id', 'no'], // 게시판 + 게시글 번호
   mlbpark: ['b', 'id'], // 게시판 + ID
   natepann: ['s', 'n'], // 게시판 + 번호
   bobaedream: ['code', 'No'], // 게시판 코드 + 게시글 번호
   etoland: ['no'], // 게시글 번호
   humoruniv: ['table', 'no'], // 게시판 + 번호
-  cook82: ['no'], // 게시글 번호
+  cook82: ['bn', 'num'], // 게시판 + 게시글 번호 (read.php?bn=15&num=...)
   slrclub: ['id', 'no'], // 게시판 ID + 게시글 번호
   gasengi: ['bo_table', 'wr_id'], // 게시판 + 게시글 ID
   hygall: ['document_srl'], // 문서 일련번호
