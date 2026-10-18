@@ -2,7 +2,8 @@ name: Auto Crawl (KR)
 
 # 한국 IP(셀프호스티드 러너, 라벨 korea)에서 크롤링한다.
 # 뽐뿌·오늘의유머·퀘이사존·익스트림무비 등은 GitHub 서버(해외 데이터센터 IP)를 403 으로 차단한다.
-# 러너 PC 가 꺼져 있으면 이 잡은 대기만 하고, crawl.yml(ubuntu)이 대신 크롤링한다.
+# 러너: junyoung-pc-kr(Windows PC), nas-kr(집 시놀로지 NAS의 Docker, Linux) — 켜져 있는 쪽이 가져간다.
+# 둘 다 꺼져 있으면 이 잡은 대기만 하고, crawl.yml(ubuntu)이 대신 크롤링한다.
 # 셀프호스티드 러너가 붙은 공개 저장소이므로 pull_request 트리거를 절대 추가하지 말 것.
 
 on:
@@ -28,6 +29,7 @@ jobs:
       # Windows 러너: PATH 에서 WSL bash(System32) 보다 Git Bash 가 먼저 잡히게 한다
       # shell: powershell 은 실행 정책(Restricted)에 막혀 실패하므로 cmd 를 쓴다
       - name: Use Git Bash
+        if: runner.os == 'Windows'
         shell: cmd
         run: echo C:\Program Files\Git\bin>>"%GITHUB_PATH%"
 
