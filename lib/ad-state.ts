@@ -7,7 +7,17 @@ export const AD_HEIGHT_WEB = 76;    // AdSense 컨테이너
 
 class AdStateManager {
   private isAdLoaded = false;
+  // AdMob 이 알려준 실제 배너 높이(dp). 적응형 배너라 기기마다 다르다.
+  private bannerHeight = AD_HEIGHT_NATIVE;
   private listeners: Set<AdStateListener> = new Set();
+
+  setBannerHeight(height: number) {
+    if (height > 0) this.bannerHeight = height;
+  }
+
+  getBannerHeight(): number {
+    return this.bannerHeight;
+  }
 
   setAdLoaded(loaded: boolean) {
     this.isAdLoaded = loaded;

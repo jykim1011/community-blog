@@ -50,6 +50,9 @@ export async function showBannerAd(position: 'top' | 'bottom' = 'bottom') {
         console.error('Banner ad failed to load:', error);
         adStateManager.setAdLoaded(false);
       });
+      AdMob.addListener(BannerAdPluginEvents.SizeChanged, (size) => {
+        adStateManager.setBannerHeight(size.height);
+      });
     }
 
     // nav를 먼저 올린 후 광고 표시 → 네이티브 뷰가 나타나기 전에 React가 리렌더되도록
