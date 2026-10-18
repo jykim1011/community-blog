@@ -6,7 +6,7 @@
  *
  *  1. data/posts-initial.json / data/posts-hot.json
  *     → 첫 화면(SSR/SEO)용 상위 N건. 정적 HTML 에 인라인된다.
- *  2. public/data/posts.json
+ *  2. public/data/posts-v2.json
  *     → 전체 목록의 압축(컬럼형) 페이로드. 마운트 후 fetch 로 가져온다.
  */
 import fs from 'fs';
@@ -32,8 +32,9 @@ function main() {
 
   // ── 1. 첫 화면용 슬라이스 ────────────────────────────────
   // 홈 기본 정렬(실시간)과 같은 순서여야 첫 화면이 하이드레이션 후 뒤바뀌지 않는다.
-  const recent = rankTrending(posts);
-  const hot = [...posts].sort((a, b) => hotScore(b) - hotScore(a));
+  // 전체 페이로드와 같은 id(url)를 써야 하이드레이션 후 목록 교체 때 카드가 다시 마운트되지 않는다.
+  const recent = rankTrending(posts).map((p) => ({ ...p, id: p.url }));
+  const hot = [...recent].sort((a, b) => hotScore(b) - hotScore(a));
 
   writeJson('data/posts-initial.json', recent.slice(0, INITIAL_COUNT));
   writeJson('data/posts-hot.json', hot.slice(0, INITIAL_COUNT));
@@ -46,8 +47,9 @@ function main() {
     return i;
   };
 
+  // id 는 싣지 않는다 — 크롤마다 새로 발급돼 의미가 없고, 페이로드의 약 18%(br 기준)를 차지했다.
+  // 클라이언트는 url 을 id 로 쓴다(북마크·읽음 표시도 url 기준).
   const rows = recent.map((p) => [
-    p.id,
     p.title,
     p.author || '',
     p.url,
@@ -60,17 +62,17 @@ function main() {
   ]);
 
   const payload = {
-    v: 1,
+    v: 2,
     generatedAt: new Date().toISOString(),
     sites,
     rows,
   };
 
   fs.mkdirSync(path.join(ROOT, 'public', 'data'), { recursive: true });
-  writeJson('public/data/posts.json', payload);
+  writeJson('public/data/posts-v2.json', payload);
 
   const full = fs.statSync(path.join(ROOT, 'data', 'posts.json')).size;
-  const compact = fs.statSync(path.join(ROOT, 'public', 'data', 'posts.json')).size;
+  const compact = fs.statSync(path.join(ROOT, 'public', 'data', 'posts-v2.json')).size;
   console.log(
     `[prepare-data] ${posts.length}건 · 원본 ${kb(full)} → 압축 ${kb(compact)} ` +
     `(초기 ${INITIAL_COUNT}건 인라인)`
