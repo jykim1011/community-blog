@@ -53,6 +53,13 @@ export interface StaticPost {
 }
 
 // 정적 JSON용 사이트 타입
+/** 빌드 시 전체 게시글로 미리 계산한 집계 (scripts/prepare-data.ts) */
+export interface PostsStats {
+  total: number;
+  hot: number;
+  bySite: Record<string, number>;
+}
+
 export interface StaticSite {
   name: string;
   displayName: string;

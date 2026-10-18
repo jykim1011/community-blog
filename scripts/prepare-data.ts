@@ -39,6 +39,16 @@ function main() {
   writeJson('data/posts-initial.json', recent.slice(0, INITIAL_COUNT));
   writeJson('data/posts-hot.json', hot.slice(0, INITIAL_COUNT));
 
+  // 첫 화면은 60건만 인라인되므로, 사이드바·게시글 수 같은 집계는 전체 기준으로 미리 계산해 둔다.
+  // (안 그러면 전체 목록이 올 때까지 "더쿠 0", "7개 커뮤니티" 처럼 죽은 사이트로 보인다)
+  const bySite: Record<string, number> = {};
+  for (const p of posts) bySite[p.site] = (bySite[p.site] || 0) + 1;
+  writeJson('data/posts-stats.json', {
+    total: posts.length,
+    hot: posts.filter((p) => (p.viewCount || 0) > 5000 || (p.commentCount || 0) > 100).length,
+    bySite,
+  });
+
   // ── 2. 전체 목록 압축 페이로드 ───────────────────────────
   const sites: string[] = [];
   const siteIdx = (name: string) => {

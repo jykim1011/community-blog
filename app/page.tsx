@@ -3,7 +3,8 @@ import { SITE_NAME, SITE_URL, siteConfigs } from '@/lib/constants';
 import initialPostsData from '@/data/posts-initial.json';
 import sitesData from '@/data/sites.json';
 import analysisData from '@/data/analysis.json';
-import type { StaticPost, StaticSite } from '@/lib/types';
+import postsStats from '@/data/posts-stats.json';
+import type { PostsStats, StaticPost, StaticSite } from '@/lib/types';
 
 // 전체 목록(7000건)을 인라인하면 홈 HTML 이 4MB 가 된다.
 // 첫 화면 60건만 SSR 로 내려주고, 나머지는 usePosts 가 마운트 후 가져온다.
@@ -36,7 +37,7 @@ export default function Home() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
       />
-      <DashboardHome initialPosts={initialPosts} initialSites={sites} keywords={topKeywords} />
+      <DashboardHome initialPosts={initialPosts} initialSites={sites} initialStats={postsStats as PostsStats} keywords={topKeywords} />
     </>
   );
 }

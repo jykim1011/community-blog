@@ -29,9 +29,11 @@ interface PostListProps {
   stickyFilterTop?: string;
   /** 당겨서 새로고침 시 데이터만 다시 받는다. 새 글 수를 돌려준다. 없으면 페이지를 reload 한다. */
   onRefresh?: () => Promise<number>;
+  /** 전체 목록이 아직 안 왔을 때(첫 화면 60건) 보여줄 전체 글 수. 필터가 없을 때만 쓴다. */
+  pendingTotal?: number;
 }
 
-export function PostList({ posts, selectedSite, searchQuery, registerViewerQueue = true, stickyFilterTop, onRefresh }: PostListProps) {
+export function PostList({ posts, selectedSite, searchQuery, registerViewerQueue = true, stickyFilterTop, onRefresh, pendingTotal }: PostListProps) {
   const { mutedKeywords, hideRead } = useFeedPrefs();
   const { isRead, isLoaded: readLoaded } = useReadPosts();
   const [toast, setToast] = useState<string | null>(null);
@@ -103,6 +105,9 @@ export function PostList({ posts, selectedSite, searchQuery, registerViewerQueue
     }
     return [...filtered].sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
   }, [posts, currentSite, currentCategory, currentSort, searchQuery, mutedKeywords, hiddenRead]);
+
+  const isUnfiltered = !currentCategory && !currentSite && !searchQuery && currentSort !== 'comments'
+    && mutedKeywords.length === 0 && hiddenRead.size === 0;
 
   const displayedPosts = useMemo(
     () => filteredPosts.slice(0, displayedCount),
@@ -191,7 +196,7 @@ export function PostList({ posts, selectedSite, searchQuery, registerViewerQueue
       }}>
         <span style={{ fontSize: 13, color: 'var(--fg-3)' }}>
           <b style={{ color: 'var(--fg-1)', fontWeight: 700, fontVariantNumeric: 'tabular-nums' }}>
-            {filteredPosts.length.toLocaleString('ko-KR')}
+            {(isUnfiltered && pendingTotal !== undefined ? pendingTotal : filteredPosts.length).toLocaleString('ko-KR')}
           </b>개 게시글
         </span>
         <SortSelector currentSort={currentSort} onSortChange={handleSortChange} />

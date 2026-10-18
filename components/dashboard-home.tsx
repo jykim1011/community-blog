@@ -9,11 +9,13 @@ import { usePosts } from '@/lib/hooks/use-posts';
 import { useMediaQuery } from '@/lib/hooks/use-media-query';
 import { adStateManager } from '@/lib/ad-state';
 import { SITE_NAME } from '@/lib/constants';
-import type { StaticPost, StaticSite } from '@/lib/types';
+import type { PostsStats, StaticPost, StaticSite } from '@/lib/types';
 
 interface Props {
   initialPosts: StaticPost[];
   initialSites: StaticSite[];
+  /** 전체 목록이 오기 전까지 보여줄 집계 (첫 화면엔 60건만 있어 직접 세면 틀린다) */
+  initialStats?: PostsStats;
   keywords?: { word: string }[];
 }
 
@@ -106,18 +108,20 @@ function Rail({ pathname }: { pathname: string }) {
 }
 
 // ── Sidebar (desktop community list) ─────────────────────────
-function Sidebar({ sites, posts, activeSite, onSiteClick }: {
+function Sidebar({ sites, posts, stats, activeSite, onSiteClick }: {
   sites: StaticSite[];
   posts: StaticPost[];
+  stats?: PostsStats;
   activeSite: string | null;
   onSiteClick: (site: string | null) => void;
 }) {
   const router = useRouter();
   const postCounts = useMemo(() => {
+    if (stats) return stats.bySite;
     const m: Record<string, number> = {};
     posts.forEach(p => { m[p.site] = (m[p.site] || 0) + 1; });
     return m;
-  }, [posts]);
+  }, [posts, stats]);
 
   const categories = useMemo(() => {
     const cats: Record<string, StaticSite[]> = {};
@@ -145,8 +149,8 @@ function Sidebar({ sites, posts, activeSite, onSiteClick }: {
         <p className="px-5 mb-1 text-[11px] font-bold uppercase tracking-widest" style={{ color: 'var(--fg-3)' }}>내 피드</p>
         <div className="flex flex-col gap-0.5 px-3">
           {[
-            { key: null, label: '전체 커뮤니티', count: posts.length, color: 'var(--accent)' },
-            { key: 'hot', label: '🔥 실시간 인기', count: posts.filter(p => (p.viewCount || 0) > 5000 || (p.commentCount || 0) > 100).length, color: '#ef4444' },
+            { key: null, label: '전체 커뮤니티', count: stats?.total ?? posts.length, color: 'var(--accent)' },
+            { key: 'hot', label: '🔥 실시간 인기', count: stats?.hot ?? posts.filter(p => (p.viewCount || 0) > 5000 || (p.commentCount || 0) > 100).length, color: '#ef4444' },
           ].map(item => (
             <button
               key={item.key || 'all'}
@@ -261,12 +265,12 @@ function TopBar({ title, sub, searchValue, onSearchChange }: {
 }
 
 // ── Main DashboardHome ─────────────────────────────────────────
-export function DashboardHome({ initialPosts, initialSites, keywords = [] }: Props) {
+export function DashboardHome({ initialPosts, initialSites, initialStats, keywords = [] }: Props) {
   const router = useRouter();
   const pathname = usePathname();
   const { subscriptions, isLoaded } = useSubscriptions();
   // initialPosts 는 SSR 로 인라인된 최신 60건. 마운트 직후 전체 목록으로 교체된다.
-  const { posts: allPosts, refresh: refreshPosts } = usePosts({ initial: initialPosts });
+  const { posts: allPosts, isComplete, refresh: refreshPosts } = usePosts({ initial: initialPosts });
   const [displayPosts, setDisplayPosts] = useState<StaticPost[]>(initialPosts);
   const [loading, setLoading] = useState(false);
   const [isApp, setIsApp] = useState(false);
@@ -275,6 +279,7 @@ export function DashboardHome({ initialPosts, initialSites, keywords = [] }: Pro
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
   const [activeKeyword, setActiveKeyword] = useState<string | null>(null);
   const [updatedAt, setUpdatedAt] = useState<string | null>(null);
+  const [clock, setClock] = useState('');
   // 데스크톱/모바일 레이아웃이 CSS로만 전환되고 둘 다 마운트되므로,
   // 인앱 뷰어 큐는 실제로 보이는 쪽 PostList 하나만 등록한다. (Tailwind sm = 640px)
   const isDesktopLayout = useMediaQuery('(min-width: 640px)');
@@ -312,6 +317,7 @@ export function DashboardHome({ initialPosts, initialSites, keywords = [] }: Pro
       `${String(now.getDate()).padStart(2, '0')} ${now.getHours() < 12 ? '오전' : '오후'} ` +
       `${String(now.getHours() % 12 || 12).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`
     );
+    setClock(now.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' }));
 
     const unsub = adStateManager.subscribe(setIsAdLoaded);
     return unsub;
@@ -343,7 +349,11 @@ export function DashboardHome({ initialPosts, initialSites, keywords = [] }: Pro
   }, [subscriptions, isLoaded, allPosts]);
 
   // 렌더 중 new Date() 를 쓰면 서버/클라이언트 결과가 달라 하이드레이션 경고가 난다.
-  const siteCount = new Set(displayPosts.map(p => p.site)).size;
+  // 전체 목록이 오기 전(첫 화면 60건)에는 빌드 시 집계를 쓴다. 구독 피드는 자체 목록이라 해당 없음.
+  const pendingStats = !isComplete && subscriptions.length === 0 ? initialStats : undefined;
+  const siteCount = pendingStats
+    ? Object.keys(pendingStats.bySite).length
+    : new Set(displayPosts.map(p => p.site)).size;
   const subtitle = updatedAt
     ? `${siteCount}개 커뮤니티 · 방금 갱신됨 · ${updatedAt}`
     : `${siteCount}개 커뮤니티`;
@@ -356,7 +366,7 @@ export function DashboardHome({ initialPosts, initialSites, keywords = [] }: Pro
       {/* Desktop: 3-column dashboard */}
       <div className="hidden sm:flex" style={{ minHeight: '100vh' }}>
         <Rail pathname={pathname} />
-        <Sidebar sites={filteredSites} posts={displayPosts} activeSite={activeSite} onSiteClick={setActiveSite} />
+        <Sidebar sites={filteredSites} posts={displayPosts} stats={pendingStats} activeSite={activeSite} onSiteClick={setActiveSite} />
 
         {/* Main content area */}
         <div className="flex-1 flex flex-col min-w-0 overflow-auto">
@@ -418,7 +428,7 @@ export function DashboardHome({ initialPosts, initialSites, keywords = [] }: Pro
               <section className="rounded-xl overflow-hidden" style={{ background: 'var(--surface)', border: '1px solid var(--border)' }}>
                 <div className="flex items-center justify-between px-4 py-3" style={{ borderBottom: '1px solid var(--border)' }}>
                   <h3 className="text-sm font-semibold" style={{ color: 'var(--fg)', margin: 0 }}>🔥 실시간 인기 게시글</h3>
-                  <span className="text-[11px]" style={{ color: 'var(--fg-3)' }}>자동 갱신 · {new Date().toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' })}</span>
+                  <span className="text-[11px]" style={{ color: 'var(--fg-3)' }}>자동 갱신{clock && ` · ${clock}`}</span>
                 </div>
                 {keywords.length > 0 && (
                   <TrendStrip
@@ -433,6 +443,7 @@ export function DashboardHome({ initialPosts, initialSites, keywords = [] }: Pro
                   searchQuery={activeKeyword}
                   registerViewerQueue={isDesktopLayout}
                   onRefresh={refreshPosts}
+                  pendingTotal={pendingStats?.total}
                 />
               </section>
             )}
@@ -587,6 +598,7 @@ export function DashboardHome({ initialPosts, initialSites, keywords = [] }: Pro
             searchQuery={activeKeyword}
             registerViewerQueue={!isDesktopLayout}
             onRefresh={refreshPosts}
+            pendingTotal={pendingStats?.total}
             stickyFilterTop={`calc(env(safe-area-inset-top, 0px) + ${mobileHeaderH}px)`}
           />
         )}

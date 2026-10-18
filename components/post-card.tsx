@@ -213,7 +213,8 @@ export function PostCard({
                 · {category}
               </span>
             )}
-            <span style={{ flexShrink: 0 }}>· {relativeTime || '방금 전'}</span>
+            {/* 상대 시간은 마운트 후 계산한다. 빌드 시점 기준으로 내보내면 모든 글이 "방금 전"으로 보였다. */}
+            {relativeTime && <span style={{ flexShrink: 0 }}>· {relativeTime}</span>}
             {hasViews && (
               <span style={{ display: 'inline-flex', alignItems: 'center', gap: 3, marginLeft: 4, flexShrink: 0 }}>
                 <StatIcon paths={ICON_PATHS.eye} size={12} />
