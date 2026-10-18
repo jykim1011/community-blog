@@ -40,6 +40,11 @@ const SITE_ESSENTIAL_PARAMS: Record<string, string[]> = {
 export function normalizeUrl(url: string, siteName: string): string {
   try {
     const urlObj = new URL(url);
+
+    // 해연갤(XE)은 같은 글이 index.php?document_srl=N 과 /N 두 형태로 섞여 들어오므로 짧은 형태로 통일
+    const srl = siteName === 'hygall' ? urlObj.searchParams.get('document_srl') : null;
+    if (srl) return `${urlObj.origin}/${srl}`;
+
     const essentialParams = SITE_ESSENTIAL_PARAMS[siteName] || [];
 
     // 파라미터가 필요한 경우
