@@ -95,9 +95,11 @@ async function main() {
   // 크롤링할 사이트 결정
   // siteConfigs 에서 disabled 인 사이트(robots.txt 차단 등)는 크롤링하지 않는다.
   const isEnabled = (site: string) => !siteConfigs[site]?.disabled;
+  // CRAWL_SKIP: 이 환경에서 못 가져오는 사이트(해외 IP 403 등). 기존 글은 그대로 유지된다.
+  const skip = new Set((process.env.CRAWL_SKIP || '').split(',').map(s => s.trim()).filter(Boolean));
   const sitesToCrawl = targetSite
     ? { [targetSite]: crawlers[targetSite] }
-    : Object.fromEntries(Object.entries(crawlers).filter(([site]) => isEnabled(site)));
+    : Object.fromEntries(Object.entries(crawlers).filter(([site]) => isEnabled(site) && !skip.has(site)));
 
   if (targetSite && !crawlers[targetSite]) {
     console.error(`알 수 없는 사이트: ${targetSite}`);
@@ -277,8 +279,10 @@ async function main() {
     siteMap.set(site.name, site);
   }
 
-  // 크롤링한 사이트의 lastCrawledAt 업데이트
+  // 크롤링에 성공한 사이트만 lastCrawledAt 업데이트 (403 등으로 0건이면 마지막 성공 시각 유지)
+  const crawledSites = new Set(newPosts.map(p => p.site));
   for (const siteName of Object.keys(sitesToCrawl)) {
+    if (!crawledSites.has(siteName) && siteMap.has(siteName)) continue;
     const config = siteConfigs[siteName] || { displayName: siteName, url: '', category: 'community' as const };
     siteMap.set(siteName, {
       name: siteName,
