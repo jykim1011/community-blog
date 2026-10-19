@@ -15,7 +15,8 @@ const analysis = analysisData as {
 const posts: StaticPost[] = postsData as StaticPost[];
 
 export const metadata = {
-  title: `인기 키워드 - ${SITE_NAME}`,
+  title: '인기 키워드',
+  alternates: { canonical: '/keywords' },
   description: '한국 커뮤니티에서 가장 많이 언급되는 인기 키워드를 탐색하세요. 각 키워드와 관련된 게시글을 확인할 수 있습니다.',
   openGraph: {
     title: `인기 키워드 - ${SITE_NAME}`,

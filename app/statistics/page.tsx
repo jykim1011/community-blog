@@ -24,7 +24,8 @@ const analysis = analysisData as {
 };
 
 export const metadata = {
-  title: `통계 대시보드 - ${SITE_NAME}`,
+  title: '통계 대시보드',
+  alternates: { canonical: '/statistics' },
   description: '한국 커뮤니티의 전체 통계와 활동 지표를 시각화합니다. 게시글 수, 조회수, 댓글, 좋아요 등 다양한 메트릭을 확인하세요.',
   openGraph: {
     title: `통계 대시보드 - ${SITE_NAME}`,

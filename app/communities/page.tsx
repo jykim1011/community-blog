@@ -28,7 +28,8 @@ const analysis = analysisData as {
 };
 
 export const metadata = {
-  title: `가이드 - ${SITE_NAME}`,
+  title: '커뮤니티별 특징 비교',
+  alternates: { canonical: '/communities' },
   description: '한국 주요 커뮤니티의 특징, 문화, 주요 토픽을 상세히 비교 분석합니다. 각 커뮤니티의 차이점과 이용 팁을 확인하세요.',
   openGraph: {
     title: `가이드 - ${SITE_NAME}`,

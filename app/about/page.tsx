@@ -5,6 +5,7 @@ import { SITE_NAME, SITE_DESCRIPTION, siteConfigs } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: '서비스 소개',
+  alternates: { canonical: '/about' },
   description: `${SITE_NAME} - 한국 인기 커뮤니티 게시글을 한곳에서 모아보는 서비스입니다.`,
 };
 

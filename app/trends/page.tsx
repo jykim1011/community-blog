@@ -12,7 +12,8 @@ const analysis = analysisData as {
 };
 
 export const metadata = {
-  title: `트렌드 분석 - ${SITE_NAME}`,
+  title: '트렌드 분석',
+  alternates: { canonical: '/trends' },
   description: '한국 커뮤니티의 실시간 트렌드를 분석합니다. 인기 키워드, 일별 활동 추이, 커뮤니티별 인기 토픽을 한눈에 확인하세요.',
   openGraph: {
     title: `트렌드 분석 - ${SITE_NAME}`,

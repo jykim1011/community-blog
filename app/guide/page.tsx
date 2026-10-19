@@ -6,6 +6,7 @@ import { SITE_NAME } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: '한국 커뮤니티 가이드',
+  alternates: { canonical: '/guide' },
   description: '클리앙, 더쿠, 루리웹, 디시인사이드 등 한국 주요 커뮤니티의 특징과 문화를 소개합니다.',
 };
 

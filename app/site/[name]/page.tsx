@@ -28,22 +28,24 @@ const analysis = analysisData as {
   }[];
 };
 
+type Params = Promise<{ name: string }>;
+
+// 수집을 중단한 사이트는 오래된 글만 남아 있어 페이지를 만들지 않는다
 export function generateStaticParams() {
-  return Object.keys(crawlers).map((name) => ({ name }));
+  return Object.keys(crawlers)
+    .filter((name) => siteConfigs[name] && !siteConfigs[name].disabled)
+    .map((name) => ({ name }));
 }
 
-export function generateMetadata({
-  params,
-}: {
-  params: { name: string };
-}): Metadata {
-  const config = siteConfigs[params.name];
-  const profile = analysis.communityProfiles.find((p) => p.name === params.name);
-  const displayName = config?.displayName || params.name;
+export async function generateMetadata({ params }: { params: Params }): Promise<Metadata> {
+  const { name } = await params;
+  const config = siteConfigs[name];
+  const profile = analysis.communityProfiles.find((p) => p.name === name);
+  const displayName = config?.displayName || name;
   const description = profile?.description || `${displayName} 커뮤니티의 인기 게시글을 모아서 보여줍니다.`;
 
   return {
-    title: `${displayName} 인기글 - ${SITE_NAME}`,
+    title: `${displayName} 인기글`,
     description,
     robots: {
       index: true, // 색인 허용으로 변경
@@ -52,26 +54,23 @@ export function generateMetadata({
     openGraph: {
       title: `${displayName} 인기글 | ${SITE_NAME}`,
       description,
-      url: `${SITE_URL}/site/${params.name}`,
+      url: `${SITE_URL}/site/${name}`,
     },
     alternates: {
-      canonical: `${SITE_URL}/site/${params.name}`,
+      canonical: `/site/${name}`,
     },
   };
 }
 
-export default function SitePage({
-  params,
-}: {
-  params: { name: string };
-}) {
-  const config = siteConfigs[params.name];
-  const profile = analysis.communityProfiles.find((p) => p.name === params.name);
-  const displayName = config?.displayName || params.name;
+export default async function SitePage({ params }: { params: Params }) {
+  const { name } = await params;
+  const config = siteConfigs[name];
+  const profile = analysis.communityProfiles.find((p) => p.name === name);
+  const displayName = config?.displayName || name;
 
   let sitePosts: StaticPost[] = [];
   try {
-    const siteFilePath = path.join(process.cwd(), 'data', 'sites', `${params.name}.json`);
+    const siteFilePath = path.join(process.cwd(), 'data', 'sites', `${name}.json`);
     const siteData = JSON.parse(fs.readFileSync(siteFilePath, 'utf-8')) as { posts: StaticPost[] };
     sitePosts = siteData.posts;
   } catch {
@@ -83,7 +82,7 @@ export default function SitePage({
     '@type': 'CollectionPage',
     name: `${displayName} 인기글`,
     description: profile?.description || `${displayName} 커뮤니티의 인기 게시글 모음`,
-    url: `${SITE_URL}/site/${params.name}`,
+    url: `${SITE_URL}/site/${name}`,
     isPartOf: {
       '@type': 'WebSite',
       name: SITE_NAME,
@@ -142,7 +141,7 @@ export default function SitePage({
             </div>
             <ShareButton
               title={`${displayName} 인기글`}
-              url={`${SITE_URL}/site/${params.name}`}
+              url={`${SITE_URL}/site/${name}`}
             />
           </div>
 

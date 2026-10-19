@@ -5,6 +5,7 @@ import { SITE_NAME } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: '이용약관',
+  alternates: { canonical: '/terms' },
   description: `${SITE_NAME} 서비스 이용약관`,
 };
 

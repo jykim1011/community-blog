@@ -5,6 +5,7 @@ import { SITE_NAME } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: '문의하기',
+  alternates: { canonical: '/contact' },
   description: `${SITE_NAME} 서비스 관련 문의 및 피드백`,
 };
 

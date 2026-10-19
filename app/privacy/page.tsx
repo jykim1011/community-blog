@@ -5,6 +5,7 @@ import { SITE_NAME } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: '개인정보처리방침',
+  alternates: { canonical: '/privacy' },
   description: `${SITE_NAME} 개인정보처리방침`,
 };
 
