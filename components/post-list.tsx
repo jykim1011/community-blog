@@ -95,7 +95,9 @@ export function PostList({ posts, selectedSite, searchQuery, registerViewerQueue
       filtered = filtered.filter(p => p.title.toLowerCase().includes(q));
     }
 
-    if (currentSort === 'trending') return rankTrending(filtered);
+    // 첫 화면 60건은 빌드 때 전체 7000건 기준으로 이미 랭킹된 순서다. 60건만으로 다시 매기면
+    // 사이트 내 백분위가 달라져 순서가 바뀌고, 전체 목록이 오는 순간 화면이 통째로 뒤바뀐다.
+    if (currentSort === 'trending') return pendingTotal !== undefined ? filtered : rankTrending(filtered);
     if (currentSort === 'comments') {
       // 기준 시각은 가장 최근 글 — 서버/클라이언트 렌더 결과가 같아야 한다.
       const newest = filtered.reduce((m, p) => Math.max(m, new Date(p.createdAt).getTime()), 0);
@@ -104,7 +106,7 @@ export function PostList({ posts, selectedSite, searchQuery, registerViewerQueue
         .sort((a, b) => (b.commentCount || 0) - (a.commentCount || 0));
     }
     return [...filtered].sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
-  }, [posts, currentSite, currentCategory, currentSort, searchQuery, mutedKeywords, hiddenRead]);
+  }, [posts, currentSite, currentCategory, currentSort, searchQuery, mutedKeywords, hiddenRead, pendingTotal]);
 
   const isUnfiltered = !currentCategory && !currentSite && !searchQuery && currentSort !== 'comments'
     && mutedKeywords.length === 0 && hiddenRead.size === 0;

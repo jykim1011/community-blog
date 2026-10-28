@@ -55,6 +55,8 @@ export interface StaticPost {
 // 정적 JSON용 사이트 타입
 /** 빌드 시 전체 게시글로 미리 계산한 집계 (scripts/prepare-data.ts) */
 export interface PostsStats {
+  /** 빌드 시 페이로드 생성 시각. 페이로드 URL 의 캐시 키로 쓴다. */
+  version: string;
   total: number;
   hot: number;
   bySite: Record<string, number>;

@@ -6,7 +6,13 @@ import {
   POSTS_PAYLOAD_URL,
   type PostsPayload,
 } from '@/lib/utils/posts-payload';
+import postsStats from '@/data/posts-stats.json';
 import type { StaticPost } from '@/lib/types';
+
+// 이 빌드의 HTML(첫 화면 60건)과 같은 시점의 페이로드를 받는다.
+// 버전 없이 받으면 /data/* 캐시(5분 + SWR 30분) 때문에 다른 빌드의 목록이 와서
+// 마운트 직후 첫 화면 순서가 통째로 바뀐다.
+const PAYLOAD_URL = `${POSTS_PAYLOAD_URL}?v=${encodeURIComponent((postsStats as { version?: string }).version ?? '')}`;
 
 /** 같은 세션 안에서 여러 페이지가 재사용하는 메모리 캐시 */
 let cache: StaticPost[] | null = null;
@@ -16,7 +22,7 @@ function loadAll(): Promise<StaticPost[]> {
   if (cache) return Promise.resolve(cache);
   if (inflight) return inflight;
 
-  inflight = fetch(POSTS_PAYLOAD_URL)
+  inflight = fetch(PAYLOAD_URL)
     .then((res) => {
       if (!res.ok) throw new Error(`posts payload ${res.status}`);
       return res.json() as Promise<PostsPayload>;

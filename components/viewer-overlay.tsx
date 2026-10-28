@@ -27,10 +27,12 @@ export function ViewerOverlay() {
   // 뷰어가 닫힐 때도 리셋해야 같은 글을 다시 열었을 때 스피너가 나온다.
   const currentUrl = viewer?.url ?? null;
   const [slow, setSlow] = useState(false);
+  const [peek, setPeek] = useState(false);
   if (currentUrl !== renderedUrl) {
     setRenderedUrl(currentUrl);
     setLoading(currentUrl !== null);
     setSlow(false);
+    setPeek(false);
   }
 
   useEffect(() => {
@@ -91,11 +93,14 @@ export function ViewerOverlay() {
   useEffect(() => {
     if (!viewer || !loading) return;
     const site = viewer.siteName ?? viewer.site;
+    // iframe onLoad 는 광고·영상까지 다 받아야 온다. 뽐뿌처럼 광고가 무거운 곳은 본문이 이미
+    // 그려졌는데도 스켈레톤이 수~수십 초 덮고 있어 무한 로딩처럼 보였다 → 잠시 뒤 걷어낸다.
+    const p = setTimeout(() => setPeek(true), 2500);
     const t = setTimeout(() => {
       setSlow(true);
       track('viewer_slow', { site });
     }, 5000);
-    return () => clearTimeout(t);
+    return () => { clearTimeout(p); clearTimeout(t); };
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [viewer?.url, loading]);
 
@@ -179,7 +184,37 @@ export function ViewerOverlay() {
             title={viewer.site}
           />
 
-          {loading && (
+          {loading && peek && (
+            // 스켈레톤을 걷어낸 뒤: 진행 바만 남기고, 더 늦어지면 바로 보기 버튼을 띄운다.
+            <div aria-live="polite" style={{ position: 'absolute', inset: 0, zIndex: 1, pointerEvents: 'none' }}>
+              <div style={{ height: 2.5, overflow: 'hidden', background: 'var(--surface-2)' }}>
+                <div style={{
+                  width: '40%', height: '100%', background: viewer.color,
+                  animation: 'viewer-progress 1.1s ease-in-out infinite',
+                }} />
+              </div>
+              {slow && (
+                <button
+                  onClick={() => {
+                    track('viewer_fallback', { site: viewer.siteName ?? viewer.site });
+                    openExternal(viewer.url, { title: viewer.site, color: viewer.color });
+                  }}
+                  style={{
+                    position: 'absolute', left: '50%', bottom: 16, transform: 'translateX(-50%)',
+                    pointerEvents: 'auto', whiteSpace: 'nowrap',
+                    border: 'none', cursor: 'pointer', borderRadius: 999,
+                    padding: '10px 16px', fontSize: 13.5, fontWeight: 700,
+                    background: viewer.color, color: '#fff',
+                    boxShadow: '0 4px 16px rgba(0,0,0,.18)',
+                  }}
+                >
+                  안 열리면 {viewer.site}에서 바로 보기
+                </button>
+              )}
+            </div>
+          )}
+
+          {loading && !peek && (
             <div
               aria-live="polite"
               style={{
@@ -213,31 +248,10 @@ export function ViewerOverlay() {
                     background: 'var(--surface-2)',
                   }} />
                 ))}
-                {slow ? (
-                  <div style={{ marginTop: 20, textAlign: 'center' }}>
-                    <p style={{ margin: '0 0 12px', fontSize: 14, color: 'var(--fg-3)' }}>
-                      페이지가 열리지 않나요?
-                    </p>
-                    <button
-                      onClick={() => {
-                        track('viewer_fallback', { site: viewer.siteName ?? viewer.site });
-                        openExternal(viewer.url, { title: viewer.site, color: viewer.color });
-                      }}
-                      style={{
-                        border: 'none', cursor: 'pointer', borderRadius: 10,
-                        padding: '11px 18px', fontSize: 14.5, fontWeight: 700,
-                        background: viewer.color, color: '#fff',
-                      }}
-                    >
-                      {viewer.site}에서 바로 보기
-                    </button>
-                  </div>
-                ) : (
-                  <div className="animate-pulse" style={{
-                    width: '100%', aspectRatio: '16 / 10', borderRadius: 12, marginTop: 8,
-                    background: 'var(--surface-2)',
-                  }} />
-                )}
+                <div className="animate-pulse" style={{
+                  width: '100%', aspectRatio: '16 / 10', borderRadius: 12, marginTop: 8,
+                  background: 'var(--surface-2)',
+                }} />
               </div>
             </div>
           )}

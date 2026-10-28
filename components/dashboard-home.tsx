@@ -270,9 +270,7 @@ export function DashboardHome({ initialPosts, initialSites, initialStats, keywor
   const pathname = usePathname();
   const { subscriptions, isLoaded } = useSubscriptions();
   // initialPosts 는 SSR 로 인라인된 최신 60건. 마운트 직후 전체 목록으로 교체된다.
-  const { posts: allPosts, isComplete, refresh: refreshPosts } = usePosts({ initial: initialPosts });
-  const [displayPosts, setDisplayPosts] = useState<StaticPost[]>(initialPosts);
-  const [loading, setLoading] = useState(false);
+  const { posts: allPosts, isComplete, error: postsError, refresh: refreshPosts } = usePosts({ initial: initialPosts });
   const [isApp, setIsApp] = useState(false);
   const [isAdLoaded, setIsAdLoaded] = useState(false);
   const [activeSite, setActiveSite] = useState<string | null>(null);
@@ -328,25 +326,15 @@ export function DashboardHome({ initialPosts, initialSites, initialStats, keywor
     [subscriptions, initialSites]
   );
 
-  useEffect(() => {
-    if (!isLoaded) return;
-    if (subscriptions.length > 0) {
-      setLoading(true);
-      Promise.all(
-        subscriptions.map(async name => {
-          try {
-            const d = await import(`@/data/sites/${name}.json`);
-            return (d.default?.posts || d.posts || []) as StaticPost[];
-          } catch { return []; }
-        })
-      ).then(results => {
-        const posts = results.flat().sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime());
-        setDisplayPosts(posts);
-      }).catch(() => setDisplayPosts(allPosts)).finally(() => setLoading(false));
-    } else {
-      setDisplayPosts(allPosts);
-    }
-  }, [subscriptions, isLoaded, allPosts]);
+  // 구독 피드는 전체 목록에서 걸러낸다. 예전엔 사이트별 JSON(각 ~500KB)을 따로 import 했는데,
+  // 전체 목록이 도착할 때마다 다시 불러오며 스피너가 두 번 돌고(저사양 폰에서 15초+),
+  // 그 사이 목록이 언마운트돼 스크롤도 처음으로 돌아갔다.
+  const displayPosts = useMemo(
+    () => subscriptions.length > 0 ? allPosts.filter(p => subscriptions.includes(p.site)) : allPosts,
+    [subscriptions, allPosts]
+  );
+  // 첫 화면 60건은 전 사이트 기준이라 구독 피드로는 듬성듬성하다. 전체 목록이 올 때까지만 기다린다.
+  const loading = subscriptions.length > 0 && !isComplete && !postsError;
 
   // 렌더 중 new Date() 를 쓰면 서버/클라이언트 결과가 달라 하이드레이션 경고가 난다.
   // 전체 목록이 오기 전(첫 화면 60건)에는 빌드 시 집계를 쓴다. 구독 피드는 자체 목록이라 해당 없음.

@@ -43,7 +43,11 @@ function main() {
   // (안 그러면 전체 목록이 올 때까지 "더쿠 0", "7개 커뮤니티" 처럼 죽은 사이트로 보인다)
   const bySite: Record<string, number> = {};
   for (const p of posts) bySite[p.site] = (bySite[p.site] || 0) + 1;
+  const generatedAt = new Date().toISOString();
   writeJson('data/posts-stats.json', {
+    // 페이로드 URL 에 붙이는 빌드 버전. 같은 빌드의 HTML 과 페이로드를 짝지어
+    // CDN 에 남은 이전 빌드 페이로드로 첫 화면 목록이 뒤바뀌는 일을 막는다.
+    version: generatedAt,
     total: posts.length,
     hot: posts.filter((p) => (p.viewCount || 0) > 5000 || (p.commentCount || 0) > 100).length,
     bySite,
@@ -73,7 +77,7 @@ function main() {
 
   const payload = {
     v: 2,
-    generatedAt: new Date().toISOString(),
+    generatedAt,
     sites,
     rows,
   };
