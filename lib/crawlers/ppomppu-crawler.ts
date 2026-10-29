@@ -98,8 +98,11 @@ export class PpomppuCrawler extends BaseCrawler {
           ? relativeUrl
           : `${this.baseUrl}/zboard/${relativeUrl}`;
 
-        const author = $el.find('a.baseList-name .list_name').text().trim() || '익명';
+        // 일반 글은 span.baseList-name, 공지는 span.list_name
+        const author =
+          $el.find('a.baseList-name span.baseList-name, a.baseList-name .list_name').first().text().trim() || '익명';
         const viewCount = parseInt($el.find('.baseList-views').text().trim().replace(/,/g, '')) || 0;
+        const commentCount = parseInt($el.find('span.baseList-c').first().text().trim().replace(/,/g, '')) || 0;
         const likeCount = parseInt($el.find('.baseList-rec').text().trim()) || 0;
         const timeText = $el.find('time.baseList-time').text().trim();
         const createdAt = this.parseDate(timeText);
@@ -121,7 +124,7 @@ export class PpomppuCrawler extends BaseCrawler {
           site: this.siteName,
           url,
           viewCount,
-          commentCount: 0,
+          commentCount,
           likeCount,
           createdAt,
           fetchedAt: new Date(),
