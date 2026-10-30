@@ -47,9 +47,8 @@ export class InvenCrawler extends BaseCrawler {
           const commentText = $el.find('.comment').text().trim();
           const commentCount = parseInt(commentText.replace(/[\[\]]/g, '')) || 0;
 
-          // 작성자 (레벨 정보 다음 텍스트)
-          const userDiv = $el.find('.user');
-          const author = userDiv.text().trim() || '익명';
+          // 작성자 (레벨 아이콘 다음 닉네임)
+          const author = $el.find('.writer .layerNickName').first().text().trim() || '익명';
 
           // 날짜
           const timeText = $el.find('.date').text().trim();
@@ -57,11 +56,11 @@ export class InvenCrawler extends BaseCrawler {
 
           // 조회수
           const viewText = $el.find('.hits').text().trim();
-          const viewCount = parseInt(viewText.replace(/,/g, '')) || 0;
+          const viewCount = this.parseCount(viewText);
 
           // 추천수
           const likeText = $el.find('.reco').text().trim();
-          const likeCount = parseInt(likeText.replace(/,/g, '')) || 0;
+          const likeCount = this.parseCount(likeText);
 
           posts.push({
             id: '',
@@ -87,6 +86,13 @@ export class InvenCrawler extends BaseCrawler {
       this.handleError(error, 'crawl');
       return [];
     }
+  }
+
+  // "1,234" / "14.3만" 형식
+  private parseCount(text: string): number {
+    const cleaned = text.replace(/,/g, '');
+    const num = parseFloat(cleaned) || 0;
+    return Math.round(cleaned.endsWith('만') ? num * 10000 : num);
   }
 
   private parseDate(timeText: string): Date {

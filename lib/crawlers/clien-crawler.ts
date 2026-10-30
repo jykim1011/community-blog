@@ -122,7 +122,9 @@ export class ClienCrawler extends BaseCrawler {
         }
 
         // 작성자
-        const author = $el.find('.list_author .nickname').text().trim() || '익명';
+        // 이미지 닉네임은 img alt 에 닉네임이 들어 있다
+        const $nick = $el.find('.list_author .nickname');
+        const author = $nick.text().trim() || $nick.find('img').attr('alt')?.trim() || '익명';
 
         // 조회수, 댓글수, 좋아요수
         const viewCount = parseInt($el.find('.list_hit').text().trim() || '0');
