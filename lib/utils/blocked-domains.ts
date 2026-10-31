@@ -9,6 +9,7 @@ export const BLOCKED_DOMAINS = new Set([
   'slrclub.com',
   'dealbada.com',
   'bobaedream.co.kr',
+  'theqoo.net',
 ]);
 
 export function isDomainBlocked(url: string): boolean {
