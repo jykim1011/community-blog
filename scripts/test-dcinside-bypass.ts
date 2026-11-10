@@ -128,7 +128,7 @@ async function test3_APIEndpoint() {
       console.log(`✅ 응답: ${response.status}`);
       console.log(`📄 Content-Type: ${response.headers['content-type']}`);
 
-      if (response.status === 200 && response.headers['content-type']?.includes('json')) {
+      if (response.status === 200 && String(response.headers['content-type'] ?? '').includes('json')) {
         console.log(`🎉 JSON API 발견!`);
         console.log(`📝 응답 샘플: ${JSON.stringify(response.data).substring(0, 200)}...`);
         return true;
