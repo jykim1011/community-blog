@@ -1,5 +1,6 @@
 import { AdMob, BannerAdSize, BannerAdPosition, BannerAdPluginEvents, AdMobBannerSize } from '@capacitor-community/admob';
 import { adStateManager } from './ad-state';
+import { track } from './analytics';
 
 // FailedToLoad 리스너 중복 등록 방지
 let bannerFailedListenerAdded = false;
@@ -79,6 +80,14 @@ export async function showBannerAd(position: 'top' | 'bottom' = 'bottom') {
       bannerFailedListenerAdded = true;
       AdMob.addListener(BannerAdPluginEvents.FailedToLoad, (error) => {
         console.error('Banner ad failed to load:', error);
+        // 실패 기록 (GA4): 0 내부 오류 · 1 잘못된 요청 · 2 네트워크 · 3 채울 광고 없음
+        track('ad_load_fail', {
+          ad_format: 'banner',
+          position: lastBannerPosition ?? 'none',
+          code: typeof error?.code === 'number' ? error.code : -1,
+          reason: String(error?.message ?? '').slice(0, 100),
+          attempt: bannerRetryCount + 1,
+        });
         adStateManager.setAdLoaded(false);
         scheduleBannerRetry();
       });
@@ -107,6 +116,7 @@ export async function showBannerAd(position: 'top' | 'bottom' = 'bottom') {
     console.log(`Banner ad shown at ${position}`);
   } catch (error) {
     console.error('Failed to show banner ad:', error);
+    track('ad_show_fail', { ad_format: 'banner', position, reason: String(error).slice(0, 100) });
     adStateManager.setAdLoaded(false);
     scheduleBannerRetry();
   }
