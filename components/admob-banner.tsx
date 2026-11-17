@@ -2,6 +2,7 @@
 
 import { useEffect } from 'react';
 import { Capacitor } from '@capacitor/core';
+import { getAdFreeUntil, subscribeAdFree } from '@/lib/ad-free';
 
 interface AdMobBannerProps {
   position?: 'top' | 'bottom';
@@ -14,43 +15,55 @@ export function AdMobBanner({ position = 'bottom' }: AdMobBannerProps) {
       return;
     }
 
-    let isMounted = true;
+    let cancelled = false;
+    let expiryTimer: ReturnType<typeof setTimeout> | null = null;
+    let unsubscribe: (() => void) | null = null;
 
-    const initAd = async () => {
+    const run = async () => {
       try {
         // 동적 import로 AdMob 모듈 로드 (웹에서는 로드 안 됨)
         const { initializeAdMob, showBannerAd, removeBannerAd } = await import('@/lib/admob');
+        if (cancelled) return;
 
-        if (!isMounted) return;
-
-        // AdMob 초기화
         await initializeAdMob();
+        if (cancelled) return;
 
-        if (!isMounted) return;
+        // 보상형 광고로 받은 "광고 없는 시간"이면 배너를 내리고, 끝나는 시각에 다시 띄운다
+        let showing = false;
+        const sync = async () => {
+          if (expiryTimer) clearTimeout(expiryTimer);
+          expiryTimer = null;
+          if (cancelled) return;
 
-        // 배너 광고 표시
-        await showBannerAd(position);
-
-        // Cleanup
-        return async () => {
-          isMounted = false;
-          try {
-            await removeBannerAd();
-          } catch (error) {
-            console.error('Failed to remove banner on unmount:', error);
+          const remaining = getAdFreeUntil() - Date.now();
+          if (remaining > 0) {
+            if (showing) {
+              showing = false;
+              await removeBannerAd();
+            }
+            expiryTimer = setTimeout(sync, remaining + 1000);
+          } else if (!showing) {
+            showing = true;
+            await showBannerAd(position);
           }
         };
+
+        unsubscribe = subscribeAdFree(() => { void sync(); });
+        await sync();
       } catch (error) {
         console.error('AdMob initialization error:', error);
       }
     };
 
-    const cleanup = initAd();
+    void run();
 
     return () => {
-      cleanup.then((cleanupFn) => {
-        if (cleanupFn) cleanupFn();
-      });
+      cancelled = true;
+      if (expiryTimer) clearTimeout(expiryTimer);
+      unsubscribe?.();
+      import('@/lib/admob')
+        .then(({ removeBannerAd }) => removeBannerAd())
+        .catch((error) => console.error('Failed to remove banner on unmount:', error));
     };
   }, [position]);
 

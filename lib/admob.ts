@@ -1,4 +1,6 @@
-import { AdMob, BannerAdSize, BannerAdPosition, BannerAdPluginEvents, AdMobBannerSize } from '@capacitor-community/admob';
+import { AdMob, BannerAdSize, BannerAdPosition, BannerAdPluginEvents, RewardAdPluginEvents } from '@capacitor-community/admob';
+import type { PluginListenerHandle } from '@capacitor/core';
+import { REWARDED_AD_UNIT } from './ad-free';
 import { adStateManager } from './ad-state';
 import { track } from './analytics';
 
@@ -43,6 +45,9 @@ export const AD_UNITS = {
   // 위쪽 전용 단위(…/5725881924)는 AdMob에 없어 아래 배너 단위를 같이 쓴다 (배너 단위는 위치와 무관)
   BANNER_TOP: 'ca-app-pub-4710152968528474/6863735590',
   BANNER_BOTTOM: 'ca-app-pub-4710152968528474/6863735590', // community-bottom
+
+  // 보상형 광고 ("광고 보고 24시간 배너 없이 보기") — 값은 lib/ad-free.ts 에서 관리
+  REWARDED: REWARDED_AD_UNIT,
 
   // 인터스티셜 광고 (나중에 생성 시 추가)
   INTERSTITIAL: 'ca-app-pub-3940256099942544/1033173712', // TODO: 실제 인터스티셜 ID로 교체
@@ -184,5 +189,39 @@ export async function showInterstitialAd() {
     console.log('Interstitial ad shown');
   } catch (error) {
     console.error('Failed to show interstitial ad:', error);
+  }
+}
+
+export type RewardedResult = 'rewarded' | 'skipped' | 'failed';
+
+/**
+ * 보상형 광고 표시. 끝까지 봐서 보상을 받았으면 'rewarded'.
+ *
+ * 플러그인의 showRewardVideoAd() 는 보상을 받을 때만 resolve 되고, 중간에 닫으면
+ * 영원히 끝나지 않는다. 그래서 결과는 Rewarded/Dismissed 이벤트로 판단한다.
+ */
+export async function showRewardedAd(): Promise<RewardedResult> {
+  if (!AD_UNITS.REWARDED) return 'failed';
+  const handles: PluginListenerHandle[] = [];
+  try {
+    await AdMob.prepareRewardVideoAd({ adId: AD_UNITS.REWARDED });
+
+    let rewarded = false;
+    let finish: (r: RewardedResult) => void = () => {};
+    const done = new Promise<RewardedResult>((resolve) => { finish = resolve; });
+
+    handles.push(await AdMob.addListener(RewardAdPluginEvents.Rewarded, () => { rewarded = true; }));
+    handles.push(await AdMob.addListener(RewardAdPluginEvents.Dismissed, () => finish(rewarded ? 'rewarded' : 'skipped')));
+    handles.push(await AdMob.addListener(RewardAdPluginEvents.FailedToShow, () => finish('failed')));
+    AdMob.showRewardVideoAd().catch(() => finish('failed'));
+
+    const result = await done;
+    track('reward_ad', { result });
+    return result;
+  } catch (error) {
+    track('reward_ad', { result: 'failed', reason: String(error).slice(0, 100) });
+    return 'failed';
+  } finally {
+    handles.forEach((h) => h.remove());
   }
 }

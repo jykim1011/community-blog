@@ -6,6 +6,8 @@ import { useSubscriptions } from '@/lib/hooks/use-subscriptions';
 import { siteConfigs, categoryLabels, type SiteCategory } from '@/lib/constants';
 import { SiteHeader } from '@/components/site-header';
 import { useFeedPrefs } from '@/lib/hooks/use-feed-prefs';
+import { Capacitor } from '@capacitor/core';
+import { AD_FREE_HOURS, REWARDED_AD_UNIT, getAdFreeUntil, grantAdFree, subscribeAdFree } from '@/lib/ad-free';
 
 interface SiteWithCount {
   name: string;
@@ -41,6 +43,66 @@ const getSiteDomain = (siteName: string): string => {
   };
   return domainMap[siteName] || siteName;
 };
+
+function AdFreeSection() {
+  const [available, setAvailable] = useState(false);
+  const [until, setUntil] = useState(0);
+  const [busy, setBusy] = useState(false);
+  const [message, setMessage] = useState<string | null>(null);
+
+  useEffect(() => {
+    // 앱에서만, 그리고 보상형 광고 단위가 준비됐을 때만 보여준다
+    setAvailable(Capacitor.isNativePlatform() && !!REWARDED_AD_UNIT);
+    setUntil(getAdFreeUntil());
+    return subscribeAdFree(() => setUntil(getAdFreeUntil()));
+  }, []);
+
+  if (!available) return null;
+
+  const active = until > Date.now();
+  const untilText = new Date(until).toLocaleString('ko-KR', {
+    month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit',
+  });
+
+  const watch = async () => {
+    setBusy(true);
+    setMessage(null);
+    try {
+      const { showRewardedAd } = await import('@/lib/admob');
+      const result = await showRewardedAd();
+      if (result === 'rewarded') {
+        grantAdFree();
+        setMessage(`고마워요! ${AD_FREE_HOURS}시간 동안 배너 없이 볼 수 있어요`);
+      } else if (result === 'skipped') {
+        setMessage('광고를 끝까지 보면 배너가 사라져요');
+      } else {
+        setMessage('지금은 광고를 불러올 수 없어요. 잠시 후 다시 시도해 주세요');
+      }
+    } finally {
+      setBusy(false);
+    }
+  };
+
+  return (
+    <div className="bg-white dark:bg-gray-900 rounded-lg p-4 mb-6 border border-gray-200 dark:border-gray-800">
+      <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-1">광고 없이 보기</h2>
+      <p className="text-xs text-gray-500 mb-3">
+        {active
+          ? `${untilText}까지 하단 배너 없이 보는 중이에요. 한 편 더 보면 ${AD_FREE_HOURS}시간이 늘어나요`
+          : `짧은 광고 한 편을 보면 ${AD_FREE_HOURS}시간 동안 하단 배너가 사라져요`}
+      </p>
+      <button
+        type="button"
+        onClick={watch}
+        disabled={busy}
+        className="w-full px-4 py-2.5 rounded-lg bg-blue-600 text-white text-sm font-semibold disabled:opacity-50"
+      >
+        {busy ? '광고 불러오는 중…' : active ? `광고 보고 ${AD_FREE_HOURS}시간 연장` : `광고 보고 ${AD_FREE_HOURS}시간 배너 끄기`}
+      </button>
+      {message && <p className="text-xs text-gray-600 dark:text-gray-400 mt-2">{message}</p>}
+    </div>
+  );
+}
 
 function FeedPrefsSection() {
   const { mutedKeywords, hideRead, addMutedKeyword, removeMutedKeyword, setHideRead } = useFeedPrefs();
@@ -197,6 +259,8 @@ export default function SettingsPage() {
             </button>
           </div>
         </div>
+
+        <AdFreeSection />
 
         <FeedPrefsSection />
 

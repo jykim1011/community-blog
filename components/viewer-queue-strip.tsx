@@ -3,7 +3,7 @@
 import { useState, useEffect, useRef } from 'react';
 import { Capacitor } from '@capacitor/core';
 import { useViewer, type ViewerItem } from '@/lib/contexts/viewer-context';
-import { adStateManager, AD_HEIGHT_NATIVE } from '@/lib/ad-state';
+import { useNativeAdInset } from '@/lib/ad-state';
 import { useReadPosts } from '@/lib/hooks/use-read-posts';
 import { faviconUrl } from '@/lib/site-theme';
 
@@ -51,8 +51,7 @@ export function ViewerQueueStrip({ layout }: { layout: 'bottom' | 'side' }) {
 
   // 네이티브 앱의 AdMob 배너는 WebView 위에 그려지므로, 하단 스트립이 가려지지 않게 띄운다.
   const isNative = Capacitor.isNativePlatform();
-  const [isAdLoaded, setIsAdLoaded] = useState(() => adStateManager.getAdLoaded());
-  useEffect(() => adStateManager.subscribe(setIsAdLoaded), []);
+  const adInset = useNativeAdInset();
 
   const toggle = () => {
     setCollapsed(prev => {
@@ -173,8 +172,8 @@ export function ViewerQueueStrip({ layout }: { layout: 'bottom' | 'side' }) {
   return (
     <div style={{
       flexShrink: 0, borderTop: '1px solid var(--border)', background: 'var(--surface)',
-      paddingBottom: isNative && isAdLoaded
-        ? `calc(${AD_HEIGHT_NATIVE}px + env(safe-area-inset-bottom, 0px))`
+      paddingBottom: isNative && adInset
+        ? `calc(${adInset}px + env(safe-area-inset-bottom, 0px))`
         : 'env(safe-area-inset-bottom, 0px)',
     }}>
       {header}

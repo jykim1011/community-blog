@@ -7,7 +7,7 @@ import { TrendStrip } from '@/components/trend-strip';
 import { useSubscriptions } from '@/lib/hooks/use-subscriptions';
 import { usePosts } from '@/lib/hooks/use-posts';
 import { useMediaQuery } from '@/lib/hooks/use-media-query';
-import { adStateManager } from '@/lib/ad-state';
+import { useNativeAdInset } from '@/lib/ad-state';
 import { SITE_NAME } from '@/lib/constants';
 import type { PostsStats, StaticPost, StaticSite } from '@/lib/types';
 
@@ -272,7 +272,7 @@ export function DashboardHome({ initialPosts, initialSites, initialStats, keywor
   // initialPosts 는 SSR 로 인라인된 최신 60건. 마운트 직후 전체 목록으로 교체된다.
   const { posts: allPosts, isComplete, error: postsError, refresh: refreshPosts } = usePosts({ initial: initialPosts });
   const [isApp, setIsApp] = useState(false);
-  const [isAdLoaded, setIsAdLoaded] = useState(false);
+  const adInset = useNativeAdInset();
   const [activeSite, setActiveSite] = useState<string | null>(null);
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
   const [activeKeyword, setActiveKeyword] = useState<string | null>(null);
@@ -317,8 +317,6 @@ export function DashboardHome({ initialPosts, initialSites, initialStats, keywor
     );
     setClock(now.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' }));
 
-    const unsub = adStateManager.subscribe(setIsAdLoaded);
-    return unsub;
   }, []);
 
   const filteredSites = useMemo(() =>
@@ -445,8 +443,8 @@ export function DashboardHome({ initialPosts, initialSites, initialStats, keywor
         style={{
           background: 'var(--surface)',
           minHeight: '100vh',
-          paddingBottom: isApp && isAdLoaded
-            ? 'calc(64px + max(env(safe-area-inset-bottom), 0px))'
+          paddingBottom: isApp && adInset
+            ? `calc(${adInset}px + max(env(safe-area-inset-bottom), 0px))`
             : 'max(env(safe-area-inset-bottom), 16px)',
         }}
       >

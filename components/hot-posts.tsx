@@ -5,7 +5,7 @@ import { formatRelativeTime } from '@/lib/utils';
 import { useReadPosts } from '@/lib/hooks/use-read-posts';
 import { usePosts } from '@/lib/hooks/use-posts';
 import { useBookmarks } from '@/lib/hooks/use-bookmarks';
-import { adStateManager } from '@/lib/ad-state';
+import { useNativeAdInset } from '@/lib/ad-state';
 import { isDomainBlocked } from '@/lib/utils/blocked-domains';
 import { openExternal } from '@/lib/open-external';
 import { useViewer } from '@/lib/contexts/viewer-context';
@@ -342,7 +342,7 @@ export function HotPosts({ initialPosts }: Props) {
   const [shown, setShown] = useState(PAGE_SIZE);
   const [isLoading, setIsLoading] = useState(false);
   const [isApp, setIsApp] = useState(false);
-  const [isAdLoaded, setIsAdLoaded] = useState(false);
+  const adInset = useNativeAdInset();
   const loadRef = useRef<HTMLDivElement>(null);
   const hasMore = shown < posts.length;
 
@@ -354,7 +354,6 @@ export function HotPosts({ initialPosts }: Props) {
       typeof window !== 'undefined' &&
       (window.location.protocol === 'capacitor:' || (window as unknown as { Capacitor?: unknown }).Capacitor !== undefined);
     setIsApp(!!isCapacitor);
-    return adStateManager.subscribe(setIsAdLoaded);
   }, []);
 
   useEffect(() => {
@@ -383,8 +382,8 @@ export function HotPosts({ initialPosts }: Props) {
   }, []);
 
   const mobilePadBottom =
-    isApp && isAdLoaded
-      ? 'calc(64px + max(env(safe-area-inset-bottom), 0px))'
+    isApp && adInset
+      ? `calc(${adInset}px + max(env(safe-area-inset-bottom), 0px))`
       : 'max(env(safe-area-inset-bottom), 16px)';
 
   return (
