@@ -4,7 +4,7 @@
 
 // 보상형 광고 단위 ID. AdMob 콘솔에서 '보상형' 단위를 만든 뒤 여기에 넣는다.
 // 비어 있으면 설정 화면의 버튼이 나타나지 않는다.
-export const REWARDED_AD_UNIT = '';
+export const REWARDED_AD_UNIT = 'ca-app-pub-4710152968528474/4408417126'; // community-rewarded-adfree
 
 export const AD_FREE_HOURS = 24;
 
