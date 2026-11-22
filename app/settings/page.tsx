@@ -85,7 +85,11 @@ function AdFreeSection() {
 
   return (
     <div className="bg-white dark:bg-gray-900 rounded-lg p-4 mb-6 border border-gray-200 dark:border-gray-800">
-      <h2 className="text-lg font-semibold text-gray-900 dark:text-gray-100 mb-1">광고 없이 보기</h2>
+      <h2 className="flex items-center gap-1.5 text-lg font-semibold text-gray-900 dark:text-gray-100 mb-1">
+        광고 없이 보기
+        {/* 상단 설정 아이콘의 빨간 점이 여기서 왔다는 걸 알 수 있게 같은 점을 붙인다 */}
+        {!active && <span aria-label="사용 가능" className="w-2 h-2 rounded-full bg-red-500" />}
+      </h2>
       <p className="text-xs text-gray-500 mb-3">
         {active
           ? `${untilText}까지 하단 배너 없이 보는 중이에요. 한 편 더 보면 ${AD_FREE_HOURS}시간이 늘어나요`
