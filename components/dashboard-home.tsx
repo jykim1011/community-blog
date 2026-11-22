@@ -8,6 +8,7 @@ import { useSubscriptions } from '@/lib/hooks/use-subscriptions';
 import { usePosts } from '@/lib/hooks/use-posts';
 import { useMediaQuery } from '@/lib/hooks/use-media-query';
 import { useNativeAdInset } from '@/lib/ad-state';
+import { useAdFreeHint } from '@/lib/hooks/use-ad-free-hint';
 import { SITE_NAME } from '@/lib/constants';
 import type { PostsStats, StaticPost, StaticSite } from '@/lib/types';
 
@@ -53,6 +54,7 @@ const ICONS = {
 // ── Rail (desktop icon column) ────────────────────────────────
 function Rail({ pathname }: { pathname: string }) {
   const router = useRouter();
+  const adHint = useAdFreeHint();
   const navItems = [
     { href: '/', icon: ICONS.home, label: '홈' },
     { href: '/trends', icon: ICONS.trend, label: '트렌드' },
@@ -100,6 +102,9 @@ function Rail({ pathname }: { pathname: string }) {
               <span className="absolute left-0 top-2.5 bottom-2.5 w-0.5 rounded-r" style={{ background: 'var(--accent)', left: -8 }} />
             )}
             <Icon d={item.icon} size={18} />
+            {item.href === '/settings' && adHint && (
+              <span aria-hidden="true" style={{ position: 'absolute', top: 8, right: 8, width: 8, height: 8, borderRadius: '50%', background: '#ef4444', boxShadow: '0 0 0 2px var(--surface)' }} />
+            )}
           </button>
         );
       })}
@@ -266,6 +271,7 @@ function TopBar({ title, sub, searchValue, onSearchChange }: {
 
 // ── Main DashboardHome ─────────────────────────────────────────
 export function DashboardHome({ initialPosts, initialSites, initialStats, keywords = [] }: Props) {
+  const adHint = useAdFreeHint();
   const router = useRouter();
   const pathname = usePathname();
   const { subscriptions, isLoaded } = useSubscriptions();
@@ -497,10 +503,12 @@ export function DashboardHome({ initialPosts, initialSites, initialStats, keywor
                 background: 'none', border: 'none', width: 40, height: 40, cursor: 'pointer',
                 color: 'var(--fg-1)',
                 display: 'inline-flex', alignItems: 'center', justifyContent: 'center',
+                position: 'relative',
               }}
-              aria-label="설정"
+              aria-label={adHint ? '설정 (광고 없이 보기 가능)' : '설정'}
             >
               <Icon d={ICONS.settings} size={22} />
+              {adHint && <span aria-hidden="true" style={{ position: 'absolute', top: 7, right: 7, width: 8, height: 8, borderRadius: '50%', background: '#ef4444', boxShadow: '0 0 0 2px var(--surface)' }} />}
             </button>
           </div>
 

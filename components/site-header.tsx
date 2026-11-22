@@ -5,11 +5,14 @@ import Image from 'next/image';
 import { usePathname, useRouter } from 'next/navigation';
 import { useEffect, useState } from 'react';
 import { SITE_NAME } from '@/lib/constants';
+import { useAdFreeHint } from '@/lib/hooks/use-ad-free-hint';
 
 export function SiteHeader() {
   const pathname = usePathname();
   const router = useRouter();
   const [isMobileView, setIsMobileView] = useState(true);
+  // 24시간 광고 제거를 쓸 수 있으면 설정 아이콘에 빨간 점으로 알린다
+  const adHint = useAdFreeHint();
 
   useEffect(() => {
     const checkMobile = () => setIsMobileView(window.innerWidth < 640);
@@ -38,8 +41,8 @@ export function SiteHeader() {
             </Link>
             <button
               onClick={() => router.push('/settings')}
-              className="p-2 rounded-lg text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
-              aria-label="설정"
+              className="relative p-2 rounded-lg text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white hover:bg-gray-100 dark:hover:bg-gray-800 transition-colors"
+              aria-label={adHint ? '설정 (광고 없이 보기 가능)' : '설정'}
               style={{ color: pathname === '/settings' ? 'var(--accent, #4f46e5)' : undefined }}
             >
               <svg width={22} height={22} viewBox="0 0 24 24" fill="none"
@@ -48,6 +51,7 @@ export function SiteHeader() {
                 <path d="M12 15a3 3 0 1 0 0-6 3 3 0 0 0 0 6z" />
                 <path d="M19.4 15a1.65 1.65 0 0 0 .33 1.82l.06.06a2 2 0 0 1-2.83 2.83l-.06-.06a1.65 1.65 0 0 0-1.82-.33 1.65 1.65 0 0 0-1 1.51V21a2 2 0 0 1-4 0v-.09A1.65 1.65 0 0 0 9 19.4a1.65 1.65 0 0 0-1.82.33l-.06.06a2 2 0 0 1-2.83-2.83l.06-.06A1.65 1.65 0 0 0 4.68 15a1.65 1.65 0 0 0-1.51-1H3a2 2 0 0 1 0-4h.09A1.65 1.65 0 0 0 4.6 9a1.65 1.65 0 0 0-.33-1.82l-.06-.06a2 2 0 0 1 2.83-2.83l.06.06A1.65 1.65 0 0 0 9 4.68a1.65 1.65 0 0 0 1-1.51V3a2 2 0 0 1 4 0v.09a1.65 1.65 0 0 0 1 1.51 1.65 1.65 0 0 0 1.82-.33l.06-.06a2 2 0 0 1 2.83 2.83l-.06.06A1.65 1.65 0 0 0 19.4 9a1.65 1.65 0 0 0 1.51 1H21a2 2 0 0 1 0 4h-.09a1.65 1.65 0 0 0-1.51 1z" />
               </svg>
+              {adHint && <span aria-hidden="true" className="absolute top-1.5 right-1.5 w-2 h-2 rounded-full bg-red-500 ring-2 ring-white dark:ring-gray-900" />}
             </button>
           </div>
         </nav>
@@ -76,13 +80,16 @@ export function SiteHeader() {
                   <Link
                     key={href}
                     href={href}
-                    className={`px-3 py-2 rounded-lg text-sm transition-colors ${
+                    className={`relative px-3 py-2 rounded-lg text-sm transition-colors ${
                       pathname === href
                         ? 'text-gray-900 dark:text-white font-semibold'
                         : 'text-gray-600 dark:text-gray-400 hover:text-gray-900 dark:hover:text-white'
                     }`}
                   >
                     {label}
+                    {href === '/settings' && adHint && (
+                      <span aria-hidden="true" className="absolute top-1.5 right-1 w-1.5 h-1.5 rounded-full bg-red-500" />
+                    )}
                   </Link>
                 ))}
                 <a
