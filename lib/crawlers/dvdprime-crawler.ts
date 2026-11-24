@@ -1,6 +1,6 @@
 import axios from 'axios';
 import * as cheerio from 'cheerio';
-import { BaseCrawler } from './base-crawler';
+import { BaseCrawler, httpStatus } from './base-crawler';
 import { type Post } from '../types';
 import { normalizeUrl, toAbsoluteUrl } from '../utils/url-normalizer';
 
@@ -54,7 +54,7 @@ export class DvdprimeCrawler extends BaseCrawler {
             if (page < PAGES_TO_CRAWL) await this.delay(2000);
             success = true;
           } catch (error) {
-            if ((error as any).response?.status === 429) {
+            if (httpStatus(error) === 429) {
               rateLimitRetries++;
               if (rateLimitRetries > MAX_RATE_LIMIT_RETRIES) {
                 console.warn(`[${this.siteName}] Rate limited repeatedly, stopping`);
@@ -62,7 +62,7 @@ export class DvdprimeCrawler extends BaseCrawler {
               }
               console.warn(`[${this.siteName}] Rate limited, retry ${rateLimitRetries}/${MAX_RATE_LIMIT_RETRIES}`);
               await this.delay(5000 * rateLimitRetries);
-            } else if ((error as any).response?.status === 404) {
+            } else if (httpStatus(error) === 404) {
               console.log(`[${this.siteName}] Page ${page} not found, stopping`);
               return allPosts;
             } else {

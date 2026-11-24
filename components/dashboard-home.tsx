@@ -311,7 +311,7 @@ export function DashboardHome({ initialPosts, initialSites, initialStats, keywor
 
   useEffect(() => {
     const isCapacitor = typeof window !== 'undefined' && (
-      window.location.protocol === 'capacitor:' || (window as any).Capacitor !== undefined
+      window.location.protocol === 'capacitor:' || (window as unknown as { Capacitor?: unknown }).Capacitor !== undefined
     );
     setIsApp(isCapacitor);
 

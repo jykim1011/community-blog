@@ -1,3 +1,4 @@
+import axios from 'axios';
 import { type ICrawler, type Post } from '../types';
 import { robotsChecker } from '../utils/robots-checker';
 
@@ -52,4 +53,9 @@ export abstract class BaseCrawler implements ICrawler {
       return undefined;
     }
   }
+}
+
+/** axios 요청 오류의 HTTP 상태 코드 (응답이 없거나 axios 오류가 아니면 undefined) */
+export function httpStatus(error: unknown): number | undefined {
+  return axios.isAxiosError(error) ? error.response?.status : undefined;
 }

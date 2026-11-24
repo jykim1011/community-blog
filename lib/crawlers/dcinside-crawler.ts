@@ -1,6 +1,6 @@
 import axios from 'axios';
 import * as cheerio from 'cheerio';
-import { BaseCrawler } from './base-crawler';
+import { BaseCrawler, httpStatus } from './base-crawler';
 import { type Post } from '../types';
 import { normalizeUrl, toAbsoluteUrl } from '../utils/url-normalizer';
 
@@ -53,14 +53,14 @@ export class DcinsideCrawler extends BaseCrawler {
             await this.delay(delayMs);
           }
         } catch (error) {
-          if ((error as any).response?.status === 429) {
+          if (httpStatus(error) === 429) {
             console.warn(`[${this.siteName}] Rate limited at page ${page}, waiting 10 seconds...`);
             await this.delay(10000);
             page--;
             continue;
           }
 
-          if ((error as any).response?.status === 404) {
+          if (httpStatus(error) === 404) {
             console.log(`[${this.siteName}] Page ${page} not found, stopping`);
             break;
           }

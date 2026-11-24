@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { type AxiosError } from 'axios';
 import * as cheerio from 'cheerio';
 
 (async () => {
@@ -40,7 +40,8 @@ import * as cheerio from 'cheerio';
 
     console.log(`\n✅ Valid posts found: ${validCount}`);
 
-  } catch (error: any) {
+  } catch (err) {
+    const error = err as AxiosError;
     console.error('❌ Error:', error.message);
     if (error.response) {
       console.error('Status:', error.response.status);

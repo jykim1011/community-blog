@@ -89,24 +89,24 @@ async function debugDvdprime() {
 async function main() {
   try {
     await debugQuasarzone();
-  } catch (e: any) {
-    console.error('Quasarzone 에러:', e.message);
+  } catch (e) {
+    console.error('Quasarzone 에러:', (e as Error).message);
   }
 
   await new Promise(r => setTimeout(r, 2000));
 
   try {
     await debugDealbada();
-  } catch (e: any) {
-    console.error('Dealbada 에러:', e.message);
+  } catch (e) {
+    console.error('Dealbada 에러:', (e as Error).message);
   }
 
   await new Promise(r => setTimeout(r, 2000));
 
   try {
     await debugDvdprime();
-  } catch (e: any) {
-    console.error('DVDPrime 에러:', e.message);
+  } catch (e) {
+    console.error('DVDPrime 에러:', (e as Error).message);
   }
 }
 

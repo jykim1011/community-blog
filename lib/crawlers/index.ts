@@ -19,7 +19,7 @@ import { ExtmovieCrawler } from './extmovie-crawler';
 import { DvdprimeCrawler } from './dvdprime-crawler';
 import { DealbadaCrawler } from './dealbada-crawler';
 import { CoolenjoyCrawler } from './coolenjoy-crawler';
-import type { ICrawler } from '../types';
+import type { ICrawler, Post } from '../types';
 
 // 사용 가능한 모든 크롤러 등록
 export const crawlers: Record<string, ICrawler> = {
@@ -75,8 +75,8 @@ export async function crawlAllSites() {
   );
 
   const posts = results
-    .filter((result) => result.status === 'fulfilled')
-    .flatMap((result) => (result as PromiseFulfilledResult<any>).value);
+    .filter((result): result is PromiseFulfilledResult<Post[]> => result.status === 'fulfilled')
+    .flatMap((result) => result.value);
 
   return posts;
 }

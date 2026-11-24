@@ -54,8 +54,9 @@ export function AdSenseBanner({
   useEffect(() => {
     try {
       // AdSense 광고 로드
-      if (typeof window !== 'undefined' && (window as any).adsbygoogle) {
-        ((window as any).adsbygoogle = (window as any).adsbygoogle || []).push({});
+      const w = window as Window & { adsbygoogle?: unknown[] };
+      if (w.adsbygoogle) {
+        w.adsbygoogle.push({});
       }
     } catch (error) {
       console.error('AdSense error:', error);

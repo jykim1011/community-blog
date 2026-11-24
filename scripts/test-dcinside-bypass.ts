@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { type AxiosError } from 'axios';
 import * as cheerio from 'cheerio';
 
 // 랜덤 딜레이 함수 (3-7초)
@@ -55,7 +55,8 @@ async function test1_EnhancedHeaders() {
     console.log(`📝 게시글 수: ${posts}개`);
 
     return true;
-  } catch (error: any) {
+  } catch (err) {
+    const error = err as AxiosError;
     console.log(`❌ 실패: ${error.message}`);
     if (error.response) {
       console.log(`   상태 코드: ${error.response.status}`);
@@ -94,7 +95,8 @@ async function test2_MobileUserAgent() {
     console.log(`📝 게시글 수: ${posts}개`);
 
     return true;
-  } catch (error: any) {
+  } catch (err) {
+    const error = err as AxiosError;
     console.log(`❌ 실패: ${error.message}`);
     return false;
   }
@@ -133,7 +135,8 @@ async function test3_APIEndpoint() {
         console.log(`📝 응답 샘플: ${JSON.stringify(response.data).substring(0, 200)}...`);
         return true;
       }
-    } catch (error: any) {
+    } catch (err) {
+      const error = err as AxiosError;
       console.log(`❌ ${error.message}`);
     }
   }
@@ -181,7 +184,8 @@ async function test4_WithCookies() {
     console.log(`📝 게시글 수: ${posts}개`);
 
     return true;
-  } catch (error: any) {
+  } catch (err) {
+    const error = err as AxiosError;
     console.log(`❌ 실패: ${error.message}`);
     return false;
   }

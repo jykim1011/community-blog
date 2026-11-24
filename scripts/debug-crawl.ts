@@ -1,4 +1,4 @@
-import axios from 'axios';
+import axios, { type AxiosError } from 'axios';
 import * as cheerio from 'cheerio';
 import * as iconv from 'iconv-lite';
 
@@ -73,7 +73,8 @@ async function debugSite(site: { name: string; url: string; encoding: string }) 
       }
     });
 
-  } catch (error: any) {
+  } catch (err) {
+    const error = err as AxiosError;
     console.error(`❌ 에러: ${error.message}`);
     if (error.response) {
       console.error(`   상태 코드: ${error.response.status}`);

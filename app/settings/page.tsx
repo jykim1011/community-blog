@@ -47,6 +47,7 @@ const getSiteDomain = (siteName: string): string => {
 function AdFreeSection() {
   const [available, setAvailable] = useState(false);
   const [until, setUntil] = useState(0);
+  const [now, setNow] = useState(0);
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
 
@@ -58,13 +59,18 @@ function AdFreeSection() {
     if (native) {
       import('@/lib/admob').then(({ preloadRewardedAd }) => preloadRewardedAd()).catch(() => {});
     }
-    setUntil(getAdFreeUntil());
-    return subscribeAdFree(() => setUntil(getAdFreeUntil()));
+    const sync = () => {
+      setUntil(getAdFreeUntil());
+      setNow(Date.now());
+    };
+    sync();
+    return subscribeAdFree(sync);
   }, []);
 
   if (!available) return null;
 
-  const active = until > Date.now();
+  // 렌더 중 Date.now() 는 순수하지 않아, 마지막으로 확인한 시각과 비교한다
+  const active = until > now;
   const untilText = new Date(until).toLocaleString('ko-KR', {
     month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit',
   });

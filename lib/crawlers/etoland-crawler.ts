@@ -2,6 +2,20 @@ import axios from 'axios';
 import { BaseCrawler } from './base-crawler';
 import { type Post } from '../types';
 
+// 이토랜드 RSC 데이터의 articleList 항목 (쓰는 필드만)
+interface EtolandArticle {
+  slug?: string;
+  boTable?: string;
+  subject?: string;
+  thumbnail?: string;
+  writeDateTimestamp?: number;
+  member?: { nickname?: string };
+  viewCount?: number;
+  commentCount?: number;
+  recommendCount?: number;
+  category?: string;
+}
+
 export class EtolandCrawler extends BaseCrawler {
   siteName = 'etoland';
   protected readonly baseUrl = 'https://www.etoland.co.kr';
@@ -53,7 +67,7 @@ export class EtolandCrawler extends BaseCrawler {
     return articles.map((a) => this.mapArticleToPost(a)).filter((p): p is Post => p !== null);
   }
 
-  private extractArticlesFromRsc(html: string): any[] {
+  private extractArticlesFromRsc(html: string): EtolandArticle[] {
     // RSC data is embedded as: self.__next_f.push([1,"<JSON-encoded RSC tree>"])
     // Strategy: locate the push call containing "articleList", extract the full
     // quoted string by character-walking (handles \" and \\ escapes), then
@@ -93,7 +107,7 @@ export class EtolandCrawler extends BaseCrawler {
     }
   }
 
-  private extractArticleList(content: string): any[] {
+  private extractArticleList(content: string): EtolandArticle[] {
     // content is now unescaped. Extract the articleList JSON array using
     // bracket-balanced scanning with proper string-awareness.
     const artKey = '"articleList":[';
@@ -123,18 +137,18 @@ export class EtolandCrawler extends BaseCrawler {
     }
   }
 
-  private mapArticleToPost(article: any): Post | null {
+  private mapArticleToPost(article: EtolandArticle): Post | null {
     try {
-      const slug: string = article.slug;
-      const boTable: string = article.boTable;
+      const slug = article.slug;
+      const boTable = article.boTable;
       if (!slug || !boTable) return null;
 
-      const title: string = article.subject || '';
+      const title = article.subject || '';
       if (!title) return null;
 
       const url = `${this.baseUrl}/b/${boTable}/view/${slug}`;
 
-      const rawThumb: string | undefined = article.thumbnail;
+      const rawThumb = article.thumbnail;
       const thumbnail = rawThumb
         ? rawThumb.startsWith('http')
           ? rawThumb

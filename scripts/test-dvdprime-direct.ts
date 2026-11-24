@@ -9,7 +9,7 @@ async function main() {
   });
 
   const $ = cheerio.load(response.data);
-  const posts: any[] = [];
+  const posts: { title: string; href: string | undefined; author: string }[] = [];
 
   $('div.list_table_row').not('.list_table_row_notice').each((i, element) => {
     const $el = $(element);
