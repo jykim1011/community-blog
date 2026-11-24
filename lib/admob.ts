@@ -1,6 +1,6 @@
 import { AdMob, BannerAdSize, BannerAdPosition, BannerAdPluginEvents, RewardAdPluginEvents } from '@capacitor-community/admob';
 import type { PluginListenerHandle } from '@capacitor/core';
-import { REWARDED_AD_UNIT } from './ad-free';
+import { REWARDED_AD_UNIT, isAdFree } from './ad-free';
 import { adStateManager } from './ad-state';
 import { track } from './analytics';
 
@@ -63,6 +63,8 @@ export async function initializeAdMob() {
       initializeForTesting: false, // 프로덕션: 실제 광고
     });
     console.log('AdMob initialized successfully');
+    // 광고 없는 시간이 아니면 '광고 없이 보기'용 보상형 광고를 미리 받아 둔다
+    if (!isAdFree()) void preloadRewardedAd();
   } catch (error) {
     console.error('AdMob initialization failed:', error);
   }
@@ -194,17 +196,86 @@ export async function showInterstitialAd() {
 
 export type RewardedResult = 'rewarded' | 'skipped' | 'failed';
 
+// ── 보상형 광고 미리 받기 ─────────────────────────────
+// 예전엔 버튼을 누른 뒤에야 광고를 받기 시작해 기다림이 길고, 받다 실패하면 노출이 날아갔다.
+// 이제 앱을 켤 때(광고 없는 시간이 아닐 때)와 설정 화면을 열 때 미리 받아 둔다.
+// 받은 광고는 60분이면 만료되므로 50분이 지나면 버리고 새로 받는다.
+// 플러그인은 보여 준 광고를 비우지 않아(mRewardedAd) 한 번 보여 주면 반드시 새로 받아야 한다.
+const REWARDED_MAX_AGE_MS = 50 * 60_000;
+const REWARDED_RETRY_MIN_MS = 5_000;
+const REWARDED_RETRY_MAX_MS = 120_000;
+
+let rewardedLoadedAt = 0; // 0 = 보여 줄 수 있는 광고 없음
+let rewardedLoading: Promise<boolean> | null = null;
+let rewardedRetryMs = REWARDED_RETRY_MIN_MS;
+let rewardedRetryTimer: ReturnType<typeof setTimeout> | null = null;
+let rewardedFails = 0;
+let rewardedShowing = false;
+
+function isRewardedFresh() {
+  return rewardedLoadedAt > 0 && Date.now() - rewardedLoadedAt < REWARDED_MAX_AGE_MS;
+}
+
+/**
+ * 보상형 광고를 미리 받아 둔다. 이미 받아 뒀거나 받는 중이면 그대로 둔다.
+ * 받아 두었으면 true. 실패하면 점점 늘어나는 간격(5초→최대 2분)으로 다시 시도한다.
+ */
+export function preloadRewardedAd(): Promise<boolean> {
+  if (!AD_UNITS.REWARDED || rewardedShowing) return Promise.resolve(false);
+  if (isRewardedFresh()) return Promise.resolve(true);
+  if (rewardedLoading) return rewardedLoading;
+
+  if (rewardedRetryTimer) clearTimeout(rewardedRetryTimer);
+  rewardedRetryTimer = null;
+  rewardedLoadedAt = 0;
+
+  rewardedLoading = AdMob.prepareRewardVideoAd({ adId: AD_UNITS.REWARDED })
+    .then(() => {
+      rewardedLoadedAt = Date.now();
+      rewardedRetryMs = REWARDED_RETRY_MIN_MS;
+      rewardedFails = 0;
+      return true;
+    })
+    .catch((error) => {
+      rewardedFails++;
+      // 재시도마다 보내지 않게 처음 몇 번만 기록 (GA4)
+      if (rewardedFails <= 3) {
+        track('ad_load_fail', {
+          ad_format: 'rewarded',
+          reason: String(error?.message ?? error).slice(0, 100),
+          attempt: rewardedFails,
+        });
+      }
+      rewardedRetryTimer = setTimeout(() => {
+        rewardedRetryTimer = null;
+        void preloadRewardedAd();
+      }, rewardedRetryMs);
+      rewardedRetryMs = Math.min(rewardedRetryMs * 2, REWARDED_RETRY_MAX_MS);
+      return false;
+    })
+    .finally(() => {
+      rewardedLoading = null;
+    });
+  return rewardedLoading;
+}
+
 /**
  * 보상형 광고 표시. 끝까지 봐서 보상을 받았으면 'rewarded'.
+ * 미리 받아 둔 광고가 있으면 바로 보여 주고, 없으면 그 자리에서 받아 보여 준다.
  *
  * 플러그인의 showRewardVideoAd() 는 보상을 받을 때만 resolve 되고, 중간에 닫으면
  * 영원히 끝나지 않는다. 그래서 결과는 Rewarded/Dismissed 이벤트로 판단한다.
  */
 export async function showRewardedAd(): Promise<RewardedResult> {
-  if (!AD_UNITS.REWARDED) return 'failed';
+  if (!AD_UNITS.REWARDED || rewardedShowing) return 'failed';
+  const preloaded = isRewardedFresh();
   const handles: PluginListenerHandle[] = [];
+  let result: RewardedResult = 'failed';
   try {
-    await AdMob.prepareRewardVideoAd({ adId: AD_UNITS.REWARDED });
+    if (!preloaded && !(await preloadRewardedAd())) {
+      track('reward_ad', { result: 'failed', preloaded: false, reason: 'load_failed' });
+      return 'failed';
+    }
 
     let rewarded = false;
     let finish: (r: RewardedResult) => void = () => {};
@@ -213,15 +284,24 @@ export async function showRewardedAd(): Promise<RewardedResult> {
     handles.push(await AdMob.addListener(RewardAdPluginEvents.Rewarded, () => { rewarded = true; }));
     handles.push(await AdMob.addListener(RewardAdPluginEvents.Dismissed, () => finish(rewarded ? 'rewarded' : 'skipped')));
     handles.push(await AdMob.addListener(RewardAdPluginEvents.FailedToShow, () => finish('failed')));
+
+    rewardedShowing = true;
+    rewardedLoadedAt = 0; // 한 번 보여 준 광고는 다시 못 쓴다
     AdMob.showRewardVideoAd().catch(() => finish('failed'));
 
-    const result = await done;
-    track('reward_ad', { result });
+    result = await done;
+    track('reward_ad', { result, preloaded });
     return result;
   } catch (error) {
-    track('reward_ad', { result: 'failed', reason: String(error).slice(0, 100) });
+    track('reward_ad', { result: 'failed', preloaded, reason: String(error).slice(0, 100) });
     return 'failed';
   } finally {
     handles.forEach((h) => h.remove());
+    if (rewardedShowing) {
+      rewardedShowing = false;
+      // 보상을 못 받았으면 바로 다시 시도할 수 있게 다시 받아 둔다.
+      // 보상을 받았으면 24시간 동안 쓸 일이 드물어(받아 둬도 만료됨) 설정 화면을 다시 열 때 받는다
+      if (result !== 'rewarded') void preloadRewardedAd();
+    }
   }
 }

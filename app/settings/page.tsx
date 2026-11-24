@@ -52,7 +52,12 @@ function AdFreeSection() {
 
   useEffect(() => {
     // 앱에서만, 그리고 보상형 광고 단위가 준비됐을 때만 보여준다
-    setAvailable(Capacitor.isNativePlatform() && !!REWARDED_AD_UNIT);
+    const native = Capacitor.isNativePlatform() && !!REWARDED_AD_UNIT;
+    setAvailable(native);
+    // 버튼을 누르자마자 나오도록 이 화면을 열 때 미리 받아 둔다 (이미 받아 뒀으면 그대로)
+    if (native) {
+      import('@/lib/admob').then(({ preloadRewardedAd }) => preloadRewardedAd()).catch(() => {});
+    }
     setUntil(getAdFreeUntil());
     return subscribeAdFree(() => setUntil(getAdFreeUntil()));
   }, []);
