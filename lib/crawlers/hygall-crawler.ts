@@ -4,7 +4,6 @@ import { BaseCrawler, httpStatus } from './base-crawler';
 import { type Post } from '../types';
 import { isValidPostThumbnail } from '../utils/thumbnail-validator';
 
-import { normalizeUrl, toAbsoluteUrl } from '../utils/url-normalizer';
 export class HygallCrawler extends BaseCrawler {
   siteName = 'hygall';
   protected readonly baseUrl = 'https://hygall.com';

@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { setStoredItem, useHydrated, useStoredItem } from '@/lib/hooks/use-client-value';
 
 const COMMUNITY_CATEGORIES = [
   {
@@ -39,17 +40,12 @@ const COMMUNITY_CATEGORIES = [
 ];
 
 export function OnboardingModal() {
-  const [isOpen, setIsOpen] = useState(false);
+  // 첫 방문이면 연다 (하이드레이션 뒤에 판단, 완료·건너뛰기 하면 저장값이 생겨 닫힌다)
+  const hydrated = useHydrated();
+  const completed = useStoredItem('onboarding-completed');
+  const isOpen = hydrated && !completed;
   const [step, setStep] = useState(1);
   const [selectedSites, setSelectedSites] = useState<string[]>([]);
-
-  useEffect(() => {
-    // 첫 방문 여부 확인
-    const hasSeenOnboarding = localStorage.getItem('onboarding-completed');
-    if (!hasSeenOnboarding) {
-      setIsOpen(true);
-    }
-  }, []);
 
   const toggleSite = (siteName: string) => {
     setSelectedSites(prev =>
@@ -62,13 +58,11 @@ export function OnboardingModal() {
   const handleComplete = () => {
     // 선택한 커뮤니티 저장
     localStorage.setItem('favorite-sites', JSON.stringify(selectedSites));
-    localStorage.setItem('onboarding-completed', 'true');
-    setIsOpen(false);
+    setStoredItem('onboarding-completed', 'true');
   };
 
   const handleSkip = () => {
-    localStorage.setItem('onboarding-completed', 'true');
-    setIsOpen(false);
+    setStoredItem('onboarding-completed', 'true');
   };
 
   if (!isOpen) return null;

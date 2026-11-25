@@ -8,11 +8,9 @@ import { SiteFooter } from '@/components/site-footer';
 import { ShareButton } from '@/components/share-button';
 import { SITE_URL, SITE_NAME, siteConfigs } from '@/lib/constants';
 import { crawlers } from '@/lib/crawlers';
-import sitesData from '@/data/sites.json';
 import analysisData from '@/data/analysis.json';
-import type { StaticPost, StaticSite } from '@/lib/types';
+import type { StaticPost } from '@/lib/types';
 
-const allSites: StaticSite[] = sitesData as StaticSite[];
 const analysis = analysisData as {
   communityProfiles: {
     name: string;

@@ -96,7 +96,7 @@ export function toAbsoluteUrl(url: string, baseUrl: string): string {
     const base = new URL(baseUrl);
     const absolute = new URL(url, base);
     return absolute.toString();
-  } catch (error) {
+  } catch {
     // URL 변환 실패 시 baseUrl + url 반환
     return url.startsWith('/') ? `${baseUrl}${url}` : `${baseUrl}/${url}`;
   }

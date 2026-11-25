@@ -37,7 +37,7 @@ function scheduleBannerRetry() {
 }
 
 // AdMob 앱 ID (실제 ID)
-const ADMOB_APP_ID = 'ca-app-pub-4710152968528474~2341859043';
+// (앱 ID 는 AndroidManifest.xml 의 APPLICATION_ID 에 있다: ca-app-pub-4710152968528474~2341859043)
 
 // 광고 단위 ID
 export const AD_UNITS = {

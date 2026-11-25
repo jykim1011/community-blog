@@ -3,7 +3,6 @@ import * as cheerio from 'cheerio';
 import { BaseCrawler } from './base-crawler';
 import { type Post } from '../types';
 
-import { normalizeUrl, toAbsoluteUrl } from '../utils/url-normalizer';
 export class InvenCrawler extends BaseCrawler {
   siteName = 'inven';
   protected readonly baseUrl = 'https://hot.inven.co.kr';

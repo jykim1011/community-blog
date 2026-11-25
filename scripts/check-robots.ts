@@ -72,7 +72,7 @@ async function checkAllRobots() {
   let blockedCount = 0;
   let errorCount = 0;
 
-  for (const [siteName, config] of Object.entries(siteConfigs)) {
+  for (const config of Object.values(siteConfigs)) {
     try {
       const canCrawl = await robotsChecker.canCrawl(config.url, 'CommunityBlogBot/1.0');
       if (canCrawl) {
@@ -82,7 +82,7 @@ async function checkAllRobots() {
         blockedCount++;
         console.log(`❌ ${config.displayName} - robots.txt 차단`);
       }
-    } catch (error) {
+    } catch {
       errorCount++;
       console.log(`⚠️  ${config.displayName} - 확인 실패`);
     }

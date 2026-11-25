@@ -3,7 +3,6 @@ import * as cheerio from 'cheerio';
 import { BaseCrawler, httpStatus } from './base-crawler';
 import { type Post } from '../types';
 
-import { normalizeUrl, toAbsoluteUrl } from '../utils/url-normalizer';
 export class RuliwebCrawler extends BaseCrawler {
   siteName = 'ruliweb';
   protected readonly baseUrl = 'https://bbs.ruliweb.com';

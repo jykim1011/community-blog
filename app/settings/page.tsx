@@ -7,7 +7,8 @@ import { siteConfigs, categoryLabels, type SiteCategory } from '@/lib/constants'
 import { SiteHeader } from '@/components/site-header';
 import { useFeedPrefs } from '@/lib/hooks/use-feed-prefs';
 import { Capacitor } from '@capacitor/core';
-import { AD_FREE_HOURS, REWARDED_AD_UNIT, getAdFreeUntil, grantAdFree, subscribeAdFree } from '@/lib/ad-free';
+import { AD_FREE_HOURS, REWARDED_AD_UNIT, getAdFreeUntil, grantAdFree, isAdFree, subscribeAdFree } from '@/lib/ad-free';
+import { useClientValue } from '@/lib/hooks/use-client-value';
 
 interface SiteWithCount {
   name: string;
@@ -45,32 +46,22 @@ const getSiteDomain = (siteName: string): string => {
 };
 
 function AdFreeSection() {
-  const [available, setAvailable] = useState(false);
-  const [until, setUntil] = useState(0);
-  const [now, setNow] = useState(0);
+  // 앱에서만, 그리고 보상형 광고 단위가 준비됐을 때만 보여준다
+  const available = useClientValue(() => Capacitor.isNativePlatform() && !!REWARDED_AD_UNIT, false);
+  const until = useClientValue(getAdFreeUntil, 0, subscribeAdFree);
+  const active = useClientValue(isAdFree, false, subscribeAdFree);
   const [busy, setBusy] = useState(false);
   const [message, setMessage] = useState<string | null>(null);
 
   useEffect(() => {
-    // 앱에서만, 그리고 보상형 광고 단위가 준비됐을 때만 보여준다
-    const native = Capacitor.isNativePlatform() && !!REWARDED_AD_UNIT;
-    setAvailable(native);
     // 버튼을 누르자마자 나오도록 이 화면을 열 때 미리 받아 둔다 (이미 받아 뒀으면 그대로)
-    if (native) {
+    if (available) {
       import('@/lib/admob').then(({ preloadRewardedAd }) => preloadRewardedAd()).catch(() => {});
     }
-    const sync = () => {
-      setUntil(getAdFreeUntil());
-      setNow(Date.now());
-    };
-    sync();
-    return subscribeAdFree(sync);
-  }, []);
+  }, [available]);
 
   if (!available) return null;
 
-  // 렌더 중 Date.now() 는 순수하지 않아, 마지막으로 확인한 시각과 비교한다
-  const active = until > now;
   const untilText = new Date(until).toLocaleString('ko-KR', {
     month: 'numeric', day: 'numeric', hour: '2-digit', minute: '2-digit',
   });

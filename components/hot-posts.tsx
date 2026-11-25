@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect, useMemo } from 'react';
 import { formatRelativeTime } from '@/lib/utils';
+import { useIsCapacitorApp, useNow, usePageLoadTime } from '@/lib/hooks/use-client-value';
 import { useReadPosts } from '@/lib/hooks/use-read-posts';
 import { usePosts } from '@/lib/hooks/use-posts';
 import { useBookmarks } from '@/lib/hooks/use-bookmarks';
@@ -115,16 +116,11 @@ const hotScore = (p: StaticPost) =>
 
 function HotPostItem({ post, rank }: { post: StaticPost; rank: number }) {
   const { openViewer, preloadViewer, cancelPreload } = useViewer();
-  const [time, setTime] = useState('');
+  const now = useNow();
+  const time = now === null ? '' : formatRelativeTime(new Date(post.createdAt), new Date(now));
   const { isRead, markAsRead, isLoaded } = useReadPosts();
   const { isBookmarked, toggleBookmark } = useBookmarks();
   const touchStartPos = useRef<{ x: number; y: number } | null>(null);
-
-  useEffect(() => {
-    setTime(formatRelativeTime(new Date(post.createdAt)));
-    const t = setInterval(() => setTime(formatRelativeTime(new Date(post.createdAt))), 60000);
-    return () => clearInterval(t);
-  }, [post.createdAt]);
 
   const theme = SITE_THEME[post.site] ?? { color: '#71717a', badge: post.siteDisplayName.charAt(0), domain: '' };
   const isReadPost = isLoaded && isRead(post.url);
@@ -341,20 +337,13 @@ export function HotPosts({ initialPosts }: Props) {
   );
   const [shown, setShown] = useState(PAGE_SIZE);
   const [isLoading, setIsLoading] = useState(false);
-  const [isApp, setIsApp] = useState(false);
+  const isApp = useIsCapacitorApp();
   const adInset = useNativeAdInset();
   const loadRef = useRef<HTMLDivElement>(null);
   const hasMore = shown < posts.length;
 
   // 인앱 뷰어에서도 인기글 목록이 계속 보이도록 등록
   useViewerQueue(posts);
-
-  useEffect(() => {
-    const isCapacitor =
-      typeof window !== 'undefined' &&
-      (window.location.protocol === 'capacitor:' || (window as unknown as { Capacitor?: unknown }).Capacitor !== undefined);
-    setIsApp(!!isCapacitor);
-  }, []);
 
   useEffect(() => {
     if (!hasMore || isLoading) return;
@@ -372,14 +361,12 @@ export function HotPosts({ initialPosts }: Props) {
   }, [hasMore, isLoading, posts.length]);
 
   // 렌더 중 new Date() 는 하이드레이션 불일치를 만들므로 마운트 후에 계산한다.
-  const [timeStr, setTimeStr] = useState('');
-  useEffect(() => {
-    const now = new Date();
-    setTimeStr(
-      `${now.getHours() < 12 ? '오전' : '오후'} ` +
-      `${String(now.getHours() % 12 || 12).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')} 기준`
-    );
-  }, []);
+  const loadedAt = usePageLoadTime();
+  const loadedDate = loadedAt === null ? null : new Date(loadedAt);
+  const timeStr = loadedDate
+    ? `${loadedDate.getHours() < 12 ? '오전' : '오후'} ` +
+      `${String(loadedDate.getHours() % 12 || 12).padStart(2, '0')}:${String(loadedDate.getMinutes()).padStart(2, '0')} 기준`
+    : '';
 
   const mobilePadBottom =
     isApp && adInset

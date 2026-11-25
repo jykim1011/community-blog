@@ -1,29 +1,27 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useMemo } from 'react';
+import { setStoredItem, useStoredItem } from './use-client-value';
 
+/**
+ * localStorage 에 JSON 으로 저장되는 값. 서버·하이드레이션 중에는 initialValue.
+ * 같은 키를 쓰는 컴포넌트는 모두 같은 값을 본다.
+ */
 export function useLocalStorage<T>(key: string, initialValue: T): [T, (value: T) => void] {
-  const [storedValue, setStoredValue] = useState<T>(initialValue);
+  const raw = useStoredItem(key);
 
-  useEffect(() => {
+  const storedValue = useMemo<T>(() => {
+    if (raw === null) return initialValue;
     try {
-      const item = localStorage.getItem(key);
-      if (item !== null) {
-        setStoredValue(JSON.parse(item));
-      }
+      return JSON.parse(raw) as T;
     } catch {
-      // localStorage 접근 실패 시 기본값 유지
+      return initialValue;
     }
-  }, [key]);
+    // initialValue 는 호출할 때마다 새 객체일 수 있어 raw 가 바뀔 때만 다시 계산한다
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [raw]);
 
-  const setValue = (value: T) => {
-    setStoredValue(value);
-    try {
-      localStorage.setItem(key, JSON.stringify(value));
-    } catch {
-      // 저장 실패 시 무시
-    }
-  };
+  const setValue = (value: T) => setStoredItem(key, JSON.stringify(value));
 
   return [storedValue, setValue];
 }

@@ -1,34 +1,21 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useCallback } from 'react';
+import { useClientValue } from './use-client-value';
 
 /**
  * 미디어 쿼리 훅
  * @param query - CSS 미디어 쿼리 문자열 (예: '(min-width: 768px)')
- * @returns 미디어 쿼리 매칭 여부
+ * @returns 미디어 쿼리 매칭 여부 (서버·하이드레이션 중에는 false)
  */
 export function useMediaQuery(query: string): boolean {
-  const [matches, setMatches] = useState(false);
-
-  useEffect(() => {
-    const mediaQuery = window.matchMedia(query);
-
-    // 초기값 설정
-    setMatches(mediaQuery.matches);
-
-    // 미디어 쿼리 변경 감지
-    const handler = (event: MediaQueryListEvent) => {
-      setMatches(event.matches);
-    };
-
-    // 이벤트 리스너 등록
-    mediaQuery.addEventListener('change', handler);
-
-    // 클린업
-    return () => {
-      mediaQuery.removeEventListener('change', handler);
-    };
-  }, [query]);
-
-  return matches;
+  const subscribe = useCallback(
+    (onChange: () => void) => {
+      const mediaQuery = window.matchMedia(query);
+      mediaQuery.addEventListener('change', onChange);
+      return () => mediaQuery.removeEventListener('change', onChange);
+    },
+    [query],
+  );
+  return useClientValue(() => window.matchMedia(query).matches, false, subscribe);
 }

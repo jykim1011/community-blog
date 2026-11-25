@@ -40,30 +40,35 @@ export function PostList({ posts, selectedSite, searchQuery, registerViewerQueue
 
   // 읽은 글 숨기기: 읽는 즉시 목록에서 빠지면 뷰어의 이전/다음 순서가 어긋나므로
   // 목록이 바뀔 때(새로고침·설정 변경) 시점의 읽음 목록으로만 거른다.
-  const [hiddenRead, setHiddenRead] = useState<ReadonlySet<string>>(new Set());
-  useEffect(() => {
-    if (!hideRead || !readLoaded) { setHiddenRead(new Set()); return; }
-    setHiddenRead(new Set(posts.filter(p => isRead(p.url)).map(p => p.url)));
-  }, [posts, hideRead, readLoaded]);
-  const [currentSite, setCurrentSite] = useState<string | null>(null);
+  // (effect 대신 렌더 중에 입력이 바뀐 것을 보고 다시 계산한다 — React 권장 방식)
+  const computeHiddenRead = (): ReadonlySet<string> =>
+    hideRead && readLoaded ? new Set(posts.filter(p => isRead(p.url)).map(p => p.url)) : new Set();
+  const [hiddenRead, setHiddenRead] = useState<ReadonlySet<string>>(computeHiddenRead);
+  const [hiddenReadFor, setHiddenReadFor] = useState({ posts, hideRead, readLoaded });
+  if (hiddenReadFor.posts !== posts || hiddenReadFor.hideRead !== hideRead || hiddenReadFor.readLoaded !== readLoaded) {
+    setHiddenReadFor({ posts, hideRead, readLoaded });
+    setHiddenRead(computeHiddenRead());
+  }
+  const [currentSite, setCurrentSite] = useState<string | null>(selectedSite ?? null);
   const [currentCategory, setCurrentCategory] = useLocalStorage<FeedCategory | null>('feed-category', null);
   const [currentSort, setCurrentSort] = useLocalStorage<SortOption>('feed-sort-v2', 'trending');
   const [displayedCount, setDisplayedCount] = useState(INITIAL_COUNT);
   const [isLoading, setIsLoading] = useState(false);
 
-  // 사이드바에서 사이트 선택 시 동기화
-  useEffect(() => {
+  // 사이드바에서 사이트 선택 시 동기화, 키워드가 바뀌면 다시 처음 개수부터 (렌더 중 이전 값과 비교)
+  const [prevSelectedSite, setPrevSelectedSite] = useState(selectedSite);
+  if (selectedSite !== prevSelectedSite) {
+    setPrevSelectedSite(selectedSite);
     if (selectedSite !== undefined) {
       setCurrentSite(selectedSite ?? null);
       setDisplayedCount(INITIAL_COUNT);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [selectedSite]);
-
-  // 키워드 필터 변경 시 displayedCount 리셋
-  useEffect(() => {
+  }
+  const [prevSearchQuery, setPrevSearchQuery] = useState(searchQuery);
+  if (searchQuery !== prevSearchQuery) {
+    setPrevSearchQuery(searchQuery);
     setDisplayedCount(INITIAL_COUNT);
-  }, [searchQuery]);
+  }
 
   const filteredPosts = useMemo(() => {
     let filtered: StaticPost[];

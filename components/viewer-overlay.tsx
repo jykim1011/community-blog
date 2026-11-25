@@ -45,12 +45,13 @@ export function ViewerOverlay() {
 
 
   // 네이티브 앱: iframe이 외부 URL 로드 시 AdMob 배너 재표시
+  const viewerUrl = viewer?.url;
   useEffect(() => {
-    if (!viewer || !Capacitor.isNativePlatform()) return;
+    if (!viewerUrl || !Capacitor.isNativePlatform()) return;
     import('@/lib/admob').then(({ resumeBannerAd }) => {
       resumeBannerAd().catch(() => {});
     });
-  }, [viewer?.url]);
+  }, [viewerUrl]);
 
   // 네이티브 앱: 하드웨어 뒤로가기 처리 (MainActivity.java에서 이벤트 발송)
   useEffect(() => {

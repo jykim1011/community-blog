@@ -38,7 +38,7 @@ export abstract class BaseCrawler implements ICrawler {
         console.warn(`[${this.siteName}] robots.txt disallows: ${url}`);
       }
       return canCrawl;
-    } catch (error) {
+    } catch {
       // 에러 시 허용 (보수적)
       console.warn(`[${this.siteName}] robots.txt check failed, allowing by default`);
       return true;
@@ -49,7 +49,7 @@ export abstract class BaseCrawler implements ICrawler {
   protected async getCrawlDelay(): Promise<number | undefined> {
     try {
       return await robotsChecker.getCrawlDelay(this.baseUrl, 'CommunityBlogBot/1.0');
-    } catch (error) {
+    } catch {
       return undefined;
     }
   }

@@ -17,11 +17,10 @@ const eslintConfig = defineConfig([
     // 내려받은 디자인 시스템 내보내기 (직접 작성한 코드가 아님)
     "store-assets/**/*_files/**",
   ]),
-  // 정적 export 라 서버 HTML 과 첫 렌더가 같아야 해서, localStorage·UA·현재 시각처럼
-  // 브라우저에서만 아는 값은 마운트 후 effect 에서 setState 로 넣는다 (의도된 패턴).
-  // 새 코드에서 습관적으로 쓰지 않게 경고로는 남겨 둔다
+  // 이미지는 모두 외부 사이트의 파비콘·썸네일이고, output: 'export' 라 next/image 최적화 서버가 없다.
+  // <Image unoptimized> 로 바꿔도 결국 같은 <img> 가 나오므로 이 규칙은 끈다
   {
-    rules: { "react-hooks/set-state-in-effect": "warn" },
+    rules: { "@next/next/no-img-element": "off" },
   },
   // Node 로 바로 실행하는 CommonJS 스크립트는 require() 를 쓴다
   {

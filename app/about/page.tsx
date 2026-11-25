@@ -1,7 +1,7 @@
 import type { Metadata } from 'next';
 import { SiteHeader } from '@/components/site-header';
 import { SiteFooter } from '@/components/site-footer';
-import { SITE_NAME, SITE_DESCRIPTION, siteConfigs } from '@/lib/constants';
+import { SITE_NAME, siteConfigs } from '@/lib/constants';
 
 export const metadata: Metadata = {
   title: '서비스 소개',

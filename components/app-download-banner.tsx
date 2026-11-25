@@ -1,28 +1,35 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState } from 'react';
+import { useClientValue } from '@/lib/hooks/use-client-value';
+
+const DISMISS_KEY = 'app-banner-dismissed';
+const DISMISS_MS = 24 * 60 * 60 * 1000;
+
+function shouldShowBanner(): boolean {
+  // 모바일에서만 표시
+  const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
+  // 이미 앱에서 접속한 경우 숨김
+  const isApp = window.matchMedia('(display-mode: standalone)').matches;
+  // 이전에 닫은 적 있는지 확인 (24시간)
+  let dismissedAt: string | null = null;
+  try {
+    dismissedAt = localStorage.getItem(DISMISS_KEY);
+  } catch {
+    // 저장소를 못 쓰면 닫은 적 없는 것으로
+  }
+  const isDismissedRecently = !!dismissedAt && Date.now() - parseInt(dismissedAt) < DISMISS_MS;
+  return isMobile && !isApp && !isDismissedRecently;
+}
 
 export function AppDownloadBanner() {
-  const [isVisible, setIsVisible] = useState(false);
+  // 하이드레이션 뒤에 판단한다
+  const isVisible = useClientValue(shouldShowBanner, false);
   const [isDismissed, setIsDismissed] = useState(false);
-
-  useEffect(() => {
-    // 모바일에서만 표시
-    const isMobile = /Android|iPhone|iPad|iPod/i.test(navigator.userAgent);
-    // 이미 앱에서 접속한 경우 숨김
-    const isApp = window.matchMedia('(display-mode: standalone)').matches;
-    // 이전에 닫은 적 있는지 확인 (24시간)
-    const dismissedAt = localStorage.getItem('app-banner-dismissed');
-    const isDismissedRecently = dismissedAt && Date.now() - parseInt(dismissedAt) < 24 * 60 * 60 * 1000;
-
-    if (isMobile && !isApp && !isDismissedRecently) {
-      setIsVisible(true);
-    }
-  }, []);
 
   const handleDismiss = () => {
     setIsDismissed(true);
-    localStorage.setItem('app-banner-dismissed', Date.now().toString());
+    try { localStorage.setItem(DISMISS_KEY, Date.now().toString()); } catch { /* 이번 실행 동안은 isDismissed 로 숨김 */ }
   };
 
   const handleDownload = () => {

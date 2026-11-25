@@ -79,7 +79,7 @@ export class DealbadaCrawler extends BaseCrawler {
       const html = typeof response.data === 'string' ? response.data : response.data.toString('utf-8');
       const $ = cheerio.load(html);
       return this.parsePosts($);
-    } catch (error) {
+    } catch {
       // UTF-8 실패 시 EUC-KR/CP949로 재시도
       const response = await axios.get(url, {
         headers: {

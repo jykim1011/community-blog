@@ -1,7 +1,8 @@
 'use client';
 
-import { useState, useEffect, useRef } from 'react';
+import { useState, useRef } from 'react';
 import { formatRelativeTime } from '@/lib/utils';
+import { useNow } from '@/lib/hooks/use-client-value';
 import { useReadPosts } from '@/lib/hooks/use-read-posts';
 import { useBookmarks } from '@/lib/hooks/use-bookmarks';
 import { isDomainBlocked } from '@/lib/utils/blocked-domains';
@@ -85,16 +86,12 @@ export function PostCard({
   title, url, site, viewCount, commentCount, likeCount, createdAt, category,
 }: PostCardProps) {
   const { openViewer, preloadViewer, cancelPreload } = useViewer();
-  const [relativeTime, setRelativeTime] = useState('');
+  // 하이드레이션 뒤에 계산하고, 공용 타이머로 1분마다 다시 그린다
+  const now = useNow();
+  const relativeTime = now === null ? '' : formatRelativeTime(new Date(createdAt), new Date(now));
   const { isRead, markAsRead, isLoaded } = useReadPosts();
   const { isBookmarked, toggleBookmark } = useBookmarks();
   const touchStartPos = useRef<{ x: number; y: number } | null>(null);
-
-  useEffect(() => {
-    setRelativeTime(formatRelativeTime(new Date(createdAt)));
-    const t = setInterval(() => setRelativeTime(formatRelativeTime(new Date(createdAt))), 60000);
-    return () => clearInterval(t);
-  }, [createdAt]);
 
   const handleTouchStart = (e: React.TouchEvent) => {
     if (isDomainBlocked(url)) return;

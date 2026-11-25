@@ -1,12 +1,13 @@
 'use client';
 
-import { useEffect, useLayoutEffect, useRef, useState, useMemo } from 'react';
+import { useLayoutEffect, useRef, useState, useMemo } from 'react';
 import { usePathname, useRouter } from 'next/navigation';
 import { PostList } from '@/components/post-list';
 import { TrendStrip } from '@/components/trend-strip';
 import { useSubscriptions } from '@/lib/hooks/use-subscriptions';
 import { usePosts } from '@/lib/hooks/use-posts';
 import { useMediaQuery } from '@/lib/hooks/use-media-query';
+import { setStoredItem, useHydrated, useIsCapacitorApp, usePageLoadTime, useStoredItem } from '@/lib/hooks/use-client-value';
 import { useNativeAdInset } from '@/lib/ad-state';
 import { useAdFreeHint } from '@/lib/hooks/use-ad-free-hint';
 import { SITE_NAME } from '@/lib/constants';
@@ -277,13 +278,20 @@ export function DashboardHome({ initialPosts, initialSites, initialStats, keywor
   const { subscriptions, isLoaded } = useSubscriptions();
   // initialPosts 는 SSR 로 인라인된 최신 60건. 마운트 직후 전체 목록으로 교체된다.
   const { posts: allPosts, isComplete, error: postsError, refresh: refreshPosts } = usePosts({ initial: initialPosts });
-  const [isApp, setIsApp] = useState(false);
+  const isApp = useIsCapacitorApp();
   const adInset = useNativeAdInset();
   const [activeSite, setActiveSite] = useState<string | null>(null);
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
   const [activeKeyword, setActiveKeyword] = useState<string | null>(null);
-  const [updatedAt, setUpdatedAt] = useState<string | null>(null);
-  const [clock, setClock] = useState('');
+  // 렌더 중 new Date() 는 하이드레이션 불일치를 만들므로, 하이드레이션 뒤 페이지를 연 시각으로 표시한다
+  const loadedAt = usePageLoadTime();
+  const loadedDate = loadedAt === null ? null : new Date(loadedAt);
+  const updatedAt = loadedDate
+    ? `${loadedDate.getFullYear()}.${String(loadedDate.getMonth() + 1).padStart(2, '0')}.` +
+      `${String(loadedDate.getDate()).padStart(2, '0')} ${loadedDate.getHours() < 12 ? '오전' : '오후'} ` +
+      `${String(loadedDate.getHours() % 12 || 12).padStart(2, '0')}:${String(loadedDate.getMinutes()).padStart(2, '0')}`
+    : null;
+  const clock = loadedDate ? loadedDate.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' }) : '';
   // 데스크톱/모바일 레이아웃이 CSS로만 전환되고 둘 다 마운트되므로,
   // 인앱 뷰어 큐는 실제로 보이는 쪽 PostList 하나만 등록한다. (Tailwind sm = 640px)
   const isDesktopLayout = useMediaQuery('(min-width: 640px)');
@@ -300,30 +308,10 @@ export function DashboardHome({ initialPosts, initialSites, initialStats, keywor
   }, [isLoaded]);
 
   // 맞춤 피드 안내 배너는 한 번 닫으면 다시 띄우지 않는다.
-  const [tipDismissed, setTipDismissed] = useState(true);
-  useEffect(() => {
-    try { setTipDismissed(localStorage.getItem('feed-tip-dismissed') === '1'); } catch { setTipDismissed(false); }
-  }, []);
-  const dismissTip = () => {
-    setTipDismissed(true);
-    try { localStorage.setItem('feed-tip-dismissed', '1'); } catch { /* ignore */ }
-  };
-
-  useEffect(() => {
-    const isCapacitor = typeof window !== 'undefined' && (
-      window.location.protocol === 'capacitor:' || (window as unknown as { Capacitor?: unknown }).Capacitor !== undefined
-    );
-    setIsApp(isCapacitor);
-
-    const now = new Date();
-    setUpdatedAt(
-      `${now.getFullYear()}.${String(now.getMonth() + 1).padStart(2, '0')}.` +
-      `${String(now.getDate()).padStart(2, '0')} ${now.getHours() < 12 ? '오전' : '오후'} ` +
-      `${String(now.getHours() % 12 || 12).padStart(2, '0')}:${String(now.getMinutes()).padStart(2, '0')}`
-    );
-    setClock(now.toLocaleTimeString('ko-KR', { hour: '2-digit', minute: '2-digit' }));
-
-  }, []);
+  const hydrated = useHydrated();
+  const tipStored = useStoredItem('feed-tip-dismissed');
+  const tipDismissed = !hydrated || tipStored === '1';
+  const dismissTip = () => setStoredItem('feed-tip-dismissed', '1');
 
   const filteredSites = useMemo(() =>
     subscriptions.length > 0 ? initialSites.filter(s => subscriptions.includes(s.name)) : initialSites,

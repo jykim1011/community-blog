@@ -3,6 +3,7 @@
 import { useEffect, useState } from 'react';
 import { Capacitor } from '@capacitor/core';
 import { adStateManager } from '@/lib/ad-state';
+import { useClientValue } from '@/lib/hooks/use-client-value';
 
 /**
  * 하단 고정 광고 컨테이너 (웹 전용)
@@ -10,12 +11,10 @@ import { adStateManager } from '@/lib/ad-state';
  */
 export function BottomAdContainer() {
   const [isAdLoaded, setIsAdLoaded] = useState(false);
-  const [isNative, setIsNative] = useState(false);
+  // 네이티브 플랫폼인지 확인 (하이드레이션 뒤에 판단)
+  const isNative = useClientValue(() => Capacitor.isNativePlatform(), false);
 
   useEffect(() => {
-    // 네이티브 플랫폼인지 확인
-    setIsNative(Capacitor.isNativePlatform());
-
     // 광고 로드 상태 구독 (웹용 AdSense 광고)
     const unsubscribe = adStateManager.subscribe(setIsAdLoaded);
 

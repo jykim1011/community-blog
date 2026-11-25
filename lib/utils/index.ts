@@ -7,8 +7,7 @@ export function cn(...inputs: ClassValue[]) {
 }
 
 // 상대 시간 포맷 (예: "3시간 전")
-export function formatRelativeTime(date: Date): string {
-  const now = new Date();
+export function formatRelativeTime(date: Date, now: Date = new Date()): string {
   const diffInSeconds = Math.floor((now.getTime() - date.getTime()) / 1000);
 
   // 미래 날짜 처리 (크롤링 오류 방지)

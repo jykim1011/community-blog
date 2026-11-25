@@ -1,6 +1,7 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useMemo } from 'react';
+import { setStoredItem, useHydrated, useStoredItem } from './use-client-value';
 
 const STORAGE_KEY = 'community-subscriptions';
 
@@ -9,33 +10,24 @@ export interface Subscription {
 }
 
 export function useSubscriptions() {
-  const [subscriptions, setSubscriptions] = useState<string[]>([]);
-  const [isLoaded, setIsLoaded] = useState(false);
-
-  // 로컬 스토리지에서 구독 정보 로드
-  useEffect(() => {
-    if (typeof window !== 'undefined') {
-      const stored = localStorage.getItem(STORAGE_KEY);
-      if (stored) {
-        try {
-          const data: Subscription = JSON.parse(stored);
-          setSubscriptions(data.sites || []);
-        } catch (error) {
-          console.error('Failed to parse subscriptions:', error);
-          setSubscriptions([]);
-        }
-      }
-      setIsLoaded(true);
+  // 로컬 스토리지의 구독 정보 (설정 화면에서 바꾸면 피드도 바로 같은 값을 본다)
+  const stored = useStoredItem(STORAGE_KEY);
+  const isLoaded = useHydrated();
+  const subscriptions = useMemo<string[]>(() => {
+    if (!stored) return [];
+    try {
+      const data: Subscription = JSON.parse(stored);
+      return data.sites || [];
+    } catch (error) {
+      console.error('Failed to parse subscriptions:', error);
+      return [];
     }
-  }, []);
+  }, [stored]);
 
   // 구독 정보 저장
   const saveSubscriptions = (sites: string[]) => {
-    if (typeof window !== 'undefined') {
-      const data: Subscription = { sites };
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(data));
-      setSubscriptions(sites);
-    }
+    const data: Subscription = { sites };
+    setStoredItem(STORAGE_KEY, JSON.stringify(data));
   };
 
   // 사이트 구독 추가
